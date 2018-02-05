@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Not the best way to use
+# watch action only watch change from your source code that will trigger re-compile
+# consider webpack-dev-server include re-compile and re-load browser
+
+../node_modules/.bin/webpack --watch
