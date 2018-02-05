@@ -1,5 +1,4 @@
 # mac
-# 
 .DS_Store
 
 # Logs
@@ -60,3 +59,6 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# vim
+*.swp
