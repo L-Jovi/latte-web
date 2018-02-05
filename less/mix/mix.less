@@ -1,0 +1,13 @@
+.foo(@var_radius:5px){
+    border-radius: @var_radius;
+    -webkit-border-radius: @var_radius;
+    -moz-border-radius: @var_radius;
+}
+
+#header {
+    .foo;
+}
+
+#footer {
+    .foo(20px);
+}
