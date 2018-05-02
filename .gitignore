@@ -63,6 +63,7 @@ typings/
 # vim
 *.swp
 *~
+Session.vim
 
 # Release
 dist/

@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>旋转木马</title>
+  <link type="text/css" rel="stylesheet" href="carousel.css">
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="carousel.js"></script>
+</head>
+<body>
+  <div class="jq_poster_main poster-main" data-setting='{
+                "width": 800,
+                "height": 232,
+                "firstImgWidth": 640,
+                "firstImgHeight": 232,
+                "verticalAlign": "middle",
+                "scale": 0.9,
+                "speed": 500
+            }'>
+    <div class="poster-btn poster-prev-btn"> &lt </div>
+      <ul class="poster-list">
+        <li class="poster-item">
+          <a href="#"> <img src="images/shop.jpg" width="100%"> </a>
+        </li>
+        <li class="poster-item">
+          <a href="#"> <img src="images/subway.jpg" width="100%"> </a>
+        </li>
+        <li class="poster-item">
+          <a href="#"> <img src="images/sunset.jpg" width="100%"> </a>
+        </li>
+        <li class="poster-item">
+          <a href="#"> <img src="images/wood.jpg" width="100%"> </a>
+        </li>
+        <li class="poster-item">
+          <a href="#"> <img src="images/shop.jpg" width="100%"> </a>
+        </li>
+        <li class="poster-item">
+          <a href="#"> <img src="images/subway.jpg" width="100%"> </a>
+        </li>
+        <li class="poster-item">
+          <a href="#"> <img src="images/sunset.jpg" width="100%"> </a>
+        </li>
+        <li class="poster-item">
+          <a href="#"> <img src="images/wood.jpg" width="100%"> </a>
+        </li>
+        <li class="poster-item">
+          <a href="#"> <img src="images/wood.jpg" width="100%"> </a>
+        </li>
+      </ul>
+    <div class="poster-btn poster-next-btn"> &gt </div>
+  </div>
+
+  <div class="jq_poster_main poster-main" data-setting='{
+                "width": 1000,
+                "height": 232,
+                "firstImgWidth": 640,
+                "firstImgHeight": 232,
+                "verticalAlign": "bottom",
+                "scale": 0.9,
+                "speed": 500
+            }'>
+      <div class="poster-btn poster-prev-btn"> &lt </div>
+      <ul class="poster-list">
+          <li class="poster-item">
+              <a href="#"> <img src="images/shop.jpg" width="100%"> </a>
+          </li>
+          <li class="poster-item">
+              <a href="#"> <img src="images/subway.jpg" width="100%"> </a>
+          </li>
+          <li class="poster-item">
+              <a href="#"> <img src="images/sunset.jpg" width="100%"> </a>
+          </li>
+          <li class="poster-item">
+              <a href="#"> <img src="images/wood.jpg" width="100%"> </a>
+          </li>
+          <li class="poster-item">
+              <a href="#"> <img src="images/shop.jpg" width="100%"> </a>
+          </li>
+          <li class="poster-item">
+              <a href="#"> <img src="images/subway.jpg" width="100%"> </a>
+          </li>
+          <li class="poster-item">
+              <a href="#"> <img src="images/sunset.jpg" width="100%"> </a>
+          </li>
+          <li class="poster-item">
+              <a href="#"> <img src="images/wood.jpg" width="100%"> </a>
+          </li>
+          <li class="poster-item">
+              <a href="#"> <img src="images/wood.jpg" width="100%"> </a>
+          </li>
+      </ul>
+      <div class="poster-btn poster-next-btn"> &gt </div>
+  </div>
+
+  <div class="jq_poster_main poster-main" data-setting='{
+                "width": 800,
+                "height": 232,
+                "firstImgWidth": 640,
+                "firstImgHeight": 232,
+                "verticalAlign": "middle",
+                "scale": 0.8,
+                "speed": 1000
+            }'>
+      <div class="poster-btn poster-prev-btn"> &lt </div>
+      <ul class="poster-list">
+          <li class="poster-item">
+              <a href="#"> <img src="images/shop.jpg" width="100%"> </a>
+          </li>
+          <li class="poster-item">
+              <a href="#"> <img src="images/subway.jpg" width="100%"> </a>
+          </li>
+          <li class="poster-item">
+              <a href="#"> <img src="images/sunset.jpg" width="100%"> </a>
+          </li>
+          <li class="poster-item">
+              <a href="#"> <img src="images/wood.jpg" width="100%"> </a>
+          </li>
+      </ul>
+      <div class="poster-btn poster-next-btn"> &gt </div>
+  </div>
+
+  <script type="text/javascript">
+      $(function(){
+//          var carousel = new Carousel($(".jq_poster_main").eq(0));
+            // 用面向对象的思想  封装初始化配置参数到一个对象里
+            var setting = {
+                width: 1000,
+                height: 232,
+                firstImgWidth: 640,
+                firstImgHeight: 232,
+                verticalAlign: "middle",
+                scale: 0.9,
+                speed: 500
+            };
+            Carousel.init($(".jq_poster_main"), setting);
+      })
+  </script>
+</body>
+</html>

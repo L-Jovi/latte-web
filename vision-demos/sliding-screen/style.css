@@ -1,0 +1,30 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: #333;
+    overflow: hidden;
+}
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+/* 使得图片居中 webkit-box */
+li{
+    position: absolute;
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+}
+li img {
+    max-width: 100%;
+    max-height: 100%;
+}
+/* 隐藏画布外的内容 */
+#canvas{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}

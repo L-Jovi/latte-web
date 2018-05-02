@@ -1,0 +1,88 @@
+var scenceJson={	
+	//clearColor: 'red',
+	objects: [{
+		type: 'floor',
+		width: 1600,
+		depth: 1300,
+	},{
+		type: 'floor_cut',
+		width: 200,
+		height: 20,
+		depth: 260,
+		translate: [-348,0,530],
+		rotate: [Math.PI/180*3, 0, 0],
+	},{
+		type: 'floor_box',
+		width: 300,
+		height: 50,
+		depth: 100,
+		translate: [350, 0, -500],	
+	},{
+		type: 'wall',
+		height: 200,		
+		translate: [-500, 0, -500],
+		data:[
+			[0, 0],
+			[1000, 0],
+			[1000, 500],
+			[500, 500],
+			[500, 1000],
+			[0, 1000],
+			[0,0],
+		],
+		children: [{
+			type: 'window',
+			translate: [200, 30, 500],
+			width: 420,
+			height: 150,
+			depth: 50, 
+		},{
+			type: 'door',
+			width: 205,
+			height: 180,
+			depth: 26,
+			translate: [-350, 0, 500],
+		}],
+	},{
+		type: 'plants',
+		floorShadow: true,
+		translates: [[560, 0, 400],[560, 0, 0],[60, 0, -100],[60, 0, -400],[-560, 0, 400],[-560, 0, 0],[-560, 0, -400]],
+	},{
+		type: 'plants',		
+		scale: [0.5, 0.3, 0.5],
+		floorShadow: false,
+		translates: [[100, 27, 520],[300, 27, 520]],
+	},{
+		type: 'glass_wall',
+		width: 1300,
+		rotate: [0, Math.PI/180*90, 0],
+		translate: [-790, 0, 0],
+	},{
+		type: 'glass_wall',
+		width: 1300,
+		rotate: [0, Math.PI/180*90, 0],
+		translate: [790, 0, 0],	
+	},{
+		type: 'racks',		
+		translates: [
+			[-150, 0, 250],
+			[-150-62, 0, 250],
+			[-150-62-62, 0, 250],
+			[-370, 0, -250],
+			[-370+62, 0, -250],
+			[-370+62+62, 0, -250],
+			[-370+62+62+62, 0, -250],
+			[150, 0, 250],
+			[150+62, 0, 250],
+			[150+62+62, 0, 250],
+			[150+62+62+62, 0, 250],
+			[150+62+62+62+62, 0, 250],
+			[150-62, 0, 250],
+			[150-62-62, 0, 250],			
+		],
+		severities: [mono.AlarmSeverity.CRITICAL, null, mono.AlarmSeverity.MINOR, mono.AlarmSeverity.WARNING,],
+	},{
+		type: 'tv',
+		translate: [80, 100, 13],	
+	}],
+};

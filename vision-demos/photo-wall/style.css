@@ -1,0 +1,120 @@
+body {
+    background: #eee;
+}
+
+h1 {
+    text-align: center;
+}
+
+img {
+    padding: 10px 10px 15px;
+    background: #fff;
+    border: 1px solid #ddd;
+    position: absolute;
+
+    transition:1s;
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    
+    box-shadow: 5px 5px 10px #888888;
+    -webkit-box-shadow: 5px 5px 10px #888888;
+    -moz-box-shadow: 5px 5px 10px #888888;
+
+    opacity: 0.8;
+}
+    img:hover {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+
+        transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+        -moz-transform: scale(1.2);
+
+        opacity: 1;
+        z-index: 10;
+    }
+
+.container {
+    width: 960;
+    height: 450;
+    margin: 60 auto;
+    position: relative;
+}
+
+
+/* 愚蠢的方法遍历每个图片组件的值  以后会使用 js 动态生成随机数实现 */
+.img1 {
+    top: 50px;
+    left: 200px;
+
+    transform: rotate(-5deg);
+    -webkit-transform: rotate(-5deg);
+    -moz-transform: rotate(-5deg);
+}
+.img2 {
+    top: 50px;
+    left: 450px;
+
+    transform: rotate(7deg);
+    -webkit-transform: rotate(7deg);
+    -moz-transform: rotate(7deg);
+
+    z-index: 2;
+}
+.img3 {
+    top: 50px;
+    left: 600px;
+
+    transform: rotate(20deg);
+    -webkit-transform: rotate(20deg);
+    -moz-transform: rotate(20deg);
+}
+.img4 {
+    top: 50px;
+    left: 870px;
+
+    transform: rotate(-9deg);
+    -webkit-transform: rotate(-9deg);
+    -moz-transform: rotate(-9deg);
+}
+.img5 {
+    top: 330px;
+    left: 200px;
+
+    transform: rotate(14deg);
+    -webkit-transform: rotate(14deg);
+    -moz-transform: rotate(14deg);
+}
+.img6 {
+    top: 330px;
+    left: 500px;
+
+    transform: rotate(-25deg);
+    -webkit-transform: rotate(-25deg);
+    -moz-transform: rotate(-25deg);
+
+    z-index: 3;
+}
+.img7 {
+    top: 330px;
+    left: 700px;
+
+    transform: rotate(-12deg);
+    -webkit-transform: rotate(-12deg);
+    -moz-transform: rotate(-12deg);
+
+    z-index: 4;
+}
+.img8 {
+    top: 330px;
+    left: 880px;
+
+    transform: rotate(22deg);
+    -webkit-transform: rotate(22deg);
+    -moz-transform: rotate(22deg);
+}
