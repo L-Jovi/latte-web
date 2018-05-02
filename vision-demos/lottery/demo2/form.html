@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>form</title>
+
+  <style>
+    @media screen and (device-width: 640px) {
+      /*iphone4/iphon5*/
+      html {
+        font-size: 100px;
+      }
+    }
+    
+    @media screen and (device-width: 750px) {
+      /*iphone6*/
+      html {
+        font-size: 117.188px;
+      }
+    }
+    
+    @media screen and (device-width: 1240px) {
+      /*iphone6s*/
+      html {
+        font-size: 194.063px;
+      }
+    }
+    
+    #container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    label {
+      font-size: 0.8rem;
+      display: block;
+      width: 15rem;
+      height: 2rem;
+    }
+    
+    input {
+      width: 15rem;
+      height: 2rem;
+      border-radius: 0.2rem;
+      border: 0.08rem solid #E5E5E5;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <label for="">收货人姓名</label>
+    <input type="text" placeholder="收货人姓名">
+
+    <label for="">手机验证码</label>
+    <input type="text" placeholder="手机验证码">
+    <button>获取验证码</button>
+  </div>
+</body>
+
+</html>

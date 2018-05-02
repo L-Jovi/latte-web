@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Unslider</title>
+
+		<meta name="viewport" content="width=device-width">
+
+<link rel="stylesheet" href="./depends/style.css">
+<script src="./depends/jquery.min.js"></script>
+<script src="./depends/unslider.min.js"></script>
+
+
+
+<style type="text/css">		
+.banner { position: relative; overflow: auto;}
+    .banner li { list-style: none; }
+        .banner ul li { float: left; }
+</style>
+
+	</head>
+	<body>
+
+<div class="banner">
+    <ul>
+        <li style="background-image: url('./depends/sunset.jpg');"></li>
+        <li style="background-image: url('./depends/subway.jpg');"></li>
+        <li style="background-image: url('./depends/shop.jpg');"></li>
+    </ul>
+</div>
+
+<script>		
+			$('.banner').unslider({
+				arrows: true,
+				fluid: true,
+				dots: true
+			});
+
+		</script>
+
+        </body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "libs": [
+    "browser",
+    "underscore",
+    "jquery",
+    "lodash"
+  ],
+
+  "plugins": {
+  }
+}
