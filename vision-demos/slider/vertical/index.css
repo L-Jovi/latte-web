@@ -1,0 +1,99 @@
+* {
+  box-sizing: border-box;
+}
+
+.wrapper {
+  word-wrap: break-word;
+  width: 60%;
+  /*   padding: 2rem 0; */
+  padding: 5px 0;
+}
+
+.wrapper,
+.container {
+  margin: 0 auto;
+}
+
+.container {
+  overflow: hidden;
+  position: relative;
+  border-radius: 4px;
+  max-width: 62.5rem;
+  height: 35.1875rem;
+  line-height: 0;
+}
+
+.slideDiv,
+.controls {
+  position: absolute;
+}
+
+.slideDiv,
+.slide {
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  background-size: cover;
+}
+
+.slide:first-child {
+  background: url(./images/machu-picchu.jpg) no-repeat center;
+}
+
+.slide:nth-of-type(2) {
+  background: url(./images/guitar.jpg) no-repeat center;
+}
+
+.slide:nth-of-type(3) {
+  background: url(./images/hat.jpg) no-repeat center;
+}
+
+.slide:last-child {
+  background: url(./images/colored-smoke.jpg) no-repeat center;
+}
+
+.controls {
+  top: 41%;
+  right: 0;
+  padding: 0 0.63rem;
+  z-index: 5;
+  text-align: center;
+}
+
+.button {
+  width: 0.9375rem;
+  height: 0.9375rem;
+  display: block;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all ease .2s;
+}
+
+.button:not(:last-child) {
+  margin-bottom: 0.63rem;
+}
+
+
+/***Colors***/
+
+body {
+  background-color: lightslategrey;
+}
+
+.button {
+  border: 1px solid #fff;
+  opacity: .6;
+  outline: none;
+  background-color: #333;
+}
+
+.button:hover,
+.button:focus {
+  opacity: 1;
+}
+
+.selected {
+  background-color: #CB411F;
+}

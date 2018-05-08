@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- refer to [https://codepen.io/sterion/pen/YxNjdz] -->
+  <meta charset="UTF-8">
+  <title>Vertical Slider</title>
+  <link rel="stylesheet" href="./index.css">
+  <script src="./jquery-3.3.1.min.js"></script>
+  <script>
+    (function() {
+      window.onload = function () {
+        var button = document.querySelectorAll('.button');
+
+        function controls() {
+          console.log(11);
+          $(this).addClass('selected').siblings('button').removeClass('selected');
+          $('.slideDiv').animate({
+            top: -$('.container').height() * $(this).index()
+          }, 450);
+        }
+
+        for (var i = 0; i < button.length; i++) {
+          button[i].addEventListener('click', controls, false);
+        }
+      }
+    })();
+  </script>
+</head>
+
+<body>
+  <section class="wrapper">
+    <div class="container">
+
+      <div class="slideDiv">
+        <article class="slide active">
+        </article>
+
+        <article class="slide">
+        </article>
+
+        <article class="slide">
+        </article>
+
+        <article class="slide">
+        </article>
+      </div>
+      <!-- /slideDiv -->
+
+      <nav class="controls">
+        <button class="button" type="button" aria-label="Go to first image"></button>
+        <button class="button" type="button" aria-label="Go to second image"></button>
+        <button class="button" type="button" aria-label="Go to third image"></button>
+        <button class="button" type="button" aria-label="Go to fourth image"></button>
+      </nav>
+
+    </div>
+    <!-- /container -->
+  </section>
+  <!-- /wrapper -->
+</body>
+
+</html>
