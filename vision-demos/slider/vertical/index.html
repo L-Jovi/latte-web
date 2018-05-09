@@ -13,7 +13,6 @@
         var button = document.querySelectorAll('.button');
 
         function controls() {
-          console.log(11);
           $(this).addClass('selected').siblings('button').removeClass('selected');
           $('.slideDiv').animate({
             top: -$('.container').height() * $(this).index()
