@@ -11,17 +11,43 @@
     (function() {
       window.onload = function () {
         var button = document.querySelectorAll('.button');
-
-        function controls() {
-          $(this).addClass('selected').siblings('button').removeClass('selected');
-          $('.slideDiv').animate({
-            top: -$('.container').height() * $(this).index()
-          }, 450);
-        }
+        var count = 0;
+        var limit = 3;
 
         for (var i = 0; i < button.length; i++) {
-          button[i].addEventListener('click', controls, false);
+          (function(i) {
+            button[i].addEventListener('click', function() {
+              count = i;
+              $(this).addClass('selected').siblings('button').removeClass('selected');
+              $('.slideDiv').animate({
+                top: -$('.container').height() * $(this).index()
+              }, 450);
+            }, false);
+          })(i);
         }
+
+        function changeCount() {
+          if (count >= limit) {
+            count = 0;
+          } else {
+            count += 1;
+          }
+        }
+
+        function mockClick() {
+          button[count].click();
+          changeCount();
+        }
+
+        mockClick();
+        var id = setInterval(mockClick, 3000);
+
+        $('.container').hover(function() {
+          clearInterval(id);
+        }, function() {
+          changeCount();
+          id = setInterval(mockClick, 3000);
+        });
       }
     })();
   </script>
