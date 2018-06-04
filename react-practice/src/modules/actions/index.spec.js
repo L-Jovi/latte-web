@@ -1,4 +1,4 @@
-import * as types from '../constants/ActionTypes'
+import * as types from '../constants'
 import * as actions from './index'
 
 describe('todo actions', () => {
