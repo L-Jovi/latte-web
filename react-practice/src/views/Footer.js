@@ -24,7 +24,7 @@ class Footer extends React.Component {
   static propTypes = {
     completedCount: PropTypes.number.isRequired,
     activeCount: PropTypes.number.isRequired,
-    clearCompleted: PropTypes.func.isRequired,
+    clearCompleted: PropTypes.func,
   }
   static defaultProps = {}
 

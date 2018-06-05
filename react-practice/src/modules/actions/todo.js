@@ -42,6 +42,13 @@ const createTodo = (types) => {
   }
 
   const actionsSideEffect = {
+      todoTextInput: {
+        onSave(text) {
+          if (text.length !== 0) {
+            this.props.actions.addTodo(text)
+          }
+        },
+      },
   }
 
   return {
