@@ -11,7 +11,7 @@ const { todo: { actionsPure, actionsSideEffect } } = actions;
 
 class Header extends React.Component {
   static propTypes = {
-    addTodo: PropTypes.func.isRequired
+    addTodo: PropTypes.func
   }
   static defaultProps = {}
 
@@ -34,11 +34,7 @@ class Header extends React.Component {
         <h1>TODO List</h1>
         <TodoTextInput
           newTodo={true}
-          onSave={(text) => {
-            if (text.length !== 0) {
-              this.props.actions.addTodo(text)
-            }
-          }}
+          onSave={this.actions.todoTextInput.onSave}
           placeholder="What needs to be done?"
         />
       </header>
@@ -47,11 +43,13 @@ class Header extends React.Component {
 }
 
 export default connect(
-  (state) => {},
+  (state) => {
+    return {}
+  },
 
   (dispatch) => {
     return {
       actions: bindActionCreators(actionsPure, dispatch),
-    };
+    }
   },
 )(Header)

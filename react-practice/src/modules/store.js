@@ -14,9 +14,8 @@ const createStoreWithMiddleware = (rootReducer) => {
     ]
 
     let enhancer = undefined
-    // TODO locate below [__DEV__] useless reason
-    const isDebugging = true
-    if (isDebugging) {
+    const isDebugging = process.env.NODE_ENV === 'development'
+    if (isDebugging === true) {
       const middlewareLogger = createLogger({
         level: ({ error = false }) => error ? `error` : `log`,
         stateTransformer: state => state.toJS(),
