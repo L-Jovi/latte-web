@@ -8,6 +8,25 @@
 
 - [构建工具](./docs/create-react-app.md)
 - [领域驱动模型](./docs/Domain-driven-design.md)
-- [项目结构](./docs/structure.md)
-- [浏览器环境路由](./docs/routes.md)
+- [结构](./docs/structure.md)
+- [路由](./docs/routes.md)
 - [场景优化](./docs/optimize-scene.md)
+
+## 搭建
+
+本示例依赖 create-react-app 作为脚手架构建，详细信息参考 [构建工具](./docs/create-react-app.md)。
+
+获取示例代码到本地后直接安装即可。
+
+```
+# switch to your workspace
+cd /path/to/react-practice
+
+yarn install
+```
+
+本地运行
+
+```
+yarn start
+```

@@ -15,3 +15,13 @@
 本示例中意图将 actions 打薄，仅仅在展示层表示和模板的关联性，至于复杂的业务逻辑处理，全部交由单独的 services 管理，表现单独的业务块或者功能。
 
 至于复杂的展示场景，需要依赖前端的计算或者发送请求的行为，均由带有副作用的中间件角色的操作符进行带有明确意图的控制。本示例选用的依赖为 [redux-saga](https://github.com/redux-saga/redux-saga)。
+
+## 参考用例
+
+DDD 设计本意是解决复杂的业务耦合关系，确定边界和核心域的模块组成，应用于 React 设计的前端架构并没有标准的方案。
+
+相较于本例中抽取了 services 和整合 modules 的处理边界做法，仍有其他思路可以借鉴。以下示例中均以去中心化的思路切割整个业务块。
+
+[domain-driven-react-redux](https://medium.com/@hassan.djirdeh/domain-driven-react-redux-a474ecf7d126)
+
+[react-redux-immutable-ddd](https://github.com/ersinerdal/react-redux-immutable-ddd)
