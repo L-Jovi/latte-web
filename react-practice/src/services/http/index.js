@@ -1,5 +1,5 @@
-import axios from './http';
-import { CANCEL } from 'redux-saga';
+import axios from './http'
+import { CANCEL } from 'redux-saga'
 
 const filterStatus = (response) => {
   return response.data
