@@ -19,3 +19,5 @@
 ## HTTP
 
 本示例基于 [axios](https://github.com/axios/axios) 封装了一套可以简单发送 http request 的上层行为，支持 拦截器 和 cancel request 操作，可以配合 saga 调用。
+
+![axios](./imgs/axios.png)
