@@ -12,6 +12,7 @@ const initialState = List([
 const reduceTodo = (types) => {
   const {
     TODO_ADD,
+    TODO_BATCH_ADD,
     TODO_DELETE,
     TODO_EDIT,
     TODO_COMPLETE,
@@ -27,6 +28,11 @@ const reduceTodo = (types) => {
         completed: false,
         text,
       })
+    },
+
+    [TODO_BATCH_ADD]: (state, action) => {
+      const { payload: { todo, } } = action
+      return state.concat(todo)
     },
 
     [TODO_DELETE]: (state, action) => {
