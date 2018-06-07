@@ -1,6 +1,8 @@
 const TODO = 'TODO'
 
+export const TODO_GET_REPOS = `${TODO}/GET_REPOS`
 export const TODO_ADD = `${TODO}/ADD`
+export const TODO_BATCH_ADD = `${TODO}/BATCH/ADD`
 export const TODO_DELETE = `${TODO}/DELETE`
 export const TODO_EDIT = `${TODO}/EDIT`
 export const TODO_COMPLETE = `${TODO}/COMPLETE`

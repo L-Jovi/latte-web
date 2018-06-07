@@ -7,7 +7,6 @@ import TodoList from './TodoList'
 import Footer from './Footer'
 import { actions, } from '~modules';
 import { getCompletedTodoCount } from '~modules/selectors'
-import * as githubRepo from '~services/githubRepo'
 
 const { todo: { actionsPure, actionsSideEffect } } = actions;
 
@@ -30,11 +29,7 @@ class MainSection extends React.Component {
   componentWillMount() {}
 
   componentDidMount() {
-    // sample code to fetch free github repos api
-    githubRepo.getRepos()
-      .then((data) => {
-        // our business logic, consider put to saga
-      })
+    this.props.actions.getRepos()
   }
 
   componentWillUnmount() {}
