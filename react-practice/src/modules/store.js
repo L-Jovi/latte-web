@@ -6,43 +6,53 @@ import createSagaMiddleware from 'redux-saga'
 import { createLogger } from 'redux-logger'
 
 const createStoreWithMiddleware = (rootReducer) => {
-    const middlewareSaga = createSagaMiddleware()
-    const routeMiddleware = routerMiddleware(browserHistory)
-    let middlewares = [
-        middlewareSaga,
-        routeMiddleware,
-    ]
+  const beforeEmitter = () => next => action => {
+    const beforeAction = {
+      ...action,
+      type: `BEFORE_${action.type}`
+    };
+    next(beforeAction); // 'beforeEmitter' emit a 'before-action' for every action
+    return next(action);
+  };
+  const middlewareSaga = createSagaMiddleware()
+  const routeMiddleware = routerMiddleware(browserHistory)
 
-    let enhancer = undefined
-    const isDebugging = process.env.NODE_ENV === 'development'
-    if (isDebugging === true) {
-      const middlewareLogger = createLogger({
-        level: ({ error = false }) => error ? `error` : `log`,
-        stateTransformer: state => state.toJS(),
-        actionTransformer: ({ payload, ...action }) => ({
-            ...action,
-            ...payload,
-        }),
-        predicate: (getState, action) => isDebugging,
-        collapsed: true,
-        duration: true,
-      })
-      middlewares.push(middlewareLogger)
-      enhancer = compose(
-        applyMiddleware(...middlewares),
-        window.devToolsExtension ? window.devToolsExtension() : f => f
-      )
+  let middlewares = [
+    beforeEmitter,
+    middlewareSaga,
+    routeMiddleware,
+  ]
 
-    } else {
-      enhancer = compose(applyMiddleware(...middlewares))
-    }
+  let enhancer = undefined
+  const isDebugging = process.env.NODE_ENV === 'development'
+  if (isDebugging === true) {
+    const middlewareLogger = createLogger({
+      level: ({ error = false }) => error ? `error` : `log`,
+      stateTransformer: state => state.toJS(),
+      actionTransformer: ({ payload, ...action }) => ({
+        ...action,
+        ...payload,
+      }),
+      predicate: (getState, action) => isDebugging,
+      collapsed: true,
+      duration: true,
+    })
+    middlewares.push(middlewareLogger)
+    enhancer = compose(
+      applyMiddleware(...middlewares),
+      window.devToolsExtension ? window.devToolsExtension() : f => f
+    )
 
-    return {
-      createStore: () => {
-        return createStore(rootReducer, Map({}), enhancer)
-      },
-      runSaga: middlewareSaga.run,
-    }
+  } else {
+    enhancer = compose(applyMiddleware(...middlewares))
+  }
+
+  return {
+    createStore: () => {
+      return createStore(rootReducer, Map({}), enhancer)
+    },
+    runSaga: middlewareSaga.run,
+  }
 }
 
 export default createStoreWithMiddleware

@@ -5,7 +5,6 @@ const combineTodo = (types) => {
   const {
     TODO_GET_REPOS,
     TODO_BATCH_ADD,
-    TODO_ADD,
   } = types
 
   const handleLongName = (data) => {
@@ -48,17 +47,9 @@ const combineTodo = (types) => {
     }
   }
 
-  function* watchTodoAdd() {
-    while (true) {
-      const action = yield take(TODO_ADD)
-      console.log(action);
-    }
-  }
-
   function* watch() {
     yield [
       fork(watchGetRepos),
-      fork(watchTodoAdd),
     ]
   }
 
