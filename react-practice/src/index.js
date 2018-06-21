@@ -10,9 +10,9 @@ import 'todomvc-app-css/index.css'
 
 const history = syncHistoryWithStore(browserHistory, store, {
   selectLocationState (state) {
-    return state.get('routing').toJS();
+    return state.get('routing').toJS()
   }
-});
+})
 
 const render = () => {
   const Routes = require('./routes').default
@@ -26,7 +26,7 @@ const render = () => {
 
 if (module.hot) {
   module.hot.accept('./routes', () => {
-    render();
+    render()
   })
 }
 

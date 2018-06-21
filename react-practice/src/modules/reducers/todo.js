@@ -1,5 +1,5 @@
-import { List, } from 'immutable';
-import { handleActions } from 'redux-actions';
+import { List, } from 'immutable'
+import { handleActions } from 'redux-actions'
 
 const initialState = List([
   {

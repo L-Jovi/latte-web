@@ -5,10 +5,10 @@ import { bindActionCreators } from 'redux'
 
 import TodoList from './TodoList'
 import Footer from './Footer'
-import { actions, } from '~modules';
+import { actions, } from '~modules'
 import { getCompletedTodoCount } from '~modules/selectors'
 
-const { todo: { actionsPure, actionsSideEffect } } = actions;
+const { todo: { actionsPure, actionsSideEffect } } = actions
 
 
 class MainSection extends React.Component {
@@ -35,7 +35,7 @@ class MainSection extends React.Component {
   componentWillUnmount() {}
 
   render() {
-    const { todosCount, completedCount, } = this.props;
+    const { todosCount, completedCount, } = this.props
 
     return (
       <section className="main">
@@ -62,6 +62,7 @@ class MainSection extends React.Component {
 export default connect(
   (state) => {
     const todo = state.get('todo').toArray()
+
     return {
       todosCount: todo.length,
       completedCount: getCompletedTodoCount(state),

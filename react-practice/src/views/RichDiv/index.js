@@ -1,11 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { Editor, } from 'draft-js'
 
-import { actions, } from '~modules';
+import './index.less'
+import { actions, } from '~modules'
 
 // TODO change to richdiv action then
-const { todo: { actionsPure, actionsSideEffect } } = actions;
+const { richDiv: { actionsPure, actionsSideEffect } } = actions
 
 class RichDiv extends React.Component {
   static propTypes = {}
@@ -24,8 +26,14 @@ class RichDiv extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="rich-div">
         Rich Div Page
+        <div className="editor">
+          <Editor
+            editorState={this.props.editorState}
+            onChange={this.actions.editor.onChange}
+          />
+        </div>
       </div>
     )
   }
@@ -33,7 +41,10 @@ class RichDiv extends React.Component {
 
 export default connect(
   (state) => {
+    const editorState = state.getIn(['richDiv', 'editorState'])
+
     return {
+      editorState,
     }
   },
 
