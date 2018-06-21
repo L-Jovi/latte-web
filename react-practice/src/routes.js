@@ -1,11 +1,31 @@
 import React from 'react'
 import { Router } from 'react-router'
 import PropTypes from 'prop-types'
-import App from './views/App'
+import Wrapper from './views/Wrapper'
+import TodoApp from './views/App'
+import RichDiv from './views/RichDiv'
 
 const getRoutes = store => ({
   path: '/',
-  component: App,
+  component: Wrapper,
+  indexRoute: {
+    onEnter: (nextState, replace, cb) => {
+      if (nextState.location.pathname === '/') {
+        replace('/todo')
+      }
+      cb()
+    },
+  },
+  childRoutes: [
+    {
+      path: '/todo',
+      component: TodoApp,
+    },
+    {
+      path: '/rich-div',
+      component: RichDiv,
+    },
+  ],
 })
 
 const Routes = ({ history, store }) => (
