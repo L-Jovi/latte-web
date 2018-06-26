@@ -27,7 +27,7 @@ class RichDiv extends React.Component {
   render() {
     return (
       <div className="rich-div">
-        Rich Div Page
+        <h3> Rich Div Page </h3>
         <div className="editor">
           <Editor
             editorState={this.props.editorState}
