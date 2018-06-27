@@ -1,10 +1,13 @@
 import { fork, take, put, call, select, } from 'redux-saga/effects'
 import * as githubRepo from '~services/githubRepo'
 
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
+
 const combineTodo = (types) => {
   const {
     TODO_GET_REPOS,
     TODO_BATCH_ADD,
+    TODO_COMPLETE_ALL,
   } = types
 
   const handleLongName = (data) => {
@@ -47,9 +50,19 @@ const combineTodo = (types) => {
     }
   }
 
+  /* TODO test saga task order */
+  function* watchCompleteAllTestSaga() {
+    while (true) {
+      const action = yield take(TODO_COMPLETE_ALL)
+      console.log('=====')
+      yield delay(5000)
+    }
+  }
+
   function* watch() {
     yield [
       fork(watchGetRepos),
+      fork(watchCompleteAllTestSaga),
     ]
   }
 
