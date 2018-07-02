@@ -54,8 +54,38 @@ class MainSection extends React.Component {
         <TodoList />
 
         { !!todosCount && <Footer /> }
+
+        { this.renderContent() }
       </section>
     )
+  }
+
+  renderContent() {
+    const label = 'jianshuVVVV ,haizi'
+    const value = 'VVVV'
+    return this.formatLabel(label, value)
+  }
+
+  /**
+   * Find and highlight relevant keywords within a block of text
+   * @param  {string} label - The text to parse
+   * @param  {string} value - The search keyword to highlight
+   * @return {object} A JSX object containing an array of alternating strings and JSX
+   */
+  formatLabel(label, value) {
+    if (!value) {
+      return label;
+    }
+    return (<span>
+      { label.split(value)
+        .reduce((prev, current, i) => {
+          if (!i) {
+            return [current];
+          }
+          return prev.concat(<b key={value + current}>{ 'Miao' }</b>, current);
+        }, [])
+      }
+    </span>);
   }
 }
 
