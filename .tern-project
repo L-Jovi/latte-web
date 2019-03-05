@@ -1,11 +1,14 @@
 {
+  "plugins": {
+    "es_modules": {}
+  },
   "libs": [
+    "ecma5",
+    "ecma6",
     "browser",
     "underscore",
     "jquery",
     "lodash"
   ],
-
-  "plugins": {
-  }
+  "ecmaVersion": 6
 }
