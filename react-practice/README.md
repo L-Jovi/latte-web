@@ -1,4 +1,4 @@
-# React Practice
+# React Practice (zh)
 
 结合曾经对 React Native 项目的结构设计理解，在 web 环境下实现的实践性用例。
 

@@ -1,9 +1,9 @@
 # Web Exercise
 
-Collection of web practice demo to single project.
+Collection of web practice into single project.
 
 ## Roadmap
 
 - [React Practice (zh)](./react-practice)
-- [Webpack Demos](./webpack)
-- [Vision Demos](./vision-demos)
+- [Webpack](./engineering/webpack)
+- [Vision Samples](./vision-samples)
