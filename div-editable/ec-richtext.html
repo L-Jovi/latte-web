@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>test</title>
+  <style>
+    span {
+      color: #2580e6;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="width:200px;height:200px;border:solid 1px #ddd" contenteditable="true"
+    id="text">
+
+  </div>
+</body>
+<script>
+  var textDiv = document.getElementById('text');
+
+  function getNodeIndex(node)
+  {
+    if (node.parentNode != textDiv)
+    {
+      node = node.parentNode;
+    }
+    var list = [].slice.call(textDiv.childNodes);
+    var result = 0;
+    for (var i = 0; i < list.length; i++)
+    {
+      var item = list[i];
+      if (item == node)
+      {
+        return result;
+      }
+      else
+      {
+        var nodeText = item.nodeName == 'SPAN' ? item.innerText : item.data
+        result += nodeText.length;
+      }
+    }
+  }
+  textDiv.addEventListener('input', (e) =>
+  {
+    var text = textDiv.innerHTML;
+    text = text.replace(/<[^<>]*>/g, '');
+    var oldRange = window.getSelection().getRangeAt(0);
+    var oldIndex = getNodeIndex(oldRange.startContainer) + oldRange.startOffset;
+    var newHtml = text.replace(/\#[\s\S]{0,6}?\#/g, item =>
+      `<span>${item}</span>`);
+
+    // TODO setState
+    textDiv.innerHTML = newHtml;
+
+    var newRangenNode = null;
+    var newRangeOffset = 0;
+    var newRangeText = '';
+    var list = [].slice.call(textDiv.childNodes);
+    for (var i = 0; i < list.length; i++)
+    {
+      var item = list[i];
+      var nodeText = item.nodeName == 'SPAN' ? item.innerText : item.data
+      newRangeText += nodeText;
+      if (newRangeText.length >= oldIndex)
+      {
+        newRangenNode = item;
+        newRangeOffset = nodeText.length - (newRangeText.length -
+          oldIndex);
+        break;
+      }
+    }
+    // console.log(newRangenNode.nodeValue, newRangeOffset);
+    if (newRangenNode)
+    {
+      if (newRangenNode.nodeName == 'SPAN')
+      {
+        newRangenNode = newRangenNode.firstChild;
+      }
+      var selection = window.getSelection();
+      selection.removeAllRanges();
+      var range = document.createRange();
+      range.setStart(newRangenNode, newRangeOffset);
+      range.setEnd(newRangenNode, newRangeOffset);
+      range.collapse();
+      selection.addRange(range);
+    }
+  })
+</script>
+
+</html>
