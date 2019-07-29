@@ -4,8 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-     "build": "webpack"
-   },
+    "build": "webpack"
+  },
   "dependencies": {
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.5",
