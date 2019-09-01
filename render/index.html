@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Render Performance</title>
+
+  <style>
+    .test {
+      position: absolute;
+      top: 10px;
+      width: 100px;
+      height: 100px;
+      background-color: grey;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="test"></div>
+
+  <script>
+    // lead to reflow
+    setTimeout(() => {
+      document.querySelector('.test').style.top = '100px'
+    }, 1000)
+  </script>
+</body>
+
+</html>
