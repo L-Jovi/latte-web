@@ -26,7 +26,7 @@ function myInstanceof(left, right) {
 }
 
 
-// test
+// main
 function CustomFn() {
     this.name = 'saber'
 }
