@@ -1,5 +1,4 @@
 // implements [push] [pop] [peek] [length]
-
 function Stack() {
   this.count = 0
   this.storage = {}
@@ -32,6 +31,7 @@ function Stack() {
 
 
 // main
+
 const s = new Stack()
 
 s.push('foo')
