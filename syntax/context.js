@@ -12,7 +12,7 @@ Function.prototype.myCall = function(context) {
 
 
 // apply
-Function.prototype.myCall = function(context) {
+Function.prototype.myApply = function(context) {
   context = context || window
   context.fn = this
 
@@ -28,11 +28,8 @@ Function.prototype.myCall = function(context) {
 }
 
 
-// bind
-
-
-// test
-function act() {
+// main
+function CustomFn() {
     return this.name
 }
 
@@ -40,4 +37,4 @@ const obj = {
     name: 'saber',
 }
 
-act.myCall(obj, 1, 2)
+CustomFn.myCall(obj, 1, 2)
