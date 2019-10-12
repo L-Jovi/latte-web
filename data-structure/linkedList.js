@@ -5,6 +5,7 @@ function Node(element) {
   this.next = null
 }
 
+
 function LinkedList() {
   let length = 0
   let head = null

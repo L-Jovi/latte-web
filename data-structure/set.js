@@ -63,4 +63,24 @@ function MySet() {
 
     return intersectionSet
   }
+
+  this.difference = function(otherSet) {
+    const differenceSet = new MySet()
+    const firstSet = this.values()
+
+    firstSet.forEach(function(e) {
+      if (!otherSet.has(e)) {
+        differenceSet.add(e)
+      }
+    })
+
+    return differenceSet
+  }
+
+  this.subset = function(otherSet) {
+    const firstSet = this.values()
+    return firstSet.every(function(value) {
+      return otherSet.has(value)
+    })
+  }
 }
