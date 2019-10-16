@@ -68,3 +68,11 @@ function Trie() {
     return words.length > 0 ? words : null
   }
 }
+
+
+// main
+
+const trie = new Trie()
+trie.add('saber')
+const words = trie.print()
+console.log(words)
