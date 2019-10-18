@@ -4,7 +4,9 @@ Collection of web practice into single project.
 
 ## Roadmap
 
-- [Data Structure (zh)](./data-structure)
+- [ES6 Features](./es6)
+
+- [Performance (zh) (enterprise)](./performance/README.md)
 
 - [React Practice (zh)](./react-practice)
 
