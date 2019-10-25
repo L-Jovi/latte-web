@@ -2,11 +2,12 @@
 
 Collection of web practice into single project.
 
+
 ## Roadmap
 
 - [ES6 Features](./es6)
 
-- [Performance (zh) (enterprise)](./performance/README.md)
+- [Performance (zh) (Enterprise Research)](./performance/research/README.md)
 
 - [React Practice (zh)](./react-practice)
 
