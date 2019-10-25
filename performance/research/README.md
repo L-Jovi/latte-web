@@ -172,4 +172,4 @@ function getPerformanceTiming () {
  
     return times;
 }
-```
+```;

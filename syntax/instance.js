@@ -1,4 +1,7 @@
+//
 // new
+//
+
 function myNew() {
     let obj = {}
     let Constructor = [].shift.call(arguments)
