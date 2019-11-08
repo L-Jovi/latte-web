@@ -1,7 +1,9 @@
-//
-// call
-//
+/*
+ * @Description: implements call as Javascript context
+ * @FileName: context.js
+ */
 
+// call
 Function.prototype.myCall = function(context) {
   context = context || window
   context.fn = this
