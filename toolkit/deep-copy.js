@@ -1,54 +1,60 @@
 function clone(item) {
   if (!item) {
-    return item;
+    return item
   } // null, undefined values check
 
-  var types = [Number, String, Boolean],
-    result;
+  const types = [Number, String, Boolean]
+  let result
 
-  // normalizing primitives if someone did new String('aaa'), or new Number('444');
+  // normalizing primitives if someone did new String('aaa'), or new Number('444')
   types.forEach(function(type) {
     if (item instanceof type) {
-      result = type(item);
+      result = type(item)
     }
-  });
+  })
 
+  // complex data structure
   if (typeof result == "undefined") {
     if (Object.prototype.toString.call(item) === "[object Array]") {
-      result = [];
+      result = []
       item.forEach(function(child, index, array) {
-        result[index] = clone(child);
-      });
+        result[index] = clone(child)
+      })
+
     } else if (typeof item == "object") {
-      // testing that this is DOM
+      // dom node
       if (item.nodeType && typeof item.cloneNode == "function") {
-        var result = item.cloneNode(true);
-      } else if (!item.prototype) { // check that this is a literal
+        result = item.cloneNode(true)
+
+      // check that this is a literal
+      } else if (!item.prototype) {
         if (item instanceof Date) {
-          result = new Date(item);
+          result = new Date(item)
         } else {
           // it is an object literal
-          result = {};
+          result = {}
           for (var i in item) {
-            result[i] = clone(item[i]);
+            result[i] = clone(item[i])
           }
         }
+
       } else {
         // depending what you would like here,
         // just keep the reference, or create new object
         if (false && item.constructor) {
           // would not advice to do that, reason? Read below
-          result = new item.constructor();
+          result = new item.constructor()
         } else {
-          result = item;
+          result = item
         }
       }
+
     } else {
-      result = item;
+      result = item
     }
   }
 
-  return result;
+  return result
 }
 
 var copy = clone({
@@ -63,9 +69,10 @@ var copy = clone({
     name: "three-one",
     number: new Number("100"),
     obj: new function() {
-      this.name = "Object test";
-    }
-  }]
+      this.name = "Object test"
+    },
+  }],
+  four: function fn() {console.log(1111)}
 })
 
 console.log(copy)

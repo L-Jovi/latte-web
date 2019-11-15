@@ -1,17 +1,3 @@
-//
-// new
-//
-
-function myNew() {
-    let obj = {}
-    let Constructor = [].shift.call(arguments)
-    obj.__proto__ = Constructor.prototype
-
-    let result = Constructor.apply(obj, arguments)
-    return result instanceof Object ? result : obj
-}
-
-
 // instanceof
 function myInstanceof(left, right) {
     let prototype = right.prototype
