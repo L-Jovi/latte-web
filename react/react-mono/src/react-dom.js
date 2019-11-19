@@ -15,14 +15,26 @@ function getDOM(type, props, el) {
     return document.createTextNode("")
 
   } else if (isClass(type)) {
-    if (!type.instance) {
-      type.instance = new type(props)
-    }
 
-    return ReactDOM.render(
-      type.instance.render(props, type.instance.state || {}),
-      el
-    )
+    if (!type.instance) {
+      const instance = new type(props)
+      type.instance = instance 
+      type.instance.type = type
+
+      const vdom = firstRender(props, type.instance.nextState || {}, type.instance)
+      type.instance.vdom = vdom
+      return ReactDOM.render(vdom, el)
+
+    } else {
+      const vdom = subsquentedRender(
+        props,
+        type.instance.state || {},
+        type.instance
+      )
+
+      type.instance.vdom = vdom
+      return ReactDOM.render(vdom, el)
+    }
   }
 
   return document.createElement(type)
@@ -65,6 +77,37 @@ const ReactDOM = {
 
     return dom
   }
+}
+
+
+function componentDidMount() {}
+
+
+function getDerivedStateFromProps(props, state) {
+  return null
+}
+
+
+function shouldComponentUpdate() {
+  return true
+}
+
+
+function getSnapshotBeforeUpdate(props, state, snapshot) {}
+
+
+function componentDidUpdate() {}
+
+
+function firstRender(props, state, instance) {
+  // 1.getDerivedStateFromProps
+  (instance.getDerivedStateFromProps || getDerivedStateFromProps)(props, state)
+  // 2.render
+  const vdom = instance.render(props, state)
+  // 3.componentDidMount
+  (instance.componentDidMount || componentDidMount)()
+
+  return vdom
 }
 
 
