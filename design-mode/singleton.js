@@ -6,6 +6,7 @@ class Singleton {
 // using closure ensure [instance] exist within class
 Singleton.getInstance = (function() {
   let instance
+
   return function() {
     if (!instance) {
       instance = new Singleton()
