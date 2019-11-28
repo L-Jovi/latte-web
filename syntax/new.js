@@ -1,5 +1,5 @@
 /*
- * @Description: implements new oprator
+ * @Description: Implements new keyword by native Javascript.
  * @FileName: new.js
  */
 

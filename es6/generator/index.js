@@ -1,9 +1,24 @@
-function* foo(x) {
-  let y = 2 * (yield(x + 1))
-  let z = yield(y / 3)
-  return (x + y + z)
-}
+/*
+ * @Description: Implement generator by native Javascript.
+ * @FileName: generator.js
+ */
 
-const it = foo(5)
-console.log(it.next())
-console.log(it.next(12))
+function generator(cb) {
+  return (function() {
+    var object = {
+      next: 0,
+      stop: function() {}
+    }
+
+    return {
+      next: function() {
+        var ret = cb(object)
+        if (ret === undefined) return { value: undefined, done: true }
+        return {
+          value: ret,
+          done: false
+        }
+      }
+    }
+  })()
+}

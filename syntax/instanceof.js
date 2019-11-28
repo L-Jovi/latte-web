@@ -1,3 +1,8 @@
+/*
+ * @Description: Implement instanceof keyword by native Javascript.
+ * @FileName: instanceof.js
+ */
+
 // instanceof
 function myInstanceof(left, right) {
     let prototype = right.prototype

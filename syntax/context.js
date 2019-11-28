@@ -1,5 +1,5 @@
 /*
- * @Description: implements call as Javascript context
+ * @Description: Implements call as Javascript context.
  * @FileName: context.js
  */
 
