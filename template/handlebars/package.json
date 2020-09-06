@@ -7,7 +7,7 @@
     "pack": "webpack"
   },
   "dependencies": {
-    "handlebars": "^4.0.11"
+    "handlebars": "^4.5.3"
   },
   "devDependencies": {
     "handlebars-loader": "^1.6.0",
