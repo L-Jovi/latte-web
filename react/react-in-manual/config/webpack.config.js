@@ -24,11 +24,30 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.js[x]?$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
-        }
+        include: [
+          path.resolve(__dirname,'../app.js'),
+          path.resolve(__dirname, '../src'),
+        ],
+        use: [{
+          loader: 'babel-loader?cacheDirectory=true',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+            plugins: [
+              // '@babel/plugin-syntax-dynamic-import',
+              [
+                '@babel/plugin-transform-runtime',
+                {
+                  "corejs": false,
+                  "helpers": true,
+                  "regenerator": true,
+                  "useESModules": false
+                },
+              ]
+            ]
+          }
+        }]
       }
     ]
   },
