@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { increment } from '../../actions'
+import { increment } from '@src/actions'
 
 class App extends React.Component {
   constructor(props) {
