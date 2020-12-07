@@ -3,18 +3,22 @@ const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './app.js', // 入口文件
+  mode: 'production',
+  entry: {
+    index: [path.resolve(__dirname, '../app.js')],
+  },
 
   output: {
-    path: path.resolve(__dirname, 'dist'), // 定义输出目录
-    filename: 'webpack.bundle.js'  // 定义输出文件名称
+    path: path.resolve(__dirname, '../dist'),
+    filename: '[name].[hash:8].js',
+    chunkFilename:'[name].[chunkhash:8].js',
   },
 
   devServer: {
-    hot: true, // 热替换
-    contentBase: path.join(__dirname, 'dist'), // server文件的根目录
-    compress: true, // 开启gzip
-    port: 8080, // 端口
+    hot: true,
+    contentBase: path.join(__dirname, '../dist'),
+    compress: true, // enable gzip
+    port: 8080,
   },
 
   module: {
@@ -33,7 +37,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebPackPlugin({
       template: './index.html',
-      filename: path.resolve(__dirname, 'dist/index.html')
+      filename: path.resolve(__dirname, '../dist/index.html')
     })
   ]
 };
