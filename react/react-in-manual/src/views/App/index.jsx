@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { increment } from '@src/actions'
+import './index.less'
 
 class App extends React.Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <div>react-router test</div>
         <nav>
           <ul>
