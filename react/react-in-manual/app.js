@@ -3,8 +3,8 @@ import ReactDom from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-import store from './src/store';
-import App from './src/views/App';
+import store from '@src/store';
+import App from '@src/views/App';
 
 const About = () => <h2>Page 1</h2>;
 const Users = () => <h2>Page 2</h2>;
