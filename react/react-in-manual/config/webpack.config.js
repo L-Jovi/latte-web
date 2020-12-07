@@ -75,52 +75,23 @@ module.exports = {
           },
           {
             loader: 'css-loader',
+          },
+          {
+            loader: 'postcss-loader',
             options: {
-              modules: {
-                localIndentName: '[local][name]-[hash:base64:4]'
+              postcssOptions: {
+                plugins: [require('autoprefixer')]
               }
             }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: [require('autoprefixer')]
-            }
           }
         ]
       },
       {
-        test: /\.less$/,
+        test:/\.less$/,
         use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader'
-          },
-          {
-            loader: 'less-loader',
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins:[require('autoprefixer')]
-            }
-          }
-        ]
-      },
-      {
-        test: '/\.(le|c)ss$/',
-        use: [
-          // can't use MiniCssExtractPlugin in dev env
-          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
-            options: {
-              modules: {
-                localIndentName: '[local][name]-[hash:base64:4]'
-              }
-            }
           },
           {
             loader: 'less-loader',
@@ -128,7 +99,12 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              plugins: [require('autoprefixer')]
+              postcssOptions: {
+                plugins: [
+                  'postcss-preset-env',
+                  require('autoprefixer'),
+                ]
+              }
             }
           }
         ]
@@ -175,8 +151,9 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebPackPlugin({
       title: 'React in Manual',
-      template: path.resolve(__dirname,'../index.html'),
+      template: path.resolve(__dirname, '../index.html'),
       filename: path.resolve(__dirname, '../dist/index.html'),
+      chunk: 'all',
     }),
     new MiniCssExtractPlugin({
       filename:'[name].[contenthash:8].css',
