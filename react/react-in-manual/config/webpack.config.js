@@ -150,7 +150,6 @@ module.exports = {
     }),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebPackPlugin({
-      title: 'React in Manual',
       template: path.resolve(__dirname, '../index.html'),
       filename: path.resolve(__dirname, '../dist/index.html'),
       chunk: 'all',

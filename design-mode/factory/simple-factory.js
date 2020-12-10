@@ -1,3 +1,7 @@
+/*
+ * @Description: provide static function return item.
+ * @FileName: factory/simple-factory.js
+ */
 class Man {
   constructor(name) {
     this.name = name
@@ -8,12 +12,11 @@ class Man {
   }
 }
 
-
 class Factory {
   static create(name) {
     return new Man(name)
   }
 }
 
-
-Factory.create('yck').consoleName()
+const item = Factory.create('yck')
+item.consoleName()
