@@ -14,7 +14,7 @@ Collection of web practice into single project.
 
 - [Performance (zh) (Enterprise Research)](./performance/research/README.md)
 
-- [React Practice (zh)](./react-practice)
+- [React Practice (zh)](./react/react-practice)
 
 - Engineering
   - [Webpack](./engineering/webpack)
