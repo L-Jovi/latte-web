@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BFC</title>
+  <style>
+    .case-body1 {
+        width: 100px;
+        height: 100px;
+        background: lightblue;
+        margin: 100px;
+    }
+
+    .case-body2 {
+      overflow: hidden;
+    }
+    .case-body2 p {
+        width: 100px;
+        height: 100px;
+        background: lightblue;
+        margin: 100px;
+    }
+
+    .case-body3 {
+      box-sizing: border-box;
+      width: 100px;
+      height: 100px;
+      background: lightblue;
+      margin: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>重叠的 BFC</h2>
+  <div class="case-body1"></div>
+  <div class="case-body1"></div>
+
+  <h2>放置到根 body 根元素下触发 BFC</h2>
+  <div class="case-body2">
+    <p></p>
+  </div>
+  <div class="case-body2">
+    <p></p>
+  </div>
+
+  <h2>盒模型</h2>
+  <div class="case-body3"></div>
+  <div class="case-body3"></div>
+
+  <h2>浮动触发 BFC</h2>
+  <div style="border: 1px solid #000; overflow: hidden">
+    <div style="width: 100px;height: 100px;background: #eee;float: left;">
+    </div>
+  </div>
+
+  <h2>浮动文字环绕</h2>
+  <div style="height: 100px;width: 100px;float: left;background: lightblue">我是一个左浮动的元素</div>
+  <div style="width: 200px; height: 200px;background: #eee; overflow: hidden">我是一个没有设置浮动,
+  也没有触发 BFC 元素, width: 200px; height:200px; background: #eee;</div>
+
+</body>
+</html>
