@@ -95,6 +95,22 @@ function debounce(func, wait, options) {
     return result
   }
 
+  function cancel() {
+    if (timerId !== undefined) {
+      cancelTimer(timerId)
+    }
+    lastInvokeTime = 0
+    lastArgs = lastCallTime = lastThis = timerId = undefined
+  }
+
+  function flush() {
+    return timerId === undefined ? result : trailingEdge(Date.now())
+  }
+
+  function pending() {
+    return timerId !== undefined
+  }
+
   debounced.cancel = cancel
   debounced.flush = flush
   debounced.pending = pending
