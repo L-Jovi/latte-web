@@ -95,6 +95,16 @@ function debounce(func, wait, options) {
     return result
   }
 
+  function trailingEdge(time) {
+    timerId = undefined
+
+    if (trailing && lastArgs) {
+      return invokeFunc(time)
+    }
+    lastArgs = lastThis = undefined
+    return result
+  }
+
   function cancel() {
     if (timerId !== undefined) {
       cancelTimer(timerId)
