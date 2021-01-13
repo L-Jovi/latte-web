@@ -1,7 +1,7 @@
 const {
   getAST,
   getDependencies,
-  transform
+  transform,
 } = require("./parser");
 const path = require("path");
 const fs = require("fs");
