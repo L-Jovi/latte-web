@@ -7,13 +7,15 @@ module.exports = {
     index: './src/index.js',
     another: './src/another-module.js'
   },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    }
+  },
   plugins: [
     new HTMLWebpackPlugin({
       title: 'Code Splitting'
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'common'
-    })
   ],
   output: {
     filename: '[name].bundle.js',
