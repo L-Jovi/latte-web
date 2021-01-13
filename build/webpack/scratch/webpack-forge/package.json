@@ -2,5 +2,14 @@
   "name": "webpack-forge",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "build": "node ./lib/index.js"
+  },
+  "dependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/parser": "^7.12.11",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/traverse": "^7.12.12"
+  }
 }
