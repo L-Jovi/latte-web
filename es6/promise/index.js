@@ -7,7 +7,7 @@ const PromiseSimple = require('./simple')
 const PromiseFull = require('./promise-a+')
 
 
-/* const s = new PromiseSimple(function(resolve, reject) {
+const s = new PromiseSimple(function(resolve, reject) {
   setTimeout(function() {
     const value = 3
     resolve(3)
@@ -36,7 +36,7 @@ p
   })
   .then(function(value) {
     console.log(value)
-  }) */
+  })
 
 
 // test real promise exec order

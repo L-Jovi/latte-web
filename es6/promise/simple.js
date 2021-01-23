@@ -30,7 +30,6 @@ function MyPromise(fn) {
   } catch (e) {
     reject(e)
   }
-
 }
 
 MyPromise.prototype.then = function(onFulfilled, onRejected) {
@@ -52,6 +51,8 @@ MyPromise.prototype.then = function(onFulfilled, onRejected) {
   if (that.state.REJECTED) {
     onRejected(that.value)
   }
+
+  return that
 }
 
 module.exports = MyPromise
