@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Call and Apply</title>
+  </head>
+
+  <body>
+    <script src="./call.js"></script>
+    <script src="./apply.js"></script>
+    <script>
+      function test(a, b) {
+        return a + b
+      }
+
+      const obj = {
+        name: 'saber',
+      }
+
+      console.log(`=== forge call ===`)
+      console.log(test.forgeCall(obj, 'foo', 'bar'))
+      console.log(`=== forge call ===`)
+
+      console.log('\n')
+
+      console.log(`=== forge apply ===`)
+      console.log(test.forgeApply(obj, ['foo', 'bar']))
+      console.log(`=== forge apply ===`)
+    </script>
+  </body>
+</html>

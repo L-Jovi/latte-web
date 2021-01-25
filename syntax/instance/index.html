@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Instance</title>
+  </head>
+
+  <body>
+    <script src="./new.js"></script>
+    <script>
+      function Test(name, age) {
+        this.name = name
+        this.age = age
+        console.log('new init list: ', this.name, this.age)
+      }
+
+      Test.prototype.foobar = function() {
+        console.log(this.age)
+      }
+
+      console.log(`=== forge new ===`)
+      const test = forgeNew(Test, 'saber', 12)
+      test.foobar()
+      console.log(`=== forge new ===`)
+
+      console.log('\n')
+    </script>
+  </body>
+</html>
