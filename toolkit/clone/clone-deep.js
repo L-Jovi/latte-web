@@ -1,4 +1,4 @@
-function clone(item) {
+function cloneDeep(item) {
   if (!item) {
     return item
   } // null, undefined values check
@@ -18,7 +18,7 @@ function clone(item) {
     if (Object.prototype.toString.call(item) === "[object Array]") {
       result = []
       item.forEach(function(child, index, array) {
-        result[index] = clone(child)
+        result[index] = cloneDeep(child)
       })
 
     } else if (typeof item == "object") {
@@ -34,7 +34,7 @@ function clone(item) {
           // it is an object literal
           result = {}
           for (var i in item) {
-            result[i] = clone(item[i])
+            result[i] = cloneDeep(item[i])
           }
         }
 
@@ -57,7 +57,8 @@ function clone(item) {
   return result
 }
 
-var copy = clone({
+
+const copy = cloneDeep({
   one: {
     'one-one': new String("hello"),
     'one-two': [
