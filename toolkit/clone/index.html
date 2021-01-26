@@ -7,8 +7,37 @@
 </head>
 
 <body>
-  <script src="./clone.js"></script>
-  <!-- <script src="./clone-deep.js"></script> -->
+  <!-- <script src="./clone.js"></script> -->
+  <script src="./clone-deep.js"></script>
+
+  <script>
+    const source = {
+      one: {
+        'one-one': new String("hello"),
+        'one-two': [
+          "one", "two", true, "four"
+        ]
+      },
+      two: document.createElement("div"),
+      three: [{
+        name: "three-one",
+        number: new Number("100"),
+        obj: new function() {
+          this.name = "Object test"
+        },
+      }],
+      four: function fn() {console.log(1111)},
+    }
+
+    // add circle ref
+    source.circleRef = source
+
+    // symbol
+    const symbol = Symbol('foo')
+    source[symbol] = { 1: 2 }
+
+    console.log(cloneDeep(source))
+  </script>
 </body>
 
 </html>

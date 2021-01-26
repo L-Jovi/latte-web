@@ -1,4 +1,4 @@
-function cloneDeep(item) {
+function cloneDeepForge(item) {
   if (!item) {
     return item
   } // null, undefined values check
@@ -58,22 +58,42 @@ function cloneDeep(item) {
 }
 
 
-const copy = cloneDeep({
-  one: {
-    'one-one': new String("hello"),
-    'one-two': [
-      "one", "two", true, "four"
-    ]
-  },
-  two: document.createElement("div"),
-  three: [{
-    name: "three-one",
-    number: new Number("100"),
-    obj: new function() {
-      this.name = "Object test"
-    },
-  }],
-  four: function fn() {console.log(1111)}
-})
+const isObject = (obj) => {
+  return typeof obj === 'object' && obj !== null
+}
 
-console.log(copy)
+function cloneDeep(source, map=new WeakMap()) {
+  if (!isObject) {
+    return source
+  }
+
+  // circle ref property
+  if (map.has(source)) {
+    return map.get(source)
+  }
+  const target = Array.isArray(source) ? [] : {}
+  map.set(source, target)
+
+  // symbol
+  const symbolKeys = Object.getOwnPropertySymbols(source)
+  if (symbolKeys.length > 0) {
+    for (let key of symbolKeys) {
+      if (isObject(key)) {
+        target[key] = cloneDeep(source[key], map)
+      } else {
+        target[key] = cloneDeep(source[key])
+      }
+    }
+  }
+
+  for (let key in source) {
+    if (Object.prototype.hasOwnProperty.call(source, key)) {
+      if (typeof source[key] === 'object') {
+        target[key] = cloneDeep(source[key], map)
+      } else {
+        target[key] = source[key]
+      }
+    }
+  }
+  return target
+}
