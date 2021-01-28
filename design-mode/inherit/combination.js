@@ -1,10 +1,9 @@
 /*
  * @Description: implements several methods of inherit
- * @FileName: inherit.js
+ * weakness: Large memory overhead > call constructor function
+ * @FileName: inherit/combination.js
  */
 
-// combination
-// weakness: Large memory overhead > call constructor function
 function Parent(value) {
   this.val = value
 }
