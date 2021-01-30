@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Debounce</title>
+</head>
+
+<body>
+  <button onclick="onClick()">Test Debounce</button>
+
+  <script src="./simple.js"></script>
+  <script src="./lodash-debounce.js"></script>
+  <script>
+    function foo(a, b) {
+      console.log(a, b)
+    }
+    const debounceFoo = debounceForge(foo)
+
+    function onClick(e) {
+      debounceFoo(1, 2)
+    }
+  </script>
+</body>
+</html>

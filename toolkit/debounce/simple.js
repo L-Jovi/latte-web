@@ -3,7 +3,7 @@
  * @FileName: toolkit/debounce/simple.js
  */
 
-const debounce = (func, wait = 50) => {
+const debounceForge = (func, wait = 500) => {
   let timer = 0
 
   return function(...args) {

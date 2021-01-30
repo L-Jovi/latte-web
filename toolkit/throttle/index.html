@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Throttle</title>
+</head>
+
+<body>
+  <script src="./simple.js"></script>
+  <script>
+    function foo(a, b) {
+      console.log(a, b)
+    }
+
+    const throttleFoo = throttleForge(foo)
+    setInterval(() => { throttleFoo(1, 2) }, 1)
+  </script>
+</body>
+</html>
