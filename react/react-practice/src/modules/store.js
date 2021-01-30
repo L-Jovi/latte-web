@@ -17,7 +17,7 @@ const createStoreWithMiddleware = (rootReducer) => {
   const middlewareSaga = createSagaMiddleware()
   const routeMiddleware = routerMiddleware(browserHistory)
 
-  let middlewares = [
+  const middlewares = [
     beforeEmitter,
     middlewareSaga,
     routeMiddleware,
