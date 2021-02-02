@@ -8,7 +8,6 @@ Function.prototype.forgeApply = function(context) {
   context.fn = this
 
   let result
-  debugger
   if (arguments[1] && Array.isArray(arguments[1])) {
     result = context.fn(...arguments[1])
   } else {
