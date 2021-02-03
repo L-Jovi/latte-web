@@ -6,7 +6,23 @@
 </head>
 
 <body>
-    <script src="./context.js"></script>
+    <script src="./new.js"></script>
     <script src="./instance.js"></script>
+    <script>
+      function Fn() {
+        this.name = 'saber'
+      }
+
+      Fn.prototype.fire = function() {
+        console.log('fire')
+      }
+
+      const instance = forgeNew(Fn)
+      console.log(`=== forge new ===`)
+      console.log(instance)
+      console.log(`=== forge new ===`)
+
+      console.log('\n')
+    </script>
 </body>
 </html>
