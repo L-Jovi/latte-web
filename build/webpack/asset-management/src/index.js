@@ -1,21 +1,17 @@
 import _ from 'lodash'
 import './style.css'
 import Icon from './icon.jpg'
-import Data from './data.xml'
+import XMLData from './data.xml'
 
 function component() {
-  var element = document.createElement('div')
-
+  const element = document.createElement('div')
   element.innerHTML = _.join(['Hello', 'webpack'], ' ');
   element.classList.add('hello')
 
-  var myIcon = new Image()
+  const myIcon = new Image()
   myIcon.src = Icon
-
   element.appendChild(myIcon)
-
-  console.log(Data)
-
+  console.log(XMLData)
   return element
 }
 
