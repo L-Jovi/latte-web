@@ -1,11 +1,10 @@
-import _ from 'lodash'
-
-function component() {
-  var element = document.createElement('div');
-
-  _.join(['index', 'module', 'loaded!'], '+')
-
-  return element;
+async function getComponent() {
+  const element = document.createElement('div')
+  const { default: _ } = await import('lodash')
+  element.innerHTML = _.join(['index', 'module', 'loaded!'], '+')
+  return element
 }
 
-document.body.appendChild(component());
+getComponent().then((component) => {
+  document.body.appendChild(component)
+})
