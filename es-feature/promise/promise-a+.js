@@ -77,7 +77,7 @@ function safelyResolveThen(self, then) {
   }
 }
 
-function Promise(resolver) {
+function PromiseA(resolver) {
   if (!isFunction(resolver)) {
     throw new TypeError('resolver must be a function')
   }
@@ -91,7 +91,7 @@ function Promise(resolver) {
   }
 }
 
-Promise.prototype.then = function(onFulfilled, onRejected) {
+PromiseA.prototype.then = function(onFulfilled, onRejected) {
   if ((!isFunction(onFulfilled) && this.state === FULFILLED) ||
     (!isFunction(onRejected) && this.state === REJECTED)) {
     return this
@@ -106,7 +106,7 @@ Promise.prototype.then = function(onFulfilled, onRejected) {
   return promise
 }
 
-Promise.prototype.catch = function(onRejected) {
+PromiseA.prototype.catch = function(onRejected) {
   return this.then(null, onRejected)
 }
 
@@ -145,5 +145,3 @@ function unwrap(promise, func, value) {
     }
   })
 }
-
-module.exports = Promise

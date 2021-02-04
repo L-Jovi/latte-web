@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Promise</title>
+</head>
+
+<body>
+  <script src="./index.js"></script>
+  <script src="./promise-a+.js"></script>
+  <script>
+    // Promise || ForgePromise || PromiseA
+    const Pro = ForgePromise
+
+    const p1 = new Pro((resolve) => {
+      setTimeout(() => {
+        resolve(1)
+      }, 2000)
+    })
+
+    const p2 = p1.then((val) => {
+      console.log('1st call: ', val)
+      return new Pro((resolve) => {
+        setTimeout(() => {
+          resolve(2)
+        }, 3000)
+      })
+    })
+
+    p2.then((val) => {
+      console.log('2nd call: ', val)
+      return val
+    })
+  </script>
+</body>
+</html>
