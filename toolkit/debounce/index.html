@@ -14,7 +14,7 @@
     function foo(a, b) {
       console.log(a, b)
     }
-    const debounceFoo = debounceForge(foo)
+    const debounceFoo = forgeDebounce(foo)
 
     function onClick(e) {
       debounceFoo(1, 2)
