@@ -3,7 +3,7 @@
  * @FileName: toolkit/throttle/simple.js
  */
 
-const throttleForge = (fn, wait = 1000) => {
+const forgeThrottle = (fn, wait = 1000) => {
   let lastTime = 0
 
   return function(...args) {

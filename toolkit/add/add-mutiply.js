@@ -1,11 +1,11 @@
 // https://muyiy.cn/question/program/84.html
 
-function add() {
+function addMutiplyParams() {
   let args = [].slice.call(arguments)
 
   function fn() {
     let argsFn = [].slice.call(arguments)
-    return add.apply(null, args.concat(argsFn))
+    return addMutiplyParams.apply(null, args.concat(argsFn))
   }
 
   fn.toString = function() {
@@ -15,4 +15,16 @@ function add() {
   return fn
 }
 
-console.log(add(1, 2, 3)(5, 7)())
+
+function addSimpleParam(a) {
+  function sum(b) {
+    a = a + b
+    return sum
+  }
+
+  sum.toString = function() {
+    return a
+  }
+
+  return sum
+}
