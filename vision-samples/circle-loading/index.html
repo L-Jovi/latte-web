@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--
+  https://github.com/frontend9/css-count-down-demo/blob/master/index.html
+-->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Circle Loading</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .box {
+      position: relative;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .green-border {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 20px solid #00a853;
+      border-bottom-color: transparent;
+      transform: rotate(45deg);
+    }
+
+    .red-gradients {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(to right, #00a853, #F04134);
+    }
+
+    .inner-circle {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 2;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background-color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="green-border"></div>
+    <div class='red-gradients'></div>
+    <div class='inner-circle'></div>
+  </div>
+</body>
+
+</html>
