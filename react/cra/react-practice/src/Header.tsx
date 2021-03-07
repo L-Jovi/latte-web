@@ -44,7 +44,6 @@ export default class Header extends React.Component<HeaderProps, HeaderState> {
       console.log(`timeout 2: ${this.state.count}`)
     }, 1000)
 
-
     // event
     this.parent.addEventListener('click', (e: any) => {
       console.log('dom parent');

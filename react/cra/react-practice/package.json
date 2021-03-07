@@ -30,6 +30,8 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
+    "graphql": "^15.5.0",
+    "graphql.macro": "^1.4.2",
     "husky": "^4.3.8",
     "lint-staged": "^10.5.3",
     "prettier": "^2.2.1",
@@ -83,9 +85,10 @@
       "not op_mini all"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      "last 3 versions",
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 3 safari version"
     ]
   }
 }

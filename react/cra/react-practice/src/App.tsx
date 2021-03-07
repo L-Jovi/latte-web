@@ -1,19 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Header from './Header';
+import React, {
+  useState,
+  useEffect,
+} from 'react';
+import { ReactComponent as Logo  } from './logo.svg';
+import styles from './App.module.css';
+
+// import { loader  } from 'graphql.macro';
+
 
 function App() {
+  const [ isLoadHeader, setLoadHeader, ] = useState(true)
+
+  let Header = function() {
+    return null
+  }
+
+  useEffect(function() {
+    import('./Header')
+      .then(({ default: Elem }) => {
+        console.log(Elem)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [])
+
   return (
-    <div className="App">
-      <Header />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className={styles.app}>
+      {
+        isLoadHeader ? "Loading..." : <Header />
+      }
+
+      <header className={styles.appHeader}>
+        <Logo className={styles.appLogo} />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
         <a
-          className="App-link"
+          className={styles.appLink}
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
