@@ -2,11 +2,9 @@ import React, {
   useState,
   useEffect,
 } from 'react';
-import { ReactComponent as Logo  } from './logo.svg';
+import { ReactComponent as Logo } from './logo.svg';
 import styles from './Welcome.module.css';
-
 // import { loader  } from 'graphql.macro';
-
 
 function Welcome() {
   const [ isLoadHeader, ] = useState(true)
@@ -16,7 +14,7 @@ function Welcome() {
   }
 
   useEffect(function() {
-    import('./Header')
+    import('../Header')
       .then(({ default: Elem }) => {
         console.log(Elem)
       })
