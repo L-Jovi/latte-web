@@ -25,7 +25,7 @@ child.getValue()
 console.log(child instanceof Parent)
 
 
-// Parasitic combination
+// parasitic combination
 function Father(value) {
   this.val = value
 }
@@ -50,3 +50,34 @@ Son.prototype = Object.create(Father.prototype, {
 
 const son = new Son(2)
 son instanceof Father
+
+
+// use copy
+function Animal(name, age) {
+  this.name = name
+  this.age = age
+}
+
+Animal.prototype.getName = function() {
+  console.log(this.name)
+}
+
+
+function Cat(name, age, grade) {
+  Animal.call(this, name, age)
+  this.grade = grade
+}
+
+
+function inherit(child, parent) {
+  let obj = parent.prototype
+  obj.constructor = child
+  for (let key in child.prototype) {
+    Object.defineProperty(obj, key, {
+      value: child.prototype[key]
+    })
+  }
+  child.prototype = obj
+}
+
+inherit(Cat, Animal)

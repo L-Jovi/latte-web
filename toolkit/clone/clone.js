@@ -3,7 +3,7 @@ function clone(source) {
 
   for (let key in source) {
     if (Object.prototype.hasOwnProperty.call(source, key)) {
-      target[key] = value[key]
+      target[key] = source[key]
     }
   }
 
