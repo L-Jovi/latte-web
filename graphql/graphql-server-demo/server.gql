@@ -1,0 +1,7 @@
+type Query {
+  hello: String
+
+  quoteOfTheDay: String
+
+  rollDice(numDice: Int!, numSides: Int): [Int]
+}
