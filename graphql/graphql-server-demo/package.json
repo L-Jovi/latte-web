@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "serve": "node server.js",
-    "client": "serve -l 5000 ./public"
+    "client": "serve -l 5001 ./public"
   },
   "author": "",
   "license": "ISC",
