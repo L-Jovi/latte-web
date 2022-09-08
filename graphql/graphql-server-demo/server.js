@@ -20,6 +20,11 @@ const schema = buildSchema(`
     author: String
   }
 
+  type Hello {
+    foo: String
+    bar: [String]!
+  }
+
   type RandomDie {
     numSides: Int!
     rollOnce: Int!
@@ -33,7 +38,7 @@ const schema = buildSchema(`
   }
 
   type Query {
-    hello: String
+    hello: Hello
 
     quoteOfTheDay: String
 
@@ -75,12 +80,20 @@ class Message {
   }
 }
 
+class Hello {
+  constructor() {
+    this.foo = 'Hello world!';
+    this.bar = ['bar', 'baz'];
+  }
+}
+
 const fakeDatabase = {};
 
 // The root provides a resolver function for each API endpoint
 const root = {
   hello: () => {
-    return 'Hello world!';
+    const h = new Hello();
+    return h;
   },
 
   quoteOfTheDay: () => {
