@@ -1,0 +1,19 @@
+{
+  "name": "hackernews-node",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^3.7.0",
+    "apollo-server": "^2.19.0",
+    "bcryptjs": "2.4.3",
+    "jsonwebtoken": "8.5.1"
+  },
+  "devDependencies": {
+    "prisma": "^3.7.0",
+    "nodemon": "^2.0.6"
+  }
+}
