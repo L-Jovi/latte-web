@@ -1,0 +1,3 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Generator state machine</title><h1>Generator state machine</h1>
+<p>Each next() resumes at the saved program counter. Both versions yield 1, then return 5.</p><pre></pre>
+<script src="forge.js"></script><script>function* native(){const value=yield 1;return value+2}const manual=forgeGenerator(c=>{switch(c.next){case 0:c.next=1;return 1;case 1:c.stop();return c.sent+2}});const standard=native();document.querySelector('pre').textContent=JSON.stringify({native:[standard.next(),standard.next(3)],manual:[manual.next(),manual.next(3)]},null,2)</script></html>
