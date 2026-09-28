@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bind Call Apply</title>
+</head>
+
+<body>
+    <h1>Call, apply and bind</h1>
+    <p>Open DevTools Console to observe the values. Read the README for the expected behavior.</p>
+  <script src="./bind.js"></script>
+  <script src="./call.js"></script>
+  <script src="./apply.js"></script>
+  <script>
+    function test(a, b) {
+      console.log(this.name)
+      return a + b
+    }
+
+    const obj = {
+      name: 'saber',
+    }
+
+    console.log(`=== forge call ===`)
+    console.log(test.forgeCall(obj, 'foo', 'bar'))
+    console.log(`=== forge call ===`)
+
+    console.log('\n')
+
+    console.log(`=== forge apply ===`)
+    console.log(test.forgeApply(obj, ['foo', 'bar']))
+    console.log(`=== forge apply ===`)
+
+    console.log('\n')
+
+    console.log(`=== forge bind ===`)
+    const testBind = test.forgeBind(obj, 'foo')
+    console.log(testBind('bar'))
+
+    const foo = {
+      value: 1
+    }
+    function bar(name, age) {
+      this.habit = 'shopping';
+      console.log(this.value)
+      console.log(name)
+      console.log(age)
+    }
+    bar.prototype.friend = 'kevin'
+    const bindFoo = bar.bind(foo, 'daisy')
+    const o = new bindFoo('18')
+    console.log(o.habit)
+    console.log(o.friend)
+    console.log(`=== forge bind ===`)
+  </script>
+</body>
+</html>

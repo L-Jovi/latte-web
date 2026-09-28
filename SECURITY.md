@@ -1,21 +1,12 @@
-# Security Policy
+# Security
 
-## Supported Versions
+These are local learning experiments, not production services. The maintained
+branch is `main`; there are no supported release lines or response-time promises.
+Historical references are identified in their README and excluded from runnable
+examples. Do not deploy examples with real accounts, secrets or personal data.
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
-
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
-
-## Reporting a Vulnerability
-
-Use this section to tell people how to report a vulnerability.
-
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+Report sensitive vulnerabilities through GitHub's enabled
+[private vulnerability reporting](https://github.com/L-Jovi/latte-web/security/advisories/new).
+Use a public issue for ordinary bugs without security impact. Include the affected
+example, commit, reproduction and expected behavior, without real credentials.
+The maintainer will assess impact and publish a fix when possible.
