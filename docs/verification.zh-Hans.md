@@ -2,7 +2,7 @@
 
 [English](verification.md) | 简体中文
 
-维护基线：Node 24、npm 11，验证环境为 macOS arm64 与 GitHub Actions 的 Linux。入口清單来自 `catalog.json`，历史映射来自 `migration.json`／`baseline-disposition.json`，不是人工挑出的成功样本。
+维护基线：Node 24、npm 11，验证环境为 macOS arm64 与 GitHub Actions 的 Ubuntu 24.04。入口清单来自 `catalog.json`，历史映射来自 `migration.json`／`baseline-disposition.json`，不是人工挑出的成功样本。
 
 | 检查                                      | 实际边界                                                                                                                                       |
 | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |

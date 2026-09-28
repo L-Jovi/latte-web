@@ -2,7 +2,7 @@
 
 English | [简体中文](verification.zh-Hans.md)
 
-The maintained baseline is Node 24 and npm 11, validated on macOS arm64 and GitHub Actions Linux. Runnable entries come from `catalog.json`; historical coverage comes from `migration.json` / `baseline-disposition.json`, not a hand-picked passing subset.
+The maintained baseline is Node 24 and npm 11, validated on macOS arm64 and GitHub Actions Ubuntu 24.04. Runnable entries come from `catalog.json`; historical coverage comes from `migration.json` / `baseline-disposition.json`, not a hand-picked passing subset.
 
 | Check                                     | Actual boundary                                                                                                                                                                                  |
 | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
