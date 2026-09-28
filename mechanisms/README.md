@@ -16,5 +16,6 @@ English | [简体中文](README.zh-Hans.md)
 - [Timer drift](utilities/timer/README.md)
 - [Decimal string formatting](utilities/format/README.md)
 - [Chained addition](utilities/add/README.md)
+- [Two handmade bundlers](bundlers/README.md)
 
 [Learning path](../README.md)

@@ -8,7 +8,17 @@
     "npm": ">=11 <12"
   },
   "packageManager": "npm@11.19.0",
-  "workspaces": [],
+  "workspaces": [
+    "fundamentals/typescript",
+    "mechanisms/bundlers",
+    "tooling/webpack",
+    "tooling/grunt",
+    "tooling/less",
+    "tooling/handlebars",
+    "tooling/gulp-typescript",
+    "tooling/webpack-typescript",
+    "examples/components"
+  ],
   "scripts": {
     "dev": "node scripts/serve.mjs",
     "test": "node --test tests/unit/*.test.js",
@@ -16,10 +26,15 @@
     "test:browser": "playwright test",
     "docs:generate": "node scripts/catalog.mjs",
     "check:docs": "node scripts/check-docs.mjs",
-    "check": "npm test && npm run test:aplus && npm run check:docs"
+    "check": "npm run typecheck && npm run build && npm test && npm run test:aplus && npm run test:tooling && npm run check:docs",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "test:tooling": "node --test tests/tooling/*.test.js",
+    "build:storybook": "npm run build:storybook -w @latte/components"
   },
   "devDependencies": {
     "@playwright/test": "1.63.0",
+    "prettier": "3.9.9",
     "promises-aplus-tests": "2.1.2"
   },
   "overrides": {
@@ -27,5 +42,8 @@
       "mocha": "12.0.2",
       "underscore": "1.13.8"
     }
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
   }
 }

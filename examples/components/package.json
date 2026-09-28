@@ -1,0 +1,31 @@
+{
+  "name": "@latte/components",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "node build.mjs",
+    "storybook": "STORYBOOK_DISABLE_TELEMETRY=1 storybook dev -p 6006 --host 127.0.0.1 --no-open",
+    "build:storybook": "STORYBOOK_DISABLE_TELEMETRY=1 storybook build --test"
+  },
+  "dependencies": {
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.29.7",
+    "@babel/preset-react": "7.29.7",
+    "@babel/preset-typescript": "7.29.7",
+    "babel-loader": "10.1.1",
+    "@babel/cli": "7.29.7",
+    "vite": "8.3.1",
+    "@vitejs/plugin-react": "6.1.1",
+    "webpack": "5.111.1",
+    "webpack-cli": "7.2.3",
+    "css-loader": "7.1.5",
+    "style-loader": "4.0.0",
+    "storybook": "10.6.0",
+    "@storybook/react-vite": "10.6.0"
+  }
+}
