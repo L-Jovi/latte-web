@@ -66,8 +66,8 @@ for (const zh of [false, true]) {
   writeFileSync(`README${suffix}.md`, body);
   let ledger = `# ${zh ? '迁移清单' : 'Migration ledger'}\n\n${zh ? '[English](migration.md) | 简体中文' : 'English | [简体中文](migration.zh-Hans.md)'}\n\n${zh ? '基线' : 'Baseline'}: [${migration.baseline.slice(0, 7)}](${base}) — 805 tracked files, 20 topic roots, 24 Node packages.\n\n`;
   ledger += zh
-    ? '最具体的路径规则优先；目录规则覆盖其中所有源文件、资源和配置。退役内容可从固定提交恢复。`pending` 尚未迁移；`retain` 保留教学机制；`merge` 提取并合并；`rewrite` 更新底座或入口；`historical` 仅保留历史阅读；`retire` 从当前树移除。新入口 README 记录教学目的和验证命令。\n'
-    : 'The most specific path rule wins; directory rules include source, assets and configuration. Retired content is recoverable at the fixed commit. `pending` awaits migration; `retain` preserves a mechanism; `merge` extracts into another example; `rewrite` updates the entry or runtime; `historical` is reading only; `retire` removes content from the current tree. Destination READMEs describe purpose and verification.\n';
+    ? '最具体的路径规则优先；目录规则覆盖其中所有源文件、资源和配置。退役内容可从固定提交恢复。`pending` 尚未迁移；`retain` 保留教学机制；`merge` 提取并合并；`rewrite` 更新底座或入口；`historical` 仅保留历史阅读；`retire` 从当前树移除；`withdrawn` 因隐私或版权撤下，不提供链接。新入口 README 记录教学目的和验证命令。\n'
+    : 'The most specific path rule wins; directory rules include source, assets and configuration. Retired content is recoverable at the fixed commit. `pending` awaits migration; `retain` preserves a mechanism; `merge` extracts into another example; `rewrite` updates the entry or runtime; `historical` is reading only; `retire` removes content from the current tree; `withdrawn` removes it for privacy or rights reasons and is not linked. Destination READMEs describe purpose and verification.\n';
   ledger += zh
     ? '\n| 原入口（历史） | 处理 | 新入口 | 理由 | 批次 |\n| --- | --- | --- | --- | --- |\n'
     : '\n| Original (history) | Decision | Destination | Rationale | Batch |\n| --- | --- | --- | --- | --- |\n';
@@ -75,7 +75,7 @@ for (const zh of [false, true]) {
     migration.entries
       .map(
         (e) =>
-          `| [${e.old}](${base}${encodeURI(e.old)}) | ${e.action} | ${e.new ? `[${e.new}](../${e.new})` : '—'} | ${zh ? e.reasonZh : e.reason} | ${e.phase ?? '—'} |`,
+          `| ${e.action === 'withdrawn' ? e.old : `[${e.old}](${base}${encodeURI(e.old)})`} | ${e.action} | ${e.new ? `[${e.new}](../${e.new})` : '—'} | ${zh ? e.reasonZh : e.reason} | ${e.phase ?? '—'} |`,
       )
       .join('\n') + '\n';
   writeFileSync(`docs/migration${suffix}.md`, ledger);
@@ -113,7 +113,7 @@ const disposition = read('docs/baseline-files.json').map((path) => {
     rule: rule.old,
     action: rule.action,
     new: rule.new,
-    history: base + encodeURI(path),
+    history: rule.action === 'withdrawn' ? null : base + encodeURI(path),
   };
 });
 writeFileSync(

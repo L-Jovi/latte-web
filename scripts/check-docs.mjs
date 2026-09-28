@@ -87,7 +87,19 @@ for (const item of disposition) {
     item.new !== rule.new
   )
     errors.push(`Stale per-file migration: ${item.old}`);
+  if (item.action === 'withdrawn' && item.history !== null)
+    errors.push(`Withdrawn file must not link to history: ${item.old}`);
 }
+// Material withdrawn for privacy or rights reasons must never be linked again.
+const history = `https://github.com/L-Jovi/latte-web/tree/${migration.baseline}/`;
+for (const entry of migration.entries.filter((e) => e.action === 'withdrawn'))
+  for (const ledger of ['docs/migration.md', 'docs/migration.zh-Hans.md'])
+    if (
+      readFileSync(ledger, 'utf8').includes(
+        `](${history}${encodeURI(entry.old)}`,
+      )
+    )
+      errors.push(`${ledger}: links withdrawn path ${entry.old}`);
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exit(1);

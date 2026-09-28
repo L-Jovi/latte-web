@@ -4,7 +4,7 @@
 
 基线: [ef3fa2a](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/) — 805 tracked files, 20 topic roots, 24 Node packages.
 
-最具体的路径规则优先；目录规则覆盖其中所有源文件、资源和配置。退役内容可从固定提交恢复。`pending` 尚未迁移；`retain` 保留教学机制；`merge` 提取并合并；`rewrite` 更新底座或入口；`historical` 仅保留历史阅读；`retire` 从当前树移除。新入口 README 记录教学目的和验证命令。
+最具体的路径规则优先；目录规则覆盖其中所有源文件、资源和配置。退役内容可从固定提交恢复。`pending` 尚未迁移；`retain` 保留教学机制；`merge` 提取并合并；`rewrite` 更新底座或入口；`historical` 仅保留历史阅读；`retire` 从当前树移除；`withdrawn` 因隐私或版权撤下，不提供链接。新入口 README 记录教学目的和验证命令。
 
 | 原入口（历史） | 处理 | 新入口 | 理由 | 批次 |
 | --- | --- | --- | --- | --- |
@@ -59,12 +59,12 @@
 | [graphql](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/graphql) | rewrite | [examples/graphql](../examples/graphql) | 拆分 HTTP 基础与完整 Apollo/Prisma 应用。 | 4 |
 | [graphql/graphql-server-demo](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/graphql/graphql-server-demo) | rewrite | [examples/graphql-http](../examples/graphql-http) | 在 graphql-http 上保留 schema、class resolver 和消息练习。 | 4 |
 | [graphql/react-apollo](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/graphql/react-apollo) | rewrite | [examples/graphql](../examples/graphql) | 保留查询登录发布投票订阅，更新 API 并使用虚构 seed。 | 4 |
-| [graphql/react-apollo/server/prisma/dev.db](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/graphql/react-apollo/server/prisma/dev.db) | retire | — | 运行数据由 schema、迁移与虚构 seed 重建。 | 4 |
+| graphql/react-apollo/server/prisma/dev.db | withdrawn | — | 因隐私撤下：含用户记录的开发数据库。应用现在用迁移脚本和虚构的种子数据重建数据。 | — |
 | [wasm](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/wasm) | rewrite | [examples/wasm](../examples/wasm) | 保留 Rust/浏览器 ABI，退役 CRA，以 Cargo 生成整数模块。 | 4 |
 | [performance](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/performance) | historical | [docs/history/performance](../docs/history/performance) | 保留 2019 年报告、截图和原结论，当前测量独立成实验。 | 5 |
 | [vision-samples](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples) | merge | [examples/visuals](../examples/visuals) | 整合可读的绘制、手势和动画算法，使用自制素材。 | 5 |
 | [vision-samples/3droom](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/3droom) | retire | — | 大体积 TGL 演示缺乏可读实现。 | 5 |
-| [vision-samples/global](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global) | retire | — | 退役 BuckyMaler 站点包装及捆绑库、字体和图片。 | 5 |
+| vision-samples/global | withdrawn | — | 因隐私撤下：含个人信息。 | — |
 | [vision-samples/slider/horizontal](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/horizontal) | retire | — | Bootstrap/Unslider 包装重复已有行为。 | 5 |
 | [vision-samples/slider/whirligig/imooc](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/whirligig/imooc) | retire | — | 退役重复课程副本，保留一份位置计算实现。 | 5 |
 | [vision-samples/slider/swiper](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/swiper) | merge | [examples/visuals/paging](../examples/visuals/paging) | 保留触摸阈值与索引边界，对照指针翻页。 | 5 |
@@ -132,42 +132,6 @@
 | [vision-samples/canvas-image/04-image-magnifier/img-lg.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/canvas-image/04-image-magnifier/img-lg.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
 | [vision-samples/canvas-image/04-image-magnifier/index.html.bak](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/canvas-image/04-image-magnifier/index.html.bak) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
 | [vision-samples/canvas-image/05-image-filter/autumn.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/canvas-image/05-image-filter/autumn.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/css/fonts/Montserrat-Black.eot](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Black.eot) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/css/fonts/Montserrat-Black.svg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Black.svg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/css/fonts/Montserrat-Black.ttf](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Black.ttf) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/css/fonts/Montserrat-Black.woff](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Black.woff) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/css/fonts/Montserrat-Bold.eot](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Bold.eot) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/css/fonts/Montserrat-Bold.svg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Bold.svg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/css/fonts/Montserrat-Bold.ttf](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Bold.ttf) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/css/fonts/Montserrat-Bold.woff](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Bold.woff) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/css/fonts/Montserrat-Light.eot](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Light.eot) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/css/fonts/Montserrat-Light.svg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Light.svg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/css/fonts/Montserrat-Light.ttf](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Light.ttf) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/css/fonts/Montserrat-Light.woff](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Light.woff) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/css/fonts/Montserrat-Regular.eot](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Regular.eot) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/css/fonts/Montserrat-Regular.svg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Regular.svg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/css/fonts/Montserrat-Regular.ttf](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Regular.ttf) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/css/fonts/Montserrat-Regular.woff](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Regular.woff) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/img/about-history.png](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/img/about-history.png) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/img/about-philosophy.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/img/about-philosophy.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/img/about-visual.png](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/img/about-visual.png) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/img/about-winners.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/img/about-winners.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/img/childhood.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/img/childhood.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/img/contact-visual.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/img/contact-visual.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/img/introduction-visual.png](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/img/introduction-visual.png) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/img/logo.png](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/img/logo.png) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/img/work-alex-nowak.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/img/work-alex-nowak.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/img/work-metiew-smith.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/img/work-metiew-smith.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/img/work-victory.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/img/work-victory.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/js/vendor/hammer-2.0.8.js](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/js/vendor/hammer-2.0.8.js) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/global/assets/js/vendor/jquery-2.2.4.min.js](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/js/vendor/jquery-2.2.4.min.js) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/huamao/font/DFTTWW5.TTF](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/huamao/font/DFTTWW5.TTF) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/huamao/font/wawa-webfont.eot](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/huamao/font/wawa-webfont.eot) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/huamao/font/wawa-webfont.svg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/huamao/font/wawa-webfont.svg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/huamao/font/wawa-webfont.ttf](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/huamao/font/wawa-webfont.ttf) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/huamao/font/wawa-webfont.woff](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/huamao/font/wawa-webfont.woff) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/huamao/font/wawa-webfont.woff2](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/huamao/font/wawa-webfont.woff2) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/huamao/font/wawa.ttf](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/huamao/font/wawa.ttf) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
 | [vision-samples/huamao/images/1.png](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/huamao/images/1.png) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
 | [vision-samples/huamao/images/cat.png](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/huamao/images/cat.png) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
 | [vision-samples/huamao/images/chili.png](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/huamao/images/chili.png) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
@@ -186,22 +150,22 @@
 | [vision-samples/lottery/demo1/rotate-static.png](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/lottery/demo1/rotate-static.png) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
 | [vision-samples/lottery/demo2/pointer.png](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/lottery/demo2/pointer.png) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
 | [vision-samples/lottery/demo2/turntable-bg.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/lottery/demo2/turntable-bg.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/lottery/demo2/turntable.png](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/lottery/demo2/turntable.png) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/photo-wall/images/1.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/photo-wall/images/1.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/photo-wall/images/2.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/photo-wall/images/2.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/photo-wall/images/3.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/photo-wall/images/3.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/photo-wall/images/4.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/photo-wall/images/4.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/photo-wall/images/5.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/photo-wall/images/5.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/photo-wall/images/6.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/photo-wall/images/6.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/photo-wall/images/7.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/photo-wall/images/7.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/photo-wall/images/8.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/photo-wall/images/8.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
+| vision-samples/lottery/demo2/turntable.png | withdrawn | — | 因版权撤下：没有再分发授权的第三方图片。 | — |
+| vision-samples/photo-wall/images/1.jpg | withdrawn | — | 因版权撤下：没有再分发授权的第三方图片。 | — |
+| vision-samples/photo-wall/images/2.jpg | withdrawn | — | 因版权撤下：没有再分发授权的第三方图片。 | — |
+| vision-samples/photo-wall/images/3.jpg | withdrawn | — | 因版权撤下：没有再分发授权的第三方图片。 | — |
+| vision-samples/photo-wall/images/4.jpg | withdrawn | — | 因版权撤下：没有再分发授权的第三方图片。 | — |
+| vision-samples/photo-wall/images/5.jpg | withdrawn | — | 因版权撤下：没有再分发授权的第三方图片。 | — |
+| vision-samples/photo-wall/images/6.jpg | withdrawn | — | 因版权撤下：没有再分发授权的第三方图片。 | — |
+| vision-samples/photo-wall/images/7.jpg | withdrawn | — | 因版权撤下：没有再分发授权的第三方图片。 | — |
+| vision-samples/photo-wall/images/8.jpg | withdrawn | — | 因版权撤下：没有再分发授权的第三方图片。 | — |
 | [vision-samples/search-input/bing-search-ajax-jquery.htm](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/search-input/bing-search-ajax-jquery.htm) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
 | [vision-samples/search-input/icon.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/search-input/icon.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
 | [vision-samples/search-input/iconfont.eot](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/search-input/iconfont.eot) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/search-input/logo.png](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/search-input/logo.png) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
+| vision-samples/search-input/logo.png | withdrawn | — | 因版权撤下：没有再分发授权的第三方图片。 | — |
 | [vision-samples/search-input/river.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/search-input/river.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
 | [vision-samples/search-input/search-button.png](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/search-input/search-button.png) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/search-input/taobao.png](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/search-input/taobao.png) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
+| vision-samples/search-input/taobao.png | withdrawn | — | 因版权撤下：没有再分发授权的第三方图片。 | — |
 | [vision-samples/slider/horizontal/depends/jquery.min.js](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/horizontal/depends/jquery.min.js) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
 | [vision-samples/slider/horizontal/depends/shop.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/horizontal/depends/shop.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
 | [vision-samples/slider/horizontal/depends/subway.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/horizontal/depends/subway.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
@@ -209,23 +173,23 @@
 | [vision-samples/slider/horizontal/depends/unslider.js](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/horizontal/depends/unslider.js) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
 | [vision-samples/slider/horizontal/depends/unslider.min.js](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/horizontal/depends/unslider.min.js) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
 | [vision-samples/slider/horizontal/depends/wood.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/horizontal/depends/wood.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/slider/swiper/imgs/1.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/swiper/imgs/1.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/slider/swiper/imgs/2.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/swiper/imgs/2.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/slider/swiper/imgs/3.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/swiper/imgs/3.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/slider/swiper/imgs/4.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/swiper/imgs/4.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
+| vision-samples/slider/swiper/imgs/1.jpg | withdrawn | — | 因版权撤下：没有再分发授权的第三方图片。 | — |
+| vision-samples/slider/swiper/imgs/2.jpg | withdrawn | — | 因版权撤下：没有再分发授权的第三方图片。 | — |
+| vision-samples/slider/swiper/imgs/3.jpg | withdrawn | — | 因版权撤下：没有再分发授权的第三方图片。 | — |
+| vision-samples/slider/swiper/imgs/4.jpg | withdrawn | — | 因版权撤下：没有再分发授权的第三方图片。 | — |
 | [vision-samples/slider/vertical/images/colored-smoke.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/vertical/images/colored-smoke.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
 | [vision-samples/slider/vertical/images/guitar.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/vertical/images/guitar.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
 | [vision-samples/slider/vertical/images/hat.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/vertical/images/hat.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
 | [vision-samples/slider/vertical/images/machu-picchu.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/vertical/images/machu-picchu.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
 | [vision-samples/slider/vertical/jquery-3.3.1.min.js](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/vertical/jquery-3.3.1.min.js) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/slider/whirligig/imooc/1.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/whirligig/imooc/1.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/slider/whirligig/imooc/2.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/whirligig/imooc/2.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/slider/whirligig/imooc/3.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/whirligig/imooc/3.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/slider/whirligig/imooc/4.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/whirligig/imooc/4.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/slider/whirligig/imooc/5.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/whirligig/imooc/5.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/slider/whirligig/imooc/6.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/whirligig/imooc/6.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/slider/whirligig/imooc/btn_l.png](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/whirligig/imooc/btn_l.png) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/slider/whirligig/imooc/btn_r.png](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/whirligig/imooc/btn_r.png) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
+| vision-samples/slider/whirligig/imooc/1.jpg | withdrawn | — | 因版权撤下：没有再分发授权的第三方图片。 | — |
+| vision-samples/slider/whirligig/imooc/2.jpg | withdrawn | — | 因版权撤下：没有再分发授权的第三方图片。 | — |
+| vision-samples/slider/whirligig/imooc/3.jpg | withdrawn | — | 因版权撤下：没有再分发授权的第三方图片。 | — |
+| vision-samples/slider/whirligig/imooc/4.jpg | withdrawn | — | 因版权撤下：没有再分发授权的第三方图片。 | — |
+| vision-samples/slider/whirligig/imooc/5.jpg | withdrawn | — | 因版权撤下：没有再分发授权的第三方图片。 | — |
+| vision-samples/slider/whirligig/imooc/6.jpg | withdrawn | — | 因版权撤下：没有再分发授权的第三方图片。 | — |
+| vision-samples/slider/whirligig/imooc/btn_l.png | withdrawn | — | 因版权撤下：没有再分发授权的第三方图片。 | — |
+| vision-samples/slider/whirligig/imooc/btn_r.png | withdrawn | — | 因版权撤下：没有再分发授权的第三方图片。 | — |
 | [vision-samples/slider/whirligig/imooc/jquery.js](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/whirligig/imooc/jquery.js) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
 | [vision-samples/slider/whirligig/self/images/shop.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/whirligig/self/images/shop.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
 | [vision-samples/slider/whirligig/self/images/subway.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/whirligig/self/images/subway.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
@@ -233,9 +197,12 @@
 | [vision-samples/slider/whirligig/self/images/wood.jpg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/whirligig/self/images/wood.jpg) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
 | [vision-samples/slider/whirligig/self/jquery.js](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/whirligig/self/jquery.js) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
 | [vision-samples/slider/whirligig/self/jquery.min.js](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/whirligig/self/jquery.min.js) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
-| [vision-samples/slider/whirligig/self/tech.png](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/whirligig/self/tech.png) | retire | — | 退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。 | 5 |
+| vision-samples/slider/whirligig/self/tech.png | withdrawn | — | 因版权撤下：没有再分发授权的第三方图片。 | — |
 | [wasm/wasm-cra-ts-demo/package-lock.json](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/wasm/wasm-cra-ts-demo/package-lock.json) | merge | [package-lock.json](../package-lock.json) | 依赖解析统一到根 npm workspace 锁文件。 | 5 |
 | [wasm/wasm-cra-ts-demo/public/favicon.ico](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/wasm/wasm-cra-ts-demo/public/favicon.ico) | retire | — | 移除不承担教学用途的模板标识。 | 5 |
 | [wasm/wasm-cra-ts-demo/public/logo192.png](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/wasm/wasm-cra-ts-demo/public/logo192.png) | retire | — | 移除不承担教学用途的模板标识。 | 5 |
 | [wasm/wasm-cra-ts-demo/public/logo512.png](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/wasm/wasm-cra-ts-demo/public/logo512.png) | retire | — | 移除不承担教学用途的模板标识。 | 5 |
 | [wasm/wasm-cra-ts-demo/src/logo.svg](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/wasm/wasm-cra-ts-demo/src/logo.svg) | retire | — | 移除不承担教学用途的模板标识。 | 5 |
+| vision-samples/huamao/font | withdrawn | — | 因版权撤下：没有再分发授权的商业字体。 | — |
+| vision-samples/3droom/demo.js | withdrawn | — | 因版权撤下：评估许可下的专有库，许可禁止再分发。 | — |
+| performance/research | withdrawn | [docs/history/performance](../docs/history/performance) | 因隐私撤下：针对单一产品的内部报告，截图含真实用户和内部数据；已换成不涉及任何公司的摘要。 | — |

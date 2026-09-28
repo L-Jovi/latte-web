@@ -1073,9 +1073,9 @@
   {
     "old": "graphql/react-apollo/server/prisma/dev.db",
     "rule": "graphql/react-apollo/server/prisma/dev.db",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/graphql/react-apollo/server/prisma/dev.db"
+    "history": null
   },
   {
     "old": "graphql/react-apollo/server/prisma/migrations/20220119075639_init/migration.sql",
@@ -1310,52 +1310,52 @@
   },
   {
     "old": "performance/research/README.md",
-    "rule": "performance",
-    "action": "historical",
+    "rule": "performance/research",
+    "action": "withdrawn",
     "new": "docs/history/performance",
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/performance/research/README.md"
+    "history": null
   },
   {
     "old": "performance/research/images/api.png",
-    "rule": "performance",
-    "action": "historical",
+    "rule": "performance/research",
+    "action": "withdrawn",
     "new": "docs/history/performance",
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/performance/research/images/api.png"
+    "history": null
   },
   {
     "old": "performance/research/images/applist.png",
-    "rule": "performance",
-    "action": "historical",
+    "rule": "performance/research",
+    "action": "withdrawn",
     "new": "docs/history/performance",
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/performance/research/images/applist.png"
+    "history": null
   },
   {
     "old": "performance/research/images/dom-parse.png",
-    "rule": "performance",
-    "action": "historical",
+    "rule": "performance/research",
+    "action": "withdrawn",
     "new": "docs/history/performance",
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/performance/research/images/dom-parse.png"
+    "history": null
   },
   {
     "old": "performance/research/images/ec-preview.png",
-    "rule": "performance",
-    "action": "historical",
+    "rule": "performance/research",
+    "action": "withdrawn",
     "new": "docs/history/performance",
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/performance/research/images/ec-preview.png"
+    "history": null
   },
   {
     "old": "performance/research/images/migrate.png",
-    "rule": "performance",
-    "action": "historical",
+    "rule": "performance/research",
+    "action": "withdrawn",
     "new": "docs/history/performance",
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/performance/research/images/migrate.png"
+    "history": null
   },
   {
     "old": "performance/research/images/performance.png",
-    "rule": "performance",
-    "action": "historical",
+    "rule": "performance/research",
+    "action": "withdrawn",
     "new": "docs/history/performance",
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/performance/research/images/performance.png"
+    "history": null
   },
   {
     "old": "react/cra/react-library/.gitignore",
@@ -4124,10 +4124,10 @@
   },
   {
     "old": "vision-samples/3droom/demo.js",
-    "rule": "vision-samples/3droom",
-    "action": "retire",
+    "rule": "vision-samples/3droom/demo.js",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/3droom/demo.js"
+    "history": null
   },
   {
     "old": "vision-samples/3droom/index.html",
@@ -4307,359 +4307,359 @@
   {
     "old": "vision-samples/global/README.md",
     "rule": "vision-samples/global",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/README.md"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/base/_body-element.sass",
     "rule": "vision-samples/global",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/base/_body-element.sass"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/base/_fonts.scss",
     "rule": "vision-samples/global",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/base/_fonts.scss"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/base/_normalize.scss",
     "rule": "vision-samples/global",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/base/_normalize.scss"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/base/_selection-colors.sass",
     "rule": "vision-samples/global",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/base/_selection-colors.sass"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/base/_vars.sass",
     "rule": "vision-samples/global",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/base/_vars.sass"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/fonts/Montserrat-Black.eot",
-    "rule": "vision-samples/global/assets/css/fonts/Montserrat-Black.eot",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Black.eot"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/fonts/Montserrat-Black.svg",
-    "rule": "vision-samples/global/assets/css/fonts/Montserrat-Black.svg",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Black.svg"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/fonts/Montserrat-Black.ttf",
-    "rule": "vision-samples/global/assets/css/fonts/Montserrat-Black.ttf",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Black.ttf"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/fonts/Montserrat-Black.woff",
-    "rule": "vision-samples/global/assets/css/fonts/Montserrat-Black.woff",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Black.woff"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/fonts/Montserrat-Bold.eot",
-    "rule": "vision-samples/global/assets/css/fonts/Montserrat-Bold.eot",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Bold.eot"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/fonts/Montserrat-Bold.svg",
-    "rule": "vision-samples/global/assets/css/fonts/Montserrat-Bold.svg",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Bold.svg"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/fonts/Montserrat-Bold.ttf",
-    "rule": "vision-samples/global/assets/css/fonts/Montserrat-Bold.ttf",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Bold.ttf"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/fonts/Montserrat-Bold.woff",
-    "rule": "vision-samples/global/assets/css/fonts/Montserrat-Bold.woff",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Bold.woff"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/fonts/Montserrat-Light.eot",
-    "rule": "vision-samples/global/assets/css/fonts/Montserrat-Light.eot",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Light.eot"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/fonts/Montserrat-Light.svg",
-    "rule": "vision-samples/global/assets/css/fonts/Montserrat-Light.svg",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Light.svg"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/fonts/Montserrat-Light.ttf",
-    "rule": "vision-samples/global/assets/css/fonts/Montserrat-Light.ttf",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Light.ttf"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/fonts/Montserrat-Light.woff",
-    "rule": "vision-samples/global/assets/css/fonts/Montserrat-Light.woff",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Light.woff"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/fonts/Montserrat-Regular.eot",
-    "rule": "vision-samples/global/assets/css/fonts/Montserrat-Regular.eot",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Regular.eot"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/fonts/Montserrat-Regular.svg",
-    "rule": "vision-samples/global/assets/css/fonts/Montserrat-Regular.svg",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Regular.svg"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/fonts/Montserrat-Regular.ttf",
-    "rule": "vision-samples/global/assets/css/fonts/Montserrat-Regular.ttf",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Regular.ttf"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/fonts/Montserrat-Regular.woff",
-    "rule": "vision-samples/global/assets/css/fonts/Montserrat-Regular.woff",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/fonts/Montserrat-Regular.woff"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/layouts/_grid.sass",
     "rule": "vision-samples/global",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/layouts/_grid.sass"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/main.css",
     "rule": "vision-samples/global",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/main.css"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/main.sass",
     "rule": "vision-samples/global",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/main.sass"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/modules/_about.sass",
     "rule": "vision-samples/global",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/modules/_about.sass"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/modules/_contact.sass",
     "rule": "vision-samples/global",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/modules/_contact.sass"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/modules/_device-notification.sass",
     "rule": "vision-samples/global",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/modules/_device-notification.sass"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/modules/_header.sass",
     "rule": "vision-samples/global",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/modules/_header.sass"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/modules/_hire.sass",
     "rule": "vision-samples/global",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/modules/_hire.sass"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/modules/_intro.sass",
     "rule": "vision-samples/global",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/modules/_intro.sass"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/modules/_outer-nav.sass",
     "rule": "vision-samples/global",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/modules/_outer-nav.sass"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/modules/_section.sass",
     "rule": "vision-samples/global",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/modules/_section.sass"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/modules/_side-nav.sass",
     "rule": "vision-samples/global",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/modules/_side-nav.sass"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/css/modules/_work.sass",
     "rule": "vision-samples/global",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/css/modules/_work.sass"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/img/about-history.png",
-    "rule": "vision-samples/global/assets/img/about-history.png",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/img/about-history.png"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/img/about-philosophy.jpg",
-    "rule": "vision-samples/global/assets/img/about-philosophy.jpg",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/img/about-philosophy.jpg"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/img/about-visual.png",
-    "rule": "vision-samples/global/assets/img/about-visual.png",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/img/about-visual.png"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/img/about-winners.jpg",
-    "rule": "vision-samples/global/assets/img/about-winners.jpg",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/img/about-winners.jpg"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/img/childhood.jpg",
-    "rule": "vision-samples/global/assets/img/childhood.jpg",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/img/childhood.jpg"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/img/contact-visual.jpg",
-    "rule": "vision-samples/global/assets/img/contact-visual.jpg",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/img/contact-visual.jpg"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/img/introduction-visual.png",
-    "rule": "vision-samples/global/assets/img/introduction-visual.png",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/img/introduction-visual.png"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/img/logo.png",
-    "rule": "vision-samples/global/assets/img/logo.png",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/img/logo.png"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/img/work-alex-nowak.jpg",
-    "rule": "vision-samples/global/assets/img/work-alex-nowak.jpg",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/img/work-alex-nowak.jpg"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/img/work-metiew-smith.jpg",
-    "rule": "vision-samples/global/assets/img/work-metiew-smith.jpg",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/img/work-metiew-smith.jpg"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/img/work-victory.jpg",
-    "rule": "vision-samples/global/assets/img/work-victory.jpg",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/img/work-victory.jpg"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/js/functions-min.js",
     "rule": "vision-samples/global",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/js/functions-min.js"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/js/functions.js",
     "rule": "vision-samples/global",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/js/functions.js"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/js/vendor/hammer-2.0.8.js",
-    "rule": "vision-samples/global/assets/js/vendor/hammer-2.0.8.js",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/js/vendor/hammer-2.0.8.js"
+    "history": null
   },
   {
     "old": "vision-samples/global/assets/js/vendor/jquery-2.2.4.min.js",
-    "rule": "vision-samples/global/assets/js/vendor/jquery-2.2.4.min.js",
-    "action": "retire",
+    "rule": "vision-samples/global",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/assets/js/vendor/jquery-2.2.4.min.js"
+    "history": null
   },
   {
     "old": "vision-samples/global/index.html",
     "rule": "vision-samples/global",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/global/index.html"
+    "history": null
   },
   {
     "old": "vision-samples/huamao/LICENSE",
@@ -4691,52 +4691,52 @@
   },
   {
     "old": "vision-samples/huamao/font/DFTTWW5.TTF",
-    "rule": "vision-samples/huamao/font/DFTTWW5.TTF",
-    "action": "retire",
+    "rule": "vision-samples/huamao/font",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/huamao/font/DFTTWW5.TTF"
+    "history": null
   },
   {
     "old": "vision-samples/huamao/font/wawa-webfont.eot",
-    "rule": "vision-samples/huamao/font/wawa-webfont.eot",
-    "action": "retire",
+    "rule": "vision-samples/huamao/font",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/huamao/font/wawa-webfont.eot"
+    "history": null
   },
   {
     "old": "vision-samples/huamao/font/wawa-webfont.svg",
-    "rule": "vision-samples/huamao/font/wawa-webfont.svg",
-    "action": "retire",
+    "rule": "vision-samples/huamao/font",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/huamao/font/wawa-webfont.svg"
+    "history": null
   },
   {
     "old": "vision-samples/huamao/font/wawa-webfont.ttf",
-    "rule": "vision-samples/huamao/font/wawa-webfont.ttf",
-    "action": "retire",
+    "rule": "vision-samples/huamao/font",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/huamao/font/wawa-webfont.ttf"
+    "history": null
   },
   {
     "old": "vision-samples/huamao/font/wawa-webfont.woff",
-    "rule": "vision-samples/huamao/font/wawa-webfont.woff",
-    "action": "retire",
+    "rule": "vision-samples/huamao/font",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/huamao/font/wawa-webfont.woff"
+    "history": null
   },
   {
     "old": "vision-samples/huamao/font/wawa-webfont.woff2",
-    "rule": "vision-samples/huamao/font/wawa-webfont.woff2",
-    "action": "retire",
+    "rule": "vision-samples/huamao/font",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/huamao/font/wawa-webfont.woff2"
+    "history": null
   },
   {
     "old": "vision-samples/huamao/font/wawa.ttf",
-    "rule": "vision-samples/huamao/font/wawa.ttf",
-    "action": "retire",
+    "rule": "vision-samples/huamao/font",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/huamao/font/wawa.ttf"
+    "history": null
   },
   {
     "old": "vision-samples/huamao/images/1.png",
@@ -4902,9 +4902,9 @@
   {
     "old": "vision-samples/lottery/demo2/turntable.png",
     "rule": "vision-samples/lottery/demo2/turntable.png",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/lottery/demo2/turntable.png"
+    "history": null
   },
   {
     "old": "vision-samples/navigation/index.html",
@@ -4944,58 +4944,58 @@
   {
     "old": "vision-samples/photo-wall/images/1.jpg",
     "rule": "vision-samples/photo-wall/images/1.jpg",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/photo-wall/images/1.jpg"
+    "history": null
   },
   {
     "old": "vision-samples/photo-wall/images/2.jpg",
     "rule": "vision-samples/photo-wall/images/2.jpg",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/photo-wall/images/2.jpg"
+    "history": null
   },
   {
     "old": "vision-samples/photo-wall/images/3.jpg",
     "rule": "vision-samples/photo-wall/images/3.jpg",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/photo-wall/images/3.jpg"
+    "history": null
   },
   {
     "old": "vision-samples/photo-wall/images/4.jpg",
     "rule": "vision-samples/photo-wall/images/4.jpg",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/photo-wall/images/4.jpg"
+    "history": null
   },
   {
     "old": "vision-samples/photo-wall/images/5.jpg",
     "rule": "vision-samples/photo-wall/images/5.jpg",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/photo-wall/images/5.jpg"
+    "history": null
   },
   {
     "old": "vision-samples/photo-wall/images/6.jpg",
     "rule": "vision-samples/photo-wall/images/6.jpg",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/photo-wall/images/6.jpg"
+    "history": null
   },
   {
     "old": "vision-samples/photo-wall/images/7.jpg",
     "rule": "vision-samples/photo-wall/images/7.jpg",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/photo-wall/images/7.jpg"
+    "history": null
   },
   {
     "old": "vision-samples/photo-wall/images/8.jpg",
     "rule": "vision-samples/photo-wall/images/8.jpg",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/photo-wall/images/8.jpg"
+    "history": null
   },
   {
     "old": "vision-samples/photo-wall/index.html",
@@ -5070,9 +5070,9 @@
   {
     "old": "vision-samples/search-input/logo.png",
     "rule": "vision-samples/search-input/logo.png",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/search-input/logo.png"
+    "history": null
   },
   {
     "old": "vision-samples/search-input/river.jpg",
@@ -5098,9 +5098,9 @@
   {
     "old": "vision-samples/search-input/taobao.png",
     "rule": "vision-samples/search-input/taobao.png",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/search-input/taobao.png"
+    "history": null
   },
   {
     "old": "vision-samples/slider/horizontal/LICENSE",
@@ -5203,30 +5203,30 @@
   {
     "old": "vision-samples/slider/swiper/imgs/1.jpg",
     "rule": "vision-samples/slider/swiper/imgs/1.jpg",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/swiper/imgs/1.jpg"
+    "history": null
   },
   {
     "old": "vision-samples/slider/swiper/imgs/2.jpg",
     "rule": "vision-samples/slider/swiper/imgs/2.jpg",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/swiper/imgs/2.jpg"
+    "history": null
   },
   {
     "old": "vision-samples/slider/swiper/imgs/3.jpg",
     "rule": "vision-samples/slider/swiper/imgs/3.jpg",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/swiper/imgs/3.jpg"
+    "history": null
   },
   {
     "old": "vision-samples/slider/swiper/imgs/4.jpg",
     "rule": "vision-samples/slider/swiper/imgs/4.jpg",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/swiper/imgs/4.jpg"
+    "history": null
   },
   {
     "old": "vision-samples/slider/swiper/index.html",
@@ -5315,58 +5315,58 @@
   {
     "old": "vision-samples/slider/whirligig/imooc/1.jpg",
     "rule": "vision-samples/slider/whirligig/imooc/1.jpg",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/whirligig/imooc/1.jpg"
+    "history": null
   },
   {
     "old": "vision-samples/slider/whirligig/imooc/2.jpg",
     "rule": "vision-samples/slider/whirligig/imooc/2.jpg",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/whirligig/imooc/2.jpg"
+    "history": null
   },
   {
     "old": "vision-samples/slider/whirligig/imooc/3.jpg",
     "rule": "vision-samples/slider/whirligig/imooc/3.jpg",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/whirligig/imooc/3.jpg"
+    "history": null
   },
   {
     "old": "vision-samples/slider/whirligig/imooc/4.jpg",
     "rule": "vision-samples/slider/whirligig/imooc/4.jpg",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/whirligig/imooc/4.jpg"
+    "history": null
   },
   {
     "old": "vision-samples/slider/whirligig/imooc/5.jpg",
     "rule": "vision-samples/slider/whirligig/imooc/5.jpg",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/whirligig/imooc/5.jpg"
+    "history": null
   },
   {
     "old": "vision-samples/slider/whirligig/imooc/6.jpg",
     "rule": "vision-samples/slider/whirligig/imooc/6.jpg",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/whirligig/imooc/6.jpg"
+    "history": null
   },
   {
     "old": "vision-samples/slider/whirligig/imooc/btn_l.png",
     "rule": "vision-samples/slider/whirligig/imooc/btn_l.png",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/whirligig/imooc/btn_l.png"
+    "history": null
   },
   {
     "old": "vision-samples/slider/whirligig/imooc/btn_r.png",
     "rule": "vision-samples/slider/whirligig/imooc/btn_r.png",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/whirligig/imooc/btn_r.png"
+    "history": null
   },
   {
     "old": "vision-samples/slider/whirligig/imooc/carousel.css",
@@ -5462,9 +5462,9 @@
   {
     "old": "vision-samples/slider/whirligig/self/tech.png",
     "rule": "vision-samples/slider/whirligig/self/tech.png",
-    "action": "retire",
+    "action": "withdrawn",
     "new": null,
-    "history": "https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples/slider/whirligig/self/tech.png"
+    "history": null
   },
   {
     "old": "vision-samples/stepbar/index.html",

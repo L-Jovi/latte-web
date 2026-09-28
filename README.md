@@ -108,7 +108,7 @@ Read foundations → handwritten mechanisms → toolchains → applications, or 
 
 - [Historical React architecture notes](docs/history/react/README.md) — historical
 - [Historical TestUtils and Enzyme cases](docs/history/testing/README.md) — historical
-- [Performance research (2019)](docs/history/performance/README.md) — historical
+- [Measuring page speed in 2019](docs/history/performance/README.md) — historical
 
 ## Verification and maintenance
 
