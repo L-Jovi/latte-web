@@ -91,22 +91,6 @@
       "reasonZh": "保留机制理解，修正正确性并说明边界。"
     },
     {
-      "old": "build",
-      "new": "build",
-      "action": "pending",
-      "phase": null,
-      "reason": "Scheduled for a later migration batch.",
-      "reasonZh": "按计划在后续批次迁移。"
-    },
-    {
-      "old": "components",
-      "new": "components",
-      "action": "pending",
-      "phase": null,
-      "reason": "Scheduled for a later migration batch.",
-      "reasonZh": "按计划在后续批次迁移。"
-    },
-    {
       "old": "graphql",
       "new": "graphql",
       "action": "pending",
@@ -155,32 +139,8 @@
       "reasonZh": "按计划在后续批次迁移。"
     },
     {
-      "old": "style/less",
-      "new": "style/less",
-      "action": "pending",
-      "phase": null,
-      "reason": "Scheduled for a later migration batch.",
-      "reasonZh": "按计划在后续批次迁移。"
-    },
-    {
-      "old": "template/handlebars",
-      "new": "template/handlebars",
-      "action": "pending",
-      "phase": null,
-      "reason": "Scheduled for a later migration batch.",
-      "reasonZh": "按计划在后续批次迁移。"
-    },
-    {
       "old": "test",
       "new": "test",
-      "action": "pending",
-      "phase": null,
-      "reason": "Scheduled for a later migration batch.",
-      "reasonZh": "按计划在后续批次迁移。"
-    },
-    {
-      "old": "typescript",
-      "new": "typescript",
       "action": "pending",
       "phase": null,
       "reason": "Scheduled for a later migration batch.",
@@ -241,6 +201,134 @@
       "reason": "Keep CommonJS queue ordering explicit on an ESM repository.",
       "reasonZh": "明确保留 CommonJS 的任务队列顺序。",
       "phase": 1
+    },
+    {
+      "old": "build",
+      "new": "tooling/webpack",
+      "action": "merge",
+      "reason": "Split build topics into Webpack, Grunt and the two handmade bundlers.",
+      "reasonZh": "构建专题拆分到 Webpack、Grunt 与两种手写打包器。",
+      "phase": 2
+    },
+    {
+      "old": "build/grunt",
+      "new": "tooling/grunt",
+      "action": "retain",
+      "reason": "Keep declarative copy/clean tasks with an ISC license.",
+      "reasonZh": "保留声明式复制与清理任务及 ISC 许可。",
+      "phase": 2
+    },
+    {
+      "old": "build/webpack",
+      "new": "tooling/webpack",
+      "action": "retain",
+      "reason": "Keep every distinct Webpack topic on Webpack 5; use asset modules and current dev-server APIs.",
+      "reasonZh": "所有不同 Webpack 专题保留，更新资源模块与开发服务器 API。",
+      "phase": 2
+    },
+    {
+      "old": "build/webpack/scratches/webpack-scratch",
+      "new": "mechanisms/bundlers/procedural",
+      "action": "retain",
+      "reason": "Preserve the procedural parse/graph/emit pipeline; fix traversal and cache.",
+      "reasonZh": "保留过程式解析、依赖图、输出流程，修复遍历与缓存。",
+      "phase": 2
+    },
+    {
+      "old": "build/webpack/scratches/webpack-forge",
+      "new": "mechanisms/bundlers/layered",
+      "action": "retain",
+      "reason": "Preserve parser/compiler separation with recursive dependency resolution.",
+      "reasonZh": "保留解析器与编译器分层，修复递归依赖解析。",
+      "phase": 2
+    },
+    {
+      "old": "build/webpack/scratches/webpack-plugin-loader-forge",
+      "new": "tooling/webpack/plugins",
+      "action": "retain",
+      "reason": "Modern processAssets hook emits a file inventory.",
+      "reasonZh": "用 processAssets 生命周期生成文件清单。",
+      "phase": 2
+    },
+    {
+      "old": "build/webpack/scratches/analize-webpack",
+      "new": "tooling/webpack/plugins",
+      "action": "merge",
+      "reason": "Unfinished hooks draft becomes the plugin lifecycle explanation.",
+      "reasonZh": "未完成的 hooks 草稿并入插件生命周期说明。",
+      "phase": 2
+    },
+    {
+      "old": "style/less",
+      "new": "tooling/less",
+      "action": "retain",
+      "reason": "Keep variables, mixins, guards and escaped values; preserve GPL-2.0.",
+      "reasonZh": "保留变量、混入、条件与转义知识及 GPL-2.0。",
+      "phase": 2
+    },
+    {
+      "old": "template/handlebars",
+      "new": "tooling/handlebars",
+      "action": "retain",
+      "reason": "Compile and precompile an escaped template from one input.",
+      "reasonZh": "保留模板编译及预编译，明确输入转义边界。",
+      "phase": 2
+    },
+    {
+      "old": "typescript",
+      "new": "fundamentals/typescript",
+      "action": "merge",
+      "reason": "Extract typed actions/reducers; retire duplicated CRA machinery.",
+      "reasonZh": "提取类型化 actions/reducers，退役重复 CRA 底座。",
+      "phase": 2
+    },
+    {
+      "old": "typescript/gulp-ts-sample",
+      "new": "tooling/gulp-typescript",
+      "action": "retain",
+      "reason": "Keep task sequencing; delegate compilation to supported TypeScript.",
+      "reasonZh": "保留任务编排，用 TypeScript 原生编译器构建。",
+      "phase": 2
+    },
+    {
+      "old": "typescript/webpack-react-sample",
+      "new": "tooling/webpack-typescript",
+      "action": "retain",
+      "reason": "Keep typed class props and compare type checking with transpilation.",
+      "reasonZh": "保留 class 组件类型，区分类型检查与转译。",
+      "phase": 2
+    },
+    {
+      "old": "components",
+      "new": "examples/components",
+      "action": "merge",
+      "reason": "Hello wrapper merges into a single Card/Button library with three packaging paths.",
+      "reasonZh": "Hello 外壳合入 Card/Button 小型组件库与三种打包对照。",
+      "phase": 2
+    },
+    {
+      "old": "react/cra/react-library",
+      "new": "examples/components",
+      "action": "merge",
+      "reason": "Retain Card and its CSS; retire CRA scaffold.",
+      "reasonZh": "提取 Card 与 CSS，退役 CRA 外壳。",
+      "phase": 2
+    },
+    {
+      "old": "react/scratches/react-library-scratch",
+      "new": "examples/components",
+      "action": "merge",
+      "reason": "Retain Button; consolidate its Storybook and Webpack scaffolds.",
+      "reasonZh": "保留 Button，合并 Storybook 与 Webpack 底座。",
+      "phase": 2
+    },
+    {
+      "old": "react/scratches/react-library",
+      "new": "examples/components",
+      "action": "merge",
+      "reason": "Remove duplicate library/CRA and generated Storybook examples.",
+      "reasonZh": "移除重复组件库、CRA 及自动生成的 Storybook 示例。",
+      "phase": 2
     }
   ]
 }

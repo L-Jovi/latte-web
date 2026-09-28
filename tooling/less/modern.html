@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><title>CSS variables</title
+  ><style>
+    :root {
+      --accent: #547a91;
+    }
+    .card {
+      padding: 1rem;
+      background: var(--accent);
+      color: white;
+    }
+  </style>
+  <h1>Runtime CSS variables</h1>
+  <div class="card">
+    Unlike a Less variable, this custom property can change after compilation.
+  </div>
+  <button>Change theme</button>
+  <script>
+    document.querySelector('button').onclick = () =>
+      document.documentElement.style.setProperty('--accent', '#98542d');
+  </script>
+</html>

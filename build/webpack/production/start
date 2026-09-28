@@ -1,3 +1,0 @@
-#!/bin/bash
-
-npx webpack serve --open --config webpack.dev.js

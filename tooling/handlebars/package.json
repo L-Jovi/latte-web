@@ -1,0 +1,13 @@
+{
+  "name": "@latte/handlebars",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "handlebars": "4.7.9"
+  },
+  "devDependencies": {}
+}

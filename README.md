@@ -10,6 +10,7 @@ Use Node 24 LTS and npm 11. From the repository root:
 
 ```sh
 npm ci
+npm run build
 npm run dev
 # Open http://127.0.0.1:4173
 ```
@@ -31,6 +32,7 @@ Read foundations → handwritten mechanisms → toolchains → applications, or 
 - [Layout and transform](fundamentals/browser/README.md) — maintained
 - [CSS layout](fundamentals/css/README.md) — maintained
 - [Semantic HTML](fundamentals/html/README.md) — maintained
+- [Types and an explicit Redux-style reducer](fundamentals/typescript/README.md) — maintained
 
 ### Handwritten mechanisms
 
@@ -48,6 +50,33 @@ Read foundations → handwritten mechanisms → toolchains → applications, or 
 - [Timer drift](mechanisms/utilities/timer/README.md) — maintained
 - [Decimal string formatting](mechanisms/utilities/format/README.md) — maintained
 - [Chained addition](mechanisms/utilities/add/README.md) — maintained
+- [Two handmade bundlers](mechanisms/bundlers/README.md) — maintained
+
+### Toolchains
+
+- [Webpack learning topics](tooling/webpack/README.md) — maintained
+- [Entry and output](tooling/webpack/getting-started/README.md) — maintained
+- [Assets and loaders](tooling/webpack/asset-management/README.md) — maintained
+- [Multiple entries](tooling/webpack/output-management/README.md) — maintained
+- [Development source maps](tooling/webpack/development/README.md) — maintained
+- [Hot module replacement](tooling/webpack/hot-module-replacement/README.md) — maintained
+- [Lazy loading](tooling/webpack/lazy-loading/README.md) — maintained
+- [Shared dependencies](tooling/webpack/code-splitting/README.md) — maintained
+- [Content hashes and caching](tooling/webpack/caching/README.md) — maintained
+- [Development and production modes](tooling/webpack/production/README.md) — maintained
+- [Unused exports](tooling/webpack/tree-shaking/README.md) — maintained
+- [Legacy globals at the module boundary](tooling/webpack/shimming/README.md) — maintained
+- [Compiler lifecycle plugins](tooling/webpack/plugins/README.md) — maintained
+- [A packaged number dictionary](tooling/webpack/library/README.md) — maintained
+- [Declarative file tasks with Grunt](tooling/grunt/README.md) — maintained
+- [Less compilation and native CSS variables](tooling/less/README.md) — maintained
+- [Template compilation and escaping](tooling/handlebars/README.md) — maintained
+- [Task sequencing and TypeScript](tooling/gulp-typescript/README.md) — maintained
+- [Typed React props through Webpack](tooling/webpack-typescript/README.md) — maintained
+
+### Applications and browser experiments
+
+- [Card and Button, three packaging paths](examples/components/README.md) — maintained
 
 ## Verification and maintenance
 

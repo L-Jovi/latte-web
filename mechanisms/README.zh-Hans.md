@@ -16,5 +16,6 @@
 - [计时器漂移](utilities/timer/README.zh-Hans.md)
 - [十进制字符串格式化](utilities/format/README.zh-Hans.md)
 - [链式求和](utilities/add/README.zh-Hans.md)
+- [两种手写打包器](bundlers/README.zh-Hans.md)
 
 [返回学习路线](../README.zh-Hans.md)

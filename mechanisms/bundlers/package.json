@@ -1,0 +1,15 @@
+{
+  "name": "@latte/bundlers",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "@babel/core": "7.29.7",
+    "@babel/parser": "7.29.9",
+    "@babel/traverse": "7.29.8",
+    "@babel/plugin-transform-modules-commonjs": "7.29.7"
+  }
+}

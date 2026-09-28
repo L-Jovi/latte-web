@@ -10,6 +10,7 @@
 
 ```sh
 npm ci
+npm run build
 npm run dev
 # Open http://127.0.0.1:4173
 ```
@@ -31,6 +32,7 @@ npm run dev
 - [布局与 transform](fundamentals/browser/README.zh-Hans.md) — maintained
 - [CSS 布局](fundamentals/css/README.zh-Hans.md) — maintained
 - [HTML 语义](fundamentals/html/README.zh-Hans.md) — maintained
+- [类型与显式 Redux 风格 reducer](fundamentals/typescript/README.zh-Hans.md) — maintained
 
 ### 手写机制
 
@@ -48,6 +50,33 @@ npm run dev
 - [计时器漂移](mechanisms/utilities/timer/README.zh-Hans.md) — maintained
 - [十进制字符串格式化](mechanisms/utilities/format/README.zh-Hans.md) — maintained
 - [链式求和](mechanisms/utilities/add/README.zh-Hans.md) — maintained
+- [两种手写打包器](mechanisms/bundlers/README.zh-Hans.md) — maintained
+
+### 工具链
+
+- [Webpack 构建专题](tooling/webpack/README.zh-Hans.md) — maintained
+- [入口与输出](tooling/webpack/getting-started/README.zh-Hans.md) — maintained
+- [资源与 loader](tooling/webpack/asset-management/README.zh-Hans.md) — maintained
+- [多个入口](tooling/webpack/output-management/README.zh-Hans.md) — maintained
+- [开发与源码映射](tooling/webpack/development/README.zh-Hans.md) — maintained
+- [模块热替换](tooling/webpack/hot-module-replacement/README.zh-Hans.md) — maintained
+- [按需加载](tooling/webpack/lazy-loading/README.zh-Hans.md) — maintained
+- [共享依赖](tooling/webpack/code-splitting/README.zh-Hans.md) — maintained
+- [内容哈希与缓存](tooling/webpack/caching/README.zh-Hans.md) — maintained
+- [开发与生产构建](tooling/webpack/production/README.zh-Hans.md) — maintained
+- [未使用的导出](tooling/webpack/tree-shaking/README.zh-Hans.md) — maintained
+- [模块边界上的旧全局变量](tooling/webpack/shimming/README.zh-Hans.md) — maintained
+- [编译生命周期插件](tooling/webpack/plugins/README.zh-Hans.md) — maintained
+- [打包后的数字字典](tooling/webpack/library/README.zh-Hans.md) — maintained
+- [Grunt 声明式文件任务](tooling/grunt/README.zh-Hans.md) — maintained
+- [Less 编译与原生 CSS 变量](tooling/less/README.zh-Hans.md) — maintained
+- [模板编译与转义](tooling/handlebars/README.zh-Hans.md) — maintained
+- [任务顺序与 TypeScript](tooling/gulp-typescript/README.zh-Hans.md) — maintained
+- [Webpack 中的 React 属性类型](tooling/webpack-typescript/README.zh-Hans.md) — maintained
+
+### 应用与浏览器实验
+
+- [Card、Button 与三种打包方式](examples/components/README.zh-Hans.md) — maintained
 
 ## 验证与维护状态
 
