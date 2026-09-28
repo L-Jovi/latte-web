@@ -1,0 +1,35 @@
+body {
+  font: 18px/1.5 system-ui;
+  max-width: 55rem;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+button,
+input {
+  font: inherit;
+  padding: 0.4rem;
+}
+button {
+  margin: 0.25rem;
+}
+li {
+  padding: 0.5rem;
+}
+nav a {
+  margin-right: 1rem;
+}
+[aria-pressed='true'] {
+  outline: 2px solid #547a91;
+}
+.editor {
+  border: 1px solid;
+  padding: 1rem;
+  min-height: 8rem;
+}
+.bold {
+  font-weight: bold;
+}
+pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

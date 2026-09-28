@@ -20,3 +20,6 @@ References to articles identify learning sources, not a claim of their authorshi
 The migration ledger identifies removed assets and references the original commit.
 Generated dependencies remain under their own licenses in node_modules and are not
 redistributed as repository source. Historical source is never relabelled as original.
+
+- `docs/history/testing/cases`: Ruan Yifeng, react-testing-demo, MIT; retained license in that directory. Original tutorial credits Jack Franklin. Active replacement tests are new repository code.
+- Draft.js retains its package license and archived upstream identity; its pinned Immutable 3 security update does not change the source attribution.

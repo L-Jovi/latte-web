@@ -51,6 +51,10 @@ Read foundations → handwritten mechanisms → toolchains → applications, or 
 - [Decimal string formatting](mechanisms/utilities/format/README.md) — maintained
 - [Chained addition](mechanisms/utilities/add/README.md) — maintained
 - [Two handmade bundlers](mechanisms/bundlers/README.md) — maintained
+- [A minimal element/component renderer](mechanisms/mini-react/README.md) — maintained
+- [A History API router](mechanisms/router/README.md) — maintained
+- [Function composition](mechanisms/compose/README.md) — maintained
+- [Selection, Range and cursor restoration](mechanisms/selection/README.md) — maintained
 
 ### Toolchains
 
@@ -77,6 +81,15 @@ Read foundations → handwritten mechanisms → toolchains → applications, or 
 ### Applications and browser experiments
 
 - [Card and Button, three packaging paths](examples/components/README.md) — maintained
+- [Classic React and Redux](examples/react-classic/README.md) — maintained
+- [Modern React and Redux Toolkit](examples/react-modern/README.md) — maintained
+- [Draft.js controlled editing](examples/rich-text-draft/README.md) — maintained
+- [Lexical editor state and plugins](examples/rich-text-lexical/README.md) — maintained
+
+### Historical research
+
+- [Historical React architecture notes](docs/history/react/README.md) — historical
+- [Historical TestUtils and Enzyme cases](docs/history/testing/README.md) — historical
 
 ## Verification and maintenance
 

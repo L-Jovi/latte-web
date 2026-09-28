@@ -13,6 +13,7 @@ createServer(async (req, res) => {
       res.writeHead(403).end('Not a public example'); return;
     }
     let file = resolve(root, ...parts);
+    if (parts.join('/') === 'mechanisms/router/dist/about') file = resolve(root, 'mechanisms/router/dist/index.html');
     if ((await stat(file)).isDirectory()) file = resolve(file, 'index.html');
     file = await realpath(file);
     if (!file.startsWith(root + sep)) { res.writeHead(403).end(); return; }

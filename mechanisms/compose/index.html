@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><title>Composition</title>
+  <h1>Composition, right to left</h1>
+  <output></output>
+  <script type="module">
+    import { forgeCompose } from './index.js';
+    document.querySelector('output').textContent = forgeCompose(
+      (x) => x - 2,
+      (x) => x + 10,
+      (x) => x * 10,
+    )(10);
+  </script>
+</html>
