@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  /><title>Mouse events and Pointer Events</title
+  ><link rel="stylesheet" href="../style.css" />
+  <h1>Mouse events and Pointer Events</h1>
+  <p>
+    Move both blocks inside their bounds. The Pointer Events version also
+    accepts touch, pen and arrow keys.
+  </p>
+  <section>
+    <h2>Classic mouse listeners</h2>
+    <div class="field" id="classic"><button class="block">Mouse</button></div>
+  </section>
+  <section>
+    <h2>Pointer capture</h2>
+    <div class="field" id="modern"><button class="block">Pointer</button></div>
+  </section>
+  <style>
+    .field {
+      position: relative;
+      width: 100%;
+      height: 160px;
+      background: #edf4f3;
+    }
+    .block {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100px;
+      height: 55px;
+      background: #176978;
+      color: white;
+      touch-action: none;
+      user-select: none;
+    }
+  </style>
+  <script type="module" src="app.js"></script>
+</html>

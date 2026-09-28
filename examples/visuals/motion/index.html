@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  /><title>Navigation, steps and circular progress</title
+  ><link rel="stylesheet" href="../style.css" />
+  <h1>Navigation, steps and circular progress</h1>
+  <section>
+    <h2>Navigation: a tween and a CSS transition</h2>
+    <nav class="legacy"><a href="#lesson">JavaScript tween</a></nav>
+    <nav class="modern"><a href="#lesson">CSS transition</a></nav>
+    <p id="lesson">Both respond to hover and keyboard focus.</p>
+  </section>
+  <section>
+    <h2>A step bar</h2>
+    <ol id="steps">
+      <li>Read</li>
+      <li>Run</li>
+      <li>Compare</li>
+    </ol>
+    <button id="back">Back</button><button id="next">Next</button
+    ><output></output>
+  </section>
+  <section>
+    <h2>Circular progress</h2>
+    <label
+      >Progress <input id="progress" type="range" min="0" max="100" value="35"
+    /></label>
+    <div
+      class="ring"
+      role="progressbar"
+      aria-label="Progress"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="35"
+    >
+      <span>35%</span>
+    </div>
+  </section>
+  <style>
+    nav a {
+      display: block;
+      width: 180px;
+      padding: 1rem;
+      background: #bfe0d8;
+      box-sizing: border-box;
+    }
+    .modern a {
+      transition: width 0.25s;
+    }
+    .modern a:hover,
+    .modern a:focus-visible {
+      width: 260px;
+    }
+    #steps {
+      display: flex;
+      padding: 0;
+      list-style: none;
+      gap: 0.5rem;
+    }
+    #steps li {
+      flex: 1;
+      padding: 0.8rem;
+      background: #eee;
+      border-bottom: 5px solid #ccc;
+    }
+    #steps [aria-current='step'] {
+      border-color: #087b77;
+      background: #d9ebe4;
+    }
+    .ring {
+      --value: 35;
+      display: grid;
+      place-items: center;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: conic-gradient(#087b77 calc(var(--value) * 1%), #ddd 0);
+    }
+    .ring span {
+      display: grid;
+      place-items: center;
+      background: white;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+  </style>
+  <script type="module" src="app.js"></script>
+</html>

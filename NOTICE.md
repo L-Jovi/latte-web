@@ -1,27 +1,16 @@
 # Third-party notices and license boundaries
 
-The root MIT license covers Jovi's original code and the new explanatory material.
-It does not replace existing directory licenses or grant rights to third-party assets.
-References to articles identify learning sources, not a claim of their authorship.
+The root [MIT license](LICENSE) covers Jovi's original code and new explanatory material. It does not replace local licenses or grant rights to third-party assets. Article references identify learning sources, not authorship.
 
-- `mechanisms/generator/regenerator-runtime.js`: regenerator-runtime, Copyright
-  2014-present Facebook, Inc., MIT. Its original inline notice is retained;
-  [upstream license](https://github.com/facebook/regenerator/blob/main/LICENSE).
-- `mechanisms/utilities/debounce/lodash-debounce.js`: adapted from Lodash,
-  Copyright JS Foundation and other contributors, MIT;
-  [upstream license](https://github.com/lodash/lodash/blob/main/LICENSE).
-- Existing GPL-2.0 license texts remain in the Less and affected visual example
-  directories. Their local terms continue to apply during migration.
-- The GraphQL React/Apollo tutorial carries Graphcool's MIT attribution. It will
-  remain with its derived example rather than being replaced with Jovi's name.
-- Legacy packages may declare ISC or MIT. Directory-specific declarations take
-  precedence over the root default.
+| Retained material                                                                      | Attribution and terms                                                                                                                                                                                                                       |
+| -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `mechanisms/generator/regenerator-runtime.js`                                          | Facebook, Inc., 2014-present, MIT; original inline notice and [upstream license](https://github.com/facebook/regenerator/blob/main/LICENSE). This generated runtime is retained to explain the state machine.                               |
+| `mechanisms/utilities/debounce/lodash-debounce.js`                                     | Lodash / JS Foundation and contributors, MIT; [upstream license](https://github.com/lodash/lodash/blob/main/LICENSE).                                                                                                                       |
+| `tooling/less`                                                                         | Existing GPL-2.0 text retained in [LICENSE](tooling/less/LICENSE).                                                                                                                                                                          |
+| `tooling/grunt`                                                                        | Existing ISC package/license retained in [LICENSE](tooling/grunt/LICENSE).                                                                                                                                                                  |
+| `examples/visuals/clock`, `canvas-image`, `paging`, `carousel`, `photo-wall`, `search` | Existing GPL-2.0 notices retained in each directory. The old canvas/course examples credit imooc, and image examples reference liuyubobobo.com. Changes preserve those learning algorithms; replacement SVG/CSS graphics are self-authored. |
+| `examples/graphql`                                                                     | Graphcool, 2018, MIT; [original notice](examples/graphql/LICENSE.txt) retained with the derived app.                                                                                                                                        |
+| `docs/history/testing/cases`                                                           | Ruan Yifeng's react-testing-demo, MIT; [retained notice](docs/history/testing/LICENSE). The original tutorial credits Jack Franklin.                                                                                                        |
+| Historical research screenshots                                                        | Retained as evidence in the original report context, not offered as reusable design assets.                                                                                                                                                 |
 
-The migration ledger identifies removed assets and references the original commit.
-Generated dependencies remain under their own licenses in node_modules and are not
-redistributed as repository source. Historical source is never relabelled as original.
-
-- `docs/history/testing/cases`: Ruan Yifeng, react-testing-demo, MIT; retained license in that directory. Original tutorial credits Jack Franklin. Active replacement tests are new repository code.
-- Draft.js retains its package license and archived upstream identity; its pinned Immutable 3 security update does not change the source attribution.
-
-- `examples/graphql/`: derived from the Graphcool learning application; its original MIT notice is retained in `LICENSE.txt`. The historical database and template logos are removed.
+Draft.js and other installed dependencies retain their own package licenses. Generated dependencies and builds are not redistributed as source. Template logos, unknown fonts/photos, duplicated vendor bundles and the historical runtime database have been removed from the current tree; the [migration ledger](docs/migration.md) identifies their fixed-commit history. Retirement does not rewrite Git history.
