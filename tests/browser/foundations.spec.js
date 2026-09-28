@@ -7,13 +7,14 @@ test('DOM propagation stops both the second listener and the parent',async({page
 });
 test('layout and transform move the same box while changing different properties',async({page})=>{
   await page.goto('/fundamentals/browser/render.html');
+  // Positions can be fractional (Firefox lays out in 1/60 px), so compare to 0.005 px.
   const start=await page.locator('#box').boundingBox();
   await page.getByRole('button',{name:'Move with top',exact:true}).click();
-  expect((await page.locator('#box').boundingBox()).y-start.y).toBe(100);
+  expect((await page.locator('#box').boundingBox()).y-start.y).toBeCloseTo(100,2);
   await page.getByRole('button',{name:'Move with transform',exact:true}).click();
-  expect((await page.locator('#box').boundingBox()).y-start.y).toBe(100);
+  expect((await page.locator('#box').boundingBox()).y-start.y).toBeCloseTo(100,2);
   await page.getByRole('button',{name:'Move with transform',exact:true}).click();
-  expect((await page.locator('#box').boundingBox()).y).toBe(start.y);
+  expect((await page.locator('#box').boundingBox()).y).toBeCloseTo(start.y,2);
 });
 test('a burst of clicks produces one debounced call',async({page})=>{
   const messages=[];page.on('console',message=>messages.push(message.text()));

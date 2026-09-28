@@ -1,8 +1,8 @@
-> 历史研究，保留自 `ef3fa2a` 基线；不代表当前 API 或性能结论。当前实现见 [经典版](../../../../examples/react-classic/README.zh-Hans.md) 与 [现代版](../../../../examples/react-modern/README.zh-Hans.md)。
+> 历史研究，保留自 `1be029e` 基线；不代表当前 API 或性能结论。当前实现见 [经典版](../../../../examples/react-classic/README.zh-Hans.md) 与 [现代版](../../../../examples/react-modern/README.zh-Hans.md)。
 
 # 结构
 
-参考提供的 [Demo TodoMVC](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/react/react-practice) 示例，项目的外层结构如下所示。
+参考提供的 [Demo TodoMVC](https://github.com/L-Jovi/latte-web/tree/1be029e8f4fdc38a0c62ec2a9569187c1659875f/react/react-practice) 示例，项目的外层结构如下所示。
 
 ```
 .

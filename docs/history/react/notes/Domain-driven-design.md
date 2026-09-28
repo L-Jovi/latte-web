@@ -1,8 +1,8 @@
-> 历史研究，保留自 `ef3fa2a` 基线；不代表当前 API 或性能结论。当前实现见 [经典版](../../../../examples/react-classic/README.zh-Hans.md) 与 [现代版](../../../../examples/react-modern/README.zh-Hans.md)。
+> 历史研究，保留自 `1be029e` 基线；不代表当前 API 或性能结论。当前实现见 [经典版](../../../../examples/react-classic/README.zh-Hans.md) 与 [现代版](../../../../examples/react-modern/README.zh-Hans.md)。
 
 # 领域驱动模型
 
-[Demo TodoMVC](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/react/react-practice) 中应用了 [领域驱动模型（域驱动开发）Domain-driven design](https://zh.wikipedia.org/wiki/%E5%9F%9F%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91) 的一种尝试，从设计的角度上试图由业务本身驱动理解项目的结构划分。
+[Demo TodoMVC](https://github.com/L-Jovi/latte-web/tree/1be029e8f4fdc38a0c62ec2a9569187c1659875f/react/react-practice) 中应用了 [领域驱动模型（域驱动开发）Domain-driven design](https://zh.wikipedia.org/wiki/%E5%9F%9F%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91) 的一种尝试，从设计的角度上试图由业务本身驱动理解项目的结构划分。
 
 ## 现存问题
 
