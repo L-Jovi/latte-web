@@ -1,17 +1,23 @@
 # Contributing
 
-Explain one mechanism or improve one example at a time. A small, correct example
-with explicit limits is more useful here than a broad but incomplete library.
+Thanks for helping. This repository explains one idea at a time, so a small, correct example with clear limits is worth more than a large, unfinished one.
 
-Use Node 24 and npm 11, run `npm ci`, and follow the chosen project's README.
-Before a PR, run `npm run check` and the relevant browser/build checks. Include
-observable results and checks you could not run.
+## Before you start
 
-Update English and Simplified Chinese README files together. Explain why a
-classic approach exists before introducing its modern counterpart. Preserve
-attribution and directory licenses: the root MIT grant does not replace third-party
-terms. Use synthetic data and self-made or licensed assets.
+- Use Node 24 LTS and npm 11, then run `npm ci`.
+- Follow the README of the example you are changing.
 
-Open a branch and PR against `main`. Required checks must pass and review
-conversations must be resolved. Independent maintenance requires no external
-approval. No packages or websites are automatically published.
+## Making a change
+
+- Run `npm run check` and any browser or build checks that apply. In the pull request, say what you ran and what you could not run.
+- Update the English README and its Chinese mirror (`README.zh-Hans.md`) together, following the [writing guide](docs/writing.md).
+- When you add or rename an example, edit `docs/catalog.json` and run `npm run docs:generate`. Do not edit the generated learning-path block in the root READMEs, the section indexes or `index.html` by hand; `npm run check:docs` will catch it.
+- Explain why an older approach existed before introducing its modern replacement.
+- Keep attribution and folder licenses: the root MIT license does not replace third-party terms (see [NOTICE.md](NOTICE.md)).
+- Use made-up data and your own or properly licensed images, fonts and code. Never commit personal information, credentials, databases or build output. Anything listed as `withdrawn` in `docs/migration.json` must not be restored.
+
+## Commits and pull requests
+
+- Write commit messages and pull request titles as [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/): `feat:`, `fix:`, `docs:`, `test:`, `refactor:`, `ci:` or `chore:`, followed by a short summary.
+- Open a branch and a pull request against `main`. The `verify` check must pass and review conversations must be resolved before merging; no approval from another person is required.
+- Nothing is published to npm. The live demos are deployed to GitHub Pages from `main` automatically.

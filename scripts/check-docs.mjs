@@ -55,6 +55,12 @@ for (const file of files) {
     errors.push(`Missing document ${file}`);
     continue;
   }
+  // Chinese mirrors must say which English version they follow (team README policy §6.2).
+  if (
+    file.endsWith('.zh-Hans.md') &&
+    !readFileSync(file, 'utf8').includes('对应英文版')
+  )
+    errors.push(`${file}: missing the 对应英文版 sync line`);
   const source = readFileSync(file, 'utf8').replace(/```[\s\S]*?```/g, '');
   for (const match of source.matchAll(
     /!?\[[^\]]*\]\(([^\s)]+)(?:\s+"[^"]*")?\)/g,

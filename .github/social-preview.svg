@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640">
+  <!-- The Pages workflow renders this to https://l-jovi.github.io/latte-web/social-preview.png.
+       Upload that PNG in Settings → General → Social preview. -->
+  <defs>
+    <clipPath id="glass">
+      <path d="M912 170 L1152 170 L1122 480 Q1118 500 1098 500 L966 500 Q946 500 942 480 Z" />
+    </clipPath>
+    <style>
+      /* Arial and Liberation Sans share metrics, so macOS previews match the Linux CI render. */
+      text { font-family: Arial, 'Liberation Sans', Helvetica, sans-serif; }
+      .chip { fill: #2b1d14; }
+      .chip-text { fill: #fbf6ef; font-size: 24px; font-weight: 600; }
+    </style>
+  </defs>
+  <rect width="1280" height="640" fill="#f6ede2" />
+
+  <text x="96" y="228" font-size="104" font-weight="800" letter-spacing="-3" fill="#2b1d14">Latte Web</text>
+  <text x="96" y="300" font-size="36" fill="#4a3527">Learn how the web works by</text>
+  <text x="96" y="346" font-size="36" fill="#4a3527">building small versions of it.</text>
+
+  <g transform="translate(96 392)">
+    <rect class="chip" x="0" y="0" width="160" height="44" rx="22" />
+    <text class="chip-text" x="80" y="30" text-anchor="middle">Promise/A+</text>
+    <rect class="chip" x="172" y="0" width="160" height="44" rx="22" />
+    <text class="chip-text" x="252" y="30" text-anchor="middle">mini React</text>
+    <rect class="chip" x="344" y="0" width="112" height="44" rx="22" />
+    <text class="chip-text" x="400" y="30" text-anchor="middle">router</text>
+    <rect class="chip" x="468" y="0" width="124" height="44" rx="22" />
+    <text class="chip-text" x="530" y="30" text-anchor="middle">bundler</text>
+    <rect class="chip" x="0" y="56" width="160" height="44" rx="22" />
+    <text class="chip-text" x="80" y="86" text-anchor="middle">event loop</text>
+    <rect class="chip" x="172" y="56" width="184" height="44" rx="22" />
+    <text class="chip-text" x="264" y="86" text-anchor="middle">WebAssembly</text>
+  </g>
+
+  <text x="96" y="560" font-size="24" fill="#7a5c45">github.com/L-Jovi/latte-web · English · 简体中文</text>
+
+  <!-- A latte by the recipe in the repository description: 1 part foam, 2 parts milk, 1 part espresso. -->
+  <g clip-path="url(#glass)">
+    <rect x="880" y="170" width="300" height="82" fill="#fffaf2" />
+    <rect x="880" y="252" width="300" height="165" fill="#e3c7a4" />
+    <rect x="880" y="417" width="300" height="93" fill="#6b4226" />
+  </g>
+  <path d="M912 170 L1152 170 L1122 480 Q1118 500 1098 500 L966 500 Q946 500 942 480 Z" fill="none" stroke="#2b1d14" stroke-width="8" stroke-linejoin="round" />
+  <path d="M1147 230 Q1212 235 1202 310 Q1194 365 1132 370" fill="none" stroke="#2b1d14" stroke-width="8" stroke-linecap="round" />
+  <text x="1032" y="220" text-anchor="middle" font-size="24" font-weight="700" fill="#7a5c45">1 foam</text>
+  <text x="1032" y="343" text-anchor="middle" font-size="24" font-weight="700" fill="#4a3527">2 milk</text>
+  <text x="1032" y="466" text-anchor="middle" font-size="24" font-weight="700" fill="#fbf6ef">1 espresso</text>
+  <text x="1032" y="140" text-anchor="middle" font-size="64" font-weight="800" fill="#2b1d14">&lt;/&gt;</text>
+</svg>

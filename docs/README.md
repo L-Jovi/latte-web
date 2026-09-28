@@ -1,35 +1,45 @@
-# Reading and verification guide
+# Reading guide
 
 English | [简体中文](README.zh-Hans.md)
 
-Choose a question, observe it, then read its owner source. The repository is a collection of independent experiments, not a single deployable product.
+Pick a question, run the example that answers it, then read the code. Each example stands on its own: this is a collection, not one application.
 
-| Question                                                | Suggested route                                                                                                                                              | Observable result                                                               |
-| ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------- |
-| What does JavaScript do before a framework is involved? | [Foundations](../fundamentals/README.md) → [Promise](../mechanisms/promise/README.md) → [mini React](../mechanisms/mini-react/README.md)                     | Call context, ordering and component updates become visible.                    |
-| What does a build tool actually produce?                | [Two bundlers](../mechanisms/bundlers/README.md) → [Webpack topics](../tooling/webpack/README.md) → [component outputs](../examples/components/README.md)    | Follow an import graph and load built modules in a real consumer.               |
-| Why did application patterns change?                    | [Classic Todo](../examples/react-classic/README.md) ↔ [modern Todo](../examples/react-modern/README.md) → [GraphQL feed](../examples/graphql/README.md)      | Compare identical Todo behavior, then explicit network and database boundaries. |
-| How do browser interactions work?                       | [Selection](../mechanisms/selection/README.md) → [visual experiments](../examples/visuals/README.md) → [offline cache](../examples/service-worker/README.md) | Restore a cursor, manipulate geometry and reload without an origin server.      |
-| How should a measurement be interpreted?                | [2019 research](history/performance/README.md) → [current observations](../examples/performance/README.md)                                                   | Distinguish historical conclusions, raw events and current visit metrics.       |
+## Start from a question
 
-All commands below run at the repository root. Node 24 LTS and npm 11 are required. `npm ci` uses one lockfile and the reviewed native package install-script allowlist. SQLite uses a native package; the supported macOS arm64/Linux CI environments install its Node 24 build. Other platforms may require that package's compiler prerequisites. Rust is optional until the Wasm command.
+| Question                                                  | Suggested route                                                                                                                                                           | What you will see                                                                                                |
+| --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| What does JavaScript do before any framework is involved? | [Fundamentals](../fundamentals/README.md) → [Promise from scratch](../mechanisms/promise/README.md) → [React-style renderer](../mechanisms/mini-react/README.md)          | How `this` is decided, in what order async code runs, and how a component updates.                               |
+| What does a build tool actually produce?                  | [Build your own bundler](../mechanisms/bundlers/README.md) → [webpack tour](../tooling/webpack/README.md) → [one library, three builds](../examples/components/README.md) | An import graph turned into files, and those files loaded by a real consumer.                                    |
+| Why did the way we write apps change?                     | [2018 Todo](../examples/react-classic/README.md) ↔ [today's Todo](../examples/react-modern/README.md) → [full-stack GraphQL](../examples/graphql/README.md)               | The same Todo features written two ways, then a network API and a database.                                      |
+| How do browser interactions work?                         | [Cursors and selections](../mechanisms/selection/README.md) → [visual experiments](../examples/visuals/README.md) → [offline pages](../examples/service-worker/README.md) | A cursor restored after re-rendering, shapes you can drag, and a page that reloads with the server switched off. |
+| How should a speed measurement be read?                   | [Page speed in 2019](history/performance/README.md) → [page speed today](../examples/performance/README.md)                                                               | Why old "load time" numbers mislead, and what current metrics measure.                                           |
 
-| Command                                    | What it proves                                                                                                                                                |
-| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `npm run dev`                              | Serves the static learning index on 127.0.0.1:4173. It does not start API servers.                                                                            |
-| `npm run typecheck`                        | Checks the TypeScript workspaces and generates Prisma types.                                                                                                  |
-| `npm run build`                            | Builds every JavaScript workspace, including component consumer outputs and Storybook.                                                                        |
-| `npm test` / `npm run test:aplus`          | Checks bounded mechanisms and the standard Promise/A+ suite.                                                                                                  |
-| `npm run test:tooling`                     | Executes bundled graphs and packaged library consumers.                                                                                                       |
-| `npm run test:apps`                        | Runs Testing Library/Vitest behavior and renderer checks.                                                                                                     |
-| `npm run test:api`                         | Rebuilds temporary SQLite databases and uses real HTTP/WebSocket connections.                                                                                 |
-| `npm run test:browser`                     | Uses built entries, a temporary feed database and local services in Chromium, Firefox and WebKit. Run `npx playwright install chromium firefox webkit` first. |
-| `npm run build:wasm` / `npm run test:wasm` | Runs Rust tests, compiles the module and calls it in all three browsers.                                                                                      |
-| `npm run check:docs`                       | Validates local document/image links, both README languages, catalog destinations and baseline coverage.                                                      |
-| `npm run check`                            | Runs types, all JavaScript builds and every non-browser check above.                                                                                          |
+## Commands
 
-Browser/API tests never reset the application database created by `db:setup`. Test services use ports 4173, 4000, 4001 and 4002; stop separately running demos before browser checks. Test output is ignored under `test-results/`, `playwright-report/` or `output/`.
+Run these from the repository root with Node 24 LTS and npm 11. `npm ci` installs everything from one lockfile and runs only the install scripts listed under `allowScripts` in `package.json`. The SQLite driver is a native package: on macOS (Apple silicon) and Linux it installs a prebuilt binary, while other platforms may need a C/C++ compiler. Rust is only needed for the WebAssembly commands.
 
-Read [ecosystem decisions](ecosystem.md), [migration decisions](migration.md) and [verification limits](verification.md) before generalizing a demo. `docs/catalog.json` owns the current index; `docs/migration.json` owns longest-prefix baseline mappings. After editing either, run `npm run docs:generate`. The generator also produces `baseline-disposition.json`, one resolved decision for each original file.
+| Command                                    | What it does                                                                                                                                                                           |
+| ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run dev`                              | Serves the learning index at http://127.0.0.1:4173. Plain HTML pages work even without `npm ci`. It does not start the API servers.                                                    |
+| `npm run typecheck`                        | Type-checks the TypeScript workspaces and generates the Prisma client.                                                                                                                 |
+| `npm run build`                            | Builds every workspace, including the component library outputs and Storybook.                                                                                                         |
+| `npm test` / `npm run test:aplus`          | Tests the handmade mechanisms and runs the Promises/A+ suite.                                                                                                                          |
+| `npm run test:tooling`                     | Runs the bundler outputs and loads the packaged libraries from a separate consumer.                                                                                                    |
+| `npm run test:apps`                        | Runs the Testing Library and Vitest tests for the apps and the renderer.                                                                                                               |
+| `npm run test:api`                         | Creates temporary SQLite databases and tests the APIs over real HTTP and WebSocket connections.                                                                                        |
+| `npm run test:browser`                     | Opens every example in Chromium, Firefox and WebKit, with temporary databases and local services. Run `npx playwright install chromium firefox webkit` first.                          |
+| `npm run build:wasm` / `npm run test:wasm` | Runs the Rust tests, compiles the module and calls it in all three browsers.                                                                                                           |
+| `npm run check:docs`                       | Checks that generated pages are up to date, that every document and image link works, that each Chinese page names its English version, and that every original file is accounted for. |
+| `npm run check`                            | Runs type checks, all builds and every check above except the browser and WebAssembly tests.                                                                                           |
 
-Contribute through [a protected main PR](../CONTRIBUTING.md); there is no npm publication or website deployment workflow.
+Browser and API tests never touch the database created by `db:setup`. They use ports 4173, 4000, 4001 and 4002, so stop any demo you started yourself first. Test output goes to `test-results/`, `playwright-report/` or `output/`, which Git ignores.
+
+## Before you generalize from an example
+
+Read [how the ecosystem changed](ecosystem.md) for context, the [migration ledger](migration.md) for where old files went, and [what the checks cover](verification.md) for the limits of each example.
+
+## Editing the index
+
+`docs/catalog.json` lists every example with its title, a one-line summary and its demo page. `docs/migration.json` maps the original files to their new homes. After editing either one, run `npm run docs:generate`: it rewrites the learning-path block in the root READMEs, the section indexes, `index.html` and the migration ledger. `npm run check:docs` fails if a generated file is out of date.
+
+Contributions go through a pull request to the protected `main` branch; see [CONTRIBUTING.md](../CONTRIBUTING.md). The live demos are deployed to GitHub Pages from `main`; nothing is published to npm.

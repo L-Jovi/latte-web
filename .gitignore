@@ -87,3 +87,6 @@ examples/graphql/server/generated/
 examples/wasm/public/add.wasm
 **/*.db-shm
 **/*.db-wal
+
+# GitHub Pages site assembled by npm run build:pages
+_site/
