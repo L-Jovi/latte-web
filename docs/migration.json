@@ -91,22 +91,6 @@
       "reasonZh": "保留机制理解，修正正确性并说明边界。"
     },
     {
-      "old": "graphql",
-      "new": "graphql",
-      "action": "pending",
-      "phase": null,
-      "reason": "Scheduled for a later migration batch.",
-      "reasonZh": "按计划在后续批次迁移。"
-    },
-    {
-      "old": "network",
-      "new": "network",
-      "action": "pending",
-      "phase": null,
-      "reason": "Scheduled for a later migration batch.",
-      "reasonZh": "按计划在后续批次迁移。"
-    },
-    {
       "old": "performance",
       "new": "performance",
       "action": "pending",
@@ -115,24 +99,8 @@
       "reasonZh": "按计划在后续批次迁移。"
     },
     {
-      "old": "storage",
-      "new": "storage",
-      "action": "pending",
-      "phase": null,
-      "reason": "Scheduled for a later migration batch.",
-      "reasonZh": "按计划在后续批次迁移。"
-    },
-    {
       "old": "vision-samples",
       "new": "vision-samples",
-      "action": "pending",
-      "phase": null,
-      "reason": "Scheduled for a later migration batch.",
-      "reasonZh": "按计划在后续批次迁移。"
-    },
-    {
-      "old": "wasm",
-      "new": "wasm",
       "action": "pending",
       "phase": null,
       "reason": "Scheduled for a later migration batch.",
@@ -417,6 +385,62 @@
       "reason": "Extract the controlled EditorState lesson into a standalone Draft/Lexical comparison.",
       "reasonZh": "把受控 EditorState 机制提取到独立的 Draft/Lexical 对照。",
       "phase": 3
+    },
+    {
+      "old": "network",
+      "new": "examples/network",
+      "action": "rewrite",
+      "reason": "Keep JSONP and compare local Fetch/CORS/AbortController; retire the private endpoint.",
+      "reasonZh": "保留 JSONP，对照本地 Fetch/CORS/AbortController，退役私有接口。",
+      "phase": 4
+    },
+    {
+      "old": "storage",
+      "new": "examples/service-worker",
+      "action": "rewrite",
+      "reason": "Fix registration and respondWith; scope and verify offline caching and cleanup.",
+      "reasonZh": "修复注册和 respondWith，限定作用域并验证离线缓存与清理。",
+      "phase": 4
+    },
+    {
+      "old": "graphql",
+      "new": "examples/graphql",
+      "action": "rewrite",
+      "reason": "Separate HTTP basics from the complete Apollo/Prisma application.",
+      "reasonZh": "拆分 HTTP 基础与完整 Apollo/Prisma 应用。",
+      "phase": 4
+    },
+    {
+      "old": "graphql/graphql-server-demo",
+      "new": "examples/graphql-http",
+      "action": "rewrite",
+      "reason": "Keep schema/class resolvers/messages on graphql-http.",
+      "reasonZh": "在 graphql-http 上保留 schema、class resolver 和消息练习。",
+      "phase": 4
+    },
+    {
+      "old": "graphql/react-apollo",
+      "new": "examples/graphql",
+      "action": "rewrite",
+      "reason": "Preserve feed/login/post/vote/subscriptions with supported APIs and fictional seed.",
+      "reasonZh": "保留查询登录发布投票订阅，更新 API 并使用虚构 seed。",
+      "phase": 4
+    },
+    {
+      "old": "graphql/react-apollo/server/prisma/dev.db",
+      "new": null,
+      "action": "retire",
+      "reason": "Runtime data is replaced with checked-in schema, migration and fictional seed.",
+      "reasonZh": "运行数据由 schema、迁移与虚构 seed 重建。",
+      "phase": 4
+    },
+    {
+      "old": "wasm",
+      "new": "examples/wasm",
+      "action": "rewrite",
+      "reason": "Keep Rust/browser ABI; retire CRA and generate the numeric module with Cargo.",
+      "reasonZh": "保留 Rust/浏览器 ABI，退役 CRA，以 Cargo 生成整数模块。",
+      "phase": 4
     }
   ]
 }

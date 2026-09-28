@@ -28,9 +28,22 @@ jobs:
       - run: npx playwright install --with-deps chromium firefox webkit
       - run: npm run build
       - run: npm run test:browser
+  wasm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: rustup toolchain install 1.98.1 --profile minimal --target wasm32-unknown-unknown
+      - run: npm run build:wasm
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - run: npm run test:wasm
   verify:
     if: always()
-    needs: [checks, browser]
+    needs: [checks, browser, wasm]
     runs-on: ubuntu-latest
     steps:
       - name: Require every validation job

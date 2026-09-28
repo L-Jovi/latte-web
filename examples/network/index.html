@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><title>JSONP and Fetch</title>
+  <h1>One response, two transports</h1>
+  <p>
+    Start <code>node examples/network/server.js</code> in another terminal. Port
+    4002 is a different origin from this page.
+  </p>
+  <button id="jsonp">Request with JSONP</button
+  ><button id="fetch">Request with Fetch</button
+  ><button id="slow">Start slow Fetch</button
+  ><button id="cancel">Cancel request</button>
+  <output aria-live="polite">Ready</output>
+  <script type="module" src="app.js"></script>
+</html>

@@ -541,5 +541,71 @@
     "kind": "history",
     "status": "historical",
     "pages": []
+  },
+  {
+    "path": "examples/network",
+    "title": "JSONP, Fetch and cancellation",
+    "titleZh": "JSONP、Fetch 与取消请求",
+    "kind": "example",
+    "status": "maintained",
+    "pages": [
+      "examples/network/index.html"
+    ]
+  },
+  {
+    "path": "examples/service-worker",
+    "title": "Repeatable offline cache",
+    "titleZh": "可重复的离线缓存",
+    "kind": "example",
+    "status": "maintained",
+    "pages": [
+      "examples/service-worker/index.html"
+    ]
+  },
+  {
+    "path": "examples/graphql-http",
+    "title": "GraphQL over HTTP",
+    "titleZh": "GraphQL 的 HTTP 基础",
+    "kind": "example",
+    "status": "maintained",
+    "pages": [
+      "examples/graphql-http/index.html"
+    ]
+  },
+  {
+    "path": "examples/graphql",
+    "title": "Apollo, subscriptions and SQLite",
+    "titleZh": "Apollo、订阅与 SQLite",
+    "kind": "example",
+    "status": "maintained",
+    "pages": [
+      "examples/graphql/client/dist/index.html"
+    ]
+  },
+  {
+    "path": "examples/graphql/server",
+    "title": "GraphQL service and database",
+    "titleZh": "GraphQL 服务与数据库",
+    "kind": "example",
+    "status": "maintained",
+    "pages": []
+  },
+  {
+    "path": "examples/graphql/client",
+    "title": "Apollo Client operations",
+    "titleZh": "Apollo Client 请求与订阅",
+    "kind": "example",
+    "status": "maintained",
+    "pages": []
+  },
+  {
+    "path": "examples/wasm",
+    "title": "Rust to WebAssembly",
+    "titleZh": "Rust 到 WebAssembly",
+    "kind": "example",
+    "status": "maintained",
+    "pages": [
+      "examples/wasm/dist/index.html"
+    ]
   }
 ]

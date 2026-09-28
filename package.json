@@ -22,7 +22,11 @@
     "examples/react-classic",
     "examples/react-modern",
     "examples/rich-text-draft",
-    "examples/rich-text-lexical"
+    "examples/rich-text-lexical",
+    "examples/graphql-http",
+    "examples/graphql/server",
+    "examples/graphql/client",
+    "examples/wasm"
   ],
   "scripts": {
     "dev": "node scripts/serve.mjs",
@@ -31,12 +35,15 @@
     "test:browser": "playwright test",
     "docs:generate": "node scripts/catalog.mjs",
     "check:docs": "node scripts/check-docs.mjs",
-    "check": "npm run typecheck && npm run build && npm test && npm run test:aplus && npm run test:tooling && npm run test:apps && npm run check:docs",
+    "check": "npm run typecheck && npm run build && npm test && npm run test:aplus && npm run test:tooling && npm run test:apps && npm run test:api && npm run check:docs",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "build": "npm run build --workspaces --if-present",
     "test:tooling": "node --test tests/tooling/*.test.js",
     "build:storybook": "npm run build:storybook -w @latte/components",
-    "test:apps": "vitest run"
+    "test:apps": "vitest run",
+    "test:api": "node --import tsx --test tests/api/*.test.ts",
+    "build:wasm": "npm run build:wasm -w @latte/wasm && npm run build -w @latte/wasm",
+    "test:wasm": "LATTE_WASM=1 playwright test tests/browser/wasm.spec.js"
   },
   "devDependencies": {
     "@playwright/test": "1.63.0",
@@ -50,7 +57,8 @@
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "@vitejs/plugin-react": "6.1.1",
-    "vite": "8.3.1"
+    "vite": "8.3.1",
+    "tsx": "4.23.15"
   },
   "overrides": {
     "promises-aplus-tests": {
@@ -59,9 +67,19 @@
     },
     "draft-js": {
       "immutable": "3.8.4"
+    },
+    "prisma": {
+      "mysql2": "3.24.4"
+    },
+    "@prisma/config": {
+      "deepmerge-ts": "8.0.2"
     }
   },
   "allowScripts": {
-    "esbuild@0.28.2": true
+    "esbuild@0.28.2": true,
+    "prisma@7.10.0": true,
+    "@prisma/engines@7.10.0": true,
+    "better-sqlite3@12.11.1": true,
+    "@apollo/protobufjs@1.2.8": true
   }
 }

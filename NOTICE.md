@@ -23,3 +23,5 @@ redistributed as repository source. Historical source is never relabelled as ori
 
 - `docs/history/testing/cases`: Ruan Yifeng, react-testing-demo, MIT; retained license in that directory. Original tutorial credits Jack Franklin. Active replacement tests are new repository code.
 - Draft.js retains its package license and archived upstream identity; its pinned Immutable 3 security update does not change the source attribution.
+
+- `examples/graphql/`: derived from the Graphcool learning application; its original MIT notice is retained in `LICENSE.txt`. The historical database and template logos are removed.

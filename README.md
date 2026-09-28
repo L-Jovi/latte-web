@@ -85,6 +85,13 @@ Read foundations → handwritten mechanisms → toolchains → applications, or 
 - [Modern React and Redux Toolkit](examples/react-modern/README.md) — maintained
 - [Draft.js controlled editing](examples/rich-text-draft/README.md) — maintained
 - [Lexical editor state and plugins](examples/rich-text-lexical/README.md) — maintained
+- [JSONP, Fetch and cancellation](examples/network/README.md) — maintained
+- [Repeatable offline cache](examples/service-worker/README.md) — maintained
+- [GraphQL over HTTP](examples/graphql-http/README.md) — maintained
+- [Apollo, subscriptions and SQLite](examples/graphql/README.md) — maintained
+- [GraphQL service and database](examples/graphql/server/README.md) — maintained
+- [Apollo Client operations](examples/graphql/client/README.md) — maintained
+- [Rust to WebAssembly](examples/wasm/README.md) — maintained
 
 ### Historical research
 

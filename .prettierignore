@@ -6,3 +6,5 @@
 mechanisms/generator/regenerator-runtime.js
 mechanisms/generator/transform-generator.js
 docs/history/
+
+examples/graphql/server/generated/

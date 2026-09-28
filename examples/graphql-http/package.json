@@ -1,0 +1,12 @@
+{
+  "name": "@latte/graphql-http",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "graphql": "16.14.2",
+    "graphql-http": "1.23.0"
+  }
+}
