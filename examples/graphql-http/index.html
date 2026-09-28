@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><title>GraphQL over HTTP</title>
+  <h1>A schema, a resolver, a request</h1>
+  <p>
+    Start <code>npm run dev -w @latte/graphql-http</code> in another terminal.
+  </p>
+  <label
+    >Query<textarea id="query" rows="7" cols="70">
+{ hello { foo bar } getDie(numSides: 6) { roll(numRolls: 3) } }</textarea>
+  </label>
+  <button>Run query</button>
+  <pre role="status">Ready</pre>
+  <script type="module" src="client.js"></script>
+</html>

@@ -1,0 +1,31 @@
+body {
+  font: 1rem/1.6 system-ui;
+  max-width: 60rem;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+form {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  border: 1px solid #aaa;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+label {
+  display: flex;
+  flex-direction: column;
+}
+button,
+input {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+}
+li {
+  padding: 0.8rem 0;
+}
+button:disabled {
+  cursor: default;
+}

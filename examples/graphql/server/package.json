@@ -1,0 +1,37 @@
+{
+  "name": "@latte/graphql-server",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/start.ts",
+    "generate": "prisma generate",
+    "typecheck": "prisma generate && tsc --noEmit",
+    "build": "prisma generate",
+    "db:setup": "node setup.mjs && prisma migrate deploy && tsx prisma/seed.ts"
+  },
+  "dependencies": {
+    "@apollo/server": "5.5.1",
+    "@as-integrations/express5": "1.1.2",
+    "@graphql-tools/schema": "10.1.1",
+    "@prisma/client": "7.10.0",
+    "@prisma/adapter-better-sqlite3": "7.10.0",
+    "bcryptjs": "3.0.3",
+    "cors": "2.8.6",
+    "dotenv": "18.0.4",
+    "express": "5.2.1",
+    "graphql": "16.14.2",
+    "graphql-subscriptions": "3.0.0",
+    "graphql-ws": "6.3.0",
+    "jsonwebtoken": "9.0.3",
+    "ws": "8.22.0"
+  },
+  "devDependencies": {
+    "prisma": "7.10.0",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3",
+    "@types/express": "5.0.6",
+    "@types/cors": "2.8.19",
+    "@types/ws": "8.18.1",
+    "@types/jsonwebtoken": "9.0.10"
+  }
+}

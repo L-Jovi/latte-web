@@ -1,0 +1,21 @@
+{
+  "name": "@latte/graphql-client",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite --port 4173"
+  },
+  "dependencies": {
+    "@apollo/client": "4.3.1",
+    "graphql": "16.14.2",
+    "graphql-ws": "6.3.0",
+    "rxjs": "7.8.2",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "vite": "8.3.1",
+    "@vitejs/plugin-react": "6.1.1"
+  }
+}

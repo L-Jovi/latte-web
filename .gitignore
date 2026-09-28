@@ -81,3 +81,9 @@ test-results/
 **/*.db-journal
 .env.*
 !.env.example
+
+# Prisma and WebAssembly outputs
+examples/graphql/server/generated/
+examples/wasm/public/add.wasm
+**/*.db-shm
+**/*.db-wal

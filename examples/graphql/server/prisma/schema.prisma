@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client"
+  output = "../generated/prisma"
+}
+datasource db {
+  provider = "sqlite"
+}
+model User {
+  id String @id @default(uuid())
+  name String
+  email String @unique
+  password String
+  links Link[]
+  votes Vote[]
+}
+model Link {
+  id String @id @default(uuid())
+  createdAt DateTime @default(now())
+  description String
+  url String
+  postedById String
+  postedBy User @relation(fields:[postedById], references:[id])
+  votes Vote[]
+}
+model Vote {
+  id Int @id @default(autoincrement())
+  linkId String
+  userId String
+  link Link @relation(fields:[linkId], references:[id])
+  user User @relation(fields:[userId], references:[id])
+  @@unique([linkId,userId])
+}
