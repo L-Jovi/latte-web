@@ -179,9 +179,25 @@ ${groups
 `,
 );
 
+const disposition = read('docs/baseline-files.json').map((path) => {
+  const rule = migration.entries
+    .filter((entry) => path === entry.old || path.startsWith(entry.old + '/'))
+    .sort((a, b) => b.old.length - a.old.length)[0];
+  if (!rule) throw new Error(`Unmapped baseline file: ${path}`);
+  return {
+    old: path,
+    rule: rule.old,
+    action: rule.action,
+    new: rule.new,
+    history: rule.action === 'withdrawn' ? null : base + encodeURI(path),
+  };
+});
+const withdrawnFiles = disposition.filter(
+  (d) => d.action === 'withdrawn',
+).length;
 for (const zh of [false, true]) {
   const suffix = zh ? '.zh-Hans' : '';
-  let ledger = `# ${zh ? '迁移清单' : 'Migration ledger'}\n\n${zh ? '[English](migration.md) | 简体中文\n\n> 对应英文版：两种语言由同一份迁移数据同时生成，内容始终同步。' : 'English | [简体中文](migration.zh-Hans.md)'}\n\n${zh ? '基线' : 'Baseline'}: [${migration.baseline.slice(0, 7)}](${base}) — 805 tracked files, 20 topic roots, 24 Node packages.\n\n`;
+  let ledger = `# ${zh ? '迁移清单' : 'Migration ledger'}\n\n${zh ? '[English](migration.md) | 简体中文\n\n> 对应英文版：两种语言由同一份迁移数据同时生成，内容始终同步。' : 'English | [简体中文](migration.zh-Hans.md)'}\n\n${zh ? `基线：[${migration.baseline.slice(0, 7)}](${base})，即 2026 年重新整理之前的最后一次提交。当时共有 ${disposition.length} 个跟踪文件、20 个主题目录和 24 个 Node 包；其中标为 withdrawn 的 ${withdrawnFiles} 个文件后来已从 Git 历史中删除。` : `Baseline: [${migration.baseline.slice(0, 7)}](${base}), the last commit before the 2026 reorganization. It had ${disposition.length} tracked files in 20 topic folders and 24 Node packages; the ${withdrawnFiles} files marked withdrawn were later removed from Git history.`}\n\n`;
   ledger += zh
     ? '最具体的路径规则优先；目录规则覆盖其中所有源文件、资源和配置。退役内容可从固定提交恢复。`pending` 尚未迁移；`retain` 保留教学机制；`merge` 提取并合并；`rewrite` 更新底座或入口；`historical` 仅保留历史阅读；`retire` 从当前树移除；`withdrawn` 因隐私或版权撤下，不提供链接。新入口 README 记录教学目的和验证命令。\n'
     : 'The most specific path rule wins; directory rules include source, assets and configuration. Retired content is recoverable at the fixed commit. `pending` awaits migration; `retain` preserves a mechanism; `merge` extracts into another example; `rewrite` updates the entry or runtime; `historical` is reading only; `retire` removes content from the current tree; `withdrawn` removes it for privacy or rights reasons and is not linked. Destination READMEs describe purpose and verification.\n';
@@ -198,19 +214,6 @@ for (const zh of [false, true]) {
   emit(`docs/migration${suffix}.md`, ledger);
 }
 
-const disposition = read('docs/baseline-files.json').map((path) => {
-  const rule = migration.entries
-    .filter((entry) => path === entry.old || path.startsWith(entry.old + '/'))
-    .sort((a, b) => b.old.length - a.old.length)[0];
-  if (!rule) throw new Error(`Unmapped baseline file: ${path}`);
-  return {
-    old: path,
-    rule: rule.old,
-    action: rule.action,
-    new: rule.new,
-    history: rule.action === 'withdrawn' ? null : base + encodeURI(path),
-  };
-});
 emit(
   'docs/baseline-disposition.json',
   JSON.stringify(disposition, null, 2) + '\n',
