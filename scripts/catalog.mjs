@@ -1,5 +1,6 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
+import site from './site.cjs';
 
 // `--check` compares every generated file with the working tree and writes nothing.
 const check = process.argv.includes('--check');
@@ -7,54 +8,8 @@ const read = (path) => JSON.parse(readFileSync(path, 'utf8'));
 const catalog = read('docs/catalog.json');
 const migration = read('docs/migration.json');
 const base = `https://github.com/L-Jovi/latte-web/tree/${migration.baseline}/`;
-const source = 'https://github.com/L-Jovi/latte-web/tree/main/';
 const live = 'https://l-jovi.github.io/latte-web/';
-const groups = [
-  {
-    kind: 'foundation',
-    dir: 'fundamentals',
-    title: 'Fundamentals',
-    titleZh: '基础',
-    intro: 'How JavaScript and the browser behave, one small page at a time.',
-    introZh: '一次一个小页面，看 JavaScript 和浏览器的真实行为。',
-  },
-  {
-    kind: 'mechanism',
-    dir: 'mechanisms',
-    title: 'Build it yourself',
-    titleZh: '动手实现',
-    intro: 'Small, tested versions of tools you use every day.',
-    introZh: '日常工具的小型实现，每一个都有测试。',
-  },
-  {
-    kind: 'tooling',
-    dir: 'tooling',
-    title: 'Build tools',
-    titleZh: '构建工具',
-    intro: 'How source files become something a browser can load.',
-    introZh: '源代码是怎样变成浏览器能加载的文件的。',
-  },
-  {
-    kind: 'example',
-    dir: 'examples',
-    title: 'Applications and experiments',
-    titleZh: '应用与实验',
-    intro:
-      'Complete applications with old and new versions side by side, plus visual experiments.',
-    introZh: '完整的应用示例（新旧写法并排对照），以及视觉实验。',
-  },
-  {
-    kind: 'history',
-    dir: 'docs/history',
-    title: 'History',
-    titleZh: '历史笔记',
-    intro:
-      'Notes kept from earlier years. Read them for context; they are not current advice.',
-    introZh: '早年留下的笔记，用来了解背景，不代表今天的推荐做法。',
-  },
-];
-const escape = (s) =>
-  s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('"', '&quot;');
+const { source, blob, groups, chrome, escape, inline, rootFrom } = site;
 // Markdown table cells cannot contain a raw pipe.
 const cell = (s) => s.replaceAll('|', '\\|');
 const outputs = new Map();
@@ -119,16 +74,120 @@ for (const g of groups) {
   );
 }
 
+// Every demo page gets the house stylesheet and a top bar back to the index, inside
+// marked blocks that later runs replace. The webpack topics and the build scripts
+// that write their own HTML use site.page() instead.
+const marked = (name, html) =>
+  `<!-- latte-site:${name} -->${html}<!-- /latte-site:${name} -->`;
+const upsert = (file, text, name, html, anchor) => {
+  const existing = new RegExp(
+    `<!-- latte-site:${name} -->[\\s\\S]*?<!-- /latte-site:${name} -->`,
+  );
+  if (existing.test(text)) return text.replace(existing, marked(name, html));
+  const m = text.match(anchor);
+  if (!m) throw new Error(`${file}: no ${anchor} to anchor the ${name} block`);
+  // The stylesheet goes after </title>; the bar goes before the first heading or app root.
+  const at = name === 'css' ? m.index + m[0].length : m.index;
+  return text.slice(0, at) + marked(name, html) + text.slice(at);
+};
+const dress = (file, page, css) => {
+  const entry = site.entryFor(page);
+  let text = readFileSync(file, 'utf8');
+  text = upsert(file, text, 'css', css, /<\/title\s*>/i);
+  if (!chrome.skipBar.has(page))
+    text = upsert(
+      file,
+      text,
+      'bar',
+      site.bar(entry, rootFrom(page)),
+      /<h1[\s>]|<div id="root"/i,
+    );
+  emit(file, text);
+};
+for (const entry of catalog)
+  for (const page of entry.pages || [])
+    if (!page.includes('/dist/') && !chrome.skipAll.has(page))
+      dress(page, page, site.stylesheet(rootFrom(page)));
+
+// Built pages get the chrome through their source templates; the bar links are
+// relative to the built page. Vite bundles the stylesheet: a module import relative
+// to the template resolves in `vite build` and in the `vite` dev server alike.
+const vite = [
+  ['mechanisms/router/index.html', 'mechanisms/router/dist/index.html'],
+  [
+    'examples/react-classic/index.html',
+    'examples/react-classic/dist/index.html',
+  ],
+  ['examples/react-modern/index.html', 'examples/react-modern/dist/index.html'],
+  [
+    'examples/rich-text-draft/index.html',
+    'examples/rich-text-draft/dist/index.html',
+  ],
+  [
+    'examples/rich-text-lexical/index.html',
+    'examples/rich-text-lexical/dist/index.html',
+  ],
+  [
+    'examples/graphql/client/index.html',
+    'examples/graphql/client/dist/index.html',
+  ],
+  ['examples/wasm/index.html', 'examples/wasm/dist/index.html'],
+  ['examples/performance/index.html', 'examples/performance/dist/index.html'],
+  [
+    'examples/components/index.html',
+    'examples/components/dist/demo/index.html',
+  ],
+  [
+    'examples/components/consumer.html',
+    'examples/components/dist/consumer/consumer.html',
+  ],
+];
+for (const [file, page] of vite)
+  dress(
+    file,
+    page,
+    `<script type="module">import '${rootFrom(file)}assets/site.css';</script>`,
+  );
+// These templates are copied into dist as they are, so every link is relative to the built page.
+const copied = [
+  ['tooling/grunt/app/index.html', 'tooling/grunt/dist/index.html'],
+  [
+    'tooling/gulp-typescript/src/index.html',
+    'tooling/gulp-typescript/dist/index.html',
+  ],
+  [
+    'tooling/webpack-typescript/index.html',
+    'tooling/webpack-typescript/dist/index.html',
+  ],
+];
+for (const [file, page] of copied)
+  dress(file, page, site.stylesheet(rootFrom(page)));
+
 // The learning index is served locally by `npm run dev` and on GitHub Pages, so links stay relative.
+const about = read('package.json').description;
+const aboutZh =
+  '一组动手实践的 Web 练习与实验。就像一杯拿铁——一份浓缩、两份牛奶、一份奶泡——熟悉、易入口，适合日常学习。';
+const anchor = (g) => g.dir.split('/').pop();
 const card = (e) => {
   const title = escape(e.title);
-  const heading = demo(e)
+  const heading = e.pages?.length
     ? `<a href="${e.pages[0]}">${title}</a>`
+    : title;
+  const tag = demo(e)
+    ? '<a class="chip live" href="' + e.pages[0] + '">Live demo</a>'
     : e.pages?.length
-      ? `<a href="${e.pages[0]}">${title}</a> <span class="tag">runs locally · 需本地运行</span>`
-      : title;
-  return `<li><h3>${heading}</h3><p lang="zh-Hans" class="zh">${escape(e.titleZh)}</p><p>${escape(e.summary)}</p><p class="links"><a href="${source}${e.path}">Read · 阅读</a></p></li>`;
+      ? '<span class="chip">Runs locally · 需本地运行</span>'
+      : '<span class="chip">Read · 阅读</span>';
+  return `<li class="card"><h3>${heading}</h3><p class="zh" lang="zh-Hans">${escape(e.titleZh)}</p><p class="summary">${inline(e.summary)}</p><p class="card-foot">${tag}<a class="read" href="${source}${e.path}">README</a></p></li>`;
 };
+// A latte by the repository's recipe: one part foam, two parts milk, one part espresso.
+const cup = `<svg class="cup" viewBox="0 0 320 360" role="img" aria-label="A latte: one part foam, two parts milk, one part espresso"><defs><clipPath id="glass"><path d="M40 70 L260 70 L234 318 Q230 336 212 336 L88 336 Q70 336 66 318 Z"/></clipPath></defs><g clip-path="url(#glass)"><rect x="0" y="70" width="320" height="67" fill="#fffaf2"/><rect x="0" y="137" width="320" height="133" fill="#e3c7a4"/><rect x="0" y="270" width="320" height="70" fill="#6b4226"/></g><path d="M40 70 L260 70 L234 318 Q230 336 212 336 L88 336 Q70 336 66 318 Z" fill="none" stroke="#2b1d14" stroke-width="7" stroke-linejoin="round"/><path d="M255 118 Q312 122 304 186 Q297 232 244 236" fill="none" stroke="#2b1d14" stroke-width="7" stroke-linecap="round"/><text x="150" y="112" text-anchor="middle">1 foam</text><text x="150" y="210" text-anchor="middle">2 milk</text><text class="light" x="150" y="310" text-anchor="middle">1 espresso</text><text class="steam" x="150" y="46" text-anchor="middle">&lt;/&gt;</text></svg>`;
+const siblings = [
+  ['espresso-algorithm', 'algorithms'],
+  ['roaster-linux', 'Linux tools'],
+  ['barista-services', 'services'],
+  ['cappuccino-ios', 'iOS apps'],
+];
 emit(
   'index.html',
   `<!doctype html>
@@ -136,44 +195,82 @@ emit(
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Learn how the web works by building small versions of it.">
-<link rel="icon" href="data:,">
+<meta name="description" content="${escape(about)}">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='3' y='2' width='10' height='3' fill='%23fffaf2'/%3E%3Crect x='3' y='5' width='10' height='6' fill='%23e3c7a4'/%3E%3Crect x='3' y='11' width='10' height='3' fill='%236b4226'/%3E%3Crect x='3' y='2' width='10' height='12' rx='2' fill='none' stroke='%232b1d14'/%3E%3C/svg%3E">
 <title>Latte Web · learning index</title>
+<link rel="stylesheet" href="assets/site.css">
 <style>
-:root{color-scheme:light dark;--fg:#1d2a38;--muted:#5b6876;--link:#1456a0;--card:#f5f7fa;--line:#dde3ea}
-@media (prefers-color-scheme:dark){:root{--fg:#e6ebf1;--muted:#9aa7b4;--link:#7ab7ff;--card:#18212b;--line:#2a3542}}
-*{box-sizing:border-box}
-body{margin:0;font:17px/1.6 system-ui,sans-serif;color:var(--fg);background:Canvas}
-main{max-width:72rem;margin:0 auto;padding:2.5rem 1rem 4rem}
-h1{font-size:2.2rem;margin:0}
-h2{margin:2.5rem 0 .25rem}
-h3{font-size:1.05rem;margin:0}
-a{color:var(--link)}
-.lead,.zh,.intro{color:var(--muted);margin:.25rem 0}
-ul{list-style:none;padding:0;display:grid;gap:.75rem;grid-template-columns:repeat(auto-fill,minmax(19rem,1fr))}
-li{background:var(--card);border:1px solid var(--line);border-radius:.6rem;padding:.9rem 1rem}
-li p{margin:.3rem 0}
-.links{font-size:.9rem}
-.tag{font-size:.75rem;font-weight:normal;color:var(--muted)}
+body{max-width:76rem}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 15rem;gap:2.5rem;align-items:center;padding:1.5rem 0 1rem}
+.hero h1{margin:0 0 .75rem;font-size:3rem;letter-spacing:-.02em}
+.hero .lead{margin:0 0 .5rem;font-size:1.15rem}
+.hero .zh{color:var(--latte-muted)}
+.hero .hook{margin:1rem 0 1.25rem}
+.actions{display:flex;flex-wrap:wrap;gap:.75rem}
+.button{display:inline-block;padding:.55rem 1.1rem;border-radius:.6rem;background:var(--latte-accent);color:var(--latte-accent-fg);font-weight:600;text-decoration:none}
+.button.ghost{background:transparent;color:var(--latte-accent);box-shadow:inset 0 0 0 1.5px var(--latte-accent)}
+.stats{margin:1.25rem 0 0;color:var(--latte-muted);font-size:.95rem}
+.cup{width:100%;height:auto}
+.cup text{font:700 19px system-ui,sans-serif;fill:#4a3527}
+.cup .steam{font-size:44px;fill:#2b1d14}
+.cup .light{fill:#fffaf2}
+.jump{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.5rem 0 .5rem;padding:0;list-style:none}
+.jump a{display:inline-block;padding:.3rem .8rem;border-radius:999px;background:var(--latte-code);color:var(--latte-fg);text-decoration:none;font-size:.95rem}
+.jump a span{color:var(--latte-muted)}
+section{margin-top:2.5rem}
+section h2{margin:0;font-size:1.5rem}
+section h2 .zh{margin-left:.5rem;color:var(--latte-muted);font-weight:500;font-size:1.1rem}
+.intro{margin:.25rem 0 1rem;color:var(--latte-muted)}
+.cards{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(18rem,1fr));margin:0;padding:0;list-style:none}
+.card{display:flex;flex-direction:column;padding:1rem 1.1rem;border:1px solid var(--latte-line);border-radius:.8rem;background:var(--latte-card);transition:transform .15s ease,box-shadow .15s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgb(43 29 20 / 8%)}
+.card h3{margin:0;font-size:1.05rem;line-height:1.35}
+.card h3 a{color:var(--latte-fg);text-decoration:none}
+.card h3 a:hover{color:var(--latte-accent)}
+.card .zh{margin:.2rem 0 .5rem;color:var(--latte-muted);font-size:.9rem}
+.card .summary{margin:0 0 .9rem;font-size:.95rem}
+.card-foot{display:flex;gap:.75rem;align-items:center;margin:auto 0 0;font-size:.85rem}
+.chip{padding:.15rem .6rem;border-radius:999px;background:var(--latte-code);color:var(--latte-muted)}
+.chip.live{background:var(--latte-accent);color:var(--latte-accent-fg);text-decoration:none;font-weight:600}
+.read{margin-left:auto}
+footer{margin-top:3.5rem;padding-top:1.25rem;border-top:1px solid var(--latte-line);color:var(--latte-muted);font-size:.9rem}
+@media (max-width:48rem){.hero{grid-template-columns:1fr}.cup{max-width:11rem}.hero h1{font-size:2.4rem}}
+@media (prefers-reduced-motion:reduce){.card{transition:none}.card:hover{transform:none}}
 </style>
 </head>
 <body>
-<main>
+<nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="index.html">Latte Web</a><span class="latte-crumb">Learning index</span><span class="latte-links"><a href="${source.replace('/tree/main/', '')}">GitHub</a><a href="${blob}README.zh-Hans.md" lang="zh-Hans">中文</a></span></nav>
+<header class="hero">
+<div>
 <h1>Latte Web</h1>
-<p class="lead">Learn how the web works by building small versions of it.</p>
-<p class="lead" lang="zh-Hans">从零实现一些小版本，看懂 Web 是怎样工作的。</p>
-<p><a href="${source.replace('/tree/main/', '')}">Source on GitHub</a> · <a href="${source}README.zh-Hans.md">中文说明</a></p>
+<p class="lead">${escape(about)}</p>
+<p class="lead zh" lang="zh-Hans">${escape(aboutZh)}</p>
+<p class="hook">Learn how the web works by building small versions of it: Promise/A+, mini React, a router, a bundler and more. Run a page, watch what happens, then read the code.</p>
+<p class="actions"><a class="button" href="#mechanisms">Start building</a><a class="button ghost" href="${source.replace('/tree/main/', '')}">View on GitHub</a></p>
+<p class="stats">${catalog.length} examples · 872/872 Promises/A+ tests · every page tested in Chromium, Firefox and WebKit</p>
+</div>
+${cup}
+</header>
+<ul class="jump">${groups
+    .map((g) => {
+      const n = catalog.filter((e) => e.kind === g.kind).length;
+      return `<li><a href="#${anchor(g)}">${g.title} <span>${n}</span></a></li>`;
+    })
+    .join('')}</ul>
 ${groups
   .map((g) => {
     const entries = catalog.filter((e) => e.kind === g.kind);
-    return `<section>
-<h2>${g.title} · <span lang="zh-Hans">${g.titleZh}</span></h2>
+    return `<section id="${anchor(g)}">
+<h2>${g.title}<span class="zh" lang="zh-Hans">${g.titleZh}</span></h2>
 <p class="intro">${escape(g.intro)}</p>
-<ul>${entries.map(card).join('')}</ul>
+<ul class="cards">${entries.map(card).join('')}</ul>
 </section>`;
   })
   .join('\n')}
-</main>
+<footer>
+<p>Part of a coffee-named series: ${siblings.map(([name, what]) => `<a href="https://github.com/L-Jovi/${name}">${name}</a> (${what})`).join(', ')}.</p>
+<p>Original code and documentation are MIT licensed. <a href="${source.replace('/tree/main/', '')}">github.com/L-Jovi/latte-web</a></p>
+</footer>
 </body>
 </html>
 `,

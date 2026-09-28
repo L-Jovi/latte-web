@@ -3,7 +3,7 @@ import {readFile, stat, realpath} from 'node:fs/promises';
 import {resolve, extname, sep} from 'node:path';
 const root = resolve(import.meta.dirname, '..');
 const types = {'.html':'text/html; charset=utf-8','.js':'text/javascript','.mjs':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.wasm':'application/wasm','.md':'text/plain; charset=utf-8'};
-const allowed = new Set(['index.html','fundamentals','mechanisms','tooling','examples','docs']);
+const allowed = new Set(['index.html','assets','fundamentals','mechanisms','tooling','examples','docs']);
 createServer(async (req, res) => {
   try {
     const path = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
