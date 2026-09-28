@@ -1,0 +1,55 @@
+name: Pages
+# Publishes the learning index and live demos to https://l-jovi.github.io/latte-web/.
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  build:
+    # Deploy only pushes to main whose full CI run passed.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push')
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: rustup toolchain install 1.98.1 --profile minimal --target wasm32-unknown-unknown
+      - run: npm run build && npm run build:wasm
+        env:
+          LATTE_PAGES_BASE: /latte-web/
+      - run: npm run build:pages
+      # Render the social preview card, to be uploaded by hand in the repository settings.
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright screenshot --viewport-size=1280,640 "file://$PWD/.github/social-preview.svg" _site/social-preview.png
+      # Test the exact files that will be published, under the /latte-web/ prefix.
+      - run: npm run test:pages
+      - uses: actions/upload-pages-artifact@v5.0.0
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5.0.1

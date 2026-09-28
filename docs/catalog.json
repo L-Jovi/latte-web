@@ -1,8 +1,10 @@
 [
   {
     "path": "fundamentals/javascript",
-    "title": "JavaScript foundations",
-    "titleZh": "JavaScript 基础",
+    "title": "JavaScript basics: closures, this and new",
+    "titleZh": "JavaScript 基础：闭包、this 与 new",
+    "summary": "Short scripts that show how closures, `this` and object construction really work.",
+    "summaryZh": "用几段短脚本，看懂闭包、this 和对象构造的真实行为。",
     "kind": "foundation",
     "status": "maintained",
     "pages": [
@@ -11,8 +13,10 @@
   },
   {
     "path": "fundamentals/javascript/context",
-    "title": "Call, apply and bind",
-    "titleZh": "call、apply 与 bind",
+    "title": "call, apply and bind by hand",
+    "titleZh": "手写 call、apply 与 bind",
+    "summary": "Rebuild call, apply and bind to see how a function decides what `this` is.",
+    "summaryZh": "自己实现 call、apply 和 bind，看懂函数调用时 this 是怎么确定的。",
     "kind": "foundation",
     "status": "maintained",
     "pages": [
@@ -21,8 +25,10 @@
   },
   {
     "path": "fundamentals/javascript/instance",
-    "title": "Construction and prototype lookup",
-    "titleZh": "构造与原型查找",
+    "title": "new and instanceof by hand",
+    "titleZh": "手写 new 与 instanceof",
+    "summary": "Rebuild `new` and `instanceof`: create the object, run the constructor, walk the prototype chain.",
+    "summaryZh": "自己实现 new 和 instanceof：创建对象、执行构造函数、沿原型链查找。",
     "kind": "foundation",
     "status": "maintained",
     "pages": [
@@ -31,8 +37,10 @@
   },
   {
     "path": "fundamentals/javascript/classes",
-    "title": "Class and function inheritance",
-    "titleZh": "Class 与函数继承",
+    "title": "What class extends does under the hood",
+    "titleZh": "class extends 背后做了什么",
+    "summary": "Compare `class extends` with old-style function inheritance, including why static members are inherited too.",
+    "summaryZh": "对比 class extends 和老式函数继承，包括静态成员为什么也会被继承。",
     "kind": "foundation",
     "status": "maintained",
     "pages": [
@@ -41,8 +49,10 @@
   },
   {
     "path": "fundamentals/javascript/async-await",
-    "title": "Promise chains and await",
-    "titleZh": "Promise 链与 await",
+    "title": "Promise chains vs async/await",
+    "titleZh": "Promise 链与 async/await 对照",
+    "summary": "The same two-step calculation written with `.then()` and with `await`.",
+    "summaryZh": "同一个两步计算，分别用 .then() 和 await 来写。",
     "kind": "foundation",
     "status": "maintained",
     "pages": [
@@ -51,8 +61,10 @@
   },
   {
     "path": "fundamentals/events",
-    "title": "Events and scheduling",
-    "titleZh": "事件与调度",
+    "title": "Event propagation and the event loop",
+    "titleZh": "事件传播与事件循环",
+    "summary": "Watch events bubble, then predict and check the order of tasks, microtasks and timers.",
+    "summaryZh": "先看事件如何冒泡，再预测并验证任务、微任务和定时器的执行顺序。",
     "kind": "foundation",
     "status": "maintained",
     "pages": [
@@ -62,8 +74,10 @@
   },
   {
     "path": "fundamentals/browser",
-    "title": "Layout and transform",
-    "titleZh": "布局与 transform",
+    "title": "Moving an element: layout vs transform",
+    "titleZh": "移动元素：改布局还是用 transform",
+    "summary": "Move the same box with `top` and with `transform`, and see which one makes the browser redo layout.",
+    "summaryZh": "分别用 top 和 transform 移动同一个方块，看哪种会让浏览器重新计算布局。",
     "kind": "foundation",
     "status": "maintained",
     "pages": [
@@ -72,8 +86,10 @@
   },
   {
     "path": "fundamentals/css",
-    "title": "CSS layout",
-    "titleZh": "CSS 布局",
+    "title": "CSS layout: BFC, Grid and centering",
+    "titleZh": "CSS 布局：BFC、Grid 与居中",
+    "summary": "Block formatting contexts, grid placement and several ways to center an element.",
+    "summaryZh": "块格式化上下文、Grid 布局，以及几种居中方法。",
     "kind": "foundation",
     "status": "maintained",
     "pages": [
@@ -86,7 +102,9 @@
   {
     "path": "fundamentals/html",
     "title": "Semantic HTML",
-    "titleZh": "HTML 语义",
+    "titleZh": "语义化 HTML",
+    "summary": "Build a page from meaningful sections instead of anonymous boxes.",
+    "summaryZh": "用有含义的标签搭页面，而不是一堆没有含义的盒子。",
     "kind": "foundation",
     "status": "maintained",
     "pages": [
@@ -95,8 +113,10 @@
   },
   {
     "path": "mechanisms/promise",
-    "title": "Promise: three steps",
-    "titleZh": "Promise：三个层次",
+    "title": "Promise from scratch",
+    "titleZh": "从零实现 Promise",
+    "summary": "Grow a Promise in three steps, from a tiny state machine to a version that passes all 872 official Promises/A+ tests.",
+    "summaryZh": "分三步写出 Promise：从最小的状态机，到通过全部 872 项 Promises/A+ 官方测试的版本。",
     "kind": "mechanism",
     "status": "maintained",
     "pages": [
@@ -105,8 +125,10 @@
   },
   {
     "path": "mechanisms/generator",
-    "title": "Generator state machines",
-    "titleZh": "Generator 状态机",
+    "title": "How generators pause and resume",
+    "titleZh": "Generator 如何暂停与恢复",
+    "summary": "See the state machine that Babel turns `yield` into, and how values flow in and out.",
+    "summaryZh": "看 Babel 把 yield 编译成的状态机，以及值是怎样传进传出的。",
     "kind": "mechanism",
     "status": "maintained",
     "pages": [
@@ -116,8 +138,10 @@
   },
   {
     "path": "mechanisms/design-patterns",
-    "title": "Small design patterns",
-    "titleZh": "小型设计模式",
+    "title": "Design patterns in small examples",
+    "titleZh": "小例子讲设计模式",
+    "summary": "Singleton, factory, adapter, proxy and publish/subscribe, each in a few lines.",
+    "summaryZh": "单例、工厂、适配器、代理、发布订阅，每个只用几行代码。",
     "kind": "mechanism",
     "status": "maintained",
     "pages": [
@@ -126,8 +150,10 @@
   },
   {
     "path": "mechanisms/design-patterns/inherit",
-    "title": "Inheritance and counterexamples",
-    "titleZh": "继承与反例",
+    "title": "Prototype inheritance, including the mistakes",
+    "titleZh": "原型继承，以及常见的错误写法",
+    "summary": "Compare shared prototypes, borrowed constructors and `Object.create`, and see what each one gets wrong.",
+    "summaryZh": "对比共享原型、借用构造函数和 Object.create，看每种写法各自的问题。",
     "kind": "mechanism",
     "status": "maintained",
     "pages": [
@@ -136,8 +162,10 @@
   },
   {
     "path": "mechanisms/design-patterns/proxy",
-    "title": "Property proxy and event delegation",
-    "titleZh": "属性代理与事件委托",
+    "title": "Proxy traps and event delegation",
+    "titleZh": "Proxy 拦截与事件委托",
+    "summary": "Intercept property access with `Proxy`, and handle many clicks from one parent element.",
+    "summaryZh": "用 Proxy 拦截属性读写，用一个父元素处理所有子元素的点击。",
     "kind": "mechanism",
     "status": "maintained",
     "pages": [
@@ -147,23 +175,29 @@
   {
     "path": "mechanisms/design-patterns/pub-sub",
     "title": "Publish and subscribe",
-    "titleZh": "发布与订阅",
+    "titleZh": "发布订阅",
+    "summary": "A minimal `on` / `emit` / `off` event hub; senders never need to know who is listening.",
+    "summaryZh": "一个最小的 on / emit / off 事件中心，发送方不需要知道谁在监听。",
     "kind": "mechanism",
     "status": "maintained",
     "pages": []
   },
   {
     "path": "mechanisms/utilities",
-    "title": "Small JavaScript utilities",
-    "titleZh": "小型 JavaScript 工具",
+    "title": "Everyday utilities by hand",
+    "titleZh": "手写常用工具函数",
+    "summary": "Debounce, throttle, deep clone and more, written as short algorithms with clear limits.",
+    "summaryZh": "防抖、节流、深拷贝等，写成边界清楚的短算法。",
     "kind": "mechanism",
     "status": "maintained",
     "pages": []
   },
   {
     "path": "mechanisms/utilities/clone",
-    "title": "Shallow and graph cloning",
-    "titleZh": "浅拷贝与对象图复制",
+    "title": "Shallow copy vs deep clone",
+    "titleZh": "浅拷贝与深拷贝",
+    "summary": "Copy an object graph while keeping shared references and cycles, then compare with `structuredClone`.",
+    "summaryZh": "复制对象图时保留共享引用和循环引用，再和 structuredClone 对比。",
     "kind": "mechanism",
     "status": "maintained",
     "pages": [
@@ -172,8 +206,10 @@
   },
   {
     "path": "mechanisms/utilities/circle-ref",
-    "title": "Cycles versus repeated references",
-    "titleZh": "循环与重复引用",
+    "title": "Detecting circular references",
+    "titleZh": "检测循环引用",
+    "summary": "Tell a real cycle apart from an object that is simply referenced twice.",
+    "summaryZh": "区分真正的循环引用，和只是被引用了两次的对象。",
     "kind": "mechanism",
     "status": "maintained",
     "pages": [
@@ -182,8 +218,10 @@
   },
   {
     "path": "mechanisms/utilities/debounce",
-    "title": "Debouncing",
+    "title": "Debounce",
     "titleZh": "防抖",
+    "summary": "Wait until a burst of calls stops, then run once.",
+    "summaryZh": "等一连串调用停下来之后，只执行一次。",
     "kind": "mechanism",
     "status": "maintained",
     "pages": [
@@ -192,8 +230,10 @@
   },
   {
     "path": "mechanisms/utilities/throttle",
-    "title": "Leading throttling",
-    "titleZh": "前沿节流",
+    "title": "Throttle",
+    "titleZh": "节流",
+    "summary": "Run at most once per interval; the first call goes through right away.",
+    "summaryZh": "每个时间间隔最多执行一次，第一次调用立即执行。",
     "kind": "mechanism",
     "status": "maintained",
     "pages": [
@@ -202,8 +242,10 @@
   },
   {
     "path": "mechanisms/utilities/timer",
-    "title": "Timer drift",
-    "titleZh": "计时器漂移",
+    "title": "Why timers drift, and how to correct them",
+    "titleZh": "定时器为什么会漂移，以及如何校正",
+    "summary": "Measure how late timer callbacks arrive and adjust the next deadline.",
+    "summaryZh": "测量定时器回调晚了多少，并据此调整下一次的触发时间。",
     "kind": "mechanism",
     "status": "maintained",
     "pages": [
@@ -212,8 +254,10 @@
   },
   {
     "path": "mechanisms/utilities/format",
-    "title": "Decimal string formatting",
-    "titleZh": "十进制字符串格式化",
+    "title": "Thousands separators without losing precision",
+    "titleZh": "千分位格式化，不丢精度",
+    "summary": "Group the digits of a number string without converting it to `Number`; compare with `Intl.NumberFormat`.",
+    "summaryZh": "不把数字字符串转成 Number 也能加千分位；再和 Intl.NumberFormat 对比。",
     "kind": "mechanism",
     "status": "maintained",
     "pages": [
@@ -222,8 +266,10 @@
   },
   {
     "path": "mechanisms/utilities/add",
-    "title": "Chained addition",
-    "titleZh": "链式求和",
+    "title": "add(1)(2)(3): currying and type coercion",
+    "titleZh": "add(1)(2)(3)：柯里化与类型转换",
+    "summary": "Keep a running total in a closure, and see how a function turns into a number.",
+    "summaryZh": "用闭包累加，再看一个函数是怎么变成数字的。",
     "kind": "mechanism",
     "status": "maintained",
     "pages": [
@@ -232,16 +278,20 @@
   },
   {
     "path": "tooling/webpack",
-    "title": "Webpack learning topics",
-    "titleZh": "Webpack 构建专题",
+    "title": "webpack, one feature at a time",
+    "titleZh": "webpack 逐项拆解",
+    "summary": "A set of small builds, each changing one thing: entries, loaders, source maps, hot reload, splitting, caching and more.",
+    "summaryZh": "一组小构建，每个只改一处：入口、loader、source map、热更新、拆包、缓存等。",
     "kind": "tooling",
     "status": "maintained",
     "pages": []
   },
   {
     "path": "tooling/webpack/getting-started",
-    "title": "Entry and output",
-    "titleZh": "入口与输出",
+    "title": "Your first webpack build",
+    "titleZh": "第一个 webpack 构建",
+    "summary": "One entry file becomes one bundle; follow the dependency graph in between.",
+    "summaryZh": "一个入口文件打包成一个文件，看中间的依赖图是怎么走的。",
     "kind": "tooling",
     "status": "maintained",
     "pages": [
@@ -250,8 +300,10 @@
   },
   {
     "path": "tooling/webpack/asset-management",
-    "title": "Assets and loaders",
-    "titleZh": "资源与 loader",
+    "title": "Loading CSS, images and data",
+    "titleZh": "加载 CSS、图片和数据文件",
+    "summary": "Import CSS, an SVG and an XML file, and see which loader or asset type handles each one.",
+    "summaryZh": "导入 CSS、SVG 和 XML，看各自由哪种 loader 或资源类型处理。",
     "kind": "tooling",
     "status": "maintained",
     "pages": [
@@ -260,8 +312,10 @@
   },
   {
     "path": "tooling/webpack/output-management",
-    "title": "Multiple entries",
+    "title": "Multiple entry points",
     "titleZh": "多个入口",
+    "summary": "Two entries produce two named files, and the HTML plugin adds their script tags for you.",
+    "summaryZh": "两个入口生成两个文件，HTML 插件自动插入对应的 script 标签。",
     "kind": "tooling",
     "status": "maintained",
     "pages": [
@@ -270,8 +324,10 @@
   },
   {
     "path": "tooling/webpack/development",
-    "title": "Development source maps",
-    "titleZh": "开发与源码映射",
+    "title": "Source maps for debugging",
+    "titleZh": "用 source map 调试",
+    "summary": "Build in development mode and read your original source in DevTools.",
+    "summaryZh": "用开发模式构建，在 DevTools 里看到原始源码。",
     "kind": "tooling",
     "status": "maintained",
     "pages": [
@@ -281,7 +337,9 @@
   {
     "path": "tooling/webpack/hot-module-replacement",
     "title": "Hot module replacement",
-    "titleZh": "模块热替换",
+    "titleZh": "模块热替换（HMR）",
+    "summary": "Edit a module while the dev server runs, and the page updates without a reload.",
+    "summaryZh": "开发服务器运行时修改模块，页面不刷新就能更新。",
     "kind": "tooling",
     "status": "maintained",
     "pages": [
@@ -290,8 +348,10 @@
   },
   {
     "path": "tooling/webpack/lazy-loading",
-    "title": "Lazy loading",
-    "titleZh": "按需加载",
+    "title": "Lazy loading with import()",
+    "titleZh": "用 import() 按需加载",
+    "summary": "A module is downloaded only when you click the button.",
+    "summaryZh": "点击按钮时才下载对应的模块。",
     "kind": "tooling",
     "status": "maintained",
     "pages": [
@@ -300,8 +360,10 @@
   },
   {
     "path": "tooling/webpack/code-splitting",
-    "title": "Shared dependencies",
-    "titleZh": "共享依赖",
+    "title": "Sharing code between entries",
+    "titleZh": "多入口共享代码",
+    "summary": "Two entries share one copy of Lodash instead of bundling it twice.",
+    "summaryZh": "两个入口共享一份 Lodash，不再各打包一份。",
     "kind": "tooling",
     "status": "maintained",
     "pages": [
@@ -310,8 +372,10 @@
   },
   {
     "path": "tooling/webpack/caching",
-    "title": "Content hashes and caching",
-    "titleZh": "内容哈希与缓存",
+    "title": "Content hashes for long-term caching",
+    "titleZh": "用内容哈希做长期缓存",
+    "summary": "File names change only when their content changes, so browsers can cache them safely.",
+    "summaryZh": "只有内容变了文件名才变，浏览器就能放心缓存。",
     "kind": "tooling",
     "status": "maintained",
     "pages": [
@@ -320,8 +384,10 @@
   },
   {
     "path": "tooling/webpack/production",
-    "title": "Development and production modes",
-    "titleZh": "开发与生产构建",
+    "title": "Development vs production builds",
+    "titleZh": "开发构建与生产构建",
+    "summary": "One project, two configs: readable output for debugging, optimized output for users.",
+    "summaryZh": "同一个项目两套配置：调试用可读的输出，发布用优化后的输出。",
     "kind": "tooling",
     "status": "maintained",
     "pages": [
@@ -330,8 +396,10 @@
   },
   {
     "path": "tooling/webpack/tree-shaking",
-    "title": "Unused exports",
-    "titleZh": "未使用的导出",
+    "title": "Tree shaking: dropping unused exports",
+    "titleZh": "Tree shaking：去掉没用到的导出",
+    "summary": "Import one function and watch the unused one disappear from the production bundle.",
+    "summaryZh": "只导入一个函数，看没用到的那个从生产包里消失。",
     "kind": "tooling",
     "status": "maintained",
     "pages": [
@@ -340,8 +408,10 @@
   },
   {
     "path": "tooling/webpack/shimming",
-    "title": "Legacy globals at the module boundary",
-    "titleZh": "模块边界上的旧全局变量",
+    "title": "Shimming old global-style code",
+    "titleZh": "为旧式全局代码做适配（shimming）",
+    "summary": "Give legacy code the global it expects, even though it never imports it.",
+    "summaryZh": "给从不 import 的旧代码提供它依赖的全局变量。",
     "kind": "tooling",
     "status": "maintained",
     "pages": [
@@ -350,8 +420,10 @@
   },
   {
     "path": "tooling/webpack/plugins",
-    "title": "Compiler lifecycle plugins",
-    "titleZh": "编译生命周期插件",
+    "title": "Writing a webpack plugin",
+    "titleZh": "编写 webpack 插件",
+    "summary": "A plugin that hooks into the build and writes a list of every output file.",
+    "summaryZh": "一个接入构建流程、输出全部产物清单的插件。",
     "kind": "tooling",
     "status": "maintained",
     "pages": [
@@ -360,16 +432,20 @@
   },
   {
     "path": "tooling/webpack/library",
-    "title": "A packaged number dictionary",
-    "titleZh": "打包后的数字字典",
+    "title": "Publishing a library with webpack",
+    "titleZh": "用 webpack 打包一个库",
+    "summary": "Package a tiny number-to-word converter as a library and load it from a separate Node program.",
+    "summaryZh": "把一个很小的数字与英文单词互转工具打包成库，再在另一个 Node 程序里加载。",
     "kind": "tooling",
     "status": "maintained",
     "pages": []
   },
   {
     "path": "mechanisms/bundlers",
-    "title": "Two handmade bundlers",
-    "titleZh": "两种手写打包器",
+    "title": "Build your own bundler, two ways",
+    "titleZh": "手写打包器（两种写法）",
+    "summary": "Parse imports, build a dependency graph and emit one file: first as plain functions, then as a small compiler.",
+    "summaryZh": "解析 import、构建依赖图、输出一个文件；先用几个函数写，再改成一个小型编译器。",
     "kind": "mechanism",
     "status": "maintained",
     "pages": [
@@ -378,8 +454,10 @@
   },
   {
     "path": "tooling/grunt",
-    "title": "Declarative file tasks with Grunt",
-    "titleZh": "Grunt 声明式文件任务",
+    "title": "Grunt: task-based builds",
+    "titleZh": "Grunt：基于任务的构建",
+    "summary": "A clean-then-copy build, the way many projects worked before bundlers.",
+    "summaryZh": "先清理再复制的构建流程，打包器流行之前很多项目就是这样构建的。",
     "kind": "tooling",
     "status": "maintained",
     "pages": [
@@ -388,8 +466,10 @@
   },
   {
     "path": "tooling/less",
-    "title": "Less compilation and native CSS variables",
-    "titleZh": "Less 编译与原生 CSS 变量",
+    "title": "Less, and what native CSS can do today",
+    "titleZh": "Less，以及今天原生 CSS 能做到的",
+    "summary": "Variables, mixins and guards in Less, and why native CSS variables can change at runtime while Less variables cannot.",
+    "summaryZh": "Less 的变量、混入和条件守卫；以及为什么原生 CSS 变量能在运行时改变，而 Less 变量不能。",
     "kind": "tooling",
     "status": "maintained",
     "pages": [
@@ -398,8 +478,10 @@
   },
   {
     "path": "tooling/handlebars",
-    "title": "Template compilation and escaping",
-    "titleZh": "模板编译与转义",
+    "title": "Template compiling and HTML escaping",
+    "titleZh": "模板编译与 HTML 转义",
+    "summary": "Compile a Handlebars template and see why `{{value}}` is escaped while `{{{value}}}` is not.",
+    "summaryZh": "编译 Handlebars 模板，看为什么 {{value}} 会转义而 {{{value}}} 不会。",
     "kind": "tooling",
     "status": "maintained",
     "pages": [
@@ -408,16 +490,20 @@
   },
   {
     "path": "fundamentals/typescript",
-    "title": "Types and an explicit Redux-style reducer",
-    "titleZh": "类型与显式 Redux 风格 reducer",
+    "title": "TypeScript: typed actions and reducers",
+    "titleZh": "TypeScript：给 action 和 reducer 加类型",
+    "summary": "A discriminated union lets the compiler check every branch of a reducer.",
+    "summaryZh": "用可辨识联合类型，让编译器检查 reducer 的每个分支。",
     "kind": "foundation",
     "status": "maintained",
     "pages": []
   },
   {
     "path": "tooling/gulp-typescript",
-    "title": "Task sequencing and TypeScript",
-    "titleZh": "任务顺序与 TypeScript",
+    "title": "Gulp: running tasks in order",
+    "titleZh": "Gulp：按顺序执行任务",
+    "summary": "Clean, compile TypeScript and copy HTML as a small Gulp pipeline.",
+    "summaryZh": "用一条小的 Gulp 流水线完成清理、编译 TypeScript 和复制 HTML。",
     "kind": "tooling",
     "status": "maintained",
     "pages": [
@@ -426,8 +512,10 @@
   },
   {
     "path": "tooling/webpack-typescript",
-    "title": "Typed React props through Webpack",
-    "titleZh": "Webpack 中的 React 属性类型",
+    "title": "TypeScript and React through webpack",
+    "titleZh": "通过 webpack 使用 TypeScript 和 React",
+    "summary": "See why Babel strips types without checking them, and where `tsc` still fits in.",
+    "summaryZh": "看懂 Babel 为什么只删类型不检查，以及 tsc 还负责什么。",
     "kind": "tooling",
     "status": "maintained",
     "pages": [
@@ -436,8 +524,10 @@
   },
   {
     "path": "examples/components",
-    "title": "Card and Button, three packaging paths",
-    "titleZh": "Card、Button 与三种打包方式",
+    "title": "One component library, three builds",
+    "titleZh": "一个组件库，三种构建方式",
+    "summary": "Ship the same Card and Button with Vite, webpack and Babel, and load each output.",
+    "summaryZh": "同一组 Card 和 Button，分别用 Vite、webpack 和 Babel 构建，并实际加载每种产物。",
     "kind": "example",
     "status": "maintained",
     "pages": [
@@ -447,8 +537,10 @@
   },
   {
     "path": "mechanisms/mini-react",
-    "title": "A minimal element/component renderer",
-    "titleZh": "最小元素与组件渲染器",
+    "title": "Build your own React-style renderer",
+    "titleZh": "手写一个 React 风格的渲染器",
+    "summary": "createElement, mount and setState in a few files; two counters keep their own state.",
+    "summaryZh": "用几个文件实现 createElement、挂载和 setState；两个计数器各自保存状态。",
     "kind": "mechanism",
     "status": "maintained",
     "pages": [
@@ -457,8 +549,10 @@
   },
   {
     "path": "mechanisms/router",
-    "title": "A History API router",
-    "titleZh": "History API 路由机制",
+    "title": "Build your own router",
+    "titleZh": "手写前端路由",
+    "summary": "A small router on the History API: links, back and forward, all without a page reload.",
+    "summaryZh": "基于 History API 的小路由：点击链接、前进后退，都不刷新页面。",
     "kind": "mechanism",
     "status": "maintained",
     "pages": [
@@ -467,8 +561,10 @@
   },
   {
     "path": "mechanisms/compose",
-    "title": "Function composition",
-    "titleZh": "函数组合",
+    "title": "Function composition (compose)",
+    "titleZh": "函数组合（compose）",
+    "summary": "The `compose` helper behind Redux middleware, written by hand.",
+    "summaryZh": "Redux 中间件背后的 compose，自己写一遍。",
     "kind": "mechanism",
     "status": "maintained",
     "pages": [
@@ -477,8 +573,10 @@
   },
   {
     "path": "mechanisms/selection",
-    "title": "Selection, Range and cursor restoration",
-    "titleZh": "Selection、Range 与光标恢复",
+    "title": "Cursors and selections in editable text",
+    "titleZh": "可编辑文本里的光标与选区",
+    "summary": "Save the cursor before focus leaves, insert text at it, and restore it after re-rendering.",
+    "summaryZh": "在失去焦点前保存光标，在光标处插入文字，重新渲染后再恢复光标。",
     "kind": "mechanism",
     "status": "maintained",
     "pages": [
@@ -488,8 +586,10 @@
   },
   {
     "path": "examples/react-classic",
-    "title": "Classic React and Redux",
-    "titleZh": "经典 React 与 Redux",
+    "title": "Todo app, 2018 style: classes, Redux, Saga, Immutable",
+    "titleZh": "2018 年风格的 Todo：class、Redux、Saga、Immutable",
+    "summary": "The original architecture, repaired and running on React 19.",
+    "summaryZh": "原来的架构，修好后运行在 React 19 上。",
     "kind": "example",
     "status": "maintained",
     "pages": [
@@ -498,8 +598,10 @@
   },
   {
     "path": "examples/react-modern",
-    "title": "Modern React and Redux Toolkit",
-    "titleZh": "现代 React 与 Redux Toolkit",
+    "title": "Todo app, today's style: Hooks, TypeScript, Redux Toolkit",
+    "titleZh": "今天风格的 Todo：Hooks、TypeScript、Redux Toolkit",
+    "summary": "The same features as the 2018 version, so the two can be compared side by side.",
+    "summaryZh": "功能和 2018 版完全相同，方便两边对照阅读。",
     "kind": "example",
     "status": "maintained",
     "pages": [
@@ -508,8 +610,10 @@
   },
   {
     "path": "examples/rich-text-draft",
-    "title": "Draft.js controlled editing",
-    "titleZh": "Draft.js 受控编辑",
+    "title": "Rich text with Draft.js (archived)",
+    "titleZh": "用 Draft.js 做富文本（已归档）",
+    "summary": "Type, bold and save as JSON with the editor Meta archived in 2023.",
+    "summaryZh": "输入、加粗、保存为 JSON；Draft.js 已于 2023 年被 Meta 归档。",
     "kind": "example",
     "status": "maintained",
     "pages": [
@@ -518,8 +622,10 @@
   },
   {
     "path": "examples/rich-text-lexical",
-    "title": "Lexical editor state and plugins",
-    "titleZh": "Lexical 状态与插件",
+    "title": "Rich text with Lexical",
+    "titleZh": "用 Lexical 做富文本",
+    "summary": "The same type, bold and save steps with Draft.js's successor.",
+    "summaryZh": "同样的输入、加粗、保存流程，换成 Draft.js 的继任者。",
     "kind": "example",
     "status": "maintained",
     "pages": [
@@ -528,34 +634,43 @@
   },
   {
     "path": "docs/history/react",
-    "title": "Historical React architecture notes",
-    "titleZh": "React 历史架构研究",
+    "title": "React architecture notes from 2019",
+    "titleZh": "2019 年的 React 架构笔记",
+    "summary": "The original notes (in Chinese) on domain-driven structure, sagas and routing.",
+    "summaryZh": "原始的中文笔记：领域驱动的目录结构、saga 与路由。",
     "kind": "history",
     "status": "historical",
     "pages": []
   },
   {
     "path": "docs/history/testing",
-    "title": "Historical TestUtils and Enzyme cases",
-    "titleZh": "TestUtils 与 Enzyme 历史用例",
+    "title": "React testing the old way: TestUtils and Enzyme",
+    "titleZh": "老式 React 测试：TestUtils 与 Enzyme",
+    "summary": "Shallow rendering and DOM tests from an older tutorial, kept for comparison with Testing Library.",
+    "summaryZh": "来自早年教程的浅渲染和 DOM 测试，留作与 Testing Library 对比。",
     "kind": "history",
     "status": "historical",
     "pages": []
   },
   {
     "path": "examples/network",
-    "title": "JSONP, Fetch and cancellation",
-    "titleZh": "JSONP、Fetch 与取消请求",
+    "title": "JSONP vs fetch with CORS",
+    "titleZh": "JSONP 与 fetch + CORS 对照",
+    "summary": "Read the same cross-origin data two ways, and cancel a request with `AbortController`.",
+    "summaryZh": "用两种方式读取同一份跨域数据，并用 AbortController 取消请求。",
     "kind": "example",
     "status": "maintained",
     "pages": [
       "examples/network/index.html"
-    ]
+    ],
+    "live": false
   },
   {
     "path": "examples/service-worker",
-    "title": "Repeatable offline cache",
-    "titleZh": "可重复的离线缓存",
+    "title": "Offline pages with a service worker",
+    "titleZh": "用 Service Worker 实现离线访问",
+    "summary": "Register, cache, serve offline and clean up, without a framework.",
+    "summaryZh": "不依赖框架，完成注册、缓存、离线访问和清理。",
     "kind": "example",
     "status": "maintained",
     "pages": [
@@ -564,44 +679,56 @@
   },
   {
     "path": "examples/graphql-http",
-    "title": "GraphQL over HTTP",
-    "titleZh": "GraphQL 的 HTTP 基础",
+    "title": "GraphQL from scratch over HTTP",
+    "titleZh": "从零搭一个 GraphQL HTTP 服务",
+    "summary": "Schema, resolvers and a JSON response: the smallest complete GraphQL request.",
+    "summaryZh": "Schema、resolver 和 JSON 响应：最小的一次完整 GraphQL 请求。",
     "kind": "example",
     "status": "maintained",
     "pages": [
       "examples/graphql-http/index.html"
-    ]
+    ],
+    "live": false
   },
   {
     "path": "examples/graphql",
-    "title": "Apollo, subscriptions and SQLite",
-    "titleZh": "Apollo、订阅与 SQLite",
+    "title": "Full-stack GraphQL: Apollo, subscriptions and SQLite",
+    "titleZh": "全栈 GraphQL：Apollo、订阅与 SQLite",
+    "summary": "A small link feed with sign-up, voting, pagination and live updates.",
+    "summaryZh": "一个小型链接分享站：注册登录、投票、分页和实时更新。",
     "kind": "example",
     "status": "maintained",
     "pages": [
       "examples/graphql/client/dist/index.html"
-    ]
+    ],
+    "live": false
   },
   {
     "path": "examples/graphql/server",
-    "title": "GraphQL service and database",
-    "titleZh": "GraphQL 服务与数据库",
+    "title": "The GraphQL server and database",
+    "titleZh": "GraphQL 服务端与数据库",
+    "summary": "Apollo Server, Prisma and SQLite, rebuilt from migrations and a fictional seed.",
+    "summaryZh": "Apollo Server + Prisma + SQLite，用迁移脚本和虚构数据重建。",
     "kind": "example",
     "status": "maintained",
     "pages": []
   },
   {
     "path": "examples/graphql/client",
-    "title": "Apollo Client operations",
-    "titleZh": "Apollo Client 请求与订阅",
+    "title": "The Apollo Client app",
+    "titleZh": "Apollo Client 前端",
+    "summary": "Queries, mutations and live subscriptions from a Vite app.",
+    "summaryZh": "在 Vite 应用里发起查询、变更和实时订阅。",
     "kind": "example",
     "status": "maintained",
     "pages": []
   },
   {
     "path": "examples/wasm",
-    "title": "Rust to WebAssembly",
-    "titleZh": "Rust 到 WebAssembly",
+    "title": "Rust to WebAssembly in the browser",
+    "titleZh": "在浏览器里运行 Rust（WebAssembly）",
+    "summary": "Compile a Rust function to `.wasm` and call it from a button.",
+    "summaryZh": "把一个 Rust 函数编译成 .wasm，再通过按钮调用它。",
     "kind": "example",
     "status": "maintained",
     "pages": [
@@ -610,8 +737,10 @@
   },
   {
     "path": "examples/visuals/clock",
-    "title": "Dot matrix clock",
-    "titleZh": "点阵时钟",
+    "title": "Dot-matrix countdown on canvas",
+    "titleZh": "Canvas 点阵倒计时",
+    "summary": "Digits drawn from a grid of dots; when a digit changes, its dots fall away as particles.",
+    "summaryZh": "用点阵画出数字；数字变化时，点会化作粒子落下。",
     "kind": "example",
     "status": "maintained",
     "pages": [
@@ -620,8 +749,10 @@
   },
   {
     "path": "examples/visuals/canvas-image",
-    "title": "Canvas pixels and image operations",
-    "titleZh": "Canvas 像素与图像操作",
+    "title": "Image effects with canvas pixels",
+    "titleZh": "用 Canvas 像素做图像处理",
+    "summary": "Scale, watermark, magnify and filter an image by reading and writing its pixels.",
+    "summaryZh": "通过读写像素，实现缩放、水印、放大镜和滤镜。",
     "kind": "example",
     "status": "maintained",
     "pages": [
@@ -630,8 +761,10 @@
   },
   {
     "path": "examples/visuals/drag",
-    "title": "Mouse and Pointer Events",
-    "titleZh": "鼠标与 Pointer Events",
+    "title": "Dragging with mouse events and Pointer Events",
+    "titleZh": "用鼠标事件和 Pointer Events 实现拖拽",
+    "summary": "The same drag written twice; Pointer Events also cover touch and pen.",
+    "summaryZh": "同一个拖拽写两遍；Pointer Events 同时支持触屏和手写笔。",
     "kind": "example",
     "status": "maintained",
     "pages": [
@@ -640,8 +773,10 @@
   },
   {
     "path": "examples/visuals/paging",
-    "title": "Gesture paging",
-    "titleZh": "手势翻页",
+    "title": "Swipe to change pages",
+    "titleZh": "滑动翻页",
+    "summary": "Turn a swipe into a page change using distance and speed thresholds, with touch events and with Pointer Events.",
+    "summaryZh": "用距离和速度阈值把滑动变成翻页，分别用 touch 事件和 Pointer Events 实现。",
     "kind": "example",
     "status": "maintained",
     "pages": [
@@ -650,8 +785,10 @@
   },
   {
     "path": "examples/visuals/carousel",
-    "title": "Layered carousel and Scroll Snap",
-    "titleZh": "分层轮播与 Scroll Snap",
+    "title": "3D carousel and CSS Scroll Snap",
+    "titleZh": "3D 轮播与 CSS Scroll Snap",
+    "summary": "Place layered slides with geometry, then let CSS Scroll Snap do similar work natively.",
+    "summaryZh": "用几何计算排布层叠的轮播图，再让 CSS Scroll Snap 原生完成类似的事。",
     "kind": "example",
     "status": "maintained",
     "pages": [
@@ -660,8 +797,10 @@
   },
   {
     "path": "examples/visuals/photo-wall",
-    "title": "Photo wall transforms",
-    "titleZh": "照片墙变换",
+    "title": "Photo wall with CSS transforms",
+    "titleZh": "CSS transform 照片墙",
+    "summary": "Scattered, tilted cards that straighten and zoom in on hover.",
+    "summaryZh": "散落倾斜的卡片，鼠标悬停时摆正并放大。",
     "kind": "example",
     "status": "maintained",
     "pages": [
@@ -670,8 +809,10 @@
   },
   {
     "path": "examples/visuals/search",
-    "title": "Local search suggestions",
-    "titleZh": "本地搜索建议",
+    "title": "Search suggestions with the keyboard",
+    "titleZh": "可以用键盘操作的搜索建议",
+    "summary": "Filter suggestions as you type and choose one with the arrow keys, using accessible combobox markup.",
+    "summaryZh": "边输入边筛选建议，用方向键选择；使用无障碍的 combobox 标记。",
     "kind": "example",
     "status": "maintained",
     "pages": [
@@ -680,8 +821,10 @@
   },
   {
     "path": "examples/visuals/motion",
-    "title": "Navigation, steps and circular progress",
-    "titleZh": "导航、步骤条与圆形进度",
+    "title": "Menu, step bar and progress ring",
+    "titleZh": "导航、步骤条与环形进度",
+    "summary": "An expanding menu (JavaScript tween vs CSS transition), a step bar and a `conic-gradient` progress ring.",
+    "summaryZh": "展开的导航（JS 补间与 CSS 过渡对比）、步骤条，以及用 conic-gradient 画的环形进度。",
     "kind": "example",
     "status": "maintained",
     "pages": [
@@ -690,8 +833,10 @@
   },
   {
     "path": "examples/visuals/lottery",
-    "title": "Rotating selector",
-    "titleZh": "旋转选择器",
+    "title": "Prize wheel",
+    "titleZh": "抽奖转盘",
+    "summary": "Spin a wheel that always stops on the sector it reports, using the Web Animations API.",
+    "summaryZh": "转盘停下的扇区和显示的结果始终一致，用 Web Animations API 实现。",
     "kind": "example",
     "status": "maintained",
     "pages": [
@@ -700,16 +845,20 @@
   },
   {
     "path": "examples/visuals",
-    "title": "Visual experiment guide",
-    "titleZh": "视觉实验导读",
+    "title": "Visual experiments",
+    "titleZh": "视觉实验",
+    "summary": "Canvas, CSS and pointer experiments that run straight in the browser.",
+    "summaryZh": "直接在浏览器里运行的 Canvas、CSS 和指针交互实验。",
     "kind": "example",
     "status": "maintained",
     "pages": []
   },
   {
     "path": "examples/performance",
-    "title": "Browser performance observations",
-    "titleZh": "浏览器性能观测",
+    "title": "Measuring page speed today",
+    "titleZh": "今天怎样测页面速度",
+    "summary": "Navigation Timing, PerformanceObserver and Core Web Vitals, measured on your own visit.",
+    "summaryZh": "用 Navigation Timing、PerformanceObserver 和 Core Web Vitals 测量你自己的这次访问。",
     "kind": "example",
     "status": "maintained",
     "pages": [
@@ -720,6 +869,8 @@
     "path": "docs/history/performance",
     "title": "Measuring page speed in 2019",
     "titleZh": "2019 年怎样测页面速度",
+    "summary": "How page speed was measured with `performance.timing`, and why those numbers are read differently now.",
+    "summaryZh": "当年怎样用 performance.timing 测速，以及为什么今天要换一种方式解读。",
     "kind": "history",
     "status": "historical",
     "pages": []

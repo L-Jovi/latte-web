@@ -1,5 +1,5 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><title>Layout and transform</title>
-<h1>Layout and transform</h1><p>Record a Performance trace, then compare the two buttons. A transform does not change document flow; compositor promotion is browser-dependent.</p>
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Moving an element: layout vs transform · Latte Web</title>
+<h1>Moving an element: layout vs transform</h1><p>Record a Performance trace, then compare the two buttons. A transform does not change document flow; compositor promotion is browser-dependent.</p>
 <button id="layout">Move with top</button><button id="transform">Move with transform</button>
 <div style="position:relative;height:250px"><div id="box" style="position:absolute;top:0;width:100px;height:100px;background:#577b95"></div></div>
 <script>const box=document.querySelector('#box');document.querySelector('#layout').onclick=()=>{box.style.transform='none';box.style.top=box.style.top==='100px'?'0px':'100px'};document.querySelector('#transform').onclick=()=>{box.style.top='0px';box.style.transform=box.style.transform==='translateY(100px)'?'':'translateY(100px)'}</script></html>
