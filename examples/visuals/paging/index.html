@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  /><title>Gesture thresholds and page snapping</title
+  ><link rel="stylesheet" href="../style.css" />
+  <h1>Gesture thresholds and page snapping</h1>
+  <p>
+    Horizontal: classic Touch Events with distance/time thresholds. Vertical:
+    Pointer Events with capture. Both include buttons and arrow keys.
+  </p>
+  <section id="touch">
+    <h2>Touch Events</h2>
+    <div class="viewport" tabindex="0" aria-label="Touch pages">
+      <div class="track">
+        <article>Page 1 · Observe</article>
+        <article>Page 2 · Read</article>
+        <article>Page 3 · Compare</article>
+      </div>
+    </div>
+    <button data-step="-1">Previous touch page</button
+    ><button data-step="1">Next touch page</button><output>Page 1 of 3</output>
+  </section>
+  <section id="pointer">
+    <h2>Pointer Events</h2>
+    <div class="viewport vertical" tabindex="0" aria-label="Pointer pages">
+      <div class="track">
+        <article>Page 1 · Observe</article>
+        <article>Page 2 · Read</article>
+        <article>Page 3 · Compare</article>
+      </div>
+    </div>
+    <button data-step="-1">Previous pointer page</button
+    ><button data-step="1">Next pointer page</button
+    ><output>Page 1 of 3</output>
+  </section>
+  <style>
+    .viewport {
+      overflow: hidden;
+      height: 200px;
+      touch-action: pan-y;
+    }
+    .viewport.vertical {
+      touch-action: pan-x;
+    }
+    .track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.2s;
+    }
+    .vertical .track {
+      flex-direction: column;
+    }
+    .track article {
+      flex: 0 0 100%;
+      display: grid;
+      place-items: center;
+      box-sizing: border-box;
+      background: #cae4df;
+      border: 1px solid white;
+    }
+    .track article:nth-child(2) {
+      background: #f0d8ad;
+    }
+    .track article:nth-child(3) {
+      background: #cddcf0;
+    }
+  </style>
+  <script type="module" src="app.js"></script>
+</html>

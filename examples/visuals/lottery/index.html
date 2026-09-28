@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  /><title>A rotating selector</title
+  ><link rel="stylesheet" href="../style.css" />
+  <h1>A rotating selector</h1>
+  <p>This is animation math with fictional labels, not a reward system.</p>
+  <div class="wheel" aria-hidden="true">
+    <span>A</span><span>B</span><span>C</span><span>D</span>
+  </div>
+  <p>▲ Fixed pointer</p>
+  <button>Spin</button
+  ><output aria-live="polite">Ready</output
+  ><style>
+    .wheel {
+      position: relative;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: conic-gradient(
+        #94bfb2 0 90deg,
+        #ebc586 90deg 180deg,
+        #a4bbde 180deg 270deg,
+        #d9a6b4 270deg
+      );
+    }
+    .wheel span {
+      position: absolute;
+    }
+    .wheel span:nth-child(1) {
+      left: 170px;
+      top: 45px;
+    }
+    .wheel span:nth-child(2) {
+      left: 170px;
+      top: 160px;
+    }
+    .wheel span:nth-child(3) {
+      left: 60px;
+      top: 160px;
+    }
+    .wheel span:nth-child(4) {
+      left: 60px;
+      top: 45px;
+    }
+  </style>
+  <script type="module" src="app.js"></script>
+</html>

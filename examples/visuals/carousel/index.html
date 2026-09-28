@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  /><title>Layered carousel and CSS Scroll Snap</title
+  ><link rel="stylesheet" href="../style.css" />
+  <h1>Layered carousel and CSS Scroll Snap</h1>
+  <section id="layers">
+    <h2>Handwritten slot geometry</h2>
+    <div class="stage" tabindex="0" aria-label="Layered carousel">
+      <article>Card 1</article>
+      <article>Card 2</article>
+      <article>Card 3</article>
+      <article>Card 4</article>
+      <article>Card 5</article>
+    </div>
+    <button data-step="-1">Previous layered card</button
+    ><button data-step="1">Next layered card</button><output>Card 1</output>
+  </section>
+  <section id="snap">
+    <h2>Native Scroll Snap</h2>
+    <div class="strip" tabindex="0" aria-label="Scroll Snap carousel">
+      <article>Card 1</article>
+      <article>Card 2</article>
+      <article>Card 3</article>
+      <article>Card 4</article>
+      <article>Card 5</article>
+    </div>
+    <button data-step="-1">Previous snap card</button
+    ><button data-step="1">Next snap card</button><output>Card 1</output>
+  </section>
+  <style>
+    .stage {
+      height: 240px;
+      position: relative;
+      overflow: hidden;
+    }
+    .stage article {
+      position: absolute;
+      left: calc(50% - 100px);
+      top: 30px;
+      width: 200px;
+      height: 170px;
+      transition:
+        transform 0.3s,
+        opacity 0.3s;
+      display: grid;
+      place-items: center;
+      background: #9ccbc4;
+      border: 2px solid white;
+    }
+    .stage article:nth-child(2n) {
+      background: #ecd4a8;
+    }
+    .strip {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+    }
+    .strip article {
+      flex: 0 0 100%;
+      box-sizing: border-box;
+      scroll-snap-align: start;
+      height: 180px;
+      background: #cddcf0;
+      display: grid;
+      place-items: center;
+      border: 2px solid white;
+    }
+  </style>
+  <script type="module" src="app.js"></script>
+</html>

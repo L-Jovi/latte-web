@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  /><title>Observe browser performance</title>
+  <style>
+    body {
+      font: 17px/1.6 system-ui;
+      max-width: 60rem;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    button {
+      font: inherit;
+      margin: 0.3rem;
+    }
+    table {
+      border-collapse: collapse;
+    }
+    td,
+    th {
+      padding: 0.5rem 1rem;
+      border: 1px solid #aaa;
+      min-width: 12rem;
+    }
+    pre {
+      white-space: pre-wrap;
+    }
+    .late {
+      background: #d5e9da;
+      height: 120px;
+    }
+    output {
+      display: block;
+      min-height: 2rem;
+    }
+  </style>
+  <h1>Observe browser performance</h1>
+  <p>
+    These numbers describe this visit. They are not a population percentile or a
+    product benchmark.
+  </p>
+  <div id="content"><p>Watch the page move after a delayed insertion.</p></div>
+  <button id="work">Run 120 ms of work</button
+  ><button id="shift">Insert late content</button
+  ><output aria-live="polite">Ready</output>
+  <table>
+    <caption>
+      Core Web Vitals for this visit
+    </caption>
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th>Observed value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>LCP (ms)</th>
+        <td id="LCP"></td>
+      </tr>
+      <tr>
+        <th>INP (ms)</th>
+        <td id="INP"></td>
+      </tr>
+      <tr>
+        <th>CLS (unitless)</th>
+        <td id="CLS"></td>
+      </tr>
+    </tbody>
+  </table>
+  <h2>Navigation Timing</h2>
+  <pre id="navigation">Waiting for load</pre>
+  <h2>PerformanceObserver entries</h2>
+  <pre id="entries"></pre>
+  <script type="module" src="main.js"></script>
+</html>

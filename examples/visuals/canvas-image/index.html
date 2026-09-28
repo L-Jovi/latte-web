@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  /><title>Canvas image operations</title
+  ><link rel="stylesheet" href="../style.css" />
+  <h1>Canvas image operations</h1>
+  <p>
+    A self-authored SVG replaces the old photographs. Pointer coordinates are
+    converted from CSS pixels to canvas pixels.
+  </p>
+  <label
+    >Scale
+    <input
+      id="scale"
+      type="range"
+      min=".5"
+      max="2"
+      step=".1"
+      value="1" /></label
+  ><label><input id="watermark" type="checkbox" />Watermark</label
+  ><label><input id="magnify" type="checkbox" />Magnifier</label>
+  <div id="filters">
+    <button data-mode="none">Reset</button
+    ><button data-mode="grey">Grayscale</button
+    ><button data-mode="threshold">Threshold</button
+    ><button data-mode="invert">Invert</button
+    ><button data-mode="blur">Blur</button
+    ><button data-mode="mosaic">Mosaic</button
+    ><button data-mode="procedural">Procedural colors</button>
+  </div>
+  <canvas
+    width="480"
+    height="300"
+    tabindex="0"
+    aria-label="Image canvas"
+  ></canvas
+  ><output>Loading</output>
+  <script type="module" src="app.js"></script>
+</html>

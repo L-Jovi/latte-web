@@ -92,11 +92,23 @@ Read foundations → handwritten mechanisms → toolchains → applications, or 
 - [GraphQL service and database](examples/graphql/server/README.md) — maintained
 - [Apollo Client operations](examples/graphql/client/README.md) — maintained
 - [Rust to WebAssembly](examples/wasm/README.md) — maintained
+- [Dot matrix clock](examples/visuals/clock/README.md) — maintained
+- [Canvas pixels and image operations](examples/visuals/canvas-image/README.md) — maintained
+- [Mouse and Pointer Events](examples/visuals/drag/README.md) — maintained
+- [Gesture paging](examples/visuals/paging/README.md) — maintained
+- [Layered carousel and Scroll Snap](examples/visuals/carousel/README.md) — maintained
+- [Photo wall transforms](examples/visuals/photo-wall/README.md) — maintained
+- [Local search suggestions](examples/visuals/search/README.md) — maintained
+- [Navigation, steps and circular progress](examples/visuals/motion/README.md) — maintained
+- [Rotating selector](examples/visuals/lottery/README.md) — maintained
+- [Visual experiment guide](examples/visuals/README.md) — maintained
+- [Browser performance observations](examples/performance/README.md) — maintained
 
 ### Historical research
 
 - [Historical React architecture notes](docs/history/react/README.md) — historical
 - [Historical TestUtils and Enzyme cases](docs/history/testing/README.md) — historical
+- [Performance research (2019)](docs/history/performance/README.md) — historical
 
 ## Verification and maintenance
 
@@ -108,7 +120,7 @@ npm run test:browser
 
 `maintained` entries participate in current checks; `historical` entries are attributed reading material. Each README describes verification and intentional limits. This collection has no single product version or release promise.
 
-Migration is in progress: content in the old directories is not yet part of the maintained runnable set.
+[Reading and verification guide](docs/README.md) · [Ecosystem decisions](docs/ecosystem.md) · [Verification limits](docs/verification.md)
 
 [Migration ledger](docs/migration.md) · [Contributing](CONTRIBUTING.md) · [Code of conduct](CODE_OF_CONDUCT.md) · [Security reporting](SECURITY.md)
 

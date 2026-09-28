@@ -26,7 +26,8 @@
     "examples/graphql-http",
     "examples/graphql/server",
     "examples/graphql/client",
-    "examples/wasm"
+    "examples/wasm",
+    "examples/performance"
   ],
   "scripts": {
     "dev": "node scripts/serve.mjs",

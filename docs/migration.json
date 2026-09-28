@@ -1,6 +1,6 @@
 {
   "baseline": "ef3fa2adad5155c5fd0e041cf6ac086e86222827",
-  "complete": false,
+  "complete": true,
   "entries": [
     {
       "old": "syntax",
@@ -89,22 +89,6 @@
       "phase": 1,
       "reason": "Preserve the teaching mechanism; repair correctness and document its limits.",
       "reasonZh": "保留机制理解，修正正确性并说明边界。"
-    },
-    {
-      "old": "performance",
-      "new": "performance",
-      "action": "pending",
-      "phase": null,
-      "reason": "Scheduled for a later migration batch.",
-      "reasonZh": "按计划在后续批次迁移。"
-    },
-    {
-      "old": "vision-samples",
-      "new": "vision-samples",
-      "action": "pending",
-      "phase": null,
-      "reason": "Scheduled for a later migration batch.",
-      "reasonZh": "按计划在后续批次迁移。"
     },
     {
       "old": "README.md",
@@ -441,6 +425,1430 @@
       "reason": "Keep Rust/browser ABI; retire CRA and generate the numeric module with Cargo.",
       "reasonZh": "保留 Rust/浏览器 ABI，退役 CRA，以 Cargo 生成整数模块。",
       "phase": 4
+    },
+    {
+      "old": "performance",
+      "new": "docs/history/performance",
+      "action": "historical",
+      "reason": "Preserve the 2019 report, screenshots and original claims; current measurement is a separate lab.",
+      "reasonZh": "保留 2019 年报告、截图和原结论，当前测量独立成实验。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples",
+      "new": "examples/visuals",
+      "action": "merge",
+      "reason": "Consolidate readable drawing, gesture and animation algorithms with self-authored assets.",
+      "reasonZh": "整合可读的绘制、手势和动画算法，使用自制素材。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/3droom",
+      "new": null,
+      "action": "retire",
+      "reason": "Large bundled TGL showcase lacks a useful readable implementation.",
+      "reasonZh": "大体积 TGL 演示缺乏可读实现。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global",
+      "new": null,
+      "action": "retire",
+      "reason": "Retire the BuckyMaler site wrapper, bundled libraries, fonts and images.",
+      "reasonZh": "退役 BuckyMaler 站点包装及捆绑库、字体和图片。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/horizontal",
+      "new": null,
+      "action": "retire",
+      "reason": "Bootstrap/Unslider wrappers duplicate existing component behavior.",
+      "reasonZh": "Bootstrap/Unslider 包装重复已有行为。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/whirligig/imooc",
+      "new": null,
+      "action": "retire",
+      "reason": "Retire the duplicate course copy; keep one slot-geometry implementation.",
+      "reasonZh": "退役重复课程副本，保留一份位置计算实现。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/swiper",
+      "new": "examples/visuals/paging",
+      "action": "merge",
+      "reason": "Keep touch thresholds and index bounds alongside pointer-based paging.",
+      "reasonZh": "保留触摸阈值与索引边界，对照指针翻页。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/vertical",
+      "new": "examples/visuals/paging",
+      "action": "merge",
+      "reason": "Merge vertical index/translation behavior; retire jQuery, autoplay and unlicensed photos.",
+      "reasonZh": "合并竖向索引／位移机制，退役 jQuery、自动播放和来源不明照片。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/stepbar",
+      "new": "examples/visuals/motion",
+      "action": "merge",
+      "reason": "Retain flex steps with semantic current-step state.",
+      "reasonZh": "保留弹性步骤条，补充当前步骤语义。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/circle-loading",
+      "new": "examples/visuals/motion",
+      "action": "rewrite",
+      "reason": "Replace the copied ornament with a small conic-gradient progress mechanism.",
+      "reasonZh": "用简单 conic-gradient 进度机制替换复制的装饰圆形。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/lottery/demo1",
+      "new": "examples/visuals/lottery",
+      "action": "merge",
+      "reason": "Keep angle-to-sector intent; retire duplicate jQuery plugins and images.",
+      "reasonZh": "保留角度与扇区的对应意图，退役重复 jQuery 插件和图片。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/lottery/demo2",
+      "new": "examples/visuals/lottery",
+      "action": "merge",
+      "reason": "Keep full-turn/remainder arithmetic with awaited native animation.",
+      "reasonZh": "保留整圈／余角计算，用原生动画完成状态驱动交互。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/canvas-clock",
+      "new": "examples/visuals/clock",
+      "action": "retain",
+      "reason": "The original digit matrix and particle idea remain visible.",
+      "reasonZh": "保留原来的数字点阵和粒子思路。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/canvas-image",
+      "new": "examples/visuals/canvas-image",
+      "action": "retain",
+      "reason": "The six image exercises share one small page: draw, scale, watermark, magnify, filter and generate colors.",
+      "reasonZh": "六个图像练习合并成一个小页面：绘制、缩放、水印、放大镜、滤镜和程序化颜色。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/drag",
+      "new": "examples/visuals/drag",
+      "action": "retain",
+      "reason": "Two blocks share the same offset and boundary calculation.",
+      "reasonZh": "两个方块共用相同的起点偏移和边界计算。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/huamao",
+      "new": "examples/visuals/paging",
+      "action": "retain",
+      "reason": "Extract the Huamao vertical page mechanism and the handwritten horizontal slider into bounded three-page tracks.",
+      "reasonZh": "将 Huamao 竖向翻页和手写横向滑屏提取成各三页的有限轨道。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/whirligig",
+      "new": "examples/visuals/carousel",
+      "action": "retain",
+      "reason": "Keep the rotation lesson as slot geometry: distance from the current card controls position, scale, opacity and z-index.",
+      "reasonZh": "把旋转木马保留为位置计算：距当前卡片的距离决定位置、缩放、透明度和层级。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/photo-wall",
+      "new": "examples/visuals/photo-wall",
+      "action": "retain",
+      "reason": "Retain rotation, scaling, stacking and transitions using six self-authored CSS landscapes.",
+      "reasonZh": "用六张自制 CSS 风景保留旋转、缩放、层级和过渡。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/search-input",
+      "new": "examples/visuals/search",
+      "action": "rewrite",
+      "reason": "Preserve suggestions and selection, replacing the expired Bing/Taobao endpoints and synchronous XHR with one local Fetch.",
+      "reasonZh": "保留建议列表与选择交互，用一次本地 Fetch 替换失效的 Bing／淘宝接口和同步 XHR。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/navigation",
+      "new": "examples/visuals/motion",
+      "action": "rewrite",
+      "reason": "Compare a requestAnimationFrame easing calculation with a CSS width transition on the same navigation expansion.",
+      "reasonZh": "同一个导航展开效果对照 requestAnimationFrame 缓动计算与 CSS 宽度过渡。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/lottery",
+      "new": "examples/visuals/lottery",
+      "action": "rewrite",
+      "reason": "Retain the relationship between full turns, remainder angles and a selected sector.",
+      "reasonZh": "保留整圈、余角和选中扇区之间的关系。",
+      "phase": 5
+    },
+    {
+      "old": "test/react-testing-demo",
+      "new": null,
+      "action": "retire",
+      "reason": "Retire the obsolete app/dependency shell; representative tests are separately retained.",
+      "reasonZh": "退役旧应用和依赖外壳，代表性测试另行保留。",
+      "phase": 5
+    },
+    {
+      "old": "test/react-testing-demo/test",
+      "new": "docs/history/testing/cases",
+      "action": "historical",
+      "reason": "Preserve representative React 0.14/Enzyme tests with attribution; active behavior tests use Testing Library.",
+      "reasonZh": "带署名保留 React 0.14/Enzyme 代表性测试，当前行为由 Testing Library 验证。",
+      "phase": 5
+    },
+    {
+      "old": "react/react-practice/build",
+      "new": null,
+      "action": "retire",
+      "reason": "Generated application output is rebuilt, not source-controlled.",
+      "reasonZh": "应用构建产物按需生成，不入库。",
+      "phase": 5
+    },
+    {
+      "old": "typescript/create-react-app-sample/build",
+      "new": null,
+      "action": "retire",
+      "reason": "Remove redundant CRA build output after extracting the type lesson.",
+      "reasonZh": "提取类型练习后移除重复 CRA 产物。",
+      "phase": 5
+    },
+    {
+      "old": "build/webpack/library/yarn.lock",
+      "new": "package-lock.json",
+      "action": "merge",
+      "reason": "Dependency resolution is centralized in the root npm workspace lockfile.",
+      "reasonZh": "依赖解析统一到根 npm workspace 锁文件。",
+      "phase": 5
+    },
+    {
+      "old": "build/webpack/scratches/webpack-forge/yarn.lock",
+      "new": "package-lock.json",
+      "action": "merge",
+      "reason": "Dependency resolution is centralized in the root npm workspace lockfile.",
+      "reasonZh": "依赖解析统一到根 npm workspace 锁文件。",
+      "phase": 5
+    },
+    {
+      "old": "build/webpack/scratches/webpack-scratch/yarn.lock",
+      "new": "package-lock.json",
+      "action": "merge",
+      "reason": "Dependency resolution is centralized in the root npm workspace lockfile.",
+      "reasonZh": "依赖解析统一到根 npm workspace 锁文件。",
+      "phase": 5
+    },
+    {
+      "old": "build/webpack/yarn.lock",
+      "new": "package-lock.json",
+      "action": "merge",
+      "reason": "Dependency resolution is centralized in the root npm workspace lockfile.",
+      "reasonZh": "依赖解析统一到根 npm workspace 锁文件。",
+      "phase": 5
+    },
+    {
+      "old": "components/simple-library-scratch/yarn.lock",
+      "new": "package-lock.json",
+      "action": "merge",
+      "reason": "Dependency resolution is centralized in the root npm workspace lockfile.",
+      "reasonZh": "依赖解析统一到根 npm workspace 锁文件。",
+      "phase": 5
+    },
+    {
+      "old": "graphql/graphql-server-demo/package-lock.json",
+      "new": "package-lock.json",
+      "action": "merge",
+      "reason": "Dependency resolution is centralized in the root npm workspace lockfile.",
+      "reasonZh": "依赖解析统一到根 npm workspace 锁文件。",
+      "phase": 5
+    },
+    {
+      "old": "graphql/react-apollo/public/favicon.ico",
+      "new": null,
+      "action": "retire",
+      "reason": "Remove template branding that has no teaching role.",
+      "reasonZh": "移除不承担教学用途的模板标识。",
+      "phase": 5
+    },
+    {
+      "old": "graphql/react-apollo/public/logo192.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Remove template branding that has no teaching role.",
+      "reasonZh": "移除不承担教学用途的模板标识。",
+      "phase": 5
+    },
+    {
+      "old": "graphql/react-apollo/public/logo512.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Remove template branding that has no teaching role.",
+      "reasonZh": "移除不承担教学用途的模板标识。",
+      "phase": 5
+    },
+    {
+      "old": "graphql/react-apollo/server/yarn.lock",
+      "new": "package-lock.json",
+      "action": "merge",
+      "reason": "Dependency resolution is centralized in the root npm workspace lockfile.",
+      "reasonZh": "依赖解析统一到根 npm workspace 锁文件。",
+      "phase": 5
+    },
+    {
+      "old": "graphql/react-apollo/src/logo.svg",
+      "new": null,
+      "action": "retire",
+      "reason": "Remove template branding that has no teaching role.",
+      "reasonZh": "移除不承担教学用途的模板标识。",
+      "phase": 5
+    },
+    {
+      "old": "graphql/react-apollo/yarn.lock",
+      "new": "package-lock.json",
+      "action": "merge",
+      "reason": "Dependency resolution is centralized in the root npm workspace lockfile.",
+      "reasonZh": "依赖解析统一到根 npm workspace 锁文件。",
+      "phase": 5
+    },
+    {
+      "old": "react/cra/react-library/public/favicon.ico",
+      "new": null,
+      "action": "retire",
+      "reason": "Remove template branding that has no teaching role.",
+      "reasonZh": "移除不承担教学用途的模板标识。",
+      "phase": 5
+    },
+    {
+      "old": "react/cra/react-library/public/logo192.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Remove template branding that has no teaching role.",
+      "reasonZh": "移除不承担教学用途的模板标识。",
+      "phase": 5
+    },
+    {
+      "old": "react/cra/react-library/public/logo512.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Remove template branding that has no teaching role.",
+      "reasonZh": "移除不承担教学用途的模板标识。",
+      "phase": 5
+    },
+    {
+      "old": "react/cra/react-library/src/logo.svg",
+      "new": null,
+      "action": "retire",
+      "reason": "Remove template branding that has no teaching role.",
+      "reasonZh": "移除不承担教学用途的模板标识。",
+      "phase": 5
+    },
+    {
+      "old": "react/cra/react-library/yarn.lock",
+      "new": "package-lock.json",
+      "action": "merge",
+      "reason": "Dependency resolution is centralized in the root npm workspace lockfile.",
+      "reasonZh": "依赖解析统一到根 npm workspace 锁文件。",
+      "phase": 5
+    },
+    {
+      "old": "react/cra/react-practice/public/favicon.ico",
+      "new": null,
+      "action": "retire",
+      "reason": "Remove template branding that has no teaching role.",
+      "reasonZh": "移除不承担教学用途的模板标识。",
+      "phase": 5
+    },
+    {
+      "old": "react/cra/react-practice/public/logo192.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Remove template branding that has no teaching role.",
+      "reasonZh": "移除不承担教学用途的模板标识。",
+      "phase": 5
+    },
+    {
+      "old": "react/cra/react-practice/public/logo512.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Remove template branding that has no teaching role.",
+      "reasonZh": "移除不承担教学用途的模板标识。",
+      "phase": 5
+    },
+    {
+      "old": "react/cra/react-practice/src/Welcome/logo.svg",
+      "new": null,
+      "action": "retire",
+      "reason": "Remove template branding that has no teaching role.",
+      "reasonZh": "移除不承担教学用途的模板标识。",
+      "phase": 5
+    },
+    {
+      "old": "react/cra/react-practice/yarn.lock",
+      "new": "package-lock.json",
+      "action": "merge",
+      "reason": "Dependency resolution is centralized in the root npm workspace lockfile.",
+      "reasonZh": "依赖解析统一到根 npm workspace 锁文件。",
+      "phase": 5
+    },
+    {
+      "old": "react/react-practice/build/favicon.ico",
+      "new": null,
+      "action": "retire",
+      "reason": "Remove template branding that has no teaching role.",
+      "reasonZh": "移除不承担教学用途的模板标识。",
+      "phase": 5
+    },
+    {
+      "old": "react/react-practice/public/favicon.ico",
+      "new": null,
+      "action": "retire",
+      "reason": "Remove template branding that has no teaching role.",
+      "reasonZh": "移除不承担教学用途的模板标识。",
+      "phase": 5
+    },
+    {
+      "old": "react/react-practice/yarn.lock",
+      "new": "package-lock.json",
+      "action": "merge",
+      "reason": "Dependency resolution is centralized in the root npm workspace lockfile.",
+      "reasonZh": "依赖解析统一到根 npm workspace 锁文件。",
+      "phase": 5
+    },
+    {
+      "old": "react/scratches/react-library-scratch/yarn.lock",
+      "new": "package-lock.json",
+      "action": "merge",
+      "reason": "Dependency resolution is centralized in the root npm workspace lockfile.",
+      "reasonZh": "依赖解析统一到根 npm workspace 锁文件。",
+      "phase": 5
+    },
+    {
+      "old": "react/scratches/react-library/example/public/favicon.ico",
+      "new": null,
+      "action": "retire",
+      "reason": "Remove template branding that has no teaching role.",
+      "reasonZh": "移除不承担教学用途的模板标识。",
+      "phase": 5
+    },
+    {
+      "old": "react/scratches/react-library/example/yarn.lock",
+      "new": "package-lock.json",
+      "action": "merge",
+      "reason": "Dependency resolution is centralized in the root npm workspace lockfile.",
+      "reasonZh": "依赖解析统一到根 npm workspace 锁文件。",
+      "phase": 5
+    },
+    {
+      "old": "react/scratches/react-library/yarn.lock",
+      "new": "package-lock.json",
+      "action": "merge",
+      "reason": "Dependency resolution is centralized in the root npm workspace lockfile.",
+      "reasonZh": "依赖解析统一到根 npm workspace 锁文件。",
+      "phase": 5
+    },
+    {
+      "old": "react/scratches/react-project-scratch/package-lock.json",
+      "new": "package-lock.json",
+      "action": "merge",
+      "reason": "Dependency resolution is centralized in the root npm workspace lockfile.",
+      "reasonZh": "依赖解析统一到根 npm workspace 锁文件。",
+      "phase": 5
+    },
+    {
+      "old": "react/scratches/react-scratch/yarn.lock",
+      "new": "package-lock.json",
+      "action": "merge",
+      "reason": "Dependency resolution is centralized in the root npm workspace lockfile.",
+      "reasonZh": "依赖解析统一到根 npm workspace 锁文件。",
+      "phase": 5
+    },
+    {
+      "old": "react/scratches/router-scratch/yarn.lock",
+      "new": "package-lock.json",
+      "action": "merge",
+      "reason": "Dependency resolution is centralized in the root npm workspace lockfile.",
+      "reasonZh": "依赖解析统一到根 npm workspace 锁文件。",
+      "phase": 5
+    },
+    {
+      "old": "template/handlebars/yarn.lock",
+      "new": "package-lock.json",
+      "action": "merge",
+      "reason": "Dependency resolution is centralized in the root npm workspace lockfile.",
+      "reasonZh": "依赖解析统一到根 npm workspace 锁文件。",
+      "phase": 5
+    },
+    {
+      "old": "test/react-testing-demo/package-lock.json",
+      "new": "package-lock.json",
+      "action": "merge",
+      "reason": "Dependency resolution is centralized in the root npm workspace lockfile.",
+      "reasonZh": "依赖解析统一到根 npm workspace 锁文件。",
+      "phase": 5
+    },
+    {
+      "old": "typescript/create-react-app-sample/build/favicon.ico",
+      "new": null,
+      "action": "retire",
+      "reason": "Remove template branding that has no teaching role.",
+      "reasonZh": "移除不承担教学用途的模板标识。",
+      "phase": 5
+    },
+    {
+      "old": "typescript/create-react-app-sample/public/favicon.ico",
+      "new": null,
+      "action": "retire",
+      "reason": "Remove template branding that has no teaching role.",
+      "reasonZh": "移除不承担教学用途的模板标识。",
+      "phase": 5
+    },
+    {
+      "old": "typescript/create-react-app-sample/src/logo.svg",
+      "new": null,
+      "action": "retire",
+      "reason": "Remove template branding that has no teaching role.",
+      "reasonZh": "移除不承担教学用途的模板标识。",
+      "phase": 5
+    },
+    {
+      "old": "typescript/create-react-app-sample/yarn.lock",
+      "new": "package-lock.json",
+      "action": "merge",
+      "reason": "Dependency resolution is centralized in the root npm workspace lockfile.",
+      "reasonZh": "依赖解析统一到根 npm workspace 锁文件。",
+      "phase": 5
+    },
+    {
+      "old": "typescript/gulp-ts-sample/yarn.lock",
+      "new": "package-lock.json",
+      "action": "merge",
+      "reason": "Dependency resolution is centralized in the root npm workspace lockfile.",
+      "reasonZh": "依赖解析统一到根 npm workspace 锁文件。",
+      "phase": 5
+    },
+    {
+      "old": "typescript/webpack-react-sample/package-lock.json",
+      "new": "package-lock.json",
+      "action": "merge",
+      "reason": "Dependency resolution is centralized in the root npm workspace lockfile.",
+      "reasonZh": "依赖解析统一到根 npm workspace 锁文件。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/canvas-image/01-image-basic/img.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/canvas-image/02-image-scale/img-lg.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/canvas-image/03-image-watermark/img-lg.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/canvas-image/04-image-magnifier/img-lg.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/canvas-image/04-image-magnifier/index.html.bak",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/canvas-image/05-image-filter/autumn.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/css/fonts/Montserrat-Black.eot",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/css/fonts/Montserrat-Black.svg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/css/fonts/Montserrat-Black.ttf",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/css/fonts/Montserrat-Black.woff",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/css/fonts/Montserrat-Bold.eot",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/css/fonts/Montserrat-Bold.svg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/css/fonts/Montserrat-Bold.ttf",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/css/fonts/Montserrat-Bold.woff",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/css/fonts/Montserrat-Light.eot",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/css/fonts/Montserrat-Light.svg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/css/fonts/Montserrat-Light.ttf",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/css/fonts/Montserrat-Light.woff",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/css/fonts/Montserrat-Regular.eot",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/css/fonts/Montserrat-Regular.svg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/css/fonts/Montserrat-Regular.ttf",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/css/fonts/Montserrat-Regular.woff",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/img/about-history.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/img/about-philosophy.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/img/about-visual.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/img/about-winners.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/img/childhood.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/img/contact-visual.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/img/introduction-visual.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/img/logo.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/img/work-alex-nowak.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/img/work-metiew-smith.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/img/work-victory.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/js/vendor/hammer-2.0.8.js",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/global/assets/js/vendor/jquery-2.2.4.min.js",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/huamao/font/DFTTWW5.TTF",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/huamao/font/wawa-webfont.eot",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/huamao/font/wawa-webfont.svg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/huamao/font/wawa-webfont.ttf",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/huamao/font/wawa-webfont.woff",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/huamao/font/wawa-webfont.woff2",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/huamao/font/wawa.ttf",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/huamao/images/1.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/huamao/images/cat.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/huamao/images/chili.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/huamao/images/loading.gif",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/huamao/images/menu-1.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/huamao/images/menu-2.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/huamao/images/menu-3.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/huamao/images/menu-4.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/huamao/images/postmark.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/huamao/images/represent.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/huamao/js/zepto.min.js",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/lottery/demo1/jQueryRotate.2.2.js",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/lottery/demo1/jquery-1.7.2.min.js",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/lottery/demo1/jquery.easing.min.js",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/lottery/demo1/ly-plate.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/lottery/demo1/rotate-static.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/lottery/demo2/pointer.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/lottery/demo2/turntable-bg.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/lottery/demo2/turntable.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/photo-wall/images/1.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/photo-wall/images/2.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/photo-wall/images/3.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/photo-wall/images/4.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/photo-wall/images/5.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/photo-wall/images/6.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/photo-wall/images/7.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/photo-wall/images/8.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/search-input/bing-search-ajax-jquery.htm",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/search-input/icon.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/search-input/iconfont.eot",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/search-input/logo.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/search-input/river.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/search-input/search-button.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/search-input/taobao.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/horizontal/depends/jquery.min.js",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/horizontal/depends/shop.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/horizontal/depends/subway.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/horizontal/depends/sunset.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/horizontal/depends/unslider.js",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/horizontal/depends/unslider.min.js",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/horizontal/depends/wood.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/swiper/imgs/1.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/swiper/imgs/2.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/swiper/imgs/3.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/swiper/imgs/4.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/vertical/images/colored-smoke.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/vertical/images/guitar.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/vertical/images/hat.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/vertical/images/machu-picchu.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/vertical/jquery-3.3.1.min.js",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/whirligig/imooc/1.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/whirligig/imooc/2.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/whirligig/imooc/3.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/whirligig/imooc/4.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/whirligig/imooc/5.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/whirligig/imooc/6.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/whirligig/imooc/btn_l.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/whirligig/imooc/btn_r.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/whirligig/imooc/jquery.js",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/whirligig/self/images/shop.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/whirligig/self/images/subway.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/whirligig/self/images/sunset.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/whirligig/self/images/wood.jpg",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/whirligig/self/jquery.js",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/whirligig/self/jquery.min.js",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "vision-samples/slider/whirligig/self/tech.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Retired asset/vendor copy; teaching behavior uses self-authored visuals and native APIs.",
+      "reasonZh": "退役素材／捆绑库副本，教学行为使用自制视觉与原生 API。",
+      "phase": 5
+    },
+    {
+      "old": "wasm/wasm-cra-ts-demo/package-lock.json",
+      "new": "package-lock.json",
+      "action": "merge",
+      "reason": "Dependency resolution is centralized in the root npm workspace lockfile.",
+      "reasonZh": "依赖解析统一到根 npm workspace 锁文件。",
+      "phase": 5
+    },
+    {
+      "old": "wasm/wasm-cra-ts-demo/public/favicon.ico",
+      "new": null,
+      "action": "retire",
+      "reason": "Remove template branding that has no teaching role.",
+      "reasonZh": "移除不承担教学用途的模板标识。",
+      "phase": 5
+    },
+    {
+      "old": "wasm/wasm-cra-ts-demo/public/logo192.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Remove template branding that has no teaching role.",
+      "reasonZh": "移除不承担教学用途的模板标识。",
+      "phase": 5
+    },
+    {
+      "old": "wasm/wasm-cra-ts-demo/public/logo512.png",
+      "new": null,
+      "action": "retire",
+      "reason": "Remove template branding that has no teaching role.",
+      "reasonZh": "移除不承担教学用途的模板标识。",
+      "phase": 5
+    },
+    {
+      "old": "wasm/wasm-cra-ts-demo/src/logo.svg",
+      "new": null,
+      "action": "retire",
+      "reason": "Remove template branding that has no teaching role.",
+      "reasonZh": "移除不承担教学用途的模板标识。",
+      "phase": 5
     }
   ]
 }

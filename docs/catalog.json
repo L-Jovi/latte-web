@@ -607,5 +607,121 @@
     "pages": [
       "examples/wasm/dist/index.html"
     ]
+  },
+  {
+    "path": "examples/visuals/clock",
+    "title": "Dot matrix clock",
+    "titleZh": "点阵时钟",
+    "kind": "example",
+    "status": "maintained",
+    "pages": [
+      "examples/visuals/clock/index.html"
+    ]
+  },
+  {
+    "path": "examples/visuals/canvas-image",
+    "title": "Canvas pixels and image operations",
+    "titleZh": "Canvas 像素与图像操作",
+    "kind": "example",
+    "status": "maintained",
+    "pages": [
+      "examples/visuals/canvas-image/index.html"
+    ]
+  },
+  {
+    "path": "examples/visuals/drag",
+    "title": "Mouse and Pointer Events",
+    "titleZh": "鼠标与 Pointer Events",
+    "kind": "example",
+    "status": "maintained",
+    "pages": [
+      "examples/visuals/drag/index.html"
+    ]
+  },
+  {
+    "path": "examples/visuals/paging",
+    "title": "Gesture paging",
+    "titleZh": "手势翻页",
+    "kind": "example",
+    "status": "maintained",
+    "pages": [
+      "examples/visuals/paging/index.html"
+    ]
+  },
+  {
+    "path": "examples/visuals/carousel",
+    "title": "Layered carousel and Scroll Snap",
+    "titleZh": "分层轮播与 Scroll Snap",
+    "kind": "example",
+    "status": "maintained",
+    "pages": [
+      "examples/visuals/carousel/index.html"
+    ]
+  },
+  {
+    "path": "examples/visuals/photo-wall",
+    "title": "Photo wall transforms",
+    "titleZh": "照片墙变换",
+    "kind": "example",
+    "status": "maintained",
+    "pages": [
+      "examples/visuals/photo-wall/index.html"
+    ]
+  },
+  {
+    "path": "examples/visuals/search",
+    "title": "Local search suggestions",
+    "titleZh": "本地搜索建议",
+    "kind": "example",
+    "status": "maintained",
+    "pages": [
+      "examples/visuals/search/index.html"
+    ]
+  },
+  {
+    "path": "examples/visuals/motion",
+    "title": "Navigation, steps and circular progress",
+    "titleZh": "导航、步骤条与圆形进度",
+    "kind": "example",
+    "status": "maintained",
+    "pages": [
+      "examples/visuals/motion/index.html"
+    ]
+  },
+  {
+    "path": "examples/visuals/lottery",
+    "title": "Rotating selector",
+    "titleZh": "旋转选择器",
+    "kind": "example",
+    "status": "maintained",
+    "pages": [
+      "examples/visuals/lottery/index.html"
+    ]
+  },
+  {
+    "path": "examples/visuals",
+    "title": "Visual experiment guide",
+    "titleZh": "视觉实验导读",
+    "kind": "example",
+    "status": "maintained",
+    "pages": []
+  },
+  {
+    "path": "examples/performance",
+    "title": "Browser performance observations",
+    "titleZh": "浏览器性能观测",
+    "kind": "example",
+    "status": "maintained",
+    "pages": [
+      "examples/performance/dist/index.html"
+    ]
+  },
+  {
+    "path": "docs/history/performance",
+    "title": "Performance research (2019)",
+    "titleZh": "性能研究（2019）",
+    "kind": "history",
+    "status": "historical",
+    "pages": []
   }
 ]
