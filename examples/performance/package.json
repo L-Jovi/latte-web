@@ -1,0 +1,15 @@
+{
+  "name": "@latte/performance",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "web-vitals": "6.2.2"
+  },
+  "devDependencies": {
+    "vite": "8.3.1"
+  }
+}

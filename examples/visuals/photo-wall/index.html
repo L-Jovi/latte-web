@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  /><title>A photo wall without borrowed photos</title
+  ><link rel="stylesheet" href="../style.css" />
+  <h1>A photo wall without borrowed photos</h1>
+  <p>
+    Each card is a small self-authored CSS landscape. Focus a card with Tab or
+    hover it to see the same transform.
+  </p>
+  <div class="wall">
+    <button class="photo" style="--angle: -7deg; --hue: 0">
+      <span class="landscape"></span>Landscape 1</button
+    ><button class="photo" style="--angle: 4deg; --hue: 35">
+      <span class="landscape"></span>Landscape 2</button
+    ><button class="photo" style="--angle: 9deg; --hue: 70">
+      <span class="landscape"></span>Landscape 3</button
+    ><button class="photo" style="--angle: -4deg; --hue: 105">
+      <span class="landscape"></span>Landscape 4</button
+    ><button class="photo" style="--angle: 6deg; --hue: 140">
+      <span class="landscape"></span>Landscape 5</button
+    ><button class="photo" style="--angle: -8deg; --hue: 175">
+      <span class="landscape"></span>Landscape 6
+    </button>
+  </div>
+  <style>
+    .wall {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+    }
+    .photo {
+      transform: rotate(var(--angle));
+      padding: 12px;
+      background: white;
+      box-shadow: 2px 8px 15px #0003;
+      transition: transform 0.3s;
+      position: relative;
+    }
+    .photo:hover,
+    .photo:focus-visible {
+      transform: rotate(0deg) scale(1.08);
+      z-index: 2;
+    }
+    .landscape {
+      display: block;
+      height: 120px;
+      background:
+        linear-gradient(150deg, transparent 50%, hsl(var(--hue) 30% 38%) 51%),
+        linear-gradient(30deg, #86af96 48%, #dce7ec 49%);
+    }
+  </style>
+</html>

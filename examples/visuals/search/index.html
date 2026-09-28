@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  /><title>Local search suggestions</title
+  ><link rel="stylesheet" href="../style.css" />
+  <h1>Local search suggestions</h1>
+  <p>
+    Type a Web topic, use Arrow keys, then Enter. Suggestions are a
+    repository-owned JSON file.
+  </p>
+  <label
+    >Topic
+    <input
+      id="query"
+      role="combobox"
+      aria-autocomplete="list"
+      aria-controls="suggestions"
+      aria-expanded="false"
+      autocomplete="off"
+  /></label>
+  <ul id="suggestions" role="listbox" aria-label="Suggestions" hidden></ul>
+  <output aria-live="polite">Ready</output
+  ><style>
+    [role='option'] {
+      padding: 0.4rem;
+      cursor: pointer;
+    }
+    [aria-selected='true'] {
+      background: #d5eee8;
+    }
+    ul {
+      padding: 0;
+      list-style: none;
+      max-width: 25rem;
+    }
+  </style>
+  <script type="module" src="app.js"></script>
+</html>

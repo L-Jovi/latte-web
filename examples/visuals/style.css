@@ -1,0 +1,68 @@
+:root {
+  font: 17px/1.6 system-ui;
+  color: #20313e;
+  background: #f6f4ef;
+}
+body {
+  max-width: 64rem;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+button,
+input,
+select {
+  font: inherit;
+}
+button {
+  padding: 0.35rem 0.8rem;
+  cursor: pointer;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid #b74e2a;
+  outline-offset: 3px;
+}
+section {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: white;
+  border: 1px solid #ccd4d4;
+  border-radius: 0.5rem;
+}
+canvas {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid #ccd4d4;
+  background: white;
+}
+output {
+  display: block;
+  min-height: 1.6em;
+}
+label {
+  display: inline-block;
+  margin: 0.4rem;
+}
+a {
+  color: #075f6b;
+}
+h1 {
+  line-height: 1.25;
+}
+.row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

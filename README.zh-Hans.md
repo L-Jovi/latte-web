@@ -92,11 +92,23 @@ npm run dev
 - [GraphQL 服务与数据库](examples/graphql/server/README.zh-Hans.md) — maintained
 - [Apollo Client 请求与订阅](examples/graphql/client/README.zh-Hans.md) — maintained
 - [Rust 到 WebAssembly](examples/wasm/README.zh-Hans.md) — maintained
+- [点阵时钟](examples/visuals/clock/README.zh-Hans.md) — maintained
+- [Canvas 像素与图像操作](examples/visuals/canvas-image/README.zh-Hans.md) — maintained
+- [鼠标与 Pointer Events](examples/visuals/drag/README.zh-Hans.md) — maintained
+- [手势翻页](examples/visuals/paging/README.zh-Hans.md) — maintained
+- [分层轮播与 Scroll Snap](examples/visuals/carousel/README.zh-Hans.md) — maintained
+- [照片墙变换](examples/visuals/photo-wall/README.zh-Hans.md) — maintained
+- [本地搜索建议](examples/visuals/search/README.zh-Hans.md) — maintained
+- [导航、步骤条与圆形进度](examples/visuals/motion/README.zh-Hans.md) — maintained
+- [旋转选择器](examples/visuals/lottery/README.zh-Hans.md) — maintained
+- [视觉实验导读](examples/visuals/README.zh-Hans.md) — maintained
+- [浏览器性能观测](examples/performance/README.zh-Hans.md) — maintained
 
 ### 历史研究
 
 - [React 历史架构研究](docs/history/react/README.zh-Hans.md) — historical
 - [TestUtils 与 Enzyme 历史用例](docs/history/testing/README.zh-Hans.md) — historical
+- [性能研究（2019）](docs/history/performance/README.zh-Hans.md) — historical
 
 ## 验证与维护状态
 
@@ -108,7 +120,7 @@ npm run test:browser
 
 `maintained` 表示纳入当前检查；`historical` 仅作有出处的历史阅读。每个项目文档说明测试覆盖与刻意简化。没有统一产品版本或发布承诺。
 
-迁移仍分批进行：旧目录中的内容暂不属于已维护运行集合。
+[阅读与验证指南](docs/README.zh-Hans.md) · [生态取舍](docs/ecosystem.zh-Hans.md) · [验证边界](docs/verification.zh-Hans.md)
 
 [迁移清单](docs/migration.zh-Hans.md) · [贡献](CONTRIBUTING.md) · [行为准则](CODE_OF_CONDUCT.md) · [安全报告](SECURITY.md)
 
