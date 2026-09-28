@@ -718,8 +718,8 @@
   },
   {
     "path": "docs/history/performance",
-    "title": "Performance research (2019)",
-    "titleZh": "性能研究（2019）",
+    "title": "Measuring page speed in 2019",
+    "titleZh": "2019 年怎样测页面速度",
     "kind": "history",
     "status": "historical",
     "pages": []
