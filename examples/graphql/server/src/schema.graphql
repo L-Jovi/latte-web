@@ -1,0 +1,48 @@
+type User {
+  id: ID!
+  name: String!
+}
+type Link {
+  id: ID!
+  createdAt: String!
+  url: String!
+  description: String!
+  postedBy: User!
+  votes: [Vote!]!
+}
+type Vote {
+  id: ID!
+  link: Link!
+  user: User!
+}
+type Feed {
+  links: [Link!]!
+  count: Int!
+}
+type AuthPayload {
+  token: String!
+  user: User!
+}
+enum SortOrder {
+  asc
+  desc
+}
+type Query {
+  info: String!
+  feed(
+    filter: String! = ""
+    skip: Int! = 0
+    take: Int! = 3
+    orderBy: SortOrder! = desc
+  ): Feed!
+}
+type Mutation {
+  signup(email: String!, password: String!, name: String!): AuthPayload!
+  login(email: String!, password: String!): AuthPayload!
+  post(url: String!, description: String!): Link!
+  vote(linkId: ID!): Vote!
+}
+type Subscription {
+  newLink: Link!
+  newVote: Vote!
+}

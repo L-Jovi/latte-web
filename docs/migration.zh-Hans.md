@@ -19,12 +19,8 @@
 | [browser](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/browser) | retain | [fundamentals/browser](../fundamentals/browser) | 保留机制理解，修正正确性并说明边界。 | 1 |
 | [style/layout](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/style/layout) | retain | [fundamentals/css](../fundamentals/css) | 保留机制理解，修正正确性并说明边界。 | 1 |
 | [template/html](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/template/html) | retain | [fundamentals/html](../fundamentals/html) | 保留机制理解，修正正确性并说明边界。 | 1 |
-| [graphql](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/graphql) | pending | [graphql](../graphql) | 按计划在后续批次迁移。 | — |
-| [network](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/network) | pending | [network](../network) | 按计划在后续批次迁移。 | — |
 | [performance](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/performance) | pending | [performance](../performance) | 按计划在后续批次迁移。 | — |
-| [storage](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/storage) | pending | [storage](../storage) | 按计划在后续批次迁移。 | — |
 | [vision-samples](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/vision-samples) | pending | [vision-samples](../vision-samples) | 按计划在后续批次迁移。 | — |
-| [wasm](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/wasm) | pending | [wasm](../wasm) | 按计划在后续批次迁移。 | — |
 | [README.md](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/README.md) | rewrite | [README.md](../README.md) | 替换过时的仓库入口和配置。 | 1 |
 | [SECURITY.md](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/SECURITY.md) | rewrite | [SECURITY.md](../SECURITY.md) | 替换过时的仓库入口和配置。 | 1 |
 | [.gitignore](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/.gitignore) | rewrite | [.gitignore](../.gitignore) | 替换过时的仓库入口和配置。 | 1 |
@@ -60,3 +56,10 @@
 | [react/react-practice/src/views/RichDiv](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/react/react-practice/src/views/RichDiv) | merge | [examples/rich-text-draft](../examples/rich-text-draft) | 把受控 EditorState 机制提取到独立的 Draft/Lexical 对照。 | 3 |
 | [react/react-practice/src/modules/actions/richDiv.js](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/react/react-practice/src/modules/actions/richDiv.js) | merge | [examples/rich-text-draft](../examples/rich-text-draft) | 把受控 EditorState 机制提取到独立的 Draft/Lexical 对照。 | 3 |
 | [react/react-practice/src/modules/reducers/richDiv.js](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/react/react-practice/src/modules/reducers/richDiv.js) | merge | [examples/rich-text-draft](../examples/rich-text-draft) | 把受控 EditorState 机制提取到独立的 Draft/Lexical 对照。 | 3 |
+| [network](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/network) | rewrite | [examples/network](../examples/network) | 保留 JSONP，对照本地 Fetch/CORS/AbortController，退役私有接口。 | 4 |
+| [storage](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/storage) | rewrite | [examples/service-worker](../examples/service-worker) | 修复注册和 respondWith，限定作用域并验证离线缓存与清理。 | 4 |
+| [graphql](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/graphql) | rewrite | [examples/graphql](../examples/graphql) | 拆分 HTTP 基础与完整 Apollo/Prisma 应用。 | 4 |
+| [graphql/graphql-server-demo](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/graphql/graphql-server-demo) | rewrite | [examples/graphql-http](../examples/graphql-http) | 在 graphql-http 上保留 schema、class resolver 和消息练习。 | 4 |
+| [graphql/react-apollo](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/graphql/react-apollo) | rewrite | [examples/graphql](../examples/graphql) | 保留查询登录发布投票订阅，更新 API 并使用虚构 seed。 | 4 |
+| [graphql/react-apollo/server/prisma/dev.db](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/graphql/react-apollo/server/prisma/dev.db) | retire | — | 运行数据由 schema、迁移与虚构 seed 重建。 | 4 |
+| [wasm](https://github.com/L-Jovi/latte-web/tree/ef3fa2adad5155c5fd0e041cf6ac086e86222827/wasm) | rewrite | [examples/wasm](../examples/wasm) | 保留 Rust/浏览器 ABI，退役 CRA，以 Cargo 生成整数模块。 | 4 |

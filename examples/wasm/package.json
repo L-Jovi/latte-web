@@ -1,0 +1,13 @@
+{
+  "name": "@latte/wasm",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:wasm": "node build.mjs"
+  },
+  "devDependencies": {
+    "vite": "8.3.1"
+  }
+}

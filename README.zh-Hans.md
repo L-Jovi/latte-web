@@ -85,6 +85,13 @@ npm run dev
 - [现代 React 与 Redux Toolkit](examples/react-modern/README.zh-Hans.md) — maintained
 - [Draft.js 受控编辑](examples/rich-text-draft/README.zh-Hans.md) — maintained
 - [Lexical 状态与插件](examples/rich-text-lexical/README.zh-Hans.md) — maintained
+- [JSONP、Fetch 与取消请求](examples/network/README.zh-Hans.md) — maintained
+- [可重复的离线缓存](examples/service-worker/README.zh-Hans.md) — maintained
+- [GraphQL 的 HTTP 基础](examples/graphql-http/README.zh-Hans.md) — maintained
+- [Apollo、订阅与 SQLite](examples/graphql/README.zh-Hans.md) — maintained
+- [GraphQL 服务与数据库](examples/graphql/server/README.zh-Hans.md) — maintained
+- [Apollo Client 请求与订阅](examples/graphql/client/README.zh-Hans.md) — maintained
+- [Rust 到 WebAssembly](examples/wasm/README.zh-Hans.md) — maintained
 
 ### 历史研究
 
