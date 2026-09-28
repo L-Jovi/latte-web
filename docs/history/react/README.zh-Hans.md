@@ -4,7 +4,7 @@
 
 > 对应英文版：2026-09-28。
 
-这些中文研究存在于 ef3fa2a 基线；Domain-driven-design.md 最后修改于 2019-11-15（372d6dd）。它们记录当时如何划分职责，是历史论述，不是当前性能数据或框架推荐。今天 Fetch 可通过 AbortController 取消；可运行应用也已替换 react-router-redux 和过时生命周期。保留原文与图片，并增加明确的历史说明。
+这些中文研究存在于 1be029e 基线；Domain-driven-design.md 最后修改于 2019-11-15（2c6aeb0）。它们记录当时如何划分职责，是历史论述，不是当前性能数据或框架推荐。今天 Fetch 可通过 AbortController 取消；可运行应用也已替换 react-router-redux 和过时生命周期。保留原文与图片，并增加明确的历史说明。
 
 ## 运行与预期
 

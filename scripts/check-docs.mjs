@@ -61,7 +61,18 @@ for (const file of files) {
     !readFileSync(file, 'utf8').includes('对应英文版')
   )
     errors.push(`${file}: missing the 对应英文版 sync line`);
-  const source = readFileSync(file, 'utf8').replace(/```[\s\S]*?```/g, '');
+  const text = readFileSync(file, 'utf8');
+  // Commits from before the 2026 history rewrite are still cached by GitHub and
+  // hold withdrawn material, so pinned links may only use the migration baseline.
+  for (const [, sha] of text.matchAll(
+    /github\.com\/L-Jovi\/latte-web\/(?:tree|blob|commit)\/([0-9a-f]{7,40})\b/g,
+  ))
+    if (!migration.baseline.startsWith(sha))
+      errors.push(
+        `${file}: pinned link to ${sha}; use the baseline ${migration.baseline.slice(0, 7)}`,
+      );
+  // Code is not Markdown: `a[b](c)` inside a code span or block is not a link.
+  const source = text.replace(/```[\s\S]*?```/g, '').replace(/`[^`\n]*`/g, '');
   for (const match of source.matchAll(
     /!?\[[^\]]*\]\(([^\s)]+)(?:\s+"[^"]*")?\)/g,
   )) {
