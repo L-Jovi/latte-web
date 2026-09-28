@@ -11,5 +11,6 @@
 - [布局与 transform](browser/README.zh-Hans.md)
 - [CSS 布局](css/README.zh-Hans.md)
 - [HTML 语义](html/README.zh-Hans.md)
+- [类型与显式 Redux 风格 reducer](typescript/README.zh-Hans.md)
 
 [返回学习路线](../README.zh-Hans.md)

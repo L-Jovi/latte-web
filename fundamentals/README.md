@@ -11,5 +11,6 @@ English | [简体中文](README.zh-Hans.md)
 - [Layout and transform](browser/README.md)
 - [CSS layout](css/README.md)
 - [Semantic HTML](html/README.md)
+- [Types and an explicit Redux-style reducer](typescript/README.md)
 
 [Learning path](../README.md)

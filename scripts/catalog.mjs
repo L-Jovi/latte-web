@@ -8,7 +8,7 @@ const escape=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"',
 for(const zh of [false,true]) {
   const suffix=zh?'.zh-Hans':'';
   let body=zh?`# latte-web\n\n[English](README.md) | 简体中文\n\n一组解释 Web 如何工作的学习实验：先看可观察的行为，再读最小实现，最后比较现代工具解决了哪些问题。手写练习有明确边界，并不作为生产库发布。\n\n## 开始阅读与运行\n\n需要 Node 24 LTS 和 npm 11。在仓库根目录执行：\n`:`# latte-web\n\nEnglish | [简体中文](README.zh-Hans.md)\n\nSmall experiments explaining how the Web works. Observe a behavior, read the smallest useful implementation, then compare it with a modern tool. Handwritten exercises have explicit limits; they are not published production libraries.\n\n## Read and run\n\nUse Node 24 LTS and npm 11. From the repository root:\n`;
-  body+='\n```sh\nnpm ci\nnpm run dev\n# Open http://127.0.0.1:4173\n```\n\n';
+  body+='\n```sh\nnpm ci\nnpm run build\nnpm run dev\n# Open http://127.0.0.1:4173\n```\n\n';
   body+=zh?'应用和工具链的命令写在各项目 README；根入口提供静态实验导航。普通 JavaScript 安装不需要 Rust。\n\n## 学习路线\n\n按基础 → 手写机制 → 工具链 → 应用实践阅读，也可以直接选一个问题。\n':'Application and toolchain commands live in their own READMEs. The root server is the static experiment index. JavaScript installation does not require Rust.\n\n## Learning path\n\nRead foundations → handwritten mechanisms → toolchains → applications, or choose one question directly.\n';
   for(const [kind,dir,title,titleZh] of groups) {
     const entries=catalog.filter(e=>e.kind===kind);

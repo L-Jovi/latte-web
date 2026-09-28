@@ -1,0 +1,15 @@
+{
+  "name": "@latte/gulp-typescript",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "build": "gulp",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "5.0.1",
+    "typescript": "6.0.3"
+  }
+}
