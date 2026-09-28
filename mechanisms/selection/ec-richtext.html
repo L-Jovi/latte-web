@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><title>Highlight and keep the selection</title
+  ><style>
+    mark {
+      background: #ffdc80;
+    }
+    #text {
+      border: 1px solid;
+      padding: 1rem;
+      min-height: 5rem;
+      white-space: pre-wrap;
+    }
+  </style>
+  <h1>Highlight #tags# without losing the cursor</h1>
+  <p>
+    A single plain-text paragraph. Composition is left alone until it completes.
+  </p>
+  <div
+    id="text"
+    contenteditable="plaintext-only"
+    role="textbox"
+    aria-label="Highlighted editor"
+  ></div>
+  <script type="module" src="highlight.js"></script>
+</html>

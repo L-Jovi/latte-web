@@ -444,5 +444,102 @@
       "examples/components/dist/demo/index.html",
       "examples/components/dist/consumer/consumer.html"
     ]
+  },
+  {
+    "path": "mechanisms/mini-react",
+    "title": "A minimal element/component renderer",
+    "titleZh": "最小元素与组件渲染器",
+    "kind": "mechanism",
+    "status": "maintained",
+    "pages": [
+      "mechanisms/mini-react/index.html"
+    ]
+  },
+  {
+    "path": "mechanisms/router",
+    "title": "A History API router",
+    "titleZh": "History API 路由机制",
+    "kind": "mechanism",
+    "status": "maintained",
+    "pages": [
+      "mechanisms/router/dist/index.html"
+    ]
+  },
+  {
+    "path": "mechanisms/compose",
+    "title": "Function composition",
+    "titleZh": "函数组合",
+    "kind": "mechanism",
+    "status": "maintained",
+    "pages": [
+      "mechanisms/compose/index.html"
+    ]
+  },
+  {
+    "path": "mechanisms/selection",
+    "title": "Selection, Range and cursor restoration",
+    "titleZh": "Selection、Range 与光标恢复",
+    "kind": "mechanism",
+    "status": "maintained",
+    "pages": [
+      "mechanisms/selection/index.html",
+      "mechanisms/selection/ec-richtext.html"
+    ]
+  },
+  {
+    "path": "examples/react-classic",
+    "title": "Classic React and Redux",
+    "titleZh": "经典 React 与 Redux",
+    "kind": "example",
+    "status": "maintained",
+    "pages": [
+      "examples/react-classic/dist/index.html"
+    ]
+  },
+  {
+    "path": "examples/react-modern",
+    "title": "Modern React and Redux Toolkit",
+    "titleZh": "现代 React 与 Redux Toolkit",
+    "kind": "example",
+    "status": "maintained",
+    "pages": [
+      "examples/react-modern/dist/index.html"
+    ]
+  },
+  {
+    "path": "examples/rich-text-draft",
+    "title": "Draft.js controlled editing",
+    "titleZh": "Draft.js 受控编辑",
+    "kind": "example",
+    "status": "maintained",
+    "pages": [
+      "examples/rich-text-draft/dist/index.html"
+    ]
+  },
+  {
+    "path": "examples/rich-text-lexical",
+    "title": "Lexical editor state and plugins",
+    "titleZh": "Lexical 状态与插件",
+    "kind": "example",
+    "status": "maintained",
+    "pages": [
+      "examples/rich-text-lexical/dist/index.html"
+    ]
+  },
+  {
+    "path": "docs/history/react",
+    "title": "Historical React architecture notes",
+    "titleZh": "React 历史架构研究",
+    "kind": "history",
+    "status": "historical",
+    "pages": []
+  },
+  {
+    "path": "docs/history/testing",
+    "title": "Historical TestUtils and Enzyme cases",
+    "titleZh": "TestUtils 与 Enzyme 历史用例",
+    "kind": "history",
+    "status": "historical",
+    "pages": []
   }
 ]

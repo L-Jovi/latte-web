@@ -115,32 +115,8 @@
       "reasonZh": "按计划在后续批次迁移。"
     },
     {
-      "old": "react",
-      "new": "react",
-      "action": "pending",
-      "phase": null,
-      "reason": "Scheduled for a later migration batch.",
-      "reasonZh": "按计划在后续批次迁移。"
-    },
-    {
-      "old": "rich-text",
-      "new": "rich-text",
-      "action": "pending",
-      "phase": null,
-      "reason": "Scheduled for a later migration batch.",
-      "reasonZh": "按计划在后续批次迁移。"
-    },
-    {
       "old": "storage",
       "new": "storage",
-      "action": "pending",
-      "phase": null,
-      "reason": "Scheduled for a later migration batch.",
-      "reasonZh": "按计划在后续批次迁移。"
-    },
-    {
-      "old": "test",
-      "new": "test",
       "action": "pending",
       "phase": null,
       "reason": "Scheduled for a later migration batch.",
@@ -329,6 +305,118 @@
       "reason": "Remove duplicate library/CRA and generated Storybook examples.",
       "reasonZh": "移除重复组件库、CRA 及自动生成的 Storybook 示例。",
       "phase": 2
+    },
+    {
+      "old": "react",
+      "new": "examples/react-classic",
+      "action": "merge",
+      "reason": "Preserve the classic architecture, add a matching modern scenario, extract handwritten mechanisms.",
+      "reasonZh": "保留经典组织方式，增加同场景现代实现，提取手写机制。",
+      "phase": 3
+    },
+    {
+      "old": "react/react-practice",
+      "new": "examples/react-classic",
+      "action": "retain",
+      "reason": "Repair Todo editing, async import and routing on React 19 while keeping class/connect, Immutable and Saga.",
+      "reasonZh": "在 React 19 上修复 Todo 编辑、异步导入与路由，保留 class/connect、Immutable、Saga。",
+      "phase": 3
+    },
+    {
+      "old": "react/react-practice/docs",
+      "new": "docs/history/react",
+      "action": "historical",
+      "reason": "Keep dated architecture notes; link to current implementation separately.",
+      "reasonZh": "保存有日期的架构研究，另行链接当前实现。",
+      "phase": 3
+    },
+    {
+      "old": "react/react-practice/docs/create-react-app.md",
+      "new": null,
+      "action": "retire",
+      "reason": "Duplicated official CRA manual is replaced by the official migration source.",
+      "reasonZh": "重复的官方 CRA 长文改为官方迁移说明链接。",
+      "phase": 3
+    },
+    {
+      "old": "react/cra/react-practice",
+      "new": "examples/react-modern",
+      "action": "merge",
+      "reason": "Move typed routing concepts into the modern Todo app; consolidate generated Storybook scaffolds.",
+      "reasonZh": "将类型化路由概念合入现代 Todo 应用，合并生成的 Storybook 外壳。",
+      "phase": 3
+    },
+    {
+      "old": "react/scratches/react-project-scratch",
+      "new": "examples/react-classic",
+      "action": "merge",
+      "reason": "Async counter and route scaffolding is represented by the fuller classic Todo/Saga scenario.",
+      "reasonZh": "异步计数与路由外壳合入完整的经典 Todo/Saga 场景。",
+      "phase": 3
+    },
+    {
+      "old": "react/scratches/react-scratch",
+      "new": "mechanisms/mini-react",
+      "action": "retain",
+      "reason": "Keep element/component/render separation; replace shared globals with instance-local updates.",
+      "reasonZh": "保留元素、组件与渲染分层，用实例局部更新替代共享全局状态。",
+      "phase": 3
+    },
+    {
+      "old": "react/scratches/router-scratch",
+      "new": "mechanisms/router",
+      "action": "retain",
+      "reason": "Keep context, class components and History API; fix stable listeners and unmount cleanup.",
+      "reasonZh": "保留 Context、class 与 History API，修复监听引用与卸载清理。",
+      "phase": 3
+    },
+    {
+      "old": "react/scratches/redux-scratch",
+      "new": "mechanisms/compose",
+      "action": "retain",
+      "reason": "Name the actual compose lesson; support zero functions and argument forwarding.",
+      "reasonZh": "明确实际教学内容是 compose，补齐零函数与参数传递。",
+      "phase": 3
+    },
+    {
+      "old": "rich-text",
+      "new": "mechanisms/selection",
+      "action": "retain",
+      "reason": "Keep Selection/Range insertion and highlight rebuilding with safe text nodes and cursor restoration.",
+      "reasonZh": "保留 Selection/Range 插入与高亮重建，用文本节点恢复光标。",
+      "phase": 3
+    },
+    {
+      "old": "test",
+      "new": "docs/history/testing",
+      "action": "historical",
+      "reason": "Preserve representative attributed Enzyme/TestUtils cases; active behavior tests use Testing Library and browsers.",
+      "reasonZh": "保存有署名的 Enzyme/TestUtils 代表用例，当前行为测试使用 Testing Library 与浏览器。",
+      "phase": 3
+    },
+    {
+      "old": "react/react-practice/src/views/RichDiv",
+      "new": "examples/rich-text-draft",
+      "action": "merge",
+      "reason": "Extract the controlled EditorState lesson into a standalone Draft/Lexical comparison.",
+      "reasonZh": "把受控 EditorState 机制提取到独立的 Draft/Lexical 对照。",
+      "phase": 3
+    },
+    {
+      "old": "react/react-practice/src/modules/actions/richDiv.js",
+      "new": "examples/rich-text-draft",
+      "action": "merge",
+      "reason": "Extract the controlled EditorState lesson into a standalone Draft/Lexical comparison.",
+      "reasonZh": "把受控 EditorState 机制提取到独立的 Draft/Lexical 对照。",
+      "phase": 3
+    },
+    {
+      "old": "react/react-practice/src/modules/reducers/richDiv.js",
+      "new": "examples/rich-text-draft",
+      "action": "merge",
+      "reason": "Extract the controlled EditorState lesson into a standalone Draft/Lexical comparison.",
+      "reasonZh": "把受控 EditorState 机制提取到独立的 Draft/Lexical 对照。",
+      "phase": 3
     }
   ]
 }
