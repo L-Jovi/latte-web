@@ -1,0 +1,11 @@
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.gif binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.db binary
+**/reference/** linguist-vendored
+mechanisms/generator/regenerator-runtime.js linguist-vendored
+docs/** linguist-documentation

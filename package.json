@@ -1,0 +1,31 @@
+{
+  "name": "latte-web",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24 <25",
+    "npm": ">=11 <12"
+  },
+  "packageManager": "npm@11.19.0",
+  "workspaces": [],
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "test": "node --test tests/unit/*.test.js",
+    "test:aplus": "node scripts/test-aplus.cjs",
+    "test:browser": "playwright test",
+    "docs:generate": "node scripts/catalog.mjs",
+    "check:docs": "node scripts/check-docs.mjs",
+    "check": "npm test && npm run test:aplus && npm run check:docs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "promises-aplus-tests": "2.1.2"
+  },
+  "overrides": {
+    "promises-aplus-tests": {
+      "mocha": "12.0.2",
+      "underscore": "1.13.8"
+    }
+  }
+}

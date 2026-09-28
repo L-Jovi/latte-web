@@ -69,3 +69,15 @@ Session.vim
 
 # Release
 dist/
+
+# Verification and generated outputs
+output/
+playwright-report/
+test-results/
+**/storybook-static/
+**/target/
+**/pkg/
+**/*.db
+**/*.db-journal
+.env.*
+!.env.example

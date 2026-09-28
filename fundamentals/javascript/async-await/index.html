@@ -1,0 +1,3 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Async functions</title><h1>Async functions</h1>
+<p>Both functions return the same result. Await pauses this function, not the main thread.</p><output></output>
+<script>function chain(){return Promise.resolve(2).then(value=>value*3)}async function withAwait(){const value=await Promise.resolve(2);return value*3}Promise.all([chain(),withAwait()]).then(results=>document.querySelector('output').textContent=results.join(' = '))</script></html>

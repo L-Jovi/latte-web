@@ -1,0 +1,246 @@
+{
+  "baseline": "ef3fa2adad5155c5fd0e041cf6ac086e86222827",
+  "complete": false,
+  "entries": [
+    {
+      "old": "syntax",
+      "new": "fundamentals/javascript",
+      "action": "retain",
+      "phase": 1,
+      "reason": "Preserve the teaching mechanism; repair correctness and document its limits.",
+      "reasonZh": "保留机制理解，修正正确性并说明边界。"
+    },
+    {
+      "old": "es-feature/class",
+      "new": "fundamentals/javascript/classes",
+      "action": "retain",
+      "phase": 1,
+      "reason": "Preserve the teaching mechanism; repair correctness and document its limits.",
+      "reasonZh": "保留机制理解，修正正确性并说明边界。"
+    },
+    {
+      "old": "es-feature/async+await",
+      "new": "fundamentals/javascript/async-await",
+      "action": "retain",
+      "phase": 1,
+      "reason": "Preserve the teaching mechanism; repair correctness and document its limits.",
+      "reasonZh": "保留机制理解，修正正确性并说明边界。"
+    },
+    {
+      "old": "es-feature/generator",
+      "new": "mechanisms/generator",
+      "action": "retain",
+      "phase": 1,
+      "reason": "Preserve the teaching mechanism; repair correctness and document its limits.",
+      "reasonZh": "保留机制理解，修正正确性并说明边界。"
+    },
+    {
+      "old": "es-feature/promise",
+      "new": "mechanisms/promise",
+      "action": "retain",
+      "phase": 1,
+      "reason": "Preserve the teaching mechanism; repair correctness and document its limits.",
+      "reasonZh": "保留机制理解，修正正确性并说明边界。"
+    },
+    {
+      "old": "design-mode",
+      "new": "mechanisms/design-patterns",
+      "action": "retain",
+      "phase": 1,
+      "reason": "Preserve the teaching mechanism; repair correctness and document its limits.",
+      "reasonZh": "保留机制理解，修正正确性并说明边界。"
+    },
+    {
+      "old": "event",
+      "new": "fundamentals/events",
+      "action": "retain",
+      "phase": 1,
+      "reason": "Preserve the teaching mechanism; repair correctness and document its limits.",
+      "reasonZh": "保留机制理解，修正正确性并说明边界。"
+    },
+    {
+      "old": "toolkit",
+      "new": "mechanisms/utilities",
+      "action": "retain",
+      "phase": 1,
+      "reason": "Preserve the teaching mechanism; repair correctness and document its limits.",
+      "reasonZh": "保留机制理解，修正正确性并说明边界。"
+    },
+    {
+      "old": "browser",
+      "new": "fundamentals/browser",
+      "action": "retain",
+      "phase": 1,
+      "reason": "Preserve the teaching mechanism; repair correctness and document its limits.",
+      "reasonZh": "保留机制理解，修正正确性并说明边界。"
+    },
+    {
+      "old": "style/layout",
+      "new": "fundamentals/css",
+      "action": "retain",
+      "phase": 1,
+      "reason": "Preserve the teaching mechanism; repair correctness and document its limits.",
+      "reasonZh": "保留机制理解，修正正确性并说明边界。"
+    },
+    {
+      "old": "template/html",
+      "new": "fundamentals/html",
+      "action": "retain",
+      "phase": 1,
+      "reason": "Preserve the teaching mechanism; repair correctness and document its limits.",
+      "reasonZh": "保留机制理解，修正正确性并说明边界。"
+    },
+    {
+      "old": "build",
+      "new": "build",
+      "action": "pending",
+      "phase": null,
+      "reason": "Scheduled for a later migration batch.",
+      "reasonZh": "按计划在后续批次迁移。"
+    },
+    {
+      "old": "components",
+      "new": "components",
+      "action": "pending",
+      "phase": null,
+      "reason": "Scheduled for a later migration batch.",
+      "reasonZh": "按计划在后续批次迁移。"
+    },
+    {
+      "old": "graphql",
+      "new": "graphql",
+      "action": "pending",
+      "phase": null,
+      "reason": "Scheduled for a later migration batch.",
+      "reasonZh": "按计划在后续批次迁移。"
+    },
+    {
+      "old": "network",
+      "new": "network",
+      "action": "pending",
+      "phase": null,
+      "reason": "Scheduled for a later migration batch.",
+      "reasonZh": "按计划在后续批次迁移。"
+    },
+    {
+      "old": "performance",
+      "new": "performance",
+      "action": "pending",
+      "phase": null,
+      "reason": "Scheduled for a later migration batch.",
+      "reasonZh": "按计划在后续批次迁移。"
+    },
+    {
+      "old": "react",
+      "new": "react",
+      "action": "pending",
+      "phase": null,
+      "reason": "Scheduled for a later migration batch.",
+      "reasonZh": "按计划在后续批次迁移。"
+    },
+    {
+      "old": "rich-text",
+      "new": "rich-text",
+      "action": "pending",
+      "phase": null,
+      "reason": "Scheduled for a later migration batch.",
+      "reasonZh": "按计划在后续批次迁移。"
+    },
+    {
+      "old": "storage",
+      "new": "storage",
+      "action": "pending",
+      "phase": null,
+      "reason": "Scheduled for a later migration batch.",
+      "reasonZh": "按计划在后续批次迁移。"
+    },
+    {
+      "old": "style/less",
+      "new": "style/less",
+      "action": "pending",
+      "phase": null,
+      "reason": "Scheduled for a later migration batch.",
+      "reasonZh": "按计划在后续批次迁移。"
+    },
+    {
+      "old": "template/handlebars",
+      "new": "template/handlebars",
+      "action": "pending",
+      "phase": null,
+      "reason": "Scheduled for a later migration batch.",
+      "reasonZh": "按计划在后续批次迁移。"
+    },
+    {
+      "old": "test",
+      "new": "test",
+      "action": "pending",
+      "phase": null,
+      "reason": "Scheduled for a later migration batch.",
+      "reasonZh": "按计划在后续批次迁移。"
+    },
+    {
+      "old": "typescript",
+      "new": "typescript",
+      "action": "pending",
+      "phase": null,
+      "reason": "Scheduled for a later migration batch.",
+      "reasonZh": "按计划在后续批次迁移。"
+    },
+    {
+      "old": "vision-samples",
+      "new": "vision-samples",
+      "action": "pending",
+      "phase": null,
+      "reason": "Scheduled for a later migration batch.",
+      "reasonZh": "按计划在后续批次迁移。"
+    },
+    {
+      "old": "wasm",
+      "new": "wasm",
+      "action": "pending",
+      "phase": null,
+      "reason": "Scheduled for a later migration batch.",
+      "reasonZh": "按计划在后续批次迁移。"
+    },
+    {
+      "old": "README.md",
+      "new": "README.md",
+      "action": "rewrite",
+      "phase": 1,
+      "reason": "Replace obsolete repository scaffolding.",
+      "reasonZh": "替换过时的仓库入口和配置。"
+    },
+    {
+      "old": "SECURITY.md",
+      "new": "SECURITY.md",
+      "action": "rewrite",
+      "phase": 1,
+      "reason": "Replace obsolete repository scaffolding.",
+      "reasonZh": "替换过时的仓库入口和配置。"
+    },
+    {
+      "old": ".gitignore",
+      "new": ".gitignore",
+      "action": "rewrite",
+      "phase": 1,
+      "reason": "Replace obsolete repository scaffolding.",
+      "reasonZh": "替换过时的仓库入口和配置。"
+    },
+    {
+      "old": ".tern-project",
+      "new": null,
+      "action": "retire",
+      "phase": 1,
+      "reason": "Replace obsolete repository scaffolding.",
+      "reasonZh": "替换过时的仓库入口和配置。"
+    },
+    {
+      "old": "event/node-task/task-order.js",
+      "new": "fundamentals/events/node-task/task-order.cjs",
+      "action": "retain",
+      "reason": "Keep CommonJS queue ordering explicit on an ESM repository.",
+      "reasonZh": "明确保留 CommonJS 的任务队列顺序。",
+      "phase": 1
+    }
+  ]
+}

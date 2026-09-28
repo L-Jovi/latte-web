@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Circle Ref</title>
+</head>
+
+<body>
+    <h1>Cycles versus repeated references</h1>
+    <p>Open DevTools Console to observe the values. Read the README for the expected behavior.</p>
+  <script src="./check-by-json-parser.js"></script>
+  <script src="./check-by-iterator.js"></script>
+
+  <script>
+    const obj = { foo: 1, bar: 'hello', baz: ['a', 'b', 3] }
+    obj.circleRef = obj
+
+    console.log(isCycleByIterator(obj))
+    console.log(isCycleByJSON(obj))
+  </script>
+</body>
+
+</html>
