@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><title>Restore a selection</title>
+  <h1>Restore a cursor after leaving the editor</h1>
+  <div
+    id="edit"
+    contenteditable="plaintext-only"
+    role="textbox"
+    aria-label="Editor"
+    style="border: 1px solid; padding: 1rem; min-height: 5rem"
+  ></div>
+  <label>Text to insert <input id="emojiInput" value="✨" /></label
+  ><button id="sendEmoji">Insert at saved cursor</button>
+  <script type="module" src="cursor.js"></script>
+</html>

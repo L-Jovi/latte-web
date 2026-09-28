@@ -51,6 +51,10 @@ npm run dev
 - [十进制字符串格式化](mechanisms/utilities/format/README.zh-Hans.md) — maintained
 - [链式求和](mechanisms/utilities/add/README.zh-Hans.md) — maintained
 - [两种手写打包器](mechanisms/bundlers/README.zh-Hans.md) — maintained
+- [最小元素与组件渲染器](mechanisms/mini-react/README.zh-Hans.md) — maintained
+- [History API 路由机制](mechanisms/router/README.zh-Hans.md) — maintained
+- [函数组合](mechanisms/compose/README.zh-Hans.md) — maintained
+- [Selection、Range 与光标恢复](mechanisms/selection/README.zh-Hans.md) — maintained
 
 ### 工具链
 
@@ -77,6 +81,15 @@ npm run dev
 ### 应用与浏览器实验
 
 - [Card、Button 与三种打包方式](examples/components/README.zh-Hans.md) — maintained
+- [经典 React 与 Redux](examples/react-classic/README.zh-Hans.md) — maintained
+- [现代 React 与 Redux Toolkit](examples/react-modern/README.zh-Hans.md) — maintained
+- [Draft.js 受控编辑](examples/rich-text-draft/README.zh-Hans.md) — maintained
+- [Lexical 状态与插件](examples/rich-text-lexical/README.zh-Hans.md) — maintained
+
+### 历史研究
+
+- [React 历史架构研究](docs/history/react/README.zh-Hans.md) — historical
+- [TestUtils 与 Enzyme 历史用例](docs/history/testing/README.zh-Hans.md) — historical
 
 ## 验证与维护状态
 
