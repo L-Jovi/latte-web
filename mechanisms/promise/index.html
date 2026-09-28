@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><title>Promise: three steps</title>
-<h1>Promise: three steps</h1><p>The state machine, chaining and platform Promise solve progressively larger contracts. Open the source and console.</p>
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Promise from scratch · Latte Web</title>
+<h1>Promise from scratch</h1><p>The state machine, chaining and platform Promise solve progressively larger contracts. Open the source and console.</p>
 <output aria-live="polite"></output><script src="simple.js"></script><script src="promise-a+.js"></script><script src="index.js"></script>
 <script>const values=[];new ForgePromise(resolve=>resolve(1)).then(value=>{values.push(value);return value+1}).then(value=>{values.push(value);document.querySelector('output').textContent=values.join(',')})</script></html>

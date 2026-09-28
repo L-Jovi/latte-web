@@ -5,13 +5,13 @@ export default defineConfig({
   timeout: 30000,
   reporter: process.env.CI ? 'github' : 'list',
   use: {
-    baseURL: 'http://127.0.0.1:4180/latte-web/',
+    baseURL: 'http://127.0.0.1:4190/latte-web/',
     trace: 'retain-on-failure',
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
   webServer: {
     command: 'node tests/pages/serve.mjs _site',
-    url: 'http://127.0.0.1:4180/latte-web/index.html',
+    url: 'http://127.0.0.1:4190/latte-web/index.html',
     reuseExistingServer: false,
   },
 });

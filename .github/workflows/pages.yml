@@ -33,8 +33,10 @@ jobs:
         env:
           LATTE_PAGES_BASE: /latte-web/
       - run: npm run build:pages
-      # Test the exact files that will be published, under the /latte-web/ prefix.
+      # Render the social preview card, to be uploaded by hand in the repository settings.
       - run: npx playwright install --with-deps chromium
+      - run: npx playwright screenshot --viewport-size=1280,640 "file://$PWD/.github/social-preview.svg" _site/social-preview.png
+      # Test the exact files that will be published, under the /latte-web/ prefix.
       - run: npm run test:pages
       - uses: actions/upload-pages-artifact@v5.0.0
         with:

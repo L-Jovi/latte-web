@@ -34,6 +34,6 @@ createServer(async (req, res) => {
   } catch {
     res.writeHead(404).end('Not found');
   }
-}).listen(4180, '127.0.0.1', () =>
-  console.log(`Pages preview: http://127.0.0.1:4180${prefix}`),
+}).listen(4190, '127.0.0.1', () =>
+  console.log(`Pages preview: http://127.0.0.1:4190${prefix}`),
 );

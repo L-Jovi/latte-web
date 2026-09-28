@@ -4,12 +4,12 @@
 
 > 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
-从零实现一些小版本，看懂 Web 是怎样工作的：Promise/A+、mini React、前端路由、打包器，等等。
+一组动手实践的 Web 练习与实验。就像一杯拿铁——一份浓缩、两份牛奶、一份奶泡——熟悉、易入口，适合日常学习。
 
 [![CI](https://github.com/L-Jovi/latte-web/actions/workflows/ci.yml/badge.svg)](https://github.com/L-Jovi/latte-web/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
-每个示例都小到可以一口气读完。先运行，看看发生了什么；再读代码；最后看看今天的人怎样解决同一个问题。
+从零实现一些小版本，看懂 Web 是怎样工作的：Promise/A+、mini React、前端路由、打包器，等等。每个示例都小到可以一口气读完。先运行，看看发生了什么；再读代码；最后看看今天的人怎样解决同一个问题。
 
 **[打开在线演示 →](https://l-jovi.github.io/latte-web/)**
 
@@ -185,7 +185,9 @@ npm run dev
 
 ## 为什么叫 "latte"？
 
-拿铁是几乎人人都会点的咖啡：一份浓缩，加上热牛奶和一点奶泡。这个仓库讲的是 Web 最日常的基本功，把它们拆成几样简单的原料。
+拿铁是一份浓缩、两份牛奶、一份奶泡：最常见的咖啡，也是几乎人人都爱喝的那一杯。在作者这组以咖啡命名的仓库里，Web 就是这样的角色：日常、普及、人人都爱的那一种调配。
+
+系列里的其他仓库：[espresso-algorithm](https://github.com/L-Jovi/espresso-algorithm)（算法，纯粹的浓缩）、[roaster-linux](https://github.com/L-Jovi/roaster-linux)（Linux 工具，烘焙咖啡豆的地方）、[barista-services](https://github.com/L-Jovi/barista-services)（服务，咖啡师）和 [cappuccino-ios](https://github.com/L-Jovi/cappuccino-ios)（iOS 应用，比拿铁更轻）。
 
 ## 维护状态
 

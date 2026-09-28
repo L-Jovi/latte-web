@@ -2,12 +2,12 @@
 
 English | [简体中文](README.zh-Hans.md)
 
-Learn how the web works by building small versions of it: Promise/A+, mini React, a router, a bundler and more.
+A collection of hands-on web exercises and experiments. Like a latte—one part espresso, two parts milk, and one part foam—a familiar, approachable blend for everyday learning.
 
 [![CI](https://github.com/L-Jovi/latte-web/actions/workflows/ci.yml/badge.svg)](https://github.com/L-Jovi/latte-web/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
-Every example is small enough to read in one sitting. Run it, watch what happens, read the code, then see how the same problem is solved today.
+Learn how the web works by building small versions of it: Promise/A+, mini React, a router, a bundler and more. Every example is small enough to read in one sitting. Run it, watch what happens, read the code, then see how the same problem is solved today.
 
 **[Open the live demos →](https://l-jovi.github.io/latte-web/)**
 
@@ -183,7 +183,9 @@ Many examples here were first written between 2018 and 2022, and the tools aroun
 
 ## Why "latte"?
 
-A latte is the coffee almost everyone orders: a shot of espresso, steamed milk and a little foam. This repository is about the web's everyday essentials, taken apart into a few simple ingredients.
+A latte is one part espresso, two parts milk and one part foam: the most common coffee, and the one almost everyone enjoys. Among the author's coffee-named repositories, the web plays that role: the everyday, widely loved blend.
+
+The rest of the series: [espresso-algorithm](https://github.com/L-Jovi/espresso-algorithm) (algorithms, pure concentration), [roaster-linux](https://github.com/L-Jovi/roaster-linux) (Linux tools, where the beans are roasted), [barista-services](https://github.com/L-Jovi/barista-services) (services, the barista) and [cappuccino-ios](https://github.com/L-Jovi/cappuccino-ios) (iOS apps, lighter than a latte).
 
 ## Status
 

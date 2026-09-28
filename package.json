@@ -1,7 +1,7 @@
 {
   "name": "latte-web",
   "private": true,
-  "description": "Learn how the web works by building small versions of it: Promise/A+, mini React, a router, a bundler and more.",
+  "description": "A collection of hands-on web exercises and experiments. Like a latte—one part espresso, two parts milk, and one part foam—a familiar, approachable blend for everyday learning.",
   "type": "module",
   "license": "MIT",
   "engines": {
