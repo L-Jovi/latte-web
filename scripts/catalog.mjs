@@ -1,70 +1,187 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
+import { dirname } from 'node:path';
+
+// `--check` compares every generated file with the working tree and writes nothing.
+const check = process.argv.includes('--check');
 const read = (path) => JSON.parse(readFileSync(path, 'utf8'));
 const catalog = read('docs/catalog.json');
 const migration = read('docs/migration.json');
 const base = `https://github.com/L-Jovi/latte-web/tree/${migration.baseline}/`;
+const source = 'https://github.com/L-Jovi/latte-web/tree/main/';
+const live = 'https://l-jovi.github.io/latte-web/';
 const groups = [
-  ['foundation', 'fundamentals', 'Foundations', '基础'],
-  ['mechanism', 'mechanisms', 'Handwritten mechanisms', '手写机制'],
-  ['tooling', 'tooling', 'Toolchains', '工具链'],
-  [
-    'example',
-    'examples',
-    'Applications and browser experiments',
-    '应用与浏览器实验',
-  ],
-  ['history', 'docs/history', 'Historical research', '历史研究'],
+  {
+    kind: 'foundation',
+    dir: 'fundamentals',
+    title: 'Fundamentals',
+    titleZh: '基础',
+    intro: 'How JavaScript and the browser behave, one small page at a time.',
+    introZh: '一次一个小页面，看 JavaScript 和浏览器的真实行为。',
+  },
+  {
+    kind: 'mechanism',
+    dir: 'mechanisms',
+    title: 'Build it yourself',
+    titleZh: '动手实现',
+    intro: 'Small, tested versions of tools you use every day.',
+    introZh: '日常工具的小型实现，每一个都有测试。',
+  },
+  {
+    kind: 'tooling',
+    dir: 'tooling',
+    title: 'Build tools',
+    titleZh: '构建工具',
+    intro: 'How source files become something a browser can load.',
+    introZh: '源代码是怎样变成浏览器能加载的文件的。',
+  },
+  {
+    kind: 'example',
+    dir: 'examples',
+    title: 'Applications and experiments',
+    titleZh: '应用与实验',
+    intro:
+      'Complete applications with old and new versions side by side, plus visual experiments.',
+    introZh: '完整的应用示例（新旧写法并排对照），以及视觉实验。',
+  },
+  {
+    kind: 'history',
+    dir: 'docs/history',
+    title: 'History',
+    titleZh: '历史笔记',
+    intro:
+      'Notes kept from earlier years. Read them for context; they are not current advice.',
+    introZh: '早年留下的笔记，用来了解背景，不代表今天的推荐做法。',
+  },
 ];
 const escape = (s) =>
   s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('"', '&quot;');
+// Markdown table cells cannot contain a raw pipe.
+const cell = (s) => s.replaceAll('|', '\\|');
+const outputs = new Map();
+const emit = (path, content) => outputs.set(path, content);
+const demo = (entry) => entry.pages?.length && entry.live !== false;
+
+const table = (entries, zh, prefix) => {
+  const readme = zh ? 'README.zh-Hans.md' : 'README.md';
+  const rows = entries.map((e) => {
+    const title = `[${cell(zh ? e.titleZh : e.title)}](${prefix}${e.path}/${readme})`;
+    const summary = cell(zh ? e.summaryZh : e.summary);
+    const tryIt = demo(e)
+      ? `[${zh ? '在线演示' : 'Live demo'}](${live}${e.pages[0]})`
+      : e.pages?.length
+        ? zh
+          ? '本地运行'
+          : 'Run locally'
+        : '—';
+    return `| ${title} | ${summary} | ${tryIt} |`;
+  });
+  const head = zh
+    ? '| 主题 | 你会看到什么 | 试一试 |\n| --- | --- | --- |'
+    : "| Topic | What you'll see | Try it |\n| --- | --- | --- |";
+  return `${head}\n${rows.join('\n')}`;
+};
+
+// The root READMEs are written by hand; only the marked learning-path block is generated.
+const start = '<!-- catalog:start -->';
+const end = '<!-- catalog:end -->';
+const note =
+  '<!-- Generated from docs/catalog.json by `npm run docs:generate`. Edit the catalog, not this block. -->';
+for (const zh of [false, true]) {
+  const path = zh ? 'README.zh-Hans.md' : 'README.md';
+  const text = readFileSync(path, 'utf8');
+  const i = text.indexOf(start);
+  const j = text.indexOf(end);
+  if (i < 0 || j < i) throw new Error(`${path}: missing ${start} … ${end}`);
+  const block = groups
+    .map((g) => {
+      const entries = catalog.filter((e) => e.kind === g.kind);
+      return `### ${zh ? g.titleZh : g.title}\n\n${zh ? g.introZh : g.intro}\n\n${table(entries, zh, '')}`;
+    })
+    .join('\n\n');
+  emit(
+    path,
+    `${text.slice(0, i + start.length)}\n<!-- prettier-ignore-start -->\n${note}\n\n${block}\n\n<!-- prettier-ignore-end -->\n${text.slice(j)}`,
+  );
+}
+
+// Section indexes are fully generated.
+for (const g of groups) {
+  const entries = catalog.filter((e) => e.kind === g.kind);
+  const up = '../'.repeat(g.dir.split('/').length);
+  const strip = (e) => ({ ...e, path: e.path.slice(g.dir.length + 1) });
+  emit(
+    `${g.dir}/README.md`,
+    `# ${g.title}\n\nEnglish | [简体中文](README.zh-Hans.md)\n\n${g.intro}\n\n${table(entries.map(strip), false, '')}\n\n[Back to the learning path](${up}README.md#learning-path)\n`,
+  );
+  emit(
+    `${g.dir}/README.zh-Hans.md`,
+    `# ${g.titleZh}\n\n[English](README.md) | 简体中文\n\n> 对应英文版：两种语言由同一份目录数据同时生成，内容始终同步。\n\n${g.introZh}\n\n${table(entries.map(strip), true, '')}\n\n[返回学习路线](${up}README.zh-Hans.md#学习路线)\n`,
+  );
+}
+
+// The learning index is served locally by `npm run dev` and on GitHub Pages, so links stay relative.
+const card = (e) => {
+  const title = escape(e.title);
+  const heading = demo(e)
+    ? `<a href="${e.pages[0]}">${title}</a>`
+    : e.pages?.length
+      ? `<a href="${e.pages[0]}">${title}</a> <span class="tag">runs locally · 需本地运行</span>`
+      : title;
+  return `<li><h3>${heading}</h3><p lang="zh-Hans" class="zh">${escape(e.titleZh)}</p><p>${escape(e.summary)}</p><p class="links"><a href="${source}${e.path}">Read · 阅读</a></p></li>`;
+};
+emit(
+  'index.html',
+  `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Learn how the web works by building small versions of it.">
+<link rel="icon" href="data:,">
+<title>Latte Web · learning index</title>
+<style>
+:root{color-scheme:light dark;--fg:#1d2a38;--muted:#5b6876;--link:#1456a0;--card:#f5f7fa;--line:#dde3ea}
+@media (prefers-color-scheme:dark){:root{--fg:#e6ebf1;--muted:#9aa7b4;--link:#7ab7ff;--card:#18212b;--line:#2a3542}}
+*{box-sizing:border-box}
+body{margin:0;font:17px/1.6 system-ui,sans-serif;color:var(--fg);background:Canvas}
+main{max-width:72rem;margin:0 auto;padding:2.5rem 1rem 4rem}
+h1{font-size:2.2rem;margin:0}
+h2{margin:2.5rem 0 .25rem}
+h3{font-size:1.05rem;margin:0}
+a{color:var(--link)}
+.lead,.zh,.intro{color:var(--muted);margin:.25rem 0}
+ul{list-style:none;padding:0;display:grid;gap:.75rem;grid-template-columns:repeat(auto-fill,minmax(19rem,1fr))}
+li{background:var(--card);border:1px solid var(--line);border-radius:.6rem;padding:.9rem 1rem}
+li p{margin:.3rem 0}
+.links{font-size:.9rem}
+.tag{font-size:.75rem;font-weight:normal;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+<h1>Latte Web</h1>
+<p class="lead">Learn how the web works by building small versions of it.</p>
+<p class="lead" lang="zh-Hans">从零实现一些小版本，看懂 Web 是怎样工作的。</p>
+<p><a href="${source.replace('/tree/main/', '')}">Source on GitHub</a> · <a href="${source}README.zh-Hans.md">中文说明</a></p>
+${groups
+  .map((g) => {
+    const entries = catalog.filter((e) => e.kind === g.kind);
+    return `<section>
+<h2>${g.title} · <span lang="zh-Hans">${g.titleZh}</span></h2>
+<p class="intro">${escape(g.intro)}</p>
+<ul>${entries.map(card).join('')}</ul>
+</section>`;
+  })
+  .join('\n')}
+</main>
+</body>
+</html>
+`,
+);
+
 for (const zh of [false, true]) {
   const suffix = zh ? '.zh-Hans' : '';
-  let body = zh
-    ? `# latte-web\n\n[English](README.md) | 简体中文\n\n一组解释 Web 如何工作的学习实验：先看可观察的行为，再读最小实现，最后比较现代工具解决了哪些问题。手写练习有明确边界，并不作为生产库发布。\n\n## 开始阅读与运行\n\n需要 Node 24 LTS 和 npm 11。在仓库根目录执行：\n`
-    : `# latte-web\n\nEnglish | [简体中文](README.zh-Hans.md)\n\nSmall experiments explaining how the Web works. Observe a behavior, read the smallest useful implementation, then compare it with a modern tool. Handwritten exercises have explicit limits; they are not published production libraries.\n\n## Read and run\n\nUse Node 24 LTS and npm 11. From the repository root:\n`;
-  body +=
-    '\n```sh\nnpm ci\nnpm run build\nnpm run dev\n# Open http://127.0.0.1:4173\n```\n\n';
-  body += zh
-    ? '应用和工具链的命令写在各项目 README；根入口提供静态实验导航。普通 JavaScript 安装不需要 Rust。\n\n## 学习路线\n\n按基础 → 手写机制 → 工具链 → 应用实践阅读，也可以直接选一个问题。\n'
-    : 'Application and toolchain commands live in their own READMEs. The root server is the static experiment index. JavaScript installation does not require Rust.\n\n## Learning path\n\nRead foundations → handwritten mechanisms → toolchains → applications, or choose one question directly.\n';
-  for (const [kind, dir, title, titleZh] of groups) {
-    const entries = catalog.filter((e) => e.kind === kind);
-    if (!entries.length) continue;
-    body += `\n### ${zh ? titleZh : title}\n\n`;
-    body +=
-      entries
-        .map(
-          (e) =>
-            `- [${zh ? e.titleZh : e.title}](${e.path}/README${suffix}.md) — ${e.status}`,
-        )
-        .join('\n') + '\n';
-    mkdirSync(dir, { recursive: true });
-    const relative = '../'.repeat(dir.split('/').length);
-    writeFileSync(
-      `${dir}/README${suffix}.md`,
-      `# ${zh ? titleZh : title}\n\n${zh ? '[English](README.md) | 简体中文' : 'English | [简体中文](README.zh-Hans.md)'}\n\n` +
-        entries
-          .map(
-            (e) =>
-              `- [${zh ? e.titleZh : e.title}](${e.path.slice(dir.length + 1)}/README${suffix}.md)`,
-          )
-          .join('\n') +
-        `\n\n[${zh ? '返回学习路线' : 'Learning path'}](${relative}README${suffix}.md)\n`,
-    );
-  }
-  body += zh
-    ? '\n## 验证与维护状态\n\n```sh\nnpm run check\nnpx playwright install chromium firefox webkit\nnpm run test:browser\n```\n\n`maintained` 表示纳入当前检查；`historical` 仅作有出处的历史阅读。每个项目文档说明测试覆盖与刻意简化。没有统一产品版本或发布承诺。\n'
-    : '\n## Verification and maintenance\n\n```sh\nnpm run check\nnpx playwright install chromium firefox webkit\nnpm run test:browser\n```\n\n`maintained` entries participate in current checks; `historical` entries are attributed reading material. Each README describes verification and intentional limits. This collection has no single product version or release promise.\n';
-  if (!migration.complete)
-    body += zh
-      ? '\n迁移仍分批进行：旧目录中的内容暂不属于已维护运行集合。\n'
-      : '\nMigration is in progress: content in the old directories is not yet part of the maintained runnable set.\n';
-  body += `\n[${zh ? '阅读与验证指南' : 'Reading and verification guide'}](docs/README${suffix}.md) · [${zh ? '生态取舍' : 'Ecosystem decisions'}](docs/ecosystem${suffix}.md) · [${zh ? '验证边界' : 'Verification limits'}](docs/verification${suffix}.md)\n\n[${zh ? '迁移清单' : 'Migration ledger'}](docs/migration${suffix}.md) · [${zh ? '贡献' : 'Contributing'}](CONTRIBUTING.md) · [${zh ? '行为准则' : 'Code of conduct'}](CODE_OF_CONDUCT.md) · [${zh ? '安全报告' : 'Security reporting'}](SECURITY.md)\n\n`;
-  body += zh
-    ? '## 许可\n\n原创代码使用 [MIT](LICENSE)。保留的第三方代码、GPL/ISC 子项目及署名以各目录和 [NOTICE](NOTICE.md) 为准；根许可证不覆盖这些许可。历史原文保留原语言。\n'
-    : '## License\n\nOriginal code is [MIT](LICENSE). Retained third-party code, GPL/ISC subprojects and attributions keep their own terms; see [NOTICE](NOTICE.md) and local license files. Historical prose stays in its original language.\n';
-  writeFileSync(`README${suffix}.md`, body);
-  let ledger = `# ${zh ? '迁移清单' : 'Migration ledger'}\n\n${zh ? '[English](migration.md) | 简体中文' : 'English | [简体中文](migration.zh-Hans.md)'}\n\n${zh ? '基线' : 'Baseline'}: [${migration.baseline.slice(0, 7)}](${base}) — 805 tracked files, 20 topic roots, 24 Node packages.\n\n`;
+  let ledger = `# ${zh ? '迁移清单' : 'Migration ledger'}\n\n${zh ? '[English](migration.md) | 简体中文\n\n> 对应英文版：两种语言由同一份迁移数据同时生成，内容始终同步。' : 'English | [简体中文](migration.zh-Hans.md)'}\n\n${zh ? '基线' : 'Baseline'}: [${migration.baseline.slice(0, 7)}](${base}) — 805 tracked files, 20 topic roots, 24 Node packages.\n\n`;
   ledger += zh
     ? '最具体的路径规则优先；目录规则覆盖其中所有源文件、资源和配置。退役内容可从固定提交恢复。`pending` 尚未迁移；`retain` 保留教学机制；`merge` 提取并合并；`rewrite` 更新底座或入口；`historical` 仅保留历史阅读；`retire` 从当前树移除；`withdrawn` 因隐私或版权撤下，不提供链接。新入口 README 记录教学目的和验证命令。\n'
     : 'The most specific path rule wins; directory rules include source, assets and configuration. Retired content is recoverable at the fixed commit. `pending` awaits migration; `retain` preserves a mechanism; `merge` extracts into another example; `rewrite` updates the entry or runtime; `historical` is reading only; `retire` removes content from the current tree; `withdrawn` removes it for privacy or rights reasons and is not linked. Destination READMEs describe purpose and verification.\n';
@@ -78,30 +195,8 @@ for (const zh of [false, true]) {
           `| ${e.action === 'withdrawn' ? e.old : `[${e.old}](${base}${encodeURI(e.old)})`} | ${e.action} | ${e.new ? `[${e.new}](../${e.new})` : '—'} | ${zh ? e.reasonZh : e.reason} | ${e.phase ?? '—'} |`,
       )
       .join('\n') + '\n';
-  writeFileSync(`docs/migration${suffix}.md`, ledger);
+  emit(`docs/migration${suffix}.md`, ledger);
 }
-writeFileSync(
-  'index.html',
-  `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="icon" href="data:,"><title>latte-web learning index</title><style>body{font:18px/1.6 system-ui;max-width:70rem;margin:3rem auto;padding:0 1rem;color:#203040}a{color:#1456a0}li{margin:.5rem 0}small{color:#596775}</style><h1>latte-web</h1><p>Observe → read → compare. 基础 → 手写机制 → 工具链 → 应用实践。</p>` +
-    groups
-      .map(([kind, , title, titleZh]) => {
-        const entries = catalog.filter((e) => e.kind === kind);
-        return entries.length
-          ? `<section><h2>${title} · ${titleZh}</h2><ul>` +
-              entries
-                .map(
-                  (e) =>
-                    `<li>${e.pages?.length ? `<a href="/${e.pages[0]}">${escape(e.title)}</a>` : escape(e.title)} <small>${escape(e.titleZh)} · ${e.status}</small> — <a href="/${e.path}/README.md">README</a></li>`,
-                )
-                .join('') +
-              '</ul></section>'
-          : '';
-      })
-      .join(''),
-);
-console.log(
-  `Generated navigation for ${catalog.length} learning units; ${migration.entries.length} migration rules.`,
-);
 
 const disposition = read('docs/baseline-files.json').map((path) => {
   const rule = migration.entries
@@ -116,7 +211,29 @@ const disposition = read('docs/baseline-files.json').map((path) => {
     history: rule.action === 'withdrawn' ? null : base + encodeURI(path),
   };
 });
-writeFileSync(
+emit(
   'docs/baseline-disposition.json',
   JSON.stringify(disposition, null, 2) + '\n',
 );
+
+if (check) {
+  const stale = [...outputs].filter(
+    ([path, content]) =>
+      !existsSync(path) || readFileSync(path, 'utf8') !== content,
+  );
+  if (stale.length) {
+    console.error(
+      `Generated files are out of date; run npm run docs:generate:\n${stale.map(([path]) => `  ${path}`).join('\n')}`,
+    );
+    process.exit(1);
+  }
+  console.log(`All ${outputs.size} generated files are up to date.`);
+} else {
+  for (const [path, content] of outputs) {
+    mkdirSync(dirname(path), { recursive: true });
+    writeFileSync(path, content);
+  }
+  console.log(
+    `Generated navigation for ${catalog.length} learning units; ${migration.entries.length} migration rules.`,
+  );
+}

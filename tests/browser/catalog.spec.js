@@ -14,7 +14,7 @@ for (const entry of catalog) for (const path of entry.pages || []) {
   });
 }
 test('learning index links to experiments',async({page})=>{
-  await page.goto('/'); await expect(page.getByRole('heading',{name:'latte-web'})).toBeVisible();
-  await page.getByRole('link',{name:'Promise: three steps'}).click();
+  await page.goto('/'); await expect(page.getByRole('heading',{name:'Latte Web',level:1})).toBeVisible();
+  await page.getByRole('link',{name:'Promise from scratch'}).click();
   await expect(page.locator('output')).toHaveText('1,2');
 });

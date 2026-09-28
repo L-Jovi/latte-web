@@ -1,6 +1,7 @@
 {
   "name": "latte-web",
   "private": true,
+  "description": "Learn how the web works by building small versions of it: Promise/A+, mini React, a router, a bundler and more.",
   "type": "module",
   "license": "MIT",
   "engines": {
@@ -34,8 +35,10 @@
     "test": "node --test tests/unit/*.test.js",
     "test:aplus": "node scripts/test-aplus.cjs",
     "test:browser": "playwright test",
+    "build:pages": "node scripts/pages.mjs _site",
+    "test:pages": "playwright test -c playwright.pages.config.js",
     "docs:generate": "node scripts/catalog.mjs",
-    "check:docs": "node scripts/check-docs.mjs",
+    "check:docs": "node scripts/catalog.mjs --check && node scripts/check-docs.mjs",
     "check": "npm run typecheck && npm run build && npm test && npm run test:aplus && npm run test:tooling && npm run test:apps && npm run test:api && npm run check:docs",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "build": "npm run build --workspaces --if-present",

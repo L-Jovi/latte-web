@@ -1,2 +1,2 @@
 import { defineConfig } from 'vite';
-export default defineConfig({ base: '/examples/performance/dist/' });
+export default defineConfig({ base: './' });
