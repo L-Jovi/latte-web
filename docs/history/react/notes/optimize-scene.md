@@ -1,4 +1,4 @@
-> 历史研究，保留自 `ef3fa2a` 基线；不代表当前 API 或性能结论。当前实现见 [经典版](../../../../examples/react-classic/README.zh-Hans.md) 与 [现代版](../../../../examples/react-modern/README.zh-Hans.md)。
+> 历史研究，保留自 `1be029e` 基线；不代表当前 API 或性能结论。当前实现见 [经典版](../../../../examples/react-classic/README.zh-Hans.md) 与 [现代版](../../../../examples/react-modern/README.zh-Hans.md)。
 
 > 当前纠正（2026-09-28）：Fetch 支持 AbortController 取消请求；文中“无法取消”的判断属于当时背景。请求超时仍需调用方制定策略。原始性能推论不视为新的实验结果。
 

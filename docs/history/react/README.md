@@ -2,7 +2,7 @@
 
 English | [简体中文](README.zh-Hans.md)
 
-These Chinese notes were present in the original repository at ef3fa2a; Domain-driven-design.md was last changed on 2019-11-15 (372d6dd). They preserve how responsibilities were separated then. They are historical arguments, not current performance measurements or framework recommendations. Today fetch supports cancellation with AbortController; react-router-redux and deprecated lifecycle examples are replaced in the runnable apps. The dated note bodies and images remain, with explicit context headers.
+These Chinese notes were present in the original repository at 1be029e; Domain-driven-design.md was last changed on 2019-11-15 (2c6aeb0). They preserve how responsibilities were separated then. They are historical arguments, not current performance measurements or framework recommendations. Today fetch supports cancellation with AbortController; react-router-redux and deprecated lifecycle examples are replaced in the runnable apps. The dated note bodies and images remain, with explicit context headers.
 
 ## Run and observe
 

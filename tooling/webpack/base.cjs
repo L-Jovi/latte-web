@@ -1,13 +1,13 @@
 const path = require('node:path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// Page titles come from the learning catalog, so tabs and the index use the same names.
-const catalog = require('../../docs/catalog.json');
+// Each topic's page takes its title and summary from the learning catalog.
+const site = require('../../scripts/site.cjs');
 const root = path.resolve(__dirname, '../..');
-const titleFor = (context) => {
-  const entry = catalog.find((e) => path.resolve(root, e.path) === context);
-  return entry ? `${entry.title} · Latte Web` : path.basename(context);
-};
 module.exports = function base(context) {
+  const html = path
+    .relative(root, path.join(context, 'dist/index.html'))
+    .split(path.sep)
+    .join('/');
   return {
     context,
     mode: 'production',
@@ -17,11 +17,13 @@ module.exports = function base(context) {
       filename: 'bundle.js',
       clean: true,
     },
-    plugins: [
-      new HtmlWebpackPlugin({
-        title: titleFor(context),
-      }),
-    ],
-    devServer: { host: '127.0.0.1', port: 4180, hot: true },
+    plugins: [new HtmlWebpackPlugin({ templateContent: site.page(html) })],
+    devServer: {
+      host: '127.0.0.1',
+      port: 4180,
+      hot: true,
+      // Built pages link the house stylesheet from the repository root.
+      static: { directory: path.join(root, 'assets'), publicPath: '/assets' },
+    },
   };
 };

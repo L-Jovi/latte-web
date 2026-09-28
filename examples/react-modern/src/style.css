@@ -1,28 +1,19 @@
-body {
-  font: 18px/1.5 system-ui;
-  max-width: 55rem;
-  margin: 3rem auto;
-  padding: 0 1rem;
-}
-button,
-input {
-  font: inherit;
-  padding: 0.4rem;
-}
-button {
-  margin: 0.25rem;
-}
+/* The page frame, type, buttons and fields come from assets/site.css. */
 li {
   padding: 0.5rem;
 }
 nav a {
   margin-right: 1rem;
 }
-[aria-pressed='true'] {
-  outline: 2px solid #547a91;
+/* Filter buttons: the chosen filter stays filled, the others are outlined. */
+[aria-pressed='false'] {
+  background: transparent;
+  color: var(--latte-accent, #8a4b2a);
 }
 .editor {
-  border: 1px solid;
+  border: 1px solid var(--latte-line, #aaa);
+  border-radius: 0.5rem;
+  background: var(--latte-card, #fff);
   padding: 1rem;
   min-height: 8rem;
 }
@@ -32,4 +23,8 @@ nav a {
 pre {
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+}
+/* The saved state is empty until the first save. */
+pre:empty {
+  display: none;
 }

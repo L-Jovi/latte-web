@@ -1,6 +1,7 @@
 import { build } from './procedural/build.js';
 import { Compiler } from './layered/lib/compiler.js';
 import { writeFileSync } from 'node:fs';
+import site from '../../scripts/site.cjs';
 build('procedural/src/index.js', 'dist/procedural.js');
 new Compiler({
   entry: 'layered/src/index.js',
@@ -8,5 +9,8 @@ new Compiler({
 }).run();
 writeFileSync(
   'dist/index.html',
-  '<!doctype html><html lang="en"><meta charset="utf-8"><title>Two small bundlers</title><h1>Two small bundlers</h1><p>Both bundles log their greeting. Inspect the generated dependency graph in dist.</p><script src="procedural.js"></script><script src="layered.js"></script></html>',
+  site.page(
+    'mechanisms/bundlers/dist/index.html',
+    '<p>The procedural bundle logs <code>my lord saber</code> to the browser console. The layered bundle writes its greeting below. Both files sit next to this page in <code>dist/</code>.</p><script src="procedural.js"></script><script src="layered.js"></script>',
+  ),
 );

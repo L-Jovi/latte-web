@@ -1,4 +1,4 @@
-// https://zhuanlan.zhihu.com/p/473245486?utm_medium=social&utm_oi=42391486595072&utm_psn=1546135324287246336&utm_source=wechat_session
+// https://zhuanlan.zhihu.com/p/473245486
 //
 // import './regenerator-runtime.js';
 

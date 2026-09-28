@@ -1,7 +1,7 @@
 :root {
-  font: 17px/1.6 system-ui;
-  color: #20313e;
-  background: #f6f4ef;
+  /* Colours come from the site stylesheet (assets/site.css); the fallbacks keep the page readable alone. */
+  color: var(--latte-fg, #2b1d14);
+  background: var(--latte-bg, #fbf7f2);
 }
 body {
   max-width: 64rem;
@@ -28,14 +28,14 @@ section {
   margin: 1.5rem 0;
   padding: 1rem;
   background: white;
-  border: 1px solid #ccd4d4;
+  border: 1px solid var(--latte-line, #e7dccf);
   border-radius: 0.5rem;
 }
 canvas {
   max-width: 100%;
   height: auto;
   display: block;
-  border: 1px solid #ccd4d4;
+  border: 1px solid var(--latte-line, #e7dccf);
   background: white;
 }
 output {
@@ -47,7 +47,7 @@ label {
   margin: 0.4rem;
 }
 a {
-  color: #075f6b;
+  color: var(--latte-accent, #8a4b2a);
 }
 h1 {
   line-height: 1.25;

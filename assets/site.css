@@ -1,0 +1,213 @@
+/* Latte Web house style for every demo page.
+ *
+ * Base element styles live in the `latte-site` cascade layer. Any style a page
+ * writes itself is unlayered, so it always wins, whatever its specificity or
+ * order: demos keep full control of their own layout.
+ *
+ * The top bar is unlayered on purpose and uses its own class names, so page
+ * resets such as `* { margin: 0; padding: 0 }` cannot flatten it.
+ *
+ * Demo pages stay light: many demos paint light backgrounds without setting a
+ * text colour, and a dark theme would make that text unreadable.
+ */
+
+@layer latte-site {
+  :root {
+    color-scheme: light;
+    --latte-bg: #fbf7f2;
+    --latte-fg: #2b1d14;
+    --latte-muted: #6f5a4a;
+    --latte-accent: #8a4b2a;
+    --latte-accent-fg: #fffaf4;
+    --latte-card: #ffffff;
+    --latte-line: #e7dccf;
+    --latte-code: #f3ebe1;
+    --latte-focus: #c26a35;
+    --latte-font:
+      system-ui, -apple-system, 'Segoe UI', Roboto, 'PingFang SC',
+      'Noto Sans SC', sans-serif;
+    --latte-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+
+  html {
+    background: var(--latte-bg);
+  }
+
+  body {
+    font: 17px/1.6 var(--latte-font);
+    color: var(--latte-fg);
+    background: var(--latte-bg);
+  }
+
+  h1 {
+    margin: 1.25rem 0 0.75rem;
+    font-size: 2rem;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  h2 {
+    margin: 1.75rem 0 0.5rem;
+    font-size: 1.3rem;
+    line-height: 1.3;
+  }
+
+  p {
+    margin: 0.5rem 0 1rem;
+  }
+
+  a {
+    color: var(--latte-accent);
+    text-underline-offset: 0.15em;
+  }
+
+  code,
+  kbd,
+  samp,
+  pre {
+    font-family: var(--latte-mono);
+    font-size: 0.9em;
+  }
+
+  code {
+    padding: 0.1em 0.35em;
+    border-radius: 0.3em;
+    background: var(--latte-code);
+  }
+
+  pre {
+    padding: 0.9rem 1rem;
+    overflow-x: auto;
+    border-radius: 0.5rem;
+    background: var(--latte-code);
+  }
+
+  pre code {
+    padding: 0;
+    background: none;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  /* Only right and bottom margins: positioned demo elements keep their left/top. */
+  button {
+    margin: 0 0.5rem 0.5rem 0;
+    padding: 0.4rem 0.95rem;
+    border: 1px solid var(--latte-accent);
+    border-radius: 0.5rem;
+    background: var(--latte-accent);
+    color: var(--latte-accent-fg);
+    cursor: pointer;
+  }
+
+  button:hover {
+    filter: brightness(1.08);
+  }
+
+  button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  input,
+  select,
+  textarea {
+    padding: 0.35rem 0.55rem;
+    border: 1px solid var(--latte-line);
+    border-radius: 0.4rem;
+    background: var(--latte-card);
+    color: var(--latte-fg);
+  }
+
+  output {
+    display: inline-block;
+    margin: 0.25rem 0 0.75rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 0.4rem;
+    background: var(--latte-code);
+    font-family: var(--latte-mono);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--latte-focus);
+    outline-offset: 2px;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid var(--latte-line);
+  }
+
+  /* The one-line summary under the heading of pages built from the catalog. */
+  .latte-lead {
+    margin-top: -0.25rem;
+    color: var(--latte-muted);
+    font-size: 1.05rem;
+  }
+}
+
+/* The page frame is unlayered so that universal resets such as
+ * `* { margin: 0; padding: 0 }` do not push content against the window edge.
+ * A page's own `body` rules still win: same specificity, and they come later. */
+body {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 1.25rem 3rem;
+}
+
+/* The top bar: brand link to the learning index, and the page's README. */
+.latte-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 1rem;
+  margin: 0 0 1rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #e7dccf;
+  font:
+    600 0.9rem/1.4 system-ui,
+    -apple-system,
+    'Segoe UI',
+    sans-serif;
+  letter-spacing: 0.01em;
+}
+
+/* Pages may style `nav a`; the bar keeps its own spacing. */
+.latte-bar a {
+  margin: 0;
+  padding: 0;
+  color: #8a4b2a;
+  text-decoration: none;
+}
+
+.latte-bar a:hover {
+  text-decoration: underline;
+}
+
+.latte-bar .latte-home::before {
+  content: '';
+  display: inline-block;
+  width: 0.85em;
+  height: 0.85em;
+  margin-right: 0.45em;
+  vertical-align: -0.08em;
+  border-radius: 0.2em 0.2em 0.35em 0.35em;
+  background: linear-gradient(#fffaf2 0 25%, #e3c7a4 25% 75%, #6b4226 75% 100%);
+  box-shadow: inset 0 0 0 1.5px #2b1d14;
+}
+
+.latte-bar .latte-crumb {
+  color: #6f5a4a;
+  font-weight: 500;
+}
+
+.latte-bar .latte-links {
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
+}

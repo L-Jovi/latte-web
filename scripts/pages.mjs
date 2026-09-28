@@ -5,6 +5,7 @@ import { cpSync, rmSync, mkdirSync } from 'node:fs';
 const out = process.argv[2] ?? '_site';
 const publish = [
   'index.html',
+  'assets',
   'fundamentals',
   'mechanisms',
   'tooling',

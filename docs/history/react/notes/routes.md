@@ -1,4 +1,4 @@
-> 历史研究，保留自 `ef3fa2a` 基线；不代表当前 API 或性能结论。当前实现见 [经典版](../../../../examples/react-classic/README.zh-Hans.md) 与 [现代版](../../../../examples/react-modern/README.zh-Hans.md)。
+> 历史研究，保留自 `1be029e` 基线；不代表当前 API 或性能结论。当前实现见 [经典版](../../../../examples/react-classic/README.zh-Hans.md) 与 [现代版](../../../../examples/react-modern/README.zh-Hans.md)。
 
 # 路由
 
