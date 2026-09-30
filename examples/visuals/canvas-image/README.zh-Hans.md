@@ -1,11 +1,65 @@
-# Canvas 像素与图像操作
+# 用 Canvas 像素做图像处理
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
-在根目录运行 `npm ci` 和 `npm run dev`，打开 http://127.0.0.1:4173/examples/visuals/canvas-image/。无需构建或额外服务。阅读顺序：`pixels.js → app.js`。
+通过读写像素，实现缩放、水印、放大镜和滤镜。
 
-六个图像练习合并成一个小页面：绘制、缩放、水印、放大镜、滤镜和程序化颜色。保留灰度、阈值、反色、邻域模糊和马赛克的可读循环；从不变输入读取，保留 alpha，边缘块不越界。自制 SVG 替换来源不明照片。切换滤镜，用方向键调整 Scale，开启支持键盘／指针的放大镜；镜片以显示比例的两倍采样原图。只需显示效果时可用 CSS filter；像素循环适合解释计算、导出和自定义变换。本例同步处理小图，不承诺大图性能与色彩管理。
+## 试一试
 
-运行 `npx playwright test tests/browser/visuals.spec.js`；像素滤镜与轮播位置另有 Node 回归。Touch 事件序列为合成输入，指针／鼠标和键盘使用浏览器真实输入；物理移动设备手势仍需人工检查。来源：[原 canvas-image](https://github.com/L-Jovi/latte-web/tree/1be029e8f4fdc38a0c62ec2a9569187c1659875f/vision-samples/canvas-image)。许可：[local GPL-2.0 notice](LICENSE)。替换图形均为自制，无捆绑字体或外来照片。
+```sh
+npm run dev
+# 打开 http://127.0.0.1:4173/examples/visuals/canvas-image/
+```
+
+克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。画布上是一幅小风景画，下方文字显示 `none; scale 1`。可以试试这些：
+
+- 点击 **Grayscale**（灰度）、**Threshold**（二值化）、**Invert**（反色）、**Blur**（模糊）或 **Mosaic**（马赛克）改变像素，点 **Reset** 恢复原样。**Procedural colors** 会把画面换成按每个像素绕中心的角度算出来的颜色。
+- 拖动 **Scale** 滑块，或者让它获得焦点后按方向键：画面以中心为基准放大或缩小，文字依次显示 `scale 1.1`、`scale 1.2` 等。
+- 勾选 **Watermark**，右下角附近会写上 `latte-web`。
+- 勾选 **Magnifier**，把指针移到画布上，会出现一个圆形镜片，以当前比例的两倍显示未经滤镜处理的原图。也可以用 Tab 键让画布获得焦点，再用方向键移动镜片。
+
+也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/visuals/canvas-image/index.html)。
+
+## 原理
+
+先读 [pixels.js](pixels.js)（66 行），再读 [app.js](app.js)（84 行）。
+
+每次改动都会从头重画。`app.js` 按选定的比例画出图片，用 `getImageData` 把画布读回成像素，交给滤镜处理，再用 `putImageData` 写回去。像素是一个很长的列表，每个像素占四个数：红、绿、蓝和 alpha（不透明度），取值都在 0 到 255 之间。
+
+`pixels.js` 里的 `filterPixels` 为每种效果各写了一个易读的循环：
+
+- **灰度**按 `0.3 × 红 + 0.59 × 绿 + 0.11 × 蓝` 混合三种颜色，因为人眼觉得绿色最亮、蓝色最暗。
+- **二值化**把这个灰度值变成纯黑或纯白：大于 125 的变白。
+- **反色**把每个颜色值换成 255 减去它。
+- **模糊**让每个像素取周围 3 × 3 方格的平均颜色。
+- **马赛克**把每个 12 × 12 的方块填成这一块的平均颜色。
+
+有三个细节保证结果正确：
+
+- 滤镜从不修改输入，而是写到一份副本里。这一点对模糊很重要：它必须对原始像素求平均，而不是对已经模糊过的像素求平均（`pixels.js` 里的注释写明了这一点）。
+- alpha 从不改动，所以透明的部分依旧透明。
+- 在图片边缘，模糊用的方格和最后几块马赛克都会缩小，留在图片范围内，不会读到图片外面。
+
+`procedural` 完全不用图片，按每个像素绕中心的角度生成颜色。
+
+指针位置是以 CSS 像素给出的，而画布有自己的尺寸 480 × 300；`pointermove` 处理函数负责在两者之间换算，所以即使页面把画布缩小了，镜片也始终跟着指针。
+
+## 过去与现在
+
+原版是六个独立页面，一个练习一页，其中大多用了来源不明的照片。这里六个练习合并到一个页面，并用自己画的 SVG [source.svg](source.svg) 取代了那些照片。
+
+如今，如果图片只是需要在屏幕上看起来不同，CSS 的 [`filter`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/filter) 属性不用 JavaScript 就能做到，比如 `filter: grayscale(1)`。想看清其中的算术、做 CSS 没有提供的效果，或者要保留改动后的像素（比如另存为一张新图片），仍然要靠像素循环。
+
+## 刻意省略
+
+- 滤镜在页面的主线程上运行，每次改动处理一遍，画布只有 480 × 300。没有色彩管理，也没有为大图做任何性能优化。
+- 只有一张内置图片，不能加载自己的图片。
+
+## 验证与来源
+
+- `npm run test:browser` 在 Chromium、Firefox、WebKit 中检查：**Invert** 会把一个真实像素的各个颜色值变成 255 减去原值，且 alpha 不变；**Grayscale** 会让它的红、绿、蓝三个值相等；方向键能移动 **Scale** 滑块。测试还会打开放大镜和水印，并选择 **Mosaic**，但只检查文字里出现了 `mosaic`，不检查画出来的内容。`npx playwright test tests/browser/visuals.spec.js` 可以单独运行这些视觉实验的测试。
+- `npm test` 在 Node 中用一张两个像素的图片检查滤镜的计算：反色、模糊、马赛克的结果完全正确，alpha 保持不变，输入没有被修改，灰度后三个通道相等，`procedural` 为每个像素生成四个值。
+- [原版图像练习](https://github.com/L-Jovi/latte-web/tree/1be029e8f4fdc38a0c62ec2a9569187c1659875f/vision-samples/canvas-image)的水印文字引用了 liuyubobobo.com。
+- 本目录保留了原版的 GPL-2.0 [LICENSE](LICENSE)；见 [NOTICE.md](../../../NOTICE.md)。风景画是自己画的，没有附带任何照片或字体。

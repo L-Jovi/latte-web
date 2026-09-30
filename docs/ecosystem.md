@@ -127,7 +127,7 @@ Dates are first stable releases or official announcements. Checked on 2026-09-28
 
 ## Copying objects: JSON tricks → `structuredClone`
 
-**Then.** Deep copies were made with `JSON.parse(JSON.stringify(x))`, which loses dates, `Map`s, `Set`s and circular references, or with a library.
+**Then.** Deep copies were made with `JSON.parse(JSON.stringify(x))`, which turns dates into strings and `Map`s and `Set`s into empty objects, and throws on circular references, or with a library.
 
 **Now.** [`structuredClone`](https://developer.mozilla.org/en-US/docs/Web/API/Window/structuredClone) has been available in all major browsers since 2022 and in Node.js since version 17.
 
@@ -145,7 +145,7 @@ Dates are first stable releases or official announcements. Checked on 2026-09-28
 
 **Then.** The Rust and WebAssembly working group maintained the main tools, including wasm-bindgen and wasm-pack.
 
-**Now.** The working group [archived its GitHub organization in 2025](https://blog.rust-lang.org/inside-rust/2025/07/21/sunsetting-the-rustwasm-github-org). wasm-bindgen moved to its own organization with new maintainers, and wasm-pack moved to one of its original maintainers. WebAssembly itself has run in all major browsers since 2017.
+**Now.** The working group [archived its GitHub organization in 2025](https://blog.rust-lang.org/inside-rust/2025/07/21/sunsetting-the-rustwasm-github-org). wasm-bindgen moved to a new wasm-bindgen organization with new maintainers, and wasm-pack now lives there too (as of 2026-09). WebAssembly itself has run in all major browsers since 2017.
 
 **What the old code still teaches.** [Rust to WebAssembly](../examples/wasm/README.md) follows one function from Rust source to a `.wasm` file to a button click.
 

@@ -1,11 +1,39 @@
-# 鼠标与 Pointer Events
+# 用鼠标事件和 Pointer Events 实现拖拽
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
-在根目录运行 `npm ci` 和 `npm run dev`，打开 http://127.0.0.1:4173/examples/visuals/drag/。无需构建或额外服务。阅读顺序：`app.js`。
+同一个拖拽写两遍；Pointer Events 同时支持触屏和手写笔。
 
-两个方块共用相同的起点偏移和边界计算。经典版保留 document 的 mousemove/mouseup；现代版用 pointer capture，把移动事件留给按下的元素。拖动任一方块，方向键每次移动 Pointer 方块 10 像素；取消和丢失捕获会释放状态。Pointer Events 统一鼠标、触摸和笔，旧鼠标方式仍适合解释坐标偏移。不实现惯性、拖放数据或排序。
+## 试一试
 
-运行 `npx playwright test tests/browser/visuals.spec.js`；像素滤镜与轮播位置另有 Node 回归。Touch 事件序列为合成输入，指针／鼠标和键盘使用浏览器真实输入；物理移动设备手势仍需人工检查。来源：[原 drag](https://github.com/L-Jovi/latte-web/tree/1be029e8f4fdc38a0c62ec2a9569187c1659875f/vision-samples/drag)。许可：[root MIT license](../../../LICENSE)。替换图形均为自制，无捆绑字体或外来照片。
+```sh
+npm run dev
+# 打开 http://127.0.0.1:4173/examples/visuals/drag/
+```
+
+克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。分别拖动 **Mouse** 方块和 **Pointer** 方块：它们都会跟着指针移动，并停在浅色区域的边缘。然后用 Tab 键把焦点移到 **Pointer** 方块上，按方向键：每按一次移动 10 像素。在手机或平板上，应该只有 **Pointer** 方块会跟着手指走，因为用手指拖动不会产生鼠标事件。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/visuals/drag/index.html)。
+
+## 原理
+
+全部代码都在 [app.js](app.js)（59 行）里。两个版本都会记住你是按住方块的哪个位置拖动的，所以方块不会突然跳到让左上角对准指针的位置；两者也调用同一个 `move` 函数，把方块限制在自己的区域里。
+
+- **鼠标事件**：在方块上 `mousedown` 开始拖动。`mousemove` 和 `mouseup` 监听的是整个 `document`，所以即使移动太快、指针甩开了方块，拖动也不会中断。窗口失去焦点时，拖动同样会结束。
+- **Pointer Events**：一套事件（`pointerdown`、`pointermove`、`pointerup`）同时覆盖鼠标、触屏和手写笔。`setPointerCapture` 会把这个指针之后的所有事件都交给方块，即使指针已经移出方块也一样，所以不需要监听 `document`。拖动在 `pointerup`、`pointercancel`（浏览器或系统打断了这次手势）或者失去捕获时结束。只有主指针和主按键才会开始拖动。
+- 方块上的 CSS `touch-action: none` 告诉浏览器：触摸从方块上开始时，不要滚动页面。
+
+## 过去与现在
+
+原版示例在整个 document 上监听鼠标事件。如今 [Pointer Events](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events) 用一套事件同时处理鼠标、触屏和手写笔，指针捕获也取代了挂在整个 document 上的监听。鼠标版之所以保留，是因为它把偏移量的计算展示得很直白。
+
+## 刻意省略
+
+- 松手后没有惯性，不能在元素之间拖放数据，也不能排序。
+- 只有 **Pointer** 方块可以用键盘移动。
+- 同一时间只认一个指针，所以不支持多点触控。
+
+## 验证与来源
+
+- `npm run test:browser` 在 Chromium、Firefox、WebKit 中用真实的鼠标输入拖动两个方块，检查它们都向右移动了同样的 130 像素；然后在 **Pointer** 方块上按一次右方向键，检查它又移动了 10 像素。停在边缘的行为没有测试，触屏和手写笔也没有，请在真实设备上试一试。`npx playwright test tests/browser/visuals.spec.js` 可以单独运行这些视觉实验的测试。
+- 来源：[原版拖拽示例](https://github.com/L-Jovi/latte-web/tree/1be029e8f4fdc38a0c62ec2a9569187c1659875f/vision-samples/drag)。原创代码使用 MIT 许可；见 [NOTICE.md](../../../NOTICE.md)。

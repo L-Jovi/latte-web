@@ -24,8 +24,8 @@
 | [用 webpack 打包一个库](webpack/library/README.zh-Hans.md) | 把一个很小的数字与英文单词互转工具打包成库，再在另一个 Node 程序里加载。 | — |
 | [Grunt：基于任务的构建](grunt/README.zh-Hans.md) | 先清理再复制的构建流程，打包器流行之前很多项目就是这样构建的。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/grunt/dist/index.html) |
 | [Less，以及今天原生 CSS 能做到的](less/README.zh-Hans.md) | Less 的变量、混入和条件守卫；以及为什么原生 CSS 变量能在运行时改变，而 Less 变量不能。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/less/modern.html) |
-| [模板编译与 HTML 转义](handlebars/README.zh-Hans.md) | 编译 Handlebars 模板，看为什么 {{value}} 会转义而 {{{value}}} 不会。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/handlebars/dist/index.html) |
+| [模板编译与 HTML 转义](handlebars/README.zh-Hans.md) | 编译 Handlebars 模板，看为什么 `{{value}}` 会转义而 `{{{value}}}` 不会。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/handlebars/dist/index.html) |
 | [Gulp：按顺序执行任务](gulp-typescript/README.zh-Hans.md) | 用一条小的 Gulp 流水线完成清理、编译 TypeScript 和复制 HTML。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/gulp-typescript/dist/index.html) |
-| [通过 webpack 使用 TypeScript 和 React](webpack-typescript/README.zh-Hans.md) | 看懂 Babel 为什么只删类型不检查，以及 tsc 还负责什么。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack-typescript/dist/index.html) |
+| [通过 webpack 使用 TypeScript 和 React](webpack-typescript/README.zh-Hans.md) | 看懂 Babel 为什么只删类型不检查，以及 `tsc` 还负责什么。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack-typescript/dist/index.html) |
 
 [返回学习路线](../README.zh-Hans.md#学习路线)

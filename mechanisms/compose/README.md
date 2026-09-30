@@ -1,21 +1,38 @@
-# Function composition
+# Function composition (compose)
 
 English | [简体中文](README.zh-Hans.md)
 
-The original redux-scratch actually demonstrated compose. Functions run from right to left; the innermost receives all arguments. With no functions, composition is the identity function. The page shows 10 × 10 + 10 − 2 = 108. This is not a store, dispatch loop or middleware implementation. Read the Redux documentation for how composition participates in an enhancer chain.
+The `compose` helper behind Redux middleware, written by hand. _Composing_ functions means feeding the result of one into the next: `compose(f, g)(x)` is `f(g(x))`.
 
-## Run and observe
+## Try it
 
-From the repository root: `npm ci`, `npm run build`, then `npm run dev`. Open `http://127.0.0.1:4173/mechanisms/compose/index.html`.
+```sh
+npm run dev
+# open http://127.0.0.1:4173/mechanisms/compose/
+```
 
-## Where to start
+The page shows `108`. It runs `forgeCompose((x) => x - 2, (x) => x + 10, (x) => x * 10)(10)`, and the functions run from right to left: 10 × 10 = 100, then 100 + 10 = 110, then 110 − 2 = 108. No install or build is needed: `npm run dev` works right after cloning. You can also open the [live demo](https://l-jovi.github.io/latte-web/mechanisms/compose/index.html).
 
-[index.js](index.js).
+## How it works
 
-## Verification
+[index.js](index.js) (8 lines) uses `reduce` to fold the list of functions into one. Each step wraps what it has so far around the next function: `(...args) => outer(inner(...args))`. Three details follow from that:
 
-`npm run test:apps` runs current component and renderer tests. `npm run test:browser` exercises the visible behavior in Chromium, Firefox and WebKit after building. Historical files are not executed. The scope and deliberate limitations are described above.
+- The functions run from right to left, in the same order as the nested call `f(g(h(x)))`.
+- The rightmost function runs first and receives all the arguments. Every other function receives one value: the result of the function to its right.
+- With no functions, `forgeCompose()` returns the _identity_ function, which gives back its argument unchanged. With one function, it returns that function itself.
 
-## Sources and license
+Redux's own [`compose`](https://github.com/reduxjs/redux/blob/master/src/compose.ts) behaves the same way.
 
-Original implementation and these explanations are MIT unless a local license states otherwise. See the [migration ledger](../../docs/migration.md) for the exact original revision and [NOTICE](../../NOTICE.md) for third-party attribution.
+## Then and now
+
+Redux includes `compose` as a convenience. Its `applyMiddleware` uses `compose` to wrap `store.dispatch` in each middleware in turn ([source](https://github.com/reduxjs/redux/blob/master/src/applyMiddleware.ts)). In a hand-written store setup, you call `compose` yourself to apply several _store enhancers_ (functions that add features to a store) in a row ([Redux docs](https://redux.js.org/api/compose)). Today Redux Toolkit is the official way to write Redux, and its `configureStore` composes the middleware and DevTools enhancers for you ([Redux docs](https://redux.js.org/introduction/why-rtk-is-redux-today)).
+
+## Limits
+
+- This is only `compose`: there is no store, no `dispatch` loop and no middleware here. The [Redux documentation](https://redux.js.org/api/compose) shows how `compose` fits into a chain of store enhancers.
+
+## Checks and credits
+
+- `npm test` checks that `forgeCompose()` returns its argument unchanged, and that the innermost function receives both arguments: `forgeCompose((x) => x * 2, (a, b) => a + b)(3, 4)` gives `14`. `npm run test:browser` opens the page in Chromium, Firefox and WebKit and fails if it throws an error or a file does not load; it does not check the number on the page.
+- This example started as a folder called `redux-scratch`, but what it actually showed was `compose`: one version fixed to three functions, and a `reduce` version that passed on only one argument. Neither handled an empty list. The [migration ledger](../../docs/migration.md) links to it.
+- Original code is MIT; see [NOTICE.md](../../NOTICE.md).

@@ -1,27 +1,39 @@
-# Leading throttling
+# Throttle
 
 English | [简体中文](README.zh-Hans.md)
 
-Limit calls while keeping the first event responsive.
+Run at most once per interval; the first call goes through right away.
 
-## Run and observe
+## Try it
 
-From the repository root: `npm ci`, then `npm run dev`. Open `http://127.0.0.1:4173/mechanisms/utilities/throttle/index.html`.
+```sh
+npm run dev
+# open http://127.0.0.1:4173/mechanisms/utilities/throttle/
+```
 
-## Read the mechanism
+Click the button as fast as you can. The counter goes up at most once every 500 ms, however many times you click. You can also open the [live demo](https://l-jovi.github.io/latte-web/mechanisms/utilities/throttle/index.html).
 
-Start with [simple.js](simple.js).
+## How it works
 
-Click repeatedly: the count increases at most once per 500 ms. No trailing call is queued, so the final pointer position would need separate handling in a real drag interaction.
+[simple.js](simple.js) (11 lines) remembers when the wrapped function last ran. On each call it checks the clock: if at least `wait` milliseconds have passed, it runs the function and records the time; otherwise it ignores the call.
 
-## Today and earlier approaches
+Two details matter:
 
-A monotonic clock avoids wall-clock adjustments; throttling and debouncing solve different interaction requirements.
+- It reads the time from `performance.now()`, which only moves forward. `Date.now()` can jump when the computer's clock is adjusted.
+- It keeps `this` and the arguments of the call that goes through, so it can wrap methods and event handlers.
 
-## Verification and sources
+Throttle and [debounce](../debounce/README.md) are easy to mix up. Throttle runs regularly _during_ a burst of events, which suits scrolling or dragging. Debounce waits until the burst _stops_, which suits a search box.
 
-`npm test` covers mechanism contracts. Browser entries are exercised by `npm run test:browser`. Preserve the source links in code; the [migration map](../../../docs/migration.md) links to the original revision.
+## Then and now
 
-## License
+JavaScript still has no built-in throttle. Libraries such as lodash provide `throttle` with options for running on the first call, the last call, or both. For visual updates, `requestAnimationFrame` is often a better fit: it runs at most once per screen refresh.
 
-MIT for original code; see [third-party notices](../../../NOTICE.md).
+## Limits
+
+- Only the first call in each interval runs. The last call of a burst is dropped, so a drag that stops between two intervals would miss its final position.
+- There is no `cancel` and no option for a trailing call.
+
+## Checks and credits
+
+- `npm test` checks that the first call runs, that a call just before the interval ends is ignored, and that a call made exactly when the interval ends runs. `npm run test:browser` opens the page in Chromium, Firefox and WebKit.
+- Original code is MIT; see [NOTICE.md](../../../NOTICE.md).

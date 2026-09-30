@@ -129,7 +129,7 @@
 
 ## 复制对象：JSON 技巧 → `structuredClone`
 
-**当时。** 深拷贝常用 `JSON.parse(JSON.stringify(x))`，但它会丢掉日期、`Map`、`Set` 和循环引用；要么就用一个库。
+**当时。** 深拷贝常用 `JSON.parse(JSON.stringify(x))`，但它会把日期变成字符串，把 `Map` 和 `Set` 变成空对象，遇到循环引用还会直接抛错；要么就用一个库。
 
 **现在。** [`structuredClone`](https://developer.mozilla.org/en-US/docs/Web/API/Window/structuredClone) 从 2022 年起在所有主流浏览器中可用，Node.js 从 17 版起可用。
 
@@ -147,7 +147,7 @@
 
 **当时。** Rust 与 WebAssembly 工作组维护着主要工具，包括 wasm-bindgen 和 wasm-pack。
 
-**现在。** 工作组[在 2025 年归档了它的 GitHub 组织](https://blog.rust-lang.org/inside-rust/2025/07/21/sunsetting-the-rustwasm-github-org)。wasm-bindgen 迁到了独立的组织并有了新的维护者，wasm-pack 交给了它的一位原始维护者。WebAssembly 本身从 2017 年起就能在所有主流浏览器中运行。
+**现在。** 工作组[在 2025 年归档了它的 GitHub 组织](https://blog.rust-lang.org/inside-rust/2025/07/21/sunsetting-the-rustwasm-github-org)。wasm-bindgen 迁到了新的 wasm-bindgen 组织，并有了新的维护者；截至 2026-09，wasm-pack 也在这个组织里。WebAssembly 本身从 2017 年起就能在所有主流浏览器中运行。
 
 **旧代码还能教你什么。** [Rust 到 WebAssembly](../examples/wasm/README.zh-Hans.md) 跟着一个函数，从 Rust 源码走到 `.wasm` 文件，再走到一次按钮点击。
 

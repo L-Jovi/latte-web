@@ -15,6 +15,6 @@ How JavaScript and the browser behave, one small page at a time.
 | [Moving an element: layout vs transform](browser/README.md) | Move the same box with `top` and with `transform`, and see which one makes the browser redo layout. | [Live demo](https://l-jovi.github.io/latte-web/fundamentals/browser/render.html) |
 | [CSS layout: BFC, Grid and centering](css/README.md) | Block formatting contexts, grid placement and several ways to center an element. | [Live demo](https://l-jovi.github.io/latte-web/fundamentals/css/bfc/bfc.html) |
 | [Semantic HTML](html/README.md) | Build a page from meaningful sections instead of anonymous boxes. | [Live demo](https://l-jovi.github.io/latte-web/fundamentals/html/semantic.html) |
-| [TypeScript: typed actions and reducers](typescript/README.md) | A discriminated union lets the compiler check every branch of a reducer. | — |
+| [TypeScript: typed actions and reducers](typescript/README.md) | A discriminated union tells the compiler which action each branch of a reducer handles. | — |
 
 [Back to the learning path](../README.md#learning-path)
