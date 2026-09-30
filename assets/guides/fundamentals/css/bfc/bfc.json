@@ -1,0 +1,125 @@
+{
+  "steps": [
+    {
+      "title": "Margins overlap inside one BFC",
+      "titleZh": "同一个 BFC 里，外边距会重叠",
+      "text": "The first two squares both have `margin: 100px`, yet the gap between them is 100 px, not 200 px. Block boxes are laid out inside a block formatting context (BFC), and inside one BFC the top and bottom margins of neighbouring boxes overlap, or collapse.",
+      "textZh": "前两个方块都设置了 `margin: 100px`，它们之间的间距却是 100 px，而不是 200 px。块级盒子在块级格式化上下文（BFC）里排列；在同一个 BFC 里，相邻盒子的上下外边距会重叠，也叫外边距折叠。",
+      "watch": [
+        {
+          "label": "gap between the first pair",
+          "labelZh": "第一组的间距",
+          "value": "(() => { const [a, b] = document.querySelectorAll('.case-body1'); return Math.round(b.getBoundingClientRect().top - a.getBoundingClientRect().bottom) + ' px'; })()",
+          "expect": "100 px"
+        }
+      ],
+      "focus": ".case-body1"
+    },
+    {
+      "title": "overflow: hidden keeps the margins apart",
+      "titleZh": "overflow: hidden 让外边距分开",
+      "text": "Each square of the second pair sits inside a `div` with `overflow: hidden`. That makes each `div` a BFC of its own, which keeps the square's margins inside it, so the gap is 200 px. Switch `overflow: hidden` off and on to watch the gap change.",
+      "textZh": "第二组的每个方块都放在一个设置了 `overflow: hidden` 的 `div` 里。这让每个 `div` 自成一个 BFC，把方块的外边距留在里面，所以间距是 200 px。把 `overflow: hidden` 关掉再打开，看间距怎么变。",
+      "action": {
+        "toggle": {
+          "target": ".case-body2",
+          "property": "overflow",
+          "on": "hidden",
+          "off": "visible"
+        }
+      },
+      "actionLabel": "Switch overflow: hidden off or on",
+      "actionLabelZh": "关掉或打开 overflow: hidden",
+      "watch": [
+        {
+          "label": "gap between the second pair",
+          "labelZh": "第二组的间距",
+          "value": "(() => { const [a, b] = document.querySelectorAll('.case-body2 p'); return Math.round(b.getBoundingClientRect().top - a.getBoundingClientRect().bottom) + ' px'; })()",
+          "expect": "100 px"
+        },
+        {
+          "label": "overflow",
+          "value": "getComputedStyle(document.querySelector('.case-body2')).overflow"
+        }
+      ]
+    },
+    {
+      "title": "box-sizing changes nothing here",
+      "titleZh": "这里 box-sizing 不起作用",
+      "text": "`box-sizing: border-box` counts padding and border inside the `width`. These squares have neither, so they look exactly like the first pair, 100 px apart.",
+      "textZh": "`box-sizing: border-box` 会把内边距和边框算进 `width`。这组方块两者都没有，所以看起来和第一组完全一样，间距也是 100 px。",
+      "watch": [
+        {
+          "label": "gap between the third pair",
+          "labelZh": "第三组的间距",
+          "value": "(() => { const [a, b] = document.querySelectorAll('.case-body3'); return Math.round(b.getBoundingClientRect().top - a.getBoundingClientRect().bottom) + ' px'; })()",
+          "expect": "100 px"
+        }
+      ],
+      "focus": ".case-body3"
+    },
+    {
+      "title": "A BFC wraps around its floats",
+      "titleZh": "BFC 会包住里面的浮动元素",
+      "text": "The bordered box has `overflow: hidden`, so it grows around the floated square inside it. Switch it off: a float gives its parent no height, so the box shrinks to its 2 px of border.",
+      "textZh": "带边框的盒子设置了 `overflow: hidden`，所以它会撑开，包住里面浮动的方块。把它关掉：浮动元素不会给父元素撑出高度，盒子就缩成只剩 2 px 的边框。",
+      "action": {
+        "toggle": {
+          "target": "h2:nth-of-type(4) + div",
+          "property": "overflow",
+          "on": "hidden",
+          "off": "visible"
+        }
+      },
+      "actionLabel": "Switch overflow: hidden off or on",
+      "actionLabelZh": "关掉或打开 overflow: hidden",
+      "watch": [
+        {
+          "label": "height of the bordered box",
+          "labelZh": "带边框盒子的高度",
+          "value": "Math.round(document.querySelector('h2:nth-of-type(4) + div').getBoundingClientRect().height) + ' px'",
+          "expect": "2 px"
+        }
+      ]
+    },
+    {
+      "title": "A BFC does not slide under a float",
+      "titleZh": "BFC 不会钻到浮动元素下面",
+      "text": "The grey box also has `overflow: hidden`, so it starts right next to the floated square. Switch it off: the grey box now starts under the float, at the same left edge, and only its text still flows around the square.",
+      "textZh": "灰色盒子也设置了 `overflow: hidden`，所以它紧挨着浮动方块排列。把它关掉：灰色盒子会从浮动元素下面、同一个左边缘开始，只有里面的文字还绕着方块排。",
+      "action": {
+        "toggle": {
+          "target": "h2:nth-of-type(5) + div + div",
+          "property": "overflow",
+          "on": "hidden",
+          "off": "visible"
+        }
+      },
+      "actionLabel": "Switch overflow: hidden off or on",
+      "actionLabelZh": "关掉或打开 overflow: hidden",
+      "watch": [
+        {
+          "label": "grey box, from the float's left edge",
+          "labelZh": "灰色盒子离浮动元素左边缘的距离",
+          "value": "Math.round(document.querySelector('h2:nth-of-type(5) + div + div').getBoundingClientRect().left - document.querySelector('h2:nth-of-type(5) + div').getBoundingClientRect().left) + ' px'",
+          "expect": "0 px"
+        }
+      ]
+    },
+    {
+      "title": "display: flow-root does it on purpose",
+      "titleZh": "display: flow-root 专门做这件事",
+      "text": "`overflow: hidden` creates a BFC as a side effect, and can clip shadows or add scrollbars. The last box uses `display: flow-root`, which creates a BFC and does nothing else, so it holds its float with no clipping.",
+      "textZh": "`overflow: hidden` 创建 BFC 只是副作用，还可能裁掉阴影或出现滚动条。最后一个盒子用的是 `display: flow-root`：它只创建 BFC，别的什么也不做，所以能包住浮动元素而不裁剪任何内容。",
+      "watch": [
+        {
+          "label": "height of the flow-root box",
+          "labelZh": "flow-root 盒子的高度",
+          "value": "Math.round(document.querySelector('h2:nth-of-type(6) + div').getBoundingClientRect().height) + ' px'",
+          "expect": "62 px"
+        }
+      ],
+      "focus": "h2:nth-of-type(6) + div"
+    }
+  ]
+}

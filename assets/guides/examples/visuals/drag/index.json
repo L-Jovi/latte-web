@@ -1,0 +1,111 @@
+{
+  "steps": [
+    {
+      "title": "One drag, written twice",
+      "titleZh": "同一个拖拽，写了两遍",
+      "text": "Both blocks follow the pointer and stop at the edges of their pale field, and both call the same `move` function to stay inside it. The **Mouse** block listens for mouse events; the **Pointer** block uses Pointer Events, one set of events for mouse, touch and pen. The readouts show where each block sits in its field, from `offsetLeft` and `offsetTop`.",
+      "textZh": "两个方块都会跟着指针移动，并停在浅色区域的边缘；它们调用同一个 `move` 函数，保证自己不出界。**Mouse** 方块监听鼠标事件；**Pointer** 方块用的是 Pointer Events，一套事件同时覆盖鼠标、触屏和手写笔。读数来自 `offsetLeft` 和 `offsetTop`，表示每个方块在自己区域里的位置。",
+      "watch": [
+        {
+          "label": "Mouse block",
+          "labelZh": "Mouse 方块",
+          "value": "(block => 'left ' + block.offsetLeft + ' px, top ' + block.offsetTop + ' px')(document.querySelector('#classic .block'))",
+          "expect": "left 0 px, top 0 px"
+        },
+        {
+          "label": "Pointer block",
+          "labelZh": "Pointer 方块",
+          "value": "(block => 'left ' + block.offsetLeft + ' px, top ' + block.offsetTop + ' px')(document.querySelector('#modern .block'))",
+          "expect": "left 0 px, top 0 px"
+        }
+      ],
+      "focus": ".field"
+    },
+    {
+      "title": "Mouse events: press on the block, move on the document",
+      "titleZh": "鼠标事件：在方块上按下，在 document 上移动",
+      "text": "This button sends made-up mouse events, the same three a real drag produces: `mousedown` on the block, then `mousemove` and `mouseup` on the whole `document`, 130 px further right and 60 px further down. At `mousedown` the code remembers the distance from the pointer to the block's position, so the block moves by the same 130 and 60 px instead of jumping to the pointer. Listening on `document` keeps the drag going when a fast movement leaves the block behind.",
+      "textZh": "这个按钮发出模拟的鼠标事件，和真实拖动产生的三个事件一样：先在方块上 `mousedown`，再在整个 `document` 上 `mousemove` 和 `mouseup`，位置向右 130 px、向下 60 px。`mousedown` 时，代码记下指针与方块位置之间的距离，所以方块同样移动 130 px 和 60 px，而不会一下子跳到指针那里。监听 `document` 的好处是：即使移动太快、指针甩开了方块，拖动也不会中断。",
+      "action": {
+        "run": "const block = document.querySelector('#classic .block'); const send = (type, x, y, target) => target.dispatchEvent(new MouseEvent(type, { clientX: x, clientY: y, button: 0, bubbles: true, cancelable: true })); send('mousedown', 20, 20, block); send('mousemove', 150, 80, document); send('mouseup', 150, 80, document);"
+      },
+      "actionLabel": "Drag the Mouse block with made-up events",
+      "actionLabelZh": "用模拟事件拖动 Mouse 方块",
+      "watch": [
+        {
+          "label": "Mouse block",
+          "labelZh": "Mouse 方块",
+          "value": "(block => 'left ' + block.offsetLeft + ' px, top ' + block.offsetTop + ' px')(document.querySelector('#classic .block'))",
+          "expect": "left 130 px, top 60 px"
+        }
+      ],
+      "focus": "#classic"
+    },
+    {
+      "title": "It stops at the edges",
+      "titleZh": "停在边缘",
+      "text": "The next made-up drag goes far past the bottom-right corner. `move` keeps the position between 0 and the field's size minus the block's size, with `Math.max` and `Math.min`, so the block stops exactly in the corner.",
+      "textZh": "下一次模拟拖动远远越过了右下角。`move` 用 `Math.max` 和 `Math.min` 把位置限制在 0 与“区域尺寸减去方块尺寸”之间，所以方块正好停在角上。",
+      "action": {
+        "run": "const block = document.querySelector('#classic .block'); const send = (type, x, y, target) => target.dispatchEvent(new MouseEvent(type, { clientX: x, clientY: y, button: 0, bubbles: true, cancelable: true })); send('mousedown', 20, 20, block); send('mousemove', 5000, 5000, document); send('mouseup', 5000, 5000, document);"
+      },
+      "actionLabel": "Drag far past the corner",
+      "actionLabelZh": "远远拖过右下角",
+      "watch": [
+        {
+          "label": "gap to the right edge",
+          "labelZh": "到右边缘的距离",
+          "value": "(block => block.parentElement.clientWidth - block.offsetLeft - block.offsetWidth + ' px')(document.querySelector('#classic .block'))",
+          "expect": "0 px"
+        },
+        {
+          "label": "gap to the bottom edge",
+          "labelZh": "到下边缘的距离",
+          "value": "(block => block.parentElement.clientHeight - block.offsetTop - block.offsetHeight + ' px')(document.querySelector('#classic .block'))",
+          "expect": "0 px"
+        }
+      ],
+      "focus": "#classic"
+    },
+    {
+      "title": "Pointer capture, and the keyboard",
+      "titleZh": "指针捕获，以及键盘",
+      "text": "The **Pointer** block starts a drag on `pointerdown` and calls `setPointerCapture`, which sends every later event from that pointer to the block, even when the pointer is outside it, so it needs no `document` listeners. Only the primary pointer and the main button start a drag. The block also listens for the arrow keys: this button sends one → and one ↓ key press, 10 px each.",
+      "textZh": "**Pointer** 方块在 `pointerdown` 时开始拖动，并调用 `setPointerCapture`：这个指针之后的所有事件都交给方块，即使指针已经移出方块也一样，所以不需要监听 `document`。只有主指针和主按键才会开始拖动。方块还监听方向键：这个按钮发出一次 → 和一次 ↓ 按键，每次移动 10 px。",
+      "action": {
+        "run": "const block = document.querySelector('#modern .block'); for (const key of ['ArrowRight', 'ArrowDown']) block.dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true, cancelable: true }));"
+      },
+      "actionLabel": "Press → and ↓ on the Pointer block",
+      "actionLabelZh": "在 Pointer 方块上按 → 和 ↓",
+      "watch": [
+        {
+          "label": "Pointer block",
+          "labelZh": "Pointer 方块",
+          "value": "(block => 'left ' + block.offsetLeft + ' px, top ' + block.offsetTop + ' px')(document.querySelector('#modern .block'))",
+          "expect": "left 10 px, top 10 px"
+        }
+      ],
+      "focus": "#modern"
+    },
+    {
+      "title": "Now use a real pointer",
+      "titleZh": "换成真实的指针",
+      "text": "Drag both blocks yourself and move fast, so the pointer leaves the block: both keep following. This button gives the **Pointer** block the focus, so the arrow keys move it. On a phone or tablet, only the **Pointer** block follows your finger, because dragging with a finger does not send mouse events. CSS `touch-action: none` on the blocks stops the page from scrolling when a touch starts on them.",
+      "textZh": "亲手拖动两个方块，动作快一点，让指针甩开方块：两个方块都会继续跟上。这个按钮让 **Pointer** 方块获得焦点，之后方向键就能移动它。在手机或平板上，只有 **Pointer** 方块会跟着手指走，因为用手指拖动不会产生鼠标事件。方块上的 CSS `touch-action: none` 让触摸从方块上开始时，页面不会跟着滚动。",
+      "action": {
+        "run": "document.querySelector('#modern .block').focus();"
+      },
+      "actionLabel": "Give the Pointer block the focus",
+      "actionLabelZh": "让 Pointer 方块获得焦点",
+      "watch": [
+        {
+          "label": "the Pointer block has the focus",
+          "labelZh": "Pointer 方块获得了焦点",
+          "value": "document.activeElement === document.querySelector('#modern .block')",
+          "expect": "true"
+        }
+      ],
+      "focus": "#modern .block"
+    }
+  ]
+}

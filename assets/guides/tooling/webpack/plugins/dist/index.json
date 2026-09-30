@@ -1,0 +1,50 @@
+{
+  "steps": [
+    {
+      "title": "The plugin is not on the page",
+      "titleZh": "插件不在页面上",
+      "text": "The page shows **Hello Webpack**, as in the first webpack topic. A plugin joins the build at fixed moments and can act on all of it; a loader, by contrast, transforms one file at a time. Both run in Node while webpack builds, so none of their code reaches the browser.",
+      "textZh": "页面上显示 **Hello Webpack**，和第一个 webpack 专题一样。插件（plugin）在构建的固定时刻介入，可以处理整个构建；loader 则一次只转换一个文件。两者都在 webpack 构建时运行于 Node 中，所以它们的代码一行也不会进入浏览器。",
+      "watch": [
+        {
+          "label": "Text of the <div>",
+          "labelZh": "<div> 里的文字",
+          "value": "document.querySelector('body > div').textContent",
+          "expect": "Hello Webpack"
+        }
+      ],
+      "focus": "body > div"
+    },
+    {
+      "title": "Read FILELIST.md",
+      "titleZh": "读取 FILELIST.md",
+      "text": "`FileListPlugin` taps `processAssets` at its last stage, `PROCESS_ASSETS_STAGE_REPORT`, when every other output file exists. It writes their names as a Markdown list into `FILELIST.md`, next to this page. This step fetches it and prints it line by line.",
+      "textZh": "`FileListPlugin` 在 `processAssets` 的最后一个阶段 `PROCESS_ASSETS_STAGE_REPORT` 挂上钩子，这时其他输出文件都已经生成了。它把这些文件名写成一个 Markdown 列表，存进这个页面旁边的 `FILELIST.md`。这一步会获取它，并逐行打印。",
+      "action": {
+        "clear": true,
+        "run": "fetch('FILELIST.md').then((r) => r.text()).then((t) => t.split('\\n').filter(Boolean).forEach((line) => console.log(line)))"
+      },
+      "actionLabel": "Fetch FILELIST.md",
+      "actionLabelZh": "获取 FILELIST.md",
+      "expectConsole": [
+        "# Emitted files",
+        "- bundle.js",
+        "- bundle.js.LICENSE.txt",
+        "- index.html"
+      ]
+    },
+    {
+      "title": "What the list shows",
+      "titleZh": "清单说明了什么",
+      "text": "`bundle.js.LICENSE.txt` is listed because the minifier had already moved Lodash's license comment out of `bundle.js` by that stage. `FILELIST.md` does not list itself: the plugin adds it after making the list. And `bundle.js` never mentions the plugin, which ran only during the build. This step checks.",
+      "textZh": "清单里有 `bundle.js.LICENSE.txt`，因为到这个阶段，压缩工具已经把 Lodash 的许可注释从 `bundle.js` 里挪了出来。`FILELIST.md` 没有列出自己：插件是在清单生成之后才把它加进去的。`bundle.js` 里也找不到这个插件，它只在构建时运行过。这一步会检查一下。",
+      "action": {
+        "clear": true,
+        "run": "fetch('bundle.js').then((r) => r.text()).then((t) => console.log('bundle.js mentions FileListPlugin:', t.includes('FileListPlugin')))"
+      },
+      "actionLabel": "Search bundle.js",
+      "actionLabelZh": "在 bundle.js 里查找",
+      "expectConsole": ["bundle.js mentions FileListPlugin: false"]
+    }
+  ]
+}

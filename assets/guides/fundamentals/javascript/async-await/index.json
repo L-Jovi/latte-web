@@ -1,0 +1,68 @@
+{
+  "steps": [
+    {
+      "title": "The same result, written two ways",
+      "titleZh": "同一个结果，两种写法",
+      "text": "`chain()` uses `.then()`, and `withAwait()` is an `async` function that uses `await`. Both start from `2` and multiply it by `3`. `Promise.all` waits for both promises and writes their results into the page: `6 = 6`.",
+      "textZh": "`chain()` 用的是 `.then()`，`withAwait()` 是一个用 `await` 的 `async` 函数。两者都从 `2` 开始，乘以 `3`。`Promise.all` 等两个 Promise 都完成后，把结果写进页面：`6 = 6`。",
+      "watch": [
+        {
+          "label": "the page shows",
+          "labelZh": "页面显示",
+          "value": "document.querySelector('output').textContent",
+          "expect": "6 = 6"
+        }
+      ],
+      "focus": "output"
+    },
+    {
+      "title": "Both return a promise",
+      "titleZh": "两个函数都返回 Promise",
+      "text": "Calling either function gives back a promise at once, not `6`: an `async` function always returns a promise. The console below shows each one as `Promise {}`, an object whose value arrives later. `Promise.all` then reads both values.",
+      "textZh": "调用这两个函数，立刻拿到的都是一个 Promise，而不是 `6`：`async` 函数总是返回 Promise。下面的控制台把它们显示为 `Promise {}`，也就是一个值稍后才到的对象。随后 `Promise.all` 读出两个值。",
+      "action": {
+        "clear": true,
+        "run": "const a = chain(); const b = withAwait(); console.log('chain() returned', a); console.log('withAwait() returned', b); Promise.all([a, b]).then((values) => console.log('values once settled:', values))"
+      },
+      "actionLabel": "Call both functions",
+      "actionLabelZh": "调用这两个函数",
+      "expectConsole": [
+        "chain() returned Promise {}",
+        "withAwait() returned Promise {}",
+        "values once settled: [6, 6]"
+      ]
+    },
+    {
+      "title": "await pauses only its own function",
+      "titleZh": "await 只暂停它所在的函数",
+      "text": "The code that calls `withAwait()` does not wait: its next line runs first. The paused function continues later as a microtask, a small job that runs as soon as the current code has finished. That is still before a `setTimeout` callback of 0 ms, which the browser runs later, as a separate task.",
+      "textZh": "调用 `withAwait()` 的代码并不会等它：下一行先执行。被暂停的函数稍后作为微任务（microtask，当前代码一执行完就会运行的小任务）继续执行。这仍然早于一个 0 毫秒的 `setTimeout` 回调，因为浏览器会把它放到之后单独的任务里运行。",
+      "action": {
+        "clear": true,
+        "run": "setTimeout(() => console.log('setTimeout callback, 0 ms'), 0); console.log('before calling withAwait()'); withAwait().then((value) => console.log('withAwait() resumed and returned', value)); console.log('after the call: the caller did not wait')"
+      },
+      "actionLabel": "Call withAwait() between two logs",
+      "actionLabelZh": "在两行日志之间调用 withAwait()",
+      "highlight": "withAwait() resumed",
+      "expectConsole": [
+        "before calling withAwait()",
+        "after the call: the caller did not wait",
+        "withAwait() resumed and returned 6",
+        "setTimeout callback, 0 ms"
+      ]
+    },
+    {
+      "title": "await does not move work off the main thread",
+      "titleZh": "await 不会把计算挪出主线程",
+      "text": "An `async` function starts running at once, up to its first `await`. This one has no `await` and spends 500 ms in a loop, so the caller, and the whole page, wait for it: the console line appears only after the loop, and the page does not respond until then. A long calculation inside an `async` function still blocks the page.",
+      "textZh": "`async` 函数一调用就开始执行，一直运行到第一个 `await`。这个函数里没有 `await`，而是在循环里耗上 500 毫秒，所以调用方乃至整个页面都得等它：控制台里的这一行要等循环结束才出现，在那之前页面没有反应。`async` 函数里的耗时计算，照样会卡住页面。",
+      "action": {
+        "clear": true,
+        "run": "async function busy() { const end = performance.now() + 500; while (performance.now() < end); return 'done'; } const start = performance.now(); const promise = busy(); console.log('busy() handed back', promise, 'after', Math.round(performance.now() - start), 'ms')"
+      },
+      "actionLabel": "Run a 500 ms loop in an async function",
+      "actionLabelZh": "在 async 函数里跑 500 毫秒的循环",
+      "expectConsole": "busy() handed back Promise {} after"
+    }
+  ]
+}

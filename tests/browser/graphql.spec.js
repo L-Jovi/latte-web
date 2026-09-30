@@ -13,10 +13,18 @@ test('Apollo login, pagination, search, publish, vote and subscription', async (
       page.getByRole('button', { name: 'Previous', exact: true }),
     ).toBeEnabled();
     await page.getByRole('button', { name: 'Log in', exact: true }).click();
-    await expect(page.getByText('Signed in as Demo Reader')).toBeVisible();
+    await expect(
+      page
+        .locator('#root')
+        .getByText('Signed in as Demo Reader', { exact: true }),
+    ).toBeVisible();
     await other.goto('http://127.0.0.1:4173/examples/graphql/client/dist/');
     await other.getByRole('button', { name: 'Log in', exact: true }).click();
-    await expect(other.getByText('Signed in as Demo Reader')).toBeVisible();
+    await expect(
+      other
+        .locator('#root')
+        .getByText('Signed in as Demo Reader', { exact: true }),
+    ).toBeVisible();
     await page.getByLabel('Search', { exact: true }).fill(name);
     await expect(page.locator('li')).toHaveCount(0);
     await other

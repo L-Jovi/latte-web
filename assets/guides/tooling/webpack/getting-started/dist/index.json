@@ -1,0 +1,61 @@
+{
+  "steps": [
+    {
+      "title": "What the bundle wrote",
+      "titleZh": "打包产物写出了什么",
+      "text": "The line **Hello Webpack** under the summary is not in the HTML file. `bundle.js` makes that `<div>` when it runs: `src/index.js` joins two words with Lodash's `_.join` and adds the result to the page.",
+      "textZh": "摘要下面那行 **Hello Webpack** 并不在 HTML 文件里。它是 `bundle.js` 运行时生成的 `<div>`：`src/index.js` 用 Lodash 的 `_.join` 把两个词连起来，再把结果加到页面上。",
+      "watch": [
+        {
+          "label": "Text of the <div>",
+          "labelZh": "<div> 里的文字",
+          "value": "document.querySelector('body > div').textContent",
+          "expect": "Hello Webpack"
+        }
+      ],
+      "focus": "body > div"
+    },
+    {
+      "title": "One script tag, written for you",
+      "titleZh": "一个 script 标签，由插件写好",
+      "text": "HtmlWebpackPlugin wrote `dist/index.html` with a `<script>` tag for `bundle.js`. It put the tag in `<head>` with `defer`, which makes the browser run the script only after it has read the whole page. That is why the `<div>` appears after the heading.",
+      "textZh": "HtmlWebpackPlugin 生成 `dist/index.html` 时，写进了一个引用 `bundle.js` 的 `<script>` 标签。它把标签放在 `<head>` 里并加上 `defer`，浏览器会等读完整个页面才运行这段脚本。所以 `<div>` 出现在标题之后。",
+      "watch": [
+        {
+          "label": "Page scripts (not counting the guide)",
+          "labelZh": "页面脚本（不含说明面板）",
+          "value": "[...document.scripts].filter((s) => !s.src.endsWith('/guide.js')).map((s) => s.getAttribute('src')).join(', ')",
+          "expect": "bundle.js"
+        },
+        {
+          "label": "The tag is in",
+          "labelZh": "标签所在的元素",
+          "value": "document.querySelector('script[src$=\"bundle.js\"]').parentElement.localName",
+          "expect": "head"
+        },
+        {
+          "label": "defer",
+          "value": "document.querySelector('script[src$=\"bundle.js\"]').defer",
+          "expect": "true"
+        }
+      ]
+    },
+    {
+      "title": "Lodash travelled inside bundle.js",
+      "titleZh": "Lodash 被打包进了 bundle.js",
+      "text": "The page loads no separate Lodash file. webpack started at the entry, `src/index.js`, the first file it reads, followed its `import` to `lodash` and wrote both into one minified file. The minifier moved Lodash's license comment into `bundle.js.LICENSE.txt`, and the first line of `bundle.js` points to it. This step fetches both files.",
+      "textZh": "页面没有单独加载 Lodash 文件。webpack 从入口（entry）`src/index.js` 开始，也就是它读的第一个文件，顺着其中的 `import` 找到 `lodash`，再把两者写进同一个压缩后的文件。压缩工具把 Lodash 的许可注释挪进了 `bundle.js.LICENSE.txt`，`bundle.js` 的第一行就指向这个文件。这一步会获取这两个文件。",
+      "action": {
+        "clear": true,
+        "run": "Promise.all(['bundle.js', 'bundle.js.LICENSE.txt'].map((f) => fetch(f).then((r) => r.text()))).then(([bundle, license]) => { console.log('bundle.js, line 1:', bundle.split('\\n')[0]); console.log('bundle.js.LICENSE.txt:', license.split('\\n').find((l) => l.includes('Lodash')).trim()); console.log('bundle.js size:', (new Blob([bundle]).size / 1000).toFixed(1), 'KB'); })"
+      },
+      "actionLabel": "Fetch bundle.js and its license file",
+      "actionLabelZh": "获取 bundle.js 和它的许可文件",
+      "highlight": "Lodash",
+      "expectConsole": [
+        "bundle.js, line 1: /*! For license information please see bundle.js.LICENSE.txt */",
+        "bundle.js.LICENSE.txt: * Lodash <https://lodash.com/>"
+      ]
+    }
+  ]
+}

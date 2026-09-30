@@ -1,0 +1,106 @@
+{
+  "steps": [
+    {
+      "title": "A page made of named parts",
+      "titleZh": "用有含义的标签搭起来的页面",
+      "text": "This made-up field notebook is built from elements that say what each part is for: `<header>`, `<nav>`, `<main>`, `<article>`, `<aside>` and `<footer>`. The readout counts each one; the page itself has no `<div>` at all. Screen readers can list the big parts of a page, called landmarks, such as the navigation, the main content and a side note, and jump straight to one. This guide panel is an `<aside>` too: related content that is not part of the article.",
+      "textZh": "这本虚构的野外笔记，是用能说明每一部分用途的元素搭起来的：`<header>`、`<nav>`、`<main>`、`<article>`、`<aside>` 和 `<footer>`。下面的读数数出了每种元素各有几个；页面本身一个 `<div>` 都没有。屏幕阅读器可以把页面的几大块列出来，这些大块叫作地标（landmark），比如导航、主要内容和旁注，读者可以直接跳到其中一块。这个说明面板本身也是一个 `<aside>`：它是相关内容，但不属于文章。",
+      "watch": [
+        {
+          "label": "elements outside this guide",
+          "labelZh": "本面板以外的元素",
+          "value": "['header', 'nav', 'main', 'article', 'section', 'aside', 'footer', 'div'].map((tag) => tag + ' ' + [...document.querySelectorAll(tag)].filter((node) => !node.closest('.latte-guide')).length).join(', ')",
+          "expect": "header 1, nav 1, main 1, article 1, section 1, aside 1, footer 2, div 0"
+        }
+      ]
+    },
+    {
+      "title": "The header and the navigation",
+      "titleZh": "页头和导航",
+      "text": "`<header>` holds the page title, the only `<h1>`, and one line of introduction. `<nav>` holds the links that move around the page, and its `aria-label` gives it the name `Notebook` for screen readers. Follow the first link: the address now ends in `#entry`, the `id` of the article.",
+      "textZh": "`<header>` 放页面标题（页面上唯一的 `<h1>`）和一行介绍。`<nav>` 放在页面内跳转的链接，它的 `aria-label` 给这组导航起名为 `Notebook`，供屏幕阅读器使用。点一下第一个链接：地址会以 `#entry` 结尾，这正是文章的 `id`。",
+      "action": {
+        "clickText": "Read the entry"
+      },
+      "actionLabel": "Click Read the entry",
+      "actionLabelZh": "点击 Read the entry",
+      "watch": [
+        {
+          "label": "address ends in",
+          "labelZh": "地址结尾",
+          "value": "location.hash",
+          "expect": "#entry"
+        },
+        {
+          "label": "name of the nav",
+          "labelZh": "导航的名字",
+          "value": "document.querySelector('nav').getAttribute('aria-label')",
+          "expect": "Notebook"
+        }
+      ],
+      "focus": "body > header, nav"
+    },
+    {
+      "title": "The main content and one article",
+      "titleZh": "主要内容和一篇文章",
+      "text": "`<main>` holds what the page is about. Inside it, the `<article>` is a piece that makes sense on its own, like a blog post: a `<section>` groups one topic, and the article's own `<footer>` gives the date. `<time datetime=\"2026-09-28\">` shows people one text and gives programs the same date in a fixed format.",
+      "textZh": "`<main>` 放页面的主要内容。它里面的 `<article>` 是一段可以独立成立的内容，就像一篇博客文章：`<section>` 归拢一个主题，文章自己的 `<footer>` 给出发布日期。`<time datetime=\"2026-09-28\">` 给人看的是一段文字，同时用固定的格式把同一个日期提供给程序。",
+      "action": {
+        "clear": true,
+        "run": "const time = document.querySelector('time'); console.log('people read:', time.textContent); console.log('programs read:', time.dateTime)"
+      },
+      "actionLabel": "Read the date both ways",
+      "actionLabelZh": "用两种方式读取日期",
+      "focus": "article",
+      "expectConsole": [
+        "people read: 28 September 2026",
+        "programs read: 2026-09-28"
+      ]
+    },
+    {
+      "title": "A side note, and this guide",
+      "titleZh": "一段旁注，还有这个面板",
+      "text": "`<aside>` holds related content that is not part of the article: here, the note about the notebook. This guide panel is an `<aside>` too, so the page now has two. Follow the second link: the address ends in `#author`, the note's `id`.",
+      "textZh": "`<aside>` 放与文章相关、但不属于文章的内容，这里是那段关于笔记的说明。这个说明面板也是一个 `<aside>`，所以页面上现在有两个。点一下第二个链接：地址会以 `#author` 结尾，也就是那段说明的 `id`。",
+      "action": {
+        "clickText": "About the author"
+      },
+      "actionLabel": "Click About the author",
+      "actionLabelZh": "点击 About the author",
+      "watch": [
+        {
+          "label": "address ends in",
+          "labelZh": "地址结尾",
+          "value": "location.hash",
+          "expect": "#author"
+        },
+        {
+          "label": "aside elements",
+          "labelZh": "aside 元素个数",
+          "value": "document.querySelectorAll('aside').length",
+          "expect": "2"
+        }
+      ],
+      "focus": "#author"
+    },
+    {
+      "title": "The page footer and the headings",
+      "titleZh": "页脚和标题层级",
+      "text": "A last `<footer>` closes the page. The headings go down one level at a time: `<h1>` for the page, `<h2>` for the article and the note, `<h3>` for the section inside the article. People who use screen readers often jump from heading to heading, and a skipped level leaves them wondering what is missing. This button lists the headings, indented by level.",
+      "textZh": "最后一个 `<footer>` 作为整个页面的结尾。标题每次只往下降一级：页面用 `<h1>`，文章和说明用 `<h2>`，文章里的小节用 `<h3>`。使用屏幕阅读器的人常常从一个标题跳到下一个标题；如果跳过了某一级，他们会纳闷缺掉的那个标题去了哪里。这个按钮按级别缩进，列出所有标题。",
+      "action": {
+        "clear": true,
+        "run": "for (const heading of document.querySelectorAll('h1, h2, h3, h4, h5, h6')) console.log('  '.repeat(Number(heading.localName[1]) - 1) + heading.localName + ' ' + heading.textContent)"
+      },
+      "actionLabel": "List the headings",
+      "actionLabelZh": "列出所有标题",
+      "focus": "body > footer",
+      "expectConsole": [
+        "h1 A small field notebook",
+        "  h2 Watching a page load",
+        "    h3 What we observed",
+        "  h2 About this notebook"
+      ]
+    }
+  ]
+}

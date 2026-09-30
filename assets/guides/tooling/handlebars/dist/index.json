@@ -1,0 +1,70 @@
+{
+  "steps": [
+    {
+      "title": "Only text, no image",
+      "titleZh": "只是文字，没有图片",
+      "text": "The build filled the template's `{{info}}` with `<img src=x onerror=alert(1)>`. Treated as HTML, that string would create an image that fails to load and then runs `alert(1)`. Here it shows up as text: the page has no `<img>`, and no alert appeared.",
+      "textZh": "构建时往模板的 `{{info}}` 里填入了 `<img src=x onerror=alert(1)>`。如果被当成 HTML，这个字符串会生成一张加载失败的图片，随即运行 `alert(1)`。这里它只显示为文字：页面上没有 `<img>`，也没有弹出提示框。",
+      "watch": [
+        {
+          "label": "Text under the heading",
+          "labelZh": "标题下面的文字",
+          "value": "document.querySelector('h2 + div').textContent.trim()",
+          "expect": "<img src=x onerror=alert(1)>"
+        },
+        {
+          "label": "<img> elements on the page",
+          "labelZh": "页面上的 <img> 元素",
+          "value": "document.querySelectorAll('img').length",
+          "expect": "0"
+        }
+      ],
+      "focus": "h2 + div"
+    },
+    {
+      "title": "What the file really says",
+      "titleZh": "文件里实际写的是什么",
+      "text": "Double braces escape the value. Escaping turns characters such as `<` into codes such as `&lt;`: in `dist/index.html`, `<` became `&lt;`, `>` became `&gt;` and `=` became `&#x3D;`. The browser shows those codes as the characters, but never reads them as a tag. This step fetches the page's own file and prints that line.",
+      "textZh": "双花括号会转义值。转义就是把 `<` 这样的字符换成 `&lt;` 这样的编码：在 `dist/index.html` 里，`<` 变成了 `&lt;`，`>` 变成了 `&gt;`，`=` 变成了 `&#x3D;`。浏览器把这些编码显示成对应的字符，但绝不会把它们当成标签来读。这一步会获取页面自己的文件，打印这一行。",
+      "action": {
+        "clear": true,
+        "run": "fetch('index.html').then((r) => r.text()).then((t) => console.log(t.split('\\n').find((l) => l.includes('&lt;img')).trim()))"
+      },
+      "actionLabel": "Fetch dist/index.html",
+      "actionLabelZh": "获取 dist/index.html",
+      "expectConsole": ["&lt;img src&#x3D;x onerror&#x3D;alert(1)&gt;"]
+    },
+    {
+      "title": "What triple braces would build",
+      "titleZh": "三花括号会生成什么",
+      "text": "Triple braces, `{{{info}}}`, insert the value as HTML on purpose. To see what that would build without running anything, this step parses the same string with `DOMParser`. The document it makes is inert: its images are not loaded and its handlers never run.",
+      "textZh": "三花括号 `{{{info}}}` 会有意把值当作 HTML 插入。为了在不运行任何代码的前提下看看会生成什么，这一步用 `DOMParser` 解析同一个字符串。它生成的文档是惰性的：里面的图片不会加载，处理函数也永远不会运行。",
+      "action": {
+        "clear": true,
+        "run": "const doc = new DOMParser().parseFromString('<img src=x onerror=alert(1)>', 'text/html'); console.log('elements built:', doc.body.children.length); console.log(doc.body.innerHTML)"
+      },
+      "actionLabel": "Parse the string as HTML",
+      "actionLabelZh": "把字符串当作 HTML 解析",
+      "expectConsole": [
+        "elements built: 1",
+        "<img src=\"x\" onerror=\"alert(1)\">"
+      ]
+    },
+    {
+      "title": "The precompiled template",
+      "titleZh": "预编译的模板",
+      "text": "`Handlebars.precompile` turned the same template into JavaScript, saved as `dist/template.cjs`. It needs only `handlebars/runtime`, the part of Handlebars that runs templates. No page loads it, but this step fetches it and shows the call that does the escaping.",
+      "textZh": "`Handlebars.precompile` 把同一个模板转换成 JavaScript，保存为 `dist/template.cjs`。它只依赖 `handlebars/runtime`，也就是 Handlebars 中负责运行模板的那部分。没有页面加载它；这一步会获取它，并找出负责转义的那次调用。",
+      "action": {
+        "clear": true,
+        "run": "fetch('template.cjs').then((r) => r.text()).then((t) => { console.log('template.cjs needs:', t.match(/require\\(\"([^\"]+)\"\\)/)[1]); console.log('template.cjs calls escapeExpression:', t.includes('escapeExpression(')); })"
+      },
+      "actionLabel": "Fetch dist/template.cjs",
+      "actionLabelZh": "获取 dist/template.cjs",
+      "expectConsole": [
+        "template.cjs needs: handlebars/runtime",
+        "template.cjs calls escapeExpression: true"
+      ]
+    }
+  ]
+}

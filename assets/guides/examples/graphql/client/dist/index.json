@@ -1,0 +1,129 @@
+{
+  "steps": [
+    {
+      "title": "A feed from a GraphQL server",
+      "titleZh": "来自 GraphQL 服务的信息流",
+      "text": "The page sends the `Feed` query to the local API, by default at `http://127.0.0.1:4000/graphql`, and shows three links at a time, newest first. `useQuery` sends two variables with it: `filter`, the search text, and `skip`, how many links to leave out. The query itself asks for `take: 3`. If the list stays empty and a **Retry** button appears, the API server is not running; start it as the README says. This guide only reads: logging in, publishing and voting are left to you.",
+      "textZh": "页面把 `Feed` 查询发给本地 API（默认地址是 `http://127.0.0.1:4000/graphql`），每次显示三个链接，最新的在前。`useQuery` 随查询带上两个变量：`filter` 是搜索文字，`skip` 是要跳过多少个链接。查询本身写明了 `take: 3`。如果列表一直是空的，还出现了 **Retry** 按钮，说明 API 服务没有运行，请按 README 启动它。这份说明只读取数据：登录、发布和投票留给你自己试。",
+      "focus": "#root ol"
+    },
+    {
+      "title": "Search the feed",
+      "titleZh": "搜索信息流",
+      "text": "Typing in **Search** sets `filter` and puts `skip` back to 0. New variables make `useQuery` send the query again, and the server keeps only the links whose description or URL contains the text. In the seed data, only **Explore React** matches `React`. Each request shows up in the browser's resource timings, so the count of requests to `/graphql` below goes up.",
+      "textZh": "在 **Search** 里输入文字会设置 `filter`，并把 `skip` 重置为 0。变量变了，`useQuery` 就再发一次查询，服务端只保留描述或 URL 里包含这段文字的链接。在种子数据里，只有 **Explore React** 和 `React` 匹配。每个请求都会记进浏览器的资源计时（resource timing），所以下面发往 `/graphql` 的请求数会增加。",
+      "action": {
+        "fill": {
+          "target": "main > label input",
+          "value": "React"
+        }
+      },
+      "actionLabel": "Search for React",
+      "actionLabelZh": "搜索 React",
+      "watch": [
+        {
+          "label": "links on this page",
+          "labelZh": "本页链接数",
+          "value": "document.querySelectorAll('#root ol li').length",
+          "expect": "1"
+        },
+        {
+          "label": "first link",
+          "labelZh": "第一个链接",
+          "value": "document.querySelector('#root ol li a')?.textContent ?? '—'",
+          "expect": "Explore React"
+        },
+        {
+          "label": "requests to /graphql",
+          "labelZh": "发往 /graphql 的请求",
+          "value": "performance.getEntriesByType('resource').filter((entry) => entry.name.endsWith('/graphql')).length"
+        }
+      ],
+      "focus": "main > label"
+    },
+    {
+      "title": "Clear the search",
+      "titleZh": "清空搜索",
+      "text": "An empty search asks for the first page of the whole feed again. Apollo Client still has the answer for these variables in its cache, so the three links come back at once. With `fetchPolicy: 'cache-and-network'` it also sends the query to the server, and the request count goes up again: if someone published a link in the meantime, the list updates.",
+      "textZh": "搜索框清空后，页面重新请求整个信息流的第一页。Apollo Client 的缓存里还留着这组变量的结果，所以三个链接立刻就回来了。由于设置了 `fetchPolicy: 'cache-and-network'`，它还会把查询再发给服务端，请求数又增加了：如果这期间有人发布了链接，列表会随之更新。",
+      "action": {
+        "fill": {
+          "target": "main > label input",
+          "value": ""
+        }
+      },
+      "actionLabel": "Clear the search box",
+      "actionLabelZh": "清空搜索框",
+      "watch": [
+        {
+          "label": "links on this page",
+          "labelZh": "本页链接数",
+          "value": "document.querySelectorAll('#root ol li').length",
+          "expect": "3"
+        },
+        {
+          "label": "requests to /graphql",
+          "labelZh": "发往 /graphql 的请求",
+          "value": "performance.getEntriesByType('resource').filter((entry) => entry.name.endsWith('/graphql')).length"
+        }
+      ],
+      "focus": "#root ol"
+    },
+    {
+      "title": "The next page",
+      "titleZh": "下一页",
+      "text": "**Next** adds 3 to `skip`. The same query runs with the new offset, and the server leaves out the three newest links. **Previous** is enabled now, because `skip` is no longer 0. **Next** stays enabled as long as more links follow.",
+      "textZh": "**Next** 把 `skip` 加 3。同一个查询带着新的偏移量再运行一次，服务端跳过最新的三个链接。**Previous** 现在可以点了，因为 `skip` 不再是 0。只要后面还有链接，**Next** 就一直可以点。",
+      "action": {
+        "clickText": "Next"
+      },
+      "actionLabel": "Show the next page",
+      "actionLabelZh": "显示下一页",
+      "watch": [
+        {
+          "label": "Previous is disabled",
+          "labelZh": "Previous 不可用",
+          "value": "document.querySelector('main > button').disabled",
+          "expect": "false"
+        },
+        {
+          "label": "links on this page",
+          "labelZh": "本页链接数",
+          "value": "document.querySelectorAll('#root ol li').length"
+        },
+        {
+          "label": "first link",
+          "labelZh": "第一个链接",
+          "value": "document.querySelector('#root ol li a')?.textContent ?? '—'"
+        }
+      ],
+      "focus": "main > button"
+    },
+    {
+      "title": "Back to the first page",
+      "titleZh": "回到第一页",
+      "text": "**Previous** takes 3 off `skip` again, and the first page comes back from the cache at once. That is all this guide does. To try the rest, log in with the made-up account the page shows. Then you can publish links and vote, and two `useSubscription` hooks listen for `newLink` and `newVote` over a WebSocket, so a second tab where you are logged in updates by itself.",
+      "textZh": "**Previous** 再把 `skip` 减 3，第一页立刻从缓存里回来了。这份说明就做到这里。想试试其余功能，就用页面上显示的虚构账号登录。登录后可以发布链接、投票；两个 `useSubscription` 会通过 WebSocket 监听 `newLink` 和 `newVote`，所以另一个同样登录了的标签页会自己更新。",
+      "action": {
+        "clickText": "Previous"
+      },
+      "actionLabel": "Show the previous page",
+      "actionLabelZh": "显示上一页",
+      "watch": [
+        {
+          "label": "Previous is disabled",
+          "labelZh": "Previous 不可用",
+          "value": "document.querySelector('main > button').disabled",
+          "expect": "true"
+        },
+        {
+          "label": "links on this page",
+          "labelZh": "本页链接数",
+          "value": "document.querySelectorAll('#root ol li').length",
+          "expect": "3"
+        }
+      ],
+      "focus": "main > button"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "steps": [
+    {
+      "title": "The same card, from Babel's output",
+      "titleZh": "同一张卡片，来自 Babel 的产物",
+      "text": "This page imports `Card` and `Button` from `dist/babel/index.js`, the files Babel wrote, instead of from `src/`. It shows the same card, with a **Babel package loaded** button. That button has no `onClick`, so clicking it does nothing.",
+      "textZh": "这个页面从 `dist/babel/index.js`，也就是 Babel 写出的文件，导入 `Card` 和 `Button`，而不是从 `src/` 导入。它显示同样的卡片，里面是一个 **Babel package loaded** 按钮。这个按钮没有 `onClick`，所以点了也没有反应。",
+      "watch": [
+        {
+          "label": "heading",
+          "labelZh": "标题",
+          "value": "document.querySelector('.card h1').textContent",
+          "expect": "Built Babel consumer"
+        },
+        {
+          "label": "button text",
+          "labelZh": "按钮文字",
+          "value": "document.querySelector('.card button').textContent",
+          "expect": "Babel package loaded"
+        }
+      ],
+      "focus": ".card"
+    },
+    {
+      "title": "The CSS import survived",
+      "titleZh": "CSS 导入保留了下来",
+      "text": "Babel rewrites files one by one but does not bundle them, so its `Card.js` still imports `card.css`. That only works through a tool that understands CSS imports. Vite built this page and turned the import into a stylesheet, so the card has its border and its rounded corners. The values below come from `card.css`.",
+      "textZh": "Babel 逐个改写文件，但不做打包，所以它输出的 `Card.js` 仍然导入 `card.css`。这只有交给能处理 CSS 导入的工具才行得通。这个页面由 Vite 构建，它把这行导入变成了样式表，所以卡片有边框，也有圆角。下面的值都来自 `card.css`。",
+      "watch": [
+        {
+          "label": "border colour",
+          "labelZh": "边框颜色",
+          "value": "getComputedStyle(document.querySelector('.card')).borderTopColor",
+          "expect": "rgb(100, 116, 139)"
+        },
+        {
+          "label": "corner radius",
+          "labelZh": "圆角半径",
+          "value": "getComputedStyle(document.querySelector('.card')).borderTopLeftRadius",
+          "expect": "8px"
+        }
+      ],
+      "focus": ".card"
+    },
+    {
+      "title": "Read what Babel wrote",
+      "titleZh": "看看 Babel 写了什么",
+      "text": "This step fetches `dist/babel/Card.js` and prints it below. Compare it with `src/Card.jsx`: the JSX became a call to `_jsx` from `react/jsx-runtime`, and `import './card.css'` is still there. `build.mjs` copies `card.css` next to the output, so that import finds its file.",
+      "textZh": "这一步取回 `dist/babel/Card.js`，打印在下面。和 `src/Card.jsx` 对照一下：JSX 变成了对 `react/jsx-runtime` 里 `_jsx` 的调用，`import './card.css'` 则原样保留。`build.mjs` 会把 `card.css` 复制到产物旁边，这行导入才能找到文件。",
+      "action": {
+        "clear": true,
+        "run": "fetch('../babel/Card.js').then((response) => response.text()).then((code) => code.trim().split('\\n').forEach((line) => console.log(line)))"
+      },
+      "actionLabel": "Print dist/babel/Card.js",
+      "actionLabelZh": "打印 dist/babel/Card.js",
+      "highlight": "card.css",
+      "expectConsole": "import './card.css';"
+    }
+  ]
+}

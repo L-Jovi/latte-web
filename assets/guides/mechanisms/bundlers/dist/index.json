@@ -1,0 +1,59 @@
+{
+  "steps": [
+    {
+      "title": "Two bundles, two results",
+      "titleZh": "两个打包结果，两种输出",
+      "text": "The page loads two files, written by the two bundlers in this folder. `layered.js` wrote **welcome Jovi** into the page, and `procedural.js` printed `my lord saber` in the console below. Both are plain scripts: each carries its own modules and a small loader, so the browser needs no module support to run them.",
+      "textZh": "页面加载了两个文件，分别由这个目录里的两个打包器生成。`layered.js` 把 **welcome Jovi** 写进了页面，`procedural.js` 在下面的控制台打印了 `my lord saber`。两者都是普通脚本：各自带着自己的模块和一个小加载器，所以浏览器不需要支持模块也能运行它们。",
+      "watch": [
+        {
+          "label": "Page scripts (not counting the guide)",
+          "labelZh": "页面脚本（不含说明面板）",
+          "value": "[...document.scripts].filter((s) => !s.src.endsWith('/guide.js')).map((s) => s.getAttribute('src')).join(', ')",
+          "expect": "procedural.js, layered.js"
+        },
+        {
+          "label": "Text written by layered.js",
+          "labelZh": "layered.js 写进页面的文字",
+          "value": "[...document.body.childNodes].filter((n) => n.nodeType === 3 && n.textContent.trim()).map((n) => n.textContent.trim()).join(' ')",
+          "expect": "welcome Jovi"
+        }
+      ],
+      "highlight": "my lord saber",
+      "expectConsole": "my lord saber"
+    },
+    {
+      "title": "The dependency graph inside each file",
+      "titleZh": "每个文件里的依赖图",
+      "text": "Each bundle ends with its dependency graph, the map of which file imports which, and every module's code is stored under its file path. The bundler made it by starting at the entry and following every `import`. This step fetches both files, reads the graphs and lists each module with its imports; the keys are full paths on the machine that ran the build, so only the file names are shown.",
+      "textZh": "每个打包结果的末尾都是它的依赖图，也就是“哪个文件导入了哪个文件”的关系图，每个模块的代码都以它的文件路径为键存放。打包器从入口出发、顺着每个 `import` 往下走，得到了这张图。这一步会获取这两个文件，读出依赖图，列出每个模块和它导入的文件；键是运行构建的那台机器上的完整路径，所以这里只显示文件名。",
+      "action": {
+        "clear": true,
+        "run": "const names = ['procedural.js', 'layered.js']; const graph = (t) => JSON.parse(t.slice(t.lastIndexOf('})(') + 3, t.lastIndexOf(')'))); Promise.all(names.map((f) => fetch(f).then((r) => r.text()))).then((texts) => texts.forEach((t, i) => Object.entries(graph(t)).forEach(([file, m]) => console.log(names[i] + ':', file.split('/').pop(), '→', Object.keys(m.dependencies).join(', ') || 'no imports'))))"
+      },
+      "actionLabel": "Read the graphs",
+      "actionLabelZh": "读出依赖图",
+      "expectConsole": [
+        "procedural.js: index.js → ./message.js",
+        "procedural.js: message.js → ./word.js",
+        "procedural.js: word.js → no imports",
+        "layered.js: index.js → ./greeting.js",
+        "layered.js: greeting.js → no imports"
+      ]
+    },
+    {
+      "title": "import became require",
+      "titleZh": "import 变成了 require",
+      "text": "While parsing, Babel rewrote `import` and `export` into `require` calls and an `exports` object, so that each module can run inside an ordinary function. `procedural/src/message.js` starts with `import { word } from './word.js'`; this step prints its code as the bundle stores it. The loader runs a module the first time it is required and keeps its `exports` in a cache.",
+      "textZh": "解析时，Babel 把 `import` 和 `export` 改写成了 `require` 调用和 `exports` 对象，这样每个模块都能放在一个普通函数里运行。`procedural/src/message.js` 开头写的是 `import { word } from './word.js'`；这一步会打印打包结果里存放的它的代码。某个模块第一次被 `require` 时，加载器运行它，并把它的 `exports` 存进缓存。",
+      "action": {
+        "clear": true,
+        "run": "fetch('procedural.js').then((r) => r.text()).then((t) => { const graph = JSON.parse(t.slice(t.lastIndexOf('})(') + 3, t.lastIndexOf(')'))); console.log(Object.entries(graph).find(([file]) => file.endsWith('/message.js'))[1].code); })"
+      },
+      "actionLabel": "Print message.js from the bundle",
+      "actionLabelZh": "打印打包结果里的 message.js",
+      "highlight": "require",
+      "expectConsole": "var _word = require(\"./word.js\");"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "steps": [
+    {
+      "title": "Predict the order",
+      "titleZh": "先预测顺序",
+      "text": "While the page loaded, task-order.js printed `script start`, `async2 end`, `Promise` and `script end` at once. Then the microtasks took turns: `async3 end`, `promise1`, `async4 end`, `promise2`, `async1 end`. `setTimeout` needs a new task, so it came last.",
+      "textZh": "页面加载时，task-order.js 立即打印了 `script start`、`async2 end`、`Promise` 和 `script end`。然后各个微任务轮流运行：`async3 end`、`promise1`、`async4 end`、`promise2`、`async1 end`。`setTimeout` 要等一个新的任务，所以排在最后。",
+      "highlight": "end",
+      "expectConsole": "async1 end"
+    },
+    {
+      "title": "Promise.resolve(fn) is a trap",
+      "titleZh": "Promise.resolve(fn) 是个陷阱",
+      "text": "promise-order.js looks as if it prints 1 to 6. But `Promise.resolve(fn)` does not call `fn`: it makes a promise whose value is the function itself. Only the `.then` callback runs, and it prints `Promise.resolve:  2`.",
+      "textZh": "promise-order.js 看上去会打印 1 到 6。但 `Promise.resolve(fn)` 并不会调用 `fn`，它只是创建一个值为这个函数本身的 promise。所以只有 `.then` 的回调会运行，打印 `Promise.resolve:  2`。",
+      "highlight": "Promise.resolve",
+      "expectConsole": "Promise.resolve:  2"
+    },
+    {
+      "title": "Click the inner box yourself",
+      "titleZh": "自己点击里面的方块",
+      "text": "Clear the console, then click the dark inner box with your mouse. Each listener runs on its own, and after it returns its microtasks run at once. So you get `click`, `promise`, `observer` for the inner box, then the same three for the outer one, and the timers and animation frames later.",
+      "textZh": "先清空控制台，再用鼠标点击里面那个深色方块。每个监听器单独运行，返回后它的微任务立即执行。所以你会先看到里面方块的 `click`、`promise`、`observer`，再看到外面方块的同样三行，定时器和动画帧则排在后面。",
+      "action": {
+        "clear": true
+      },
+      "actionLabel": "Clear the console",
+      "actionLabelZh": "清空控制台",
+      "focus": "#outer"
+    },
+    {
+      "title": "Now let the guide click",
+      "titleZh": "现在让说明替你点",
+      "text": "This button calls `inner.click()` from a script. Both listeners now run inside that one script, so the microtasks wait until it ends: `click`, `click`, then `promise`, `observer`, `promise`. The two attribute changes reach the observer as one batch, so `observer` prints once.",
+      "textZh": "这个按钮在脚本里调用 `inner.click()`。这时两个监听器都在这一段脚本里运行，微任务要等它结束：先是 `click`、`click`，然后才是 `promise`、`observer`、`promise`。两次属性修改作为一批记录送给观察者，所以 `observer` 只打印一次。",
+      "action": {
+        "clear": true,
+        "click": "#inner"
+      },
+      "actionLabel": "Run inner.click()",
+      "actionLabelZh": "运行 inner.click()",
+      "focus": "#outer",
+      "expectConsole": ["click", "click", "promise", "observer", "promise"]
+    }
+  ]
+}

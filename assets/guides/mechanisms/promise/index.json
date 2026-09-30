@@ -1,0 +1,102 @@
+{
+  "steps": [
+    {
+      "title": "Three versions, one result",
+      "titleZh": "三个版本，一个结果",
+      "text": "The page loads all three versions: `simple.js`, `promise-a+.js` and `index.js`. The numbers come from the class version, `ForgePromise`. It resolves with `1`; the first `then` callback records `1` and returns `2`; the second records `2` and writes the list into the page.",
+      "textZh": "页面加载了全部三个版本：`simple.js`、`promise-a+.js` 和 `index.js`。页面上的数字来自基于 class 的版本 `ForgePromise`：它以 `1` 完成；第一个 `then` 回调记下 `1` 并返回 `2`；第二个回调记下 `2`，再把列表写进页面。",
+      "watch": [
+        {
+          "label": "the page shows",
+          "labelZh": "页面显示",
+          "value": "document.querySelector('output').textContent",
+          "expect": "1,2"
+        },
+        {
+          "label": "values",
+          "value": "values",
+          "expect": "[1, 2]"
+        }
+      ],
+      "focus": "output"
+    },
+    {
+      "title": "simple.js: a state and a queue",
+      "titleZh": "simple.js：一个状态加一个队列",
+      "text": "`MyPromise` settles once and runs the waiting callbacks later, as microtasks, never in the middle of your code: the line logged after both `then` calls comes first. But `then` returns the same promise, so the second callback gets `1` again instead of the first callback's result. It cannot chain.",
+      "textZh": "`MyPromise` 只结算一次，并且总是稍后作为微任务运行等待中的回调，绝不会插进正在运行的代码中间：在两次 `then` 之后打印的那一行反而先出现。但它的 `then` 返回的是同一个 Promise，所以第二个回调拿到的又是 `1`，而不是第一个回调的结果。它还不能链式调用。",
+      "action": {
+        "clear": true,
+        "run": "const p = new MyPromise((resolve) => resolve(1)); console.log('state:', p.state); const same = p.then((value) => console.log('first callback got', value)); same.then((value) => console.log('second callback got', value)); console.log('then() returned the same promise:', same === p)"
+      },
+      "actionLabel": "Chain two then calls on MyPromise",
+      "actionLabelZh": "在 MyPromise 上连用两次 then",
+      "highlight": "second callback got 1",
+      "expectConsole": [
+        "state: fulfilled",
+        "then() returned the same promise: true",
+        "first callback got 1",
+        "second callback got 1"
+      ]
+    },
+    {
+      "title": "promise-a+.js: then makes a new promise",
+      "titleZh": "promise-a+.js：then 返回新的 Promise",
+      "text": "In `PromiseA`, `then` returns a new promise. When a callback returns another promise, or any object with a `then` method, the new promise takes on its result. Here the callback returns a plain object whose `then` hands over `value + 1`, so the next callback gets `2`.",
+      "textZh": "在 `PromiseA` 里，`then` 会返回一个新的 Promise。如果回调返回了另一个 Promise，或者任何带 `then` 方法的对象，新的 Promise 就会接管它的结果。这里的回调返回一个普通对象，它的 `then` 交出 `value + 1`，所以下一个回调拿到 `2`。",
+      "action": {
+        "clear": true,
+        "run": "const p = new PromiseA((resolve) => resolve(1)); const next = p.then((value) => ({ then: (resolve) => resolve(value + 1) })); console.log('then() returned a new promise:', next !== p); next.then((value) => console.log('the next callback got', value))"
+      },
+      "actionLabel": "Return an object with a then method",
+      "actionLabelZh": "在回调里返回带 then 方法的对象",
+      "highlight": "the next callback got 2",
+      "expectConsole": [
+        "then() returned a new promise: true",
+        "the next callback got 2"
+      ]
+    },
+    {
+      "title": "No promise can resolve to itself",
+      "titleZh": "Promise 不能解析成它自己",
+      "text": "If a callback returns the very promise that its `then` created, that promise would wait for itself forever. The resolution procedure rejects it with a `TypeError` instead.",
+      "textZh": "如果回调返回的正是它所在的 `then` 创建的那个 Promise，这个 Promise 就会永远等着自己。解析过程会改为用一个 `TypeError` 拒绝它。",
+      "action": {
+        "clear": true,
+        "run": "const loop = new PromiseA((resolve) => resolve()).then(() => loop); loop.catch((reason) => console.log('rejected with', reason))"
+      },
+      "actionLabel": "Return the promise from its own then",
+      "actionLabelZh": "让 then 回调返回它自己创建的 Promise",
+      "highlight": "TypeError",
+      "expectConsole": [
+        "rejected with TypeError: A promise cannot resolve to itself"
+      ]
+    },
+    {
+      "title": "index.js: race and all",
+      "titleZh": "index.js：race 和 all",
+      "text": "The class version adds helpers. Here both get the same two values: a promise that settles with `'slow'` after 100 ms, and the plain value `'fast'`. `race` settles with whichever settles first, `'fast'`. `all` waits for both and keeps their order, so `'slow'` still comes first.",
+      "textZh": "基于 class 的版本加入了几个辅助方法。这里两者拿到同样的两个值：一个 100 毫秒后以 `'slow'` 完成的 Promise，和普通值 `'fast'`。`race` 跟随最先结算的那个，也就是 `'fast'`。`all` 等两者都完成，并保持原来的顺序，所以 `'slow'` 仍排在前面。",
+      "action": {
+        "clear": true,
+        "run": "const slow = new ForgePromise((resolve) => setTimeout(() => resolve('slow'), 100)); ForgePromise.race([slow, 'fast']).then((value) => console.log('race:', value)); ForgePromise.all([slow, 'fast']).then((list) => console.log('all:', list))"
+      },
+      "actionLabel": "Race and all on the same values",
+      "actionLabelZh": "对同样的值分别用 race 和 all",
+      "expectConsole": ["race: fast", "all: [\"slow\", \"fast\"]"]
+    },
+    {
+      "title": "finally runs either way",
+      "titleZh": "finally 成功失败都会运行",
+      "text": "`finally` runs its callback whether the promise was fulfilled or rejected, then passes the original result on. This promise is rejected with `boom`: the `finally` callback runs, and the `catch` after it still gets `boom`.",
+      "textZh": "无论 Promise 成功还是失败，`finally` 都会运行它的回调，然后把原来的结果原样传下去。这个 Promise 以 `boom` 被拒绝：`finally` 的回调照常运行，后面的 `catch` 拿到的仍然是 `boom`。",
+      "action": {
+        "clear": true,
+        "run": "ForgePromise.reject(new Error('boom')).finally(() => console.log('finally callback ran')).catch((error) => console.log('catch got', error.message))"
+      },
+      "actionLabel": "Reject, then finally, then catch",
+      "actionLabelZh": "先 reject，再 finally，再 catch",
+      "expectConsole": ["finally callback ran", "catch got boom"]
+    }
+  ]
+}

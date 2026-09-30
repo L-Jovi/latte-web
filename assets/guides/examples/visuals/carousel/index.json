@@ -1,0 +1,165 @@
+{
+  "steps": [
+    {
+      "title": "One number places five cards",
+      "titleZh": "一个数字排好五张卡片",
+      "text": "`slots(count, current)` in `geometry.js` works out every card's place from `current`, the index of the front card. It takes each card's distance from the front card, wrapped to between −2 and 2, then sets `x = distance * 90`, `scale = 0.78 ** |distance|`, opacity `1 / (|distance| + 1)`, and the highest `z-index` for the front card, so nearer cards cover the ones behind. The readouts list what `app.js` wrote on cards 1 to 5.",
+      "textZh": "`geometry.js` 里的 `slots(count, current)` 只凭 `current`（最前面那张卡片的序号）算出每张卡片的位置。它先求出每张卡片与最前面那张的距离，并绕回到 −2 到 2 之间，然后设定 `x = distance * 90`、`scale = 0.78 ** |distance|`、不透明度 `1 / (|distance| + 1)`；最前面的卡片 `z-index` 最大，所以近处的卡片会盖住后面的。读数列出 `app.js` 写在卡片 1 到 5 上的值。",
+      "watch": [
+        {
+          "label": "front card",
+          "labelZh": "最前面的卡片",
+          "value": "document.querySelector('#layers [aria-current=true]').textContent",
+          "expect": "Card 1"
+        },
+        {
+          "label": "x (px)",
+          "value": "[...document.querySelectorAll('#layers article')].map((card) => Math.round(new DOMMatrix(card.style.transform).e)).join(', ')",
+          "expect": "0, 90, 180, -180, -90"
+        },
+        {
+          "label": "scale",
+          "labelZh": "缩放",
+          "value": "[...document.querySelectorAll('#layers article')].map((card) => new DOMMatrix(card.style.transform).a.toFixed(2)).join(', ')",
+          "expect": "1.00, 0.78, 0.61, 0.61, 0.78"
+        },
+        {
+          "label": "opacity",
+          "labelZh": "不透明度",
+          "value": "[...document.querySelectorAll('#layers article')].map((card) => Number(card.style.opacity).toFixed(2)).join(', ')",
+          "expect": "1.00, 0.50, 0.33, 0.33, 0.50"
+        },
+        {
+          "label": "z-index",
+          "value": "[...document.querySelectorAll('#layers article')].map((card) => card.style.zIndex).join(', ')",
+          "expect": "5, 4, 3, 3, 4"
+        }
+      ],
+      "focus": ".stage"
+    },
+    {
+      "title": "Next card: everything is recomputed",
+      "titleZh": "下一张：全部重新计算",
+      "text": "Click **Next layered card**: `current` becomes 1, and `render` recomputes all five cards from that one number. Card 2 moves to the front and gets `aria-current=\"true\"`, which tells assistive technology such as screen readers which card is current. A CSS transition animates the change.",
+      "textZh": "点击 **Next layered card**：`current` 变成 1，`render` 根据这一个数字重新计算全部五张卡片。Card 2 移到最前面，并得到 `aria-current=\"true\"`，告诉屏幕阅读器等辅助技术当前是哪一张。CSS 过渡负责动画。",
+      "action": {
+        "clickText": "Next layered card"
+      },
+      "actionLabel": "Click Next layered card",
+      "actionLabelZh": "点击 Next layered card",
+      "watch": [
+        {
+          "label": "front card",
+          "labelZh": "最前面的卡片",
+          "value": "document.querySelector('#layers [aria-current=true]').textContent",
+          "expect": "Card 2"
+        },
+        {
+          "label": "x (px)",
+          "value": "[...document.querySelectorAll('#layers article')].map((card) => Math.round(new DOMMatrix(card.style.transform).e)).join(', ')",
+          "expect": "-90, 0, 90, 180, -180"
+        },
+        {
+          "label": "z-index",
+          "value": "[...document.querySelectorAll('#layers article')].map((card) => card.style.zIndex).join(', ')",
+          "expect": "4, 5, 4, 3, 3"
+        },
+        {
+          "label": "text under the cards",
+          "labelZh": "卡片下方的文字",
+          "value": "document.querySelector('#layers output').textContent",
+          "expect": "Card 2"
+        }
+      ],
+      "focus": ".stage"
+    },
+    {
+      "title": "Fast clicks keep the order",
+      "titleZh": "点得再快，顺序也不乱",
+      "text": "This button clicks **Next layered card** four times in a row, much faster than the 0.3-second animation. Each click only changes `current` and recomputes; nothing is read back from the page, so no lock is needed while an animation runs. After Card 5 comes Card 1 again: the carousel wraps around.",
+      "textZh": "这个按钮连点四次 **Next layered card**，比 0.3 秒的动画快得多。每次点击只改变 `current` 并重新计算，从不从页面上读回位置，所以动画进行中也不需要加锁。Card 5 之后又回到 Card 1：轮播会循环。",
+      "action": {
+        "run": "const next = document.querySelector(\"#layers [data-step='1']\"); for (let i = 0; i < 4; i++) next.click();"
+      },
+      "actionLabel": "Click Next layered card four times",
+      "actionLabelZh": "连点四次 Next layered card",
+      "watch": [
+        {
+          "label": "front card",
+          "labelZh": "最前面的卡片",
+          "value": "document.querySelector('#layers [aria-current=true]').textContent",
+          "expect": "Card 1"
+        },
+        {
+          "label": "x (px)",
+          "value": "[...document.querySelectorAll('#layers article')].map((card) => Math.round(new DOMMatrix(card.style.transform).e)).join(', ')",
+          "expect": "0, 90, 180, -180, -90"
+        }
+      ],
+      "focus": ".stage"
+    },
+    {
+      "title": "Scroll Snap: the browser scrolls",
+      "titleZh": "Scroll Snap：交给浏览器滚动",
+      "text": "The second carousel is a strip that the browser scrolls. `scroll-snap-type: x mandatory` on the strip and `scroll-snap-align: start` on each card make every scroll come to rest on a whole card. Click **Next snap card**: it calls `scrollTo` with smooth scrolling, and a `scroll` listener works out the card from `scrollLeft` and updates the text.",
+      "textZh": "第二个轮播是一条由浏览器负责滚动的长条。长条上的 `scroll-snap-type: x mandatory` 加上每张卡片的 `scroll-snap-align: start`，让每次滚动都停在一整张卡片上。点击 **Next snap card**：它调用 `scrollTo` 平滑滚动，`scroll` 监听器根据 `scrollLeft` 算出当前是哪一张，并更新文字。",
+      "action": {
+        "clickText": "Next snap card"
+      },
+      "actionLabel": "Click Next snap card",
+      "actionLabelZh": "点击 Next snap card",
+      "watch": [
+        {
+          "label": "text under the strip",
+          "labelZh": "长条下方的文字",
+          "value": "document.querySelector('#snap output').textContent",
+          "expect": "Card 2"
+        },
+        {
+          "label": "scrollLeft",
+          "value": "Math.round(document.querySelector('#snap .strip').scrollLeft) + ' px'"
+        }
+      ],
+      "focus": ".strip"
+    },
+    {
+      "title": "Any scroll counts",
+      "titleZh": "任何滚动都算数",
+      "text": "The text follows every scroll, not only the buttons: a swipe, the mouse wheel or a script. This button sets `scrollLeft` to the end of the strip from a script, without smooth scrolling. The `scroll` listener computes `Math.round(scrollLeft / clientWidth)`, shows `Card 5` and disables **Next snap card**.",
+      "textZh": "文字跟随每一次滚动，而不只是按钮：手指滑动、鼠标滚轮或者脚本都一样。这个按钮用脚本把 `scrollLeft` 直接设到长条的末端，不做平滑滚动。`scroll` 监听器计算 `Math.round(scrollLeft / clientWidth)`，显示 `Card 5`，并禁用 **Next snap card**。",
+      "action": {
+        "run": "const strip = document.querySelector('#snap .strip'); strip.scrollLeft = strip.scrollWidth;"
+      },
+      "actionLabel": "Scroll the strip to the end",
+      "actionLabelZh": "把长条滚到末端",
+      "watch": [
+        {
+          "label": "card at this scrollLeft",
+          "labelZh": "按 scrollLeft 算出的卡片",
+          "value": "(strip => 'Card ' + (Math.round(strip.scrollLeft / strip.clientWidth) + 1))(document.querySelector('#snap .strip'))",
+          "expect": "Card 5"
+        },
+        {
+          "label": "text under the strip",
+          "labelZh": "长条下方的文字",
+          "value": "document.querySelector('#snap output').textContent",
+          "expect": "Card 5"
+        },
+        {
+          "label": "Next snap card disabled",
+          "labelZh": "Next snap card 已禁用",
+          "value": "document.querySelector(\"#snap [data-step='1']\").disabled",
+          "expect": "true"
+        }
+      ],
+      "focus": ".strip"
+    },
+    {
+      "title": "Try both by hand",
+      "titleZh": "亲手试试两个轮播",
+      "text": "Swipe the strip or scroll it sideways: it always comes to rest on a whole card, and it stops at the ends. Focus the layered carousel with the Tab key and press the arrow keys; it does not respond to swipes. When your system's reduce-motion setting is on, the snap buttons jump instead of scrolling smoothly, and `style.css`, the stylesheet all visual demos share, makes the layered cards move almost at once.",
+      "textZh": "用手指滑动长条，或者横向滚动它：它总会停在一整张卡片上，滚到两端就停下。用 Tab 键让层叠轮播获得焦点，再按方向键；它不响应滑动手势。如果系统开启了“减少动态效果”，Scroll Snap 的按钮会直接跳到目标卡片，不再平滑滚动；所有视觉示例共用的样式表 `style.css` 也会让层叠卡片几乎瞬间就位。",
+      "focus": ".stage, .strip"
+    }
+  ]
+}

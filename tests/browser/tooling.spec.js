@@ -6,15 +6,22 @@ test('dynamic import executes when requested', async ({ page }) => {
   expect(messages.some((text) => text.includes('module has loaded'))).toBe(
     false,
   );
-  await page.getByRole('button').click();
+  await page
+    .getByRole('button', {
+      name: 'Click me and look at the console!',
+      exact: true,
+    })
+    .click();
   await expect
     .poll(() => messages.some((text) => text.includes('Button Clicked')))
     .toBe(true);
 });
 test('component consumer uses the same Card and Button', async ({ page }) => {
   await page.goto('/examples/components/dist/demo/index.html');
-  await page.getByRole('button', { name: 'Count: 0' }).click();
-  await expect(page.getByRole('button', { name: 'Count: 1' })).toBeVisible();
+  await page.getByRole('button', { name: 'Count: 0', exact: true }).click();
+  await expect(
+    page.getByRole('button', { name: 'Count: 1', exact: true }),
+  ).toBeVisible();
 });
 test('escaped template displays text without creating an image', async ({
   page,

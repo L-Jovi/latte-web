@@ -1,0 +1,51 @@
+{
+  "steps": [
+    {
+      "title": "Click the child box",
+      "titleZh": "点击子方块",
+      "text": "The child's first listener calls `e.stopImmediatePropagation()`. That stops the event before it reaches the parent, and also skips the child's own second listener, so only `fire child` appears.",
+      "textZh": "子方块的第一个监听器调用了 `e.stopImmediatePropagation()`。这会在事件到达父元素之前把它拦下，同时跳过子方块自己的第二个监听器，所以只出现 `fire child`。",
+      "action": {
+        "clear": true,
+        "click": ".child"
+      },
+      "actionLabel": "Click the child box",
+      "actionLabelZh": "点击子方块",
+      "expectConsole": ["fire child"],
+      "absentConsole": ["fire parent", "fire child 2nd event"]
+    },
+    {
+      "title": "Click the parent box",
+      "titleZh": "点击父方块",
+      "text": "A click on the parent itself never passes through the child, so the parent's listener runs.",
+      "textZh": "直接点在父元素上，事件根本不会经过子元素，所以父元素的监听器会运行。",
+      "action": {
+        "clear": true,
+        "click": ".parent"
+      },
+      "actionLabel": "Click the parent box",
+      "actionLabelZh": "点击父方块",
+      "expectConsole": ["fire parent"]
+    },
+    {
+      "title": "One listener for the whole list",
+      "titleZh": "一个监听器管住整个列表",
+      "text": "The `<ul>` has the only listener in the list. A click on an item bubbles up to it: `event.target` is the `<li>` you clicked, and `event.currentTarget` is the `<ul>` that is listening.",
+      "textZh": "列表里只有 `<ul>` 有监听器。点击某一项时，事件冒泡到它：`event.target` 是你点的 `<li>`，`event.currentTarget` 是正在监听的 `<ul>`。",
+      "action": {
+        "clear": true,
+        "click": "#ul li:nth-child(3)"
+      },
+      "actionLabel": "Click the third item",
+      "actionLabelZh": "点击第三项",
+      "focus": "#ul",
+      "expectConsole": ["<li>", "<ul#ul>"]
+    },
+    {
+      "title": "stopPropagation is gentler",
+      "titleZh": "stopPropagation 温和一些",
+      "text": "The script also has `e.stopPropagation()`, commented out. It would stop the event before the parent too, but the child's second listener would still run and print `fire child 2nd event`.",
+      "textZh": "脚本里还有一行被注释掉的 `e.stopPropagation()`。它同样会在父元素之前拦下事件，但子方块的第二个监听器仍会运行，打印 `fire child 2nd event`。"
+    }
+  ]
+}

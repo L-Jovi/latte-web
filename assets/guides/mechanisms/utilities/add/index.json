@@ -1,0 +1,47 @@
+{
+  "steps": [
+    {
+      "title": "The console shows functions",
+      "titleZh": "控制台显示的是函数",
+      "text": "Each call returns a function, so the console lists functions, not numbers: `ƒ fn()` and `ƒ sum()`. The running total hides in a closure.",
+      "textZh": "每次调用都返回一个函数，所以控制台列出的是函数而不是数字：`ƒ fn()` 和 `ƒ sum()`。累计的总数藏在闭包里。",
+      "highlight": "ƒ"
+    },
+    {
+      "title": "Ask for the number",
+      "titleZh": "把数字要出来",
+      "text": "Both versions give the function its own `toString`, which returns the total. `String(fn)` calls it.",
+      "textZh": "两个版本都给函数加了自己的 `toString`，返回累计的总数。`String(fn)` 会调用它。",
+      "action": {
+        "run": "console.log('String(addMutiplyParams(1, 2)(3)) =', String(addMutiplyParams(1, 2)(3))); console.log('String(addMutiplyParams(1, 2, 3)(5, 7)()) =', String(addMutiplyParams(1, 2, 3)(5, 7)()))"
+      },
+      "actionLabel": "Convert two chains with String()",
+      "actionLabelZh": "用 String() 转换两条调用链",
+      "expectConsole": "String(addMutiplyParams(1, 2, 3)(5, 7)()) = 18"
+    },
+    {
+      "title": "Coercion with +",
+      "titleZh": "用 + 触发类型转换",
+      "text": "`+` asks the function for a plain value. `valueOf` gives back the function itself, so JavaScript tries `toString` next, which returns the number `6`.",
+      "textZh": "`+` 会向函数要一个原始值。`valueOf` 返回的是函数本身，于是 JavaScript 接着尝试 `toString`，它返回数字 `6`。",
+      "action": {
+        "run": "console.log('addSimpleParam(1)(2)(3) + 0 =', addSimpleParam(1)(2)(3) + 0)"
+      },
+      "actionLabel": "Add 0 to a chain",
+      "actionLabelZh": "给调用链加上 0",
+      "expectConsole": "addSimpleParam(1)(2)(3) + 0 = 6"
+    },
+    {
+      "title": "Strings join instead",
+      "titleZh": "遇到字符串就变成拼接",
+      "text": "With a string in the chain, `+` joins text: the total starts at `0`, so `'1'` and `2` give `'012'`.",
+      "textZh": "调用链里一旦有字符串，`+` 就会拼接文本：总数从 `0` 开始，所以 `'1'` 和 `2` 得到 `'012'`。",
+      "action": {
+        "run": "console.log(\"String(addMutiplyParams('1', 2)) =\", String(addMutiplyParams('1', 2)))"
+      },
+      "actionLabel": "Put a string in the chain",
+      "actionLabelZh": "在调用链里放一个字符串",
+      "expectConsole": "String(addMutiplyParams('1', 2)) = 012"
+    }
+  ]
+}

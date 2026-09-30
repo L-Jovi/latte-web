@@ -1,0 +1,93 @@
+{
+  "steps": [
+    {
+      "title": "Two counters, two instances",
+      "titleZh": "两个计数器，两个实例",
+      "text": "`src/index.js` renders one `Counter` class twice. While the page loaded, each counter logged `mounted after insertion`, its name and `true`: `componentDidMount` runs in a second step, commit, after the button is already in the page.",
+      "textZh": "`src/index.js` 把同一个 `Counter` class 渲染了两次。页面加载时，每个计数器都打印了 `mounted after insertion`、自己的名字和 `true`：`componentDidMount` 在第二步，也就是 commit 阶段才运行，那时按钮已经在页面上了。",
+      "watch": [
+        {
+          "label": "buttons",
+          "labelZh": "按钮",
+          "value": "[...document.querySelectorAll('#root button')].map((button) => button.textContent).join(' | ')",
+          "expect": "First: 0 | Second: 0"
+        }
+      ],
+      "focus": "#root",
+      "highlight": "mounted after insertion",
+      "expectConsole": "mounted after insertion First true"
+    },
+    {
+      "title": "Click First",
+      "titleZh": "点击 First",
+      "text": "The click calls `setState` on the first instance only. `setState` merges the new count into that instance's state and calls the update function the instance got when it was mounted. **First** goes up; **Second** stays at 0.",
+      "textZh": "这次点击只调用了第一个实例的 `setState`。`setState` 把新的计数合并进这个实例的状态，再调用它在挂载时拿到的更新函数。于是 **First** 加一，**Second** 仍是 0。",
+      "action": {
+        "click": "#root button"
+      },
+      "actionLabel": "Click the First counter",
+      "actionLabelZh": "点击 First 计数器",
+      "watch": [
+        {
+          "label": "buttons",
+          "labelZh": "按钮",
+          "value": "[...document.querySelectorAll('#root button')].map((button) => button.textContent).join(' | ')",
+          "expect": "First: 1 | Second: 0"
+        }
+      ],
+      "focus": "#root"
+    },
+    {
+      "title": "The clicked button is a new element",
+      "titleZh": "被点的按钮已经换成新元素",
+      "text": "An update does not compare the old result with the new one, as React does. It renders again, builds new DOM nodes and swaps them in. This button keeps a reference to the **First** button, clicks it, and compares: the page now holds a different element, and the old one has left the page.",
+      "textZh": "更新时不会像 React 那样比较新旧结果，而是重新渲染、创建新的 DOM 节点，再把它们换上去。这个按钮先记住 **First** 按钮，点击它，再做比较：页面里已经是另一个元素了，旧的那个已经离开了页面。",
+      "action": {
+        "clear": true,
+        "run": "const before = document.querySelector('#root button'); before.click(); const after = document.querySelector('#root button'); console.log('same element after the click:', before === after); console.log('old element still in the page:', before.isConnected)"
+      },
+      "actionLabel": "Click First and compare the elements",
+      "actionLabelZh": "点击 First 并比较前后的元素",
+      "watch": [
+        {
+          "label": "buttons",
+          "labelZh": "按钮",
+          "value": "[...document.querySelectorAll('#root button')].map((button) => button.textContent).join(' | ')",
+          "expect": "First: 2 | Second: 0"
+        }
+      ],
+      "focus": "#root",
+      "expectConsole": [
+        "same element after the click: false",
+        "old element still in the page: false"
+      ]
+    },
+    {
+      "title": "Second keeps its own state",
+      "titleZh": "Second 有自己的状态",
+      "text": "Each instance gets its own update function when it is mounted, so the two counters never mix up their state. A click on **Second** changes only **Second**.",
+      "textZh": "每个实例在挂载时都会拿到自己的更新函数，所以两个计数器的状态从不混在一起。点击 **Second** 只会改变 **Second**。",
+      "action": {
+        "click": "#root button + button"
+      },
+      "actionLabel": "Click the Second counter",
+      "actionLabelZh": "点击 Second 计数器",
+      "watch": [
+        {
+          "label": "buttons",
+          "labelZh": "按钮",
+          "value": "[...document.querySelectorAll('#root button')].map((button) => button.textContent).join(' | ')",
+          "expect": "First: 2 | Second: 1"
+        }
+      ],
+      "focus": "#root"
+    },
+    {
+      "title": "Try the keyboard",
+      "titleZh": "用键盘试试",
+      "text": "Clicks log nothing: `Counter` has no `componentDidUpdate`, and `componentDidMount` runs only when a counter is first added. Now press Tab until a counter has focus, then press Space: the count goes up, but the focus is gone, because the button that had it was replaced.",
+      "textZh": "点击不会打印任何东西：`Counter` 没有 `componentDidUpdate`，`componentDidMount` 也只在计数器第一次加入页面时运行。现在按 Tab 键，直到焦点落在某个计数器上，再按空格：计数加一，焦点却不见了，因为拥有焦点的那个按钮被换掉了。",
+      "focus": "#root"
+    }
+  ]
+}

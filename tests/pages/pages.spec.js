@@ -37,7 +37,7 @@ test('the handwritten router navigates under the site prefix', async ({
   page,
 }) => {
   await page.goto('mechanisms/router/dist/index.html');
-  await page.getByRole('link', { name: 'About' }).click();
+  await page.getByRole('link', { name: 'About', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'About view' })).toBeVisible();
   expect(new URL(page.url()).pathname).toBe(
     '/latte-web/mechanisms/router/dist/about',
@@ -53,6 +53,6 @@ test('the Rust module runs from the site prefix', async ({ page }) => {
     'Rust module not built (npm run build:wasm)',
   );
   await page.goto('examples/wasm/dist/');
-  await page.getByRole('button', { name: 'Add in Rust' }).click();
+  await page.getByRole('button', { name: 'Add in Rust', exact: true }).click();
   await expect(page.locator('output')).toHaveText('5');
 });

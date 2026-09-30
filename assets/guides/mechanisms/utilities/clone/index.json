@@ -1,0 +1,51 @@
+{
+  "steps": [
+    {
+      "title": "A deep clone that keeps the shape",
+      "titleZh": "保持结构的深拷贝",
+      "text": "`cloneDeep(source)` copies the nested objects and arrays and keeps the cycle. Things it does not copy, such as the DOM element and the function, stay shared with the original.",
+      "textZh": "`cloneDeep(source)` 复制了嵌套的对象和数组，并保留了循环引用。它不复制的东西，比如 DOM 元素和函数，仍和原对象共用。",
+      "watch": [
+        {
+          "label": "copy.circleRef === copy",
+          "value": "(() => { const copy = cloneDeep(source); return copy.circleRef === copy; })()",
+          "expect": "true"
+        },
+        {
+          "label": "copy.one !== source.one",
+          "value": "cloneDeep(source).one !== source.one",
+          "expect": "true"
+        },
+        {
+          "label": "copy.two === source.two",
+          "value": "cloneDeep(source).two === source.two",
+          "expect": "true"
+        }
+      ]
+    },
+    {
+      "title": "structuredClone refuses",
+      "titleZh": "structuredClone 拒绝了",
+      "text": "The built-in `structuredClone` keeps cycles too, but it cannot copy DOM nodes or functions, so it throws a `DataCloneError` on this object.",
+      "textZh": "内置的 `structuredClone` 也能保留循环引用，但它不能复制 DOM 节点和函数，所以在这个对象上会抛出 `DataCloneError`。",
+      "action": {
+        "run": "try { structuredClone(source) } catch (error) { console.log('structuredClone(source) threw a', error.name) }"
+      },
+      "actionLabel": "Run structuredClone(source)",
+      "actionLabelZh": "运行 structuredClone(source)",
+      "expectConsole": "structuredClone(source) threw a DataCloneError"
+    },
+    {
+      "title": "Plain data is fine",
+      "titleZh": "纯数据就没问题",
+      "text": "On plain data, `structuredClone` keeps the cycle and gives back a real `Date`.",
+      "textZh": "对纯数据，`structuredClone` 会保留循环引用，还会还原出真正的 `Date`。",
+      "action": {
+        "run": "const plain = { list: [1, 2], when: new Date(0) }; plain.self = plain; const copy = structuredClone(plain); console.log('cycle kept:', copy.self === copy, '| date is a Date:', copy.when instanceof Date)"
+      },
+      "actionLabel": "Clone plain data",
+      "actionLabelZh": "复制一份纯数据",
+      "expectConsole": "cycle kept: true | date is a Date: true"
+    }
+  ]
+}

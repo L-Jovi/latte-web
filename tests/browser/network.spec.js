@@ -5,18 +5,26 @@ test('JSONP cleanup, CORS Fetch and explicit cancellation', async ({
   page,
 }) => {
   await page.goto('/examples/network/');
-  await page.getByRole('button', { name: 'Request with JSONP' }).click();
+  await page
+    .getByRole('button', { name: 'Request with JSONP', exact: true })
+    .click();
   await expect(page.locator('output')).toContainText('"transport":"jsonp"');
   expect(
     await page.evaluate(() =>
       Object.keys(window).filter((key) => key.startsWith('latte_')),
     ),
   ).toEqual([]);
-  await page.getByRole('button', { name: 'Request with Fetch' }).click();
+  await page
+    .getByRole('button', { name: 'Request with Fetch', exact: true })
+    .click();
   await expect(page.locator('output')).toContainText('"transport":"data"');
-  await page.getByRole('button', { name: 'Start slow Fetch' }).click();
+  await page
+    .getByRole('button', { name: 'Start slow Fetch', exact: true })
+    .click();
   await expect(page.locator('output')).toHaveText('Waiting');
-  await page.getByRole('button', { name: 'Cancel request' }).click();
+  await page
+    .getByRole('button', { name: 'Cancel request', exact: true })
+    .click();
   await expect(page.locator('output')).toHaveText('Request cancelled');
 });
 test('service worker reloads with its origin stopped and supports cleanup', async ({
@@ -97,6 +105,6 @@ test('service worker reloads with its origin stopped and supports cleanup', asyn
 });
 test('basic GraphQL runs an actual HTTP request', async ({ page }) => {
   await page.goto('/examples/graphql-http/');
-  await page.getByRole('button', { name: 'Run query' }).click();
+  await page.getByRole('button', { name: 'Run query', exact: true }).click();
   await expect(page.getByRole('status')).toContainText('Hello world!');
 });

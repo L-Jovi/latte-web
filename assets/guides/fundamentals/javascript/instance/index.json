@@ -1,0 +1,60 @@
+{
+  "steps": [
+    {
+      "title": "new, in three lines",
+      "titleZh": "三行代码实现 new",
+      "text": "`forgeNew(Test, 'saber', 12)` creates an object whose prototype is `Test.prototype`, runs `Test` with it as `this`, and returns it. The constructor printed `new init list:  saber 12`, and `foobar`, found on the prototype, printed `12`.",
+      "textZh": "`forgeNew(Test, 'saber', 12)` 先创建一个原型为 `Test.prototype` 的对象，再以它为 `this` 运行 `Test`，最后把它返回。构造函数打印了 `new init list:  saber 12`，在原型上找到的 `foobar` 打印了 `12`。",
+      "highlight": "new init list",
+      "watch": [
+        {
+          "label": "Object.getPrototypeOf(test) === Test.prototype",
+          "value": "Object.getPrototypeOf(test) === Test.prototype",
+          "expect": "true"
+        },
+        {
+          "label": "test has its own foobar",
+          "labelZh": "test 自身有 foobar 吗",
+          "value": "Object.hasOwn(test, 'foobar')",
+          "expect": "false"
+        }
+      ]
+    },
+    {
+      "title": "Returning an object replaces it",
+      "titleZh": "返回对象会替换结果",
+      "text": "If the constructor returns an object, `new` gives you that object instead. `forgeNew` does the same as the built-in `new`.",
+      "textZh": "如果构造函数返回一个对象，`new` 给你的就是那个对象。`forgeNew` 和内置的 `new` 行为一致。",
+      "action": {
+        "run": "function Box() { this.kept = true; return { replaced: true }; } console.log('forgeNew:', JSON.stringify(forgeNew(Box)), '| new:', JSON.stringify(new Box()))"
+      },
+      "actionLabel": "Try a constructor that returns an object",
+      "actionLabelZh": "试一个返回对象的构造函数",
+      "expectConsole": "forgeNew: {\"replaced\":true} | new: {\"replaced\":true}"
+    },
+    {
+      "title": "Returning null does not",
+      "titleZh": "返回 null 则不会",
+      "text": "`null` and primitives such as `5` do not replace the new object.",
+      "textZh": "返回 `null` 或 `5` 这样的原始值，不会替换新创建的对象。",
+      "action": {
+        "run": "function Nil() { this.kept = true; return null; } console.log('forgeNew:', JSON.stringify(forgeNew(Nil)), '| new:', JSON.stringify(new Nil()))"
+      },
+      "actionLabel": "Try a constructor that returns null",
+      "actionLabelZh": "试一个返回 null 的构造函数",
+      "expectConsole": "forgeNew: {\"kept\":true} | new: {\"kept\":true}"
+    },
+    {
+      "title": "A class is not an ordinary constructor",
+      "titleZh": "class 不是普通的构造函数",
+      "text": "A class constructor cannot run without `new`, and `forgeNew` calls it with `apply`, so it throws a `TypeError`. The README lists this among the limits.",
+      "textZh": "class 的构造函数不能不加 `new` 就运行，而 `forgeNew` 是用 `apply` 调用的，所以会抛出 `TypeError`。README 把这一点列在了局限里。",
+      "action": {
+        "run": "try { forgeNew(class Point {}) } catch (error) { console.log('forgeNew(class) threw a', error.name) }"
+      },
+      "actionLabel": "Try forgeNew with a class",
+      "actionLabelZh": "用 class 试试 forgeNew",
+      "expectConsole": "forgeNew(class) threw a TypeError"
+    }
+  ]
+}
