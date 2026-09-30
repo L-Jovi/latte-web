@@ -21,9 +21,16 @@ if (supported.includes(requirements.INP))
 if (supported.includes(requirements.CLS))
   onCLS(metric, { reportAllChanges: true });
 const recent = [];
+const listed = new Set();
 function log(entry) {
+  // An observer created before load can receive the navigation entry twice
+  // (seen in Chromium 152), so each entry is listed once.
+  const key = `${entry.entryType} ${entry.name} ${entry.startTime}`;
+  if (listed.has(key)) return;
+  listed.add(key);
+  // startTime says when it happened; a paint entry is a single moment, so its duration is 0.
   recent.push(
-    `${entry.entryType}: ${entry.name} (${entry.duration.toFixed(1)} ms)`,
+    `${entry.entryType}: ${entry.name} at ${entry.startTime.toFixed(1)} ms, lasting ${entry.duration.toFixed(1)} ms`,
   );
   document.querySelector('#entries').textContent = recent.slice(-8).join('\n');
 }

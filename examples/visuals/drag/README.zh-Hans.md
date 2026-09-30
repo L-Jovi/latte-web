@@ -35,5 +35,5 @@ npm run dev
 
 ## 验证与来源
 
-- `npm run test:browser` 在 Chromium、Firefox、WebKit 中用真实的鼠标输入拖动两个方块，检查它们都向右移动了同样的 130 像素；然后在 **Pointer** 方块上按一次右方向键，检查它又移动了 10 像素。停在边缘的行为没有测试，触屏和手写笔也没有，请在真实设备上试一试。`npx playwright test tests/browser/visuals.spec.js` 可以单独运行这些视觉实验的测试。
+- `npm run test:browser` 在 Chromium、Firefox、WebKit 中用真实的鼠标输入拖动两个方块，检查它们都向右移动了同样的 130 像素；然后在 **Pointer** 方块上按一次右方向键，检查它又移动了 10 像素。最后把两个方块都拖过右边缘，检查它们都正好停在各自区域的边缘。触屏和手写笔没有测试，请在真实设备上试一试。`npx playwright test tests/browser/visuals.spec.js` 可以单独运行这些视觉实验的测试。
 - 来源：[原版拖拽示例](https://github.com/L-Jovi/latte-web/tree/1be029e8f4fdc38a0c62ec2a9569187c1659875f/vision-samples/drag)。原创代码使用 MIT 许可；见 [NOTICE.md](../../../NOTICE.md)。

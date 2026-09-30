@@ -27,6 +27,17 @@ test('highlight rebuild preserves caret and treats markup as text', async ({
   const editor = page.getByRole('textbox', { name: 'Highlighted editor' });
   await editor.fill('A #tag# B');
   await expect(editor.locator('mark')).toHaveText('#tag#');
+  // Put the caret after "A " and type twice: each character rebuilds the editor,
+  // so the second one lands next to the first only if the caret was restored.
+  await editor.evaluate((element) => {
+    const range = document.createRange();
+    range.setStart(element.firstChild, 2);
+    range.collapse(true);
+    getSelection().removeAllRanges();
+    getSelection().addRange(range);
+  });
+  await page.keyboard.type('xy');
+  await expect(editor).toHaveText('A xy#tag# B');
   await page.keyboard.press('End');
   await page.keyboard.insertText('<img>');
   await expect(editor).toContainText('<img>');

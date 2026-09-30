@@ -7,11 +7,11 @@ class Counter extends React.Component {
     this.state = { count: 0 };
   }
   componentDidMount() {
-    console.log(
-      'mounted after insertion',
-      this.props.name,
-      document.querySelector('#root').isConnected,
-    );
+    // #root starts empty, so this is true only if commit runs after the button is in the page.
+    const inPage = document
+      .querySelector('#root')
+      .textContent.includes(this.props.name + ':');
+    console.log('mounted after insertion', this.props.name, inPage);
   }
   render() {
     return h(
