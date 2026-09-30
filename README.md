@@ -80,7 +80,7 @@ How JavaScript and the browser behave, one small page at a time.
 | [Moving an element: layout vs transform](fundamentals/browser/README.md) | Move the same box with `top` and with `transform`, and see which one makes the browser redo layout. | [Live demo](https://l-jovi.github.io/latte-web/fundamentals/browser/render.html) |
 | [CSS layout: BFC, Grid and centering](fundamentals/css/README.md) | Block formatting contexts, grid placement and several ways to center an element. | [Live demo](https://l-jovi.github.io/latte-web/fundamentals/css/bfc/bfc.html) |
 | [Semantic HTML](fundamentals/html/README.md) | Build a page from meaningful sections instead of anonymous boxes. | [Live demo](https://l-jovi.github.io/latte-web/fundamentals/html/semantic.html) |
-| [TypeScript: typed actions and reducers](fundamentals/typescript/README.md) | A discriminated union lets the compiler check every branch of a reducer. | — |
+| [TypeScript: typed actions and reducers](fundamentals/typescript/README.md) | A discriminated union tells the compiler which action each branch of a reducer handles. | — |
 
 ### Build it yourself
 
@@ -91,12 +91,12 @@ Small, tested versions of tools you use every day.
 | [Promise from scratch](mechanisms/promise/README.md) | Grow a Promise in three steps, from a tiny state machine to a version that passes all 872 official Promises/A+ tests. | [Live demo](https://l-jovi.github.io/latte-web/mechanisms/promise/index.html) |
 | [How generators pause and resume](mechanisms/generator/README.md) | See the state machine that Babel turns `yield` into, and how values flow in and out. | [Live demo](https://l-jovi.github.io/latte-web/mechanisms/generator/index.html) |
 | [Design patterns in small examples](mechanisms/design-patterns/README.md) | Singleton, factory, adapter, proxy and publish/subscribe, each in a few lines. | [Live demo](https://l-jovi.github.io/latte-web/mechanisms/design-patterns/index.html) |
-| [Prototype inheritance, including the mistakes](mechanisms/design-patterns/inherit/README.md) | Compare shared prototypes, borrowed constructors and `Object.create`, and see what each one gets wrong. | [Live demo](https://l-jovi.github.io/latte-web/mechanisms/design-patterns/inherit/index.html) |
+| [Prototype inheritance, including the mistakes](mechanisms/design-patterns/inherit/README.md) | See what goes wrong with a shared prototype or a borrowed constructor, and how `Object.create` fixes it. | [Live demo](https://l-jovi.github.io/latte-web/mechanisms/design-patterns/inherit/index.html) |
 | [Proxy traps and event delegation](mechanisms/design-patterns/proxy/README.md) | Intercept property access with `Proxy`, and handle many clicks from one parent element. | [Live demo](https://l-jovi.github.io/latte-web/mechanisms/design-patterns/proxy/index.html) |
 | [Publish and subscribe](mechanisms/design-patterns/pub-sub/README.md) | A minimal `on` / `emit` / `off` event hub; senders never need to know who is listening. | — |
 | [Everyday utilities by hand](mechanisms/utilities/README.md) | Debounce, throttle, deep clone and more, written as short algorithms with clear limits. | — |
 | [Shallow copy vs deep clone](mechanisms/utilities/clone/README.md) | Copy an object graph while keeping shared references and cycles, then compare with `structuredClone`. | [Live demo](https://l-jovi.github.io/latte-web/mechanisms/utilities/clone/index.html) |
-| [Detecting circular references](mechanisms/utilities/circle-ref/README.md) | Tell a real cycle apart from an object that is simply referenced twice. | [Live demo](https://l-jovi.github.io/latte-web/mechanisms/utilities/circle-ref/index.html) |
+| [Detecting circular references](mechanisms/utilities/circle-ref/README.md) | Tell a real cycle apart from an object that is referenced twice. | [Live demo](https://l-jovi.github.io/latte-web/mechanisms/utilities/circle-ref/index.html) |
 | [Debounce](mechanisms/utilities/debounce/README.md) | Wait until a burst of calls stops, then run once. | [Live demo](https://l-jovi.github.io/latte-web/mechanisms/utilities/debounce/index.html) |
 | [Throttle](mechanisms/utilities/throttle/README.md) | Run at most once per interval; the first call goes through right away. | [Live demo](https://l-jovi.github.io/latte-web/mechanisms/utilities/throttle/index.html) |
 | [Why timers drift, and how to correct them](mechanisms/utilities/timer/README.md) | Measure how late timer callbacks arrive and adjust the next deadline. | [Live demo](https://l-jovi.github.io/latte-web/mechanisms/utilities/timer/index.html) |
@@ -170,7 +170,7 @@ Notes kept from earlier years. Read them for context; they are not current advic
 
 | Topic | What you'll see | Try it |
 | --- | --- | --- |
-| [React architecture notes from 2019](docs/history/react/README.md) | The original notes (in Chinese) on domain-driven structure, sagas and routing. | — |
+| [React architecture notes from 2018](docs/history/react/README.md) | The original notes (in Chinese) on domain-driven structure, sagas and routing. | — |
 | [React testing the old way: TestUtils and Enzyme](docs/history/testing/README.md) | Shallow rendering and DOM tests from an older tutorial, kept for comparison with Testing Library. | — |
 | [Measuring page speed in 2019](docs/history/performance/README.md) | How page speed was measured with `performance.timing`, and why those numbers are read differently now. | — |
 

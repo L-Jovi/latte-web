@@ -1,21 +1,60 @@
-# Modern React and Redux Toolkit
+# Todo app, today's style: Hooks, TypeScript, Redux Toolkit
 
 English | [简体中文](README.zh-Hans.md)
 
-Both versions start with Use Redux and support add, edit, delete, toggle, filter, toggle-all, clear-completed, asynchronous import and About routing. Editing to an empty string deletes the item. Imports use fictional local todos.json, allocate fresh IDs and expose failures with a retry. Reloading resets all state; there is no persistence or remote user account. Hash routing lets both builds run on a simple static server. Function components use typed hooks. A slice owns serializable local Todo state; RTK Query owns request/cache state. The code intentionally imports the retrieved titles into local editable todos rather than treating the remote response as the editable store. Immer permits concise reducer updates while producing immutable results. Saga remains useful for longer multi-step workflows; RTK Query removes manual request lifecycle code for this small read operation. See [the classic version](../react-classic/README.md) and the [Redux migration guide](https://redux.js.org/usage/migrating-to-modern-redux).
+The same features as the [2018 version](../react-classic/README.md), so the two can be compared side by side.
 
-## Run and observe
+## Try it
 
-From the repository root: `npm ci`, `npm run build -w @latte/react-modern`, then `npm run dev`. Open `http://127.0.0.1:4173/examples/react-modern/dist/index.html`.
+```sh
+npm ci
+npm run build -w @latte/react-modern
+npm run dev
+# open http://127.0.0.1:4173/examples/react-modern/dist/
+```
 
-## Where to start
+You should see the same app as the 2018 version: one todo, **Use Redux**, the same buttons and filters, `Imported 2 todos` after **Import examples**, the same `Import failed. Try again.` message when loading fails, and an **About** page that works with Back and Forward. Only the subtitle and the About text name the approach. Nothing is saved: reloading starts over. You can also open the [live demo](https://l-jovi.github.io/latte-web/examples/react-modern/dist/index.html).
 
-[src/App.tsx](src/App.tsx), [src/store.ts](src/store.ts).
+## How it works
 
-## Verification
+All the state code is in [src/store.ts](src/store.ts) (101 lines):
 
-`npm run test:apps` runs current component and renderer tests. `npm run test:browser` exercises the visible behavior in Chromium, Firefox and WebKit after building. Historical files are not executed. The scope and deliberate limitations are described above.
+- `createSlice` defines the todo state and one reducer per operation, and generates the matching actions. The state is made of plain objects that can be turned into JSON. The reducers look as if they change it in place, for example `todo.completed = !todo.completed`; Immer, which is built into Redux Toolkit, turns those changes into a new state object.
+- `createApi` from RTK Query describes the import as one query endpoint. RTK Query keeps track of whether the request is loading or has failed, so no action or reducer for those states is written by hand. The endpoint also checks that the file holds a list of strings.
+- `configureStore` combines the slice and the RTK Query reducer and adds RTK Query's middleware.
 
-## Sources and license
+[src/App.tsx](src/App.tsx) (162 lines) has only function components. `useState` holds text that is still being typed. `useAppSelector` and `useAppDispatch` are the React Redux Hooks with this app's TypeScript types attached. **Import examples** starts the query, then copies the titles into the slice as new todos with fresh IDs. The todos you edit are these copies; the fetched response itself is never edited.
 
-Original implementation and these explanations are MIT unless a local license states otherwise. See the [migration ledger](../../docs/migration.md) for the exact original revision and [NOTICE](../../NOTICE.md) for third-party attribution.
+The router is a `HashRouter`, as in the 2018 version, so any plain static server can serve both pages.
+
+## Then and now
+
+Before Redux Toolkit, each feature needed hand-written action types, action creators and reducers, often with Redux-Saga and Immutable.js, exactly as in the 2018 version. As of 2026-09, the Redux docs call Redux Toolkit their [official recommended approach](https://redux.js.org/introduction/why-rtk-is-redux-today), and their [migration guide](https://redux.js.org/usage/migrating-to-modern-redux) specifically recommends RTK Query for fetching data. Saga is still useful for long workflows with many steps; for one small read like this, RTK Query removes the hand-written request code.
+
+The original TypeScript practice app used Create React App, which the React team [deprecated on 2025-02-14](https://react.dev/blog/2025/02/14/sunsetting-create-react-app). This version builds with Vite.
+
+The two versions side by side:
+
+| Job                  | 2018 style ([react-classic](../react-classic/README.md))             | Today's style (this folder)                                                  |
+| -------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Components           | Classes, connected to the store with `connect`                       | Functions using the `useAppSelector` and `useAppDispatch` Hooks              |
+| Actions              | Written by hand with `createAction` in `actions.js`                  | Generated by `createSlice` in `store.ts`                                     |
+| State updates        | A `switch` in `reducer.js` returning new Immutable.js `Map` and `List` | Slice reducers that change a draft; Immer turns the changes into a new object |
+| Loading the examples | A saga in `sagas.js` (`call`, `put`, `takeLeading`)                  | An RTK Query endpoint in `store.ts`, started with `useLazyExamplesQuery`     |
+| Loading and errors   | Reducer cases for the start, the result and the failure             | Tracked by RTK Query (`isFetching`, `isError`)                               |
+| Store setup          | `legacy_createStore` and the saga middleware in `store.js`           | `configureStore` in `store.ts`                                               |
+| Language             | JavaScript                                                           | TypeScript in `strict` mode                                                  |
+
+[How the ecosystem changed](../../docs/ecosystem.md) tells the longer story.
+
+## Limits
+
+- The same small scenario as the 2018 version: no saving, no accounts and no server.
+- It shows one short request, not a long workflow with several steps, where Saga still has a place.
+
+## Checks and credits
+
+- `npm run test:apps` renders both versions with Testing Library and runs the same steps on each: add, tick, filter, edit and delete.
+- After the build, `npm run test:browser` runs a longer scenario on both versions in Chromium, Firefox and WebKit: those steps plus **Clear completed**, the import, the About page with Back and Forward, and a failed import that shows the error and then succeeds on retry.
+- `npm run typecheck -w @latte/react-modern` runs the TypeScript compiler in `strict` mode.
+- Original code is MIT; see [NOTICE.md](../../NOTICE.md).
