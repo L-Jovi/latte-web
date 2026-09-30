@@ -15,7 +15,7 @@ It works right after cloning; no `npm ci` or build step is needed. Type `graph` 
 
 ## How it works
 
-Read [topics.json](topics.json), the 11 topics, then [app.js](app.js) (72 lines).
+Read [topics.json](topics.json), the 11 topics, then [app.js](app.js) (73 lines).
 
 1. When the page loads, one `fetch` reads `topics.json`. If that fails, the page says `Could not load topics` and gives the reason.
 2. On every keystroke, the list shows the topics that contain the typed text, ignoring upper and lower case.

@@ -17,7 +17,7 @@ npm run dev
 
 ## 原理
 
-先读 [topics.json](topics.json)（11 个主题），再读 [app.js](app.js)（72 行）。
+先读 [topics.json](topics.json)（11 个主题），再读 [app.js](app.js)（73 行）。
 
 1. 页面加载时，用一次 `fetch` 读取 `topics.json`。如果失败，页面会显示 `Could not load topics` 以及原因。
 2. 每按一次键，列表就显示包含所输入文字的主题，不区分大小写。

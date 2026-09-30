@@ -34,11 +34,11 @@
 <body>
     <!-- latte-site:bar --><nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="../../../index.html">Latte Web</a><span class="latte-crumb">Fundamentals</span><span class="latte-links"><a href="https://github.com/L-Jovi/latte-web/tree/main/fundamentals/css">README</a><a href="https://github.com/L-Jovi/latte-web/blob/main/fundamentals/css/README.zh-Hans.md" lang="zh-Hans">中文</a></span></nav><!-- /latte-site:bar --><h1>CSS layout: BFC, Grid and centering</h1>
     <p>Inspect a box in your browser’s developer tools to see which rule places it.</p>
-  <h2>重叠的 BFC</h2>
+  <h2 lang="zh-Hans">同一个 BFC 里，上下外边距会重叠</h2>
   <div class="case-body1"></div>
   <div class="case-body1"></div>
 
-  <h2>放置到根 body 根元素下触发 BFC</h2>
+  <h2 lang="zh-Hans">overflow: hidden 让每个盒子自成一个 BFC，外边距不再重叠</h2>
   <div class="case-body2">
     <p></p>
   </div>
@@ -46,20 +46,20 @@
     <p></p>
   </div>
 
-  <h2>盒模型</h2>
+  <h2 lang="zh-Hans">盒模型：没有内边距和边框时，border-box 和默认的 content-box 一样大</h2>
   <div class="case-body3"></div>
   <div class="case-body3"></div>
 
-  <h2>浮动触发 BFC</h2>
+  <h2 lang="zh-Hans">BFC 会包住里面的浮动元素</h2>
   <div style="border: 1px solid #000; overflow: hidden">
     <div style="width: 100px;height: 100px;background: #eee;float: left;">
     </div>
   </div>
 
-  <h2>浮动文字环绕</h2>
-  <div style="height: 100px;width: 100px;float: left;background: lightblue">我是一个左浮动的元素</div>
-  <div style="width: 200px; height: 200px;background: #eee; overflow: hidden">我是一个没有设置浮动,
-  也没有触发 BFC 元素, width: 200px; height:200px; background: #eee;</div>
+  <h2 lang="zh-Hans">BFC 不和旁边的浮动元素重叠</h2>
+  <div lang="zh-Hans" style="height: 100px;width: 100px;float: left;background: lightblue">我是一个左浮动的元素</div>
+  <div lang="zh-Hans" style="width: 200px; height: 200px;background: #eee; overflow: hidden">我没有浮动，但 overflow: hidden 让我自成一个 BFC，所以排在浮动元素旁边。
+  去掉 overflow: hidden，我就会从浮动元素下面开始排，文字绕着它走。</div>
 
 <h2>Explicit formatting context: flow-root</h2><div style="display:flow-root;border:1px solid"><div style="float:left;width:60px;height:60px;background:teal"></div>Contains the float without clipping.</div>
 </body>

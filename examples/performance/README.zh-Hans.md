@@ -26,12 +26,12 @@ npm run dev
 
 ## 原理
 
-全部代码都在 [main.js](main.js)（80 行）里。
+全部代码都在 [main.js](main.js)（87 行）里。
 
 1. **先做能力检测。** `PerformanceObserver.supportedEntryTypes` 列出了当前浏览器能报告的类型。浏览器支持的指标，那一行一开始显示 `Waiting for an eligible event`；不支持的显示 `Unavailable in this browser`。这样“不支持”和“还没发生”永远不会混为一谈，缺失的值也不会被显示成零。
 2. **Core Web Vitals。** 官方的 web-vitals 库把原始记录换算成这三项指标，并执行它们的规则：哪些事件算数、什么时候数值才算最终结果。`onLCP` 报告 LCP（Largest Contentful Paint，最大内容绘制），即主要内容何时出现；`onINP` 报告 INP（Interaction to Next Paint），即页面对输入响应得有多快；`onCLS` 报告 CLS（Cumulative Layout Shift，累积布局偏移），即布局意外跳动了多少。设置 `reportAllChanges: true` 后，数值一变表格就更新，所以你在页面上操作时，数字可能会一直变化。LCP 和 INP 以毫秒计，CLS 没有单位。
 3. **Navigation Timing。** `performance.getEntriesByType('navigation')[0]` 描述了这个文档是怎样被请求和加载的。页面打印其中四个字段：`type`、`ttfb`（首字节时间，取自 `responseStart`）、`domContentLoaded` 和 `load`，单位都是从导航开始算起的毫秒数。它会等到 `load` 事件刚结束之后才读取，因为只有 load 处理函数返回后，`loadEventEnd` 才是最终值；`main.js` 里的注释写明了这一点。
-4. **原始记录。** `PerformanceObserver` 是在浏览器产生性能记录时随即接收它们的对象。几个独立的 `PerformanceObserver` 分别收集 `navigation`、`paint` 和 `measure` 记录，在浏览器支持时还会收集 `longtask`（让页面忙碌 50 毫秒或更久的任务）。页面列出最近的八条，每条写明类型、名称和持续时间。paint 记录标记的是一个时间点，所以它的持续时间总是 0。
+4. **原始记录。** `PerformanceObserver` 是在浏览器产生性能记录时随即接收它们的对象。几个独立的 `PerformanceObserver` 分别收集 `navigation`、`paint` 和 `measure` 记录，在浏览器支持时还会收集 `longtask`（让页面忙碌 50 毫秒或更久的任务）。页面列出最近的八条，每条写明类型、名称、开始时间和持续时间。paint 记录标记的是一个时间点：开始时间说明浏览器何时完成绘制，持续时间总是 0。在页面加载完成之前创建的观察者，可能会收到两次 navigation 记录（Chromium 152 就是这样），所以页面对每条记录只列一次。
 5. **两个按钮。** **Run 120 ms of work** 在两次 `performance.mark` 之间用一个循环让主线程忙上 120 毫秒，再用 `performance.measure` 测出这段间隔。**Insert late content** 会等 700 毫秒再插入内容。CLS 不计入紧跟在输入之后的布局偏移，所以等上一会儿，这次偏移才会被算进去；这也是为什么文字随后显示 `Inserted after the recent-input window`。
 
 ## 过去与现在

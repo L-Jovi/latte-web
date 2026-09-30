@@ -14,7 +14,8 @@ function tween(to) {
   frame = requestAnimationFrame(draw);
 }
 function updateWidth() {
-  tween(link.matches(':hover,:focus') ? 260 : 180);
+  // Same states as the CSS menu, so a mouse click does not keep the link wide.
+  tween(link.matches(':hover,:focus-visible') ? 260 : 180);
 }
 for (const event of ['mouseenter', 'mouseleave', 'focus', 'blur'])
   link.addEventListener(event, updateWidth);

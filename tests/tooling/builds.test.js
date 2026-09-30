@@ -60,10 +60,13 @@ test('typed reducer preserves state shape and the minimum count', async () => {
   const { enthusiasm } =
     await import('../../fundamentals/typescript/dist/reducers/index.js');
   const initial = enthusiasm(undefined, { type: 'DECREMENT_ENTHUSIASM' });
-  assert.equal(initial.enthusiasmLevel, 1);
-  assert.equal(
-    enthusiasm(initial, { type: 'INCREMENT_ENTHUSIASM' }).enthusiasmLevel,
-    2,
+  assert.deepStrictEqual(initial, {
+    languageName: 'TypeScript',
+    enthusiasmLevel: 1,
+  });
+  assert.deepStrictEqual(
+    enthusiasm(initial, { type: 'INCREMENT_ENTHUSIASM' }),
+    { languageName: 'TypeScript', enthusiasmLevel: 2 },
   );
 });
 for (const format of ['vite', 'webpack'])

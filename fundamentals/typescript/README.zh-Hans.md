@@ -44,7 +44,7 @@ npm run build -w @latte/typescript
 ## 验证与来源
 
 - `npm run typecheck` 在每个工作区（包括这一个）中运行 `tsc --noEmit`，并开启 `strict` 模式。
-- 构建之后，`npm run test:tooling` 加载 `dist/reducers/index.js`，检查从初始状态减少一次后数值仍然是 1，再增加一次后变成 2。
+- 构建之后，`npm run test:tooling` 加载 `dist/reducers/index.js`，检查从初始状态减少一次后数值仍然是 1，再增加一次后变成 2，并且状态始终只有这两个字段。
 - `npm run check` 会连同仓库的其他检查一起运行这两项。`dist/` 不提交到仓库，由构建生成。
 - [迁移清单](../../docs/migration.zh-Hans.md)链接到原始版本，位于 `typescript` 目录。
 - 原创代码使用 MIT 许可；见 [NOTICE.md](../../NOTICE.md)。

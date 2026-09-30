@@ -42,6 +42,6 @@ npm run dev
 
 ## 验证与来源
 
-- `npm run test:browser` 在 Chromium、Firefox、WebKit 中运行两项检查。在光标页面上，它把光标放在 `Hello` 后面，插入 ✨，预期得到 `Hello✨ world`；接着输入 `!`，得到 `Hello✨! world`，说明光标确实落在了插入的文字后面。在高亮页面上，它输入 `A #tag# B`，预期 `#tag#` 位于 `<mark>` 中；然后输入 `<img>`，预期页面上出现这段文字，而没有图片元素。
+- `npm run test:browser` 在 Chromium、Firefox、WebKit 中运行两项检查。在光标页面上，它把光标放在 `Hello` 后面，插入 ✨，预期得到 `Hello✨ world`；接着输入 `!`，得到 `Hello✨! world`，说明光标确实落在了插入的文字后面。在高亮页面上，它输入 `A #tag# B`，预期 `#tag#` 位于 `<mark>` 中。接着把光标放在 `A ` 后面，输入 `xy`：每输入一个字母编辑器都会重建一次，得到 `A xy#tag# B`，说明两次输入之间光标被正确恢复了。最后输入 `<img>`，预期页面上出现这段文字，而没有图片元素。
 - [迁移清单](../../docs/migration.zh-Hans.md)链接到最初的版本，也就是 `rich-text` 目录。
 - 原创代码使用 MIT 许可；见 [NOTICE.md](../../NOTICE.md)。

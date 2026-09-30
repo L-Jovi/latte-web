@@ -63,6 +63,24 @@ test('mouse and pointer drag share bounds; pointer also supports keyboard', asyn
   await pointer.focus();
   await page.keyboard.press('ArrowRight');
   expect(await pointer.evaluate((node) => node.offsetLeft)).toBe(140);
+  // Dragging past the right edge stops both blocks exactly at the edge of their field.
+  for (const name of ['Mouse', 'Pointer']) {
+    const block = page.getByRole('button', { name, exact: true });
+    const rect = await block.boundingBox();
+    const right = await block.evaluate(
+      (node) => node.parentElement.getBoundingClientRect().right,
+    );
+    await page.mouse.move(rect.x + 20, rect.y + 20);
+    await page.mouse.down();
+    await page.mouse.move(right + 40, rect.y + 20);
+    await page.mouse.up();
+    expect(
+      await block.evaluate(
+        (node) =>
+          node.offsetLeft + node.offsetWidth - node.parentElement.clientWidth,
+      ),
+    ).toBe(0);
+  }
 });
 test('touch and pointer paging handle gestures, keyboard and end bounds', async ({
   page,

@@ -23,7 +23,7 @@ npm run dev
 
 ## 原理
 
-先读 [index.html](index.html)（91 行）里的结构和 CSS，再读 [app.js](app.js)（46 行）。
+先读 [index.html](index.html)（91 行）里的结构和 CSS，再读 [app.js](app.js)（47 行）。
 
 - **CSS 过渡**：`transition: width 0.25s`，再在 `:hover` 和 `:focus-visible` 时设置更大的 `width`。浏览器负责播放这段变化，离开时再倒放回去。
 - **JavaScript 补间**：在 `mouseenter`、`mouseleave`、`focus` 和 `blur` 时，`tween()` 读取当前宽度，用 250 毫秒把它变到 260 或 180 像素。每次 `requestAnimationFrame` 回调都根据已经过去的时间算出进度 `t`，再用 `1 - (1 - t) ** 3` 做缓动：开头快，结尾慢。新的补间会取消旧的，并从当前宽度开始，所以中途改变方向也很平滑。开启“减少动态效果”时，它会直接跳到终点。

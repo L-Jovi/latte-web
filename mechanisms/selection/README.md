@@ -40,6 +40,6 @@ Two examples do the same task with a framework. [Draft.js](../../examples/rich-t
 
 ## Checks and credits
 
-- `npm run test:browser` runs two checks in Chromium, Firefox and WebKit. On the cursor page, it places the cursor after `Hello`, inserts ✨ and expects `Hello✨ world`; typing `!` then gives `Hello✨! world`, which shows the cursor landed after the inserted text. On the highlight page, it types `A #tag# B` and expects `#tag#` inside a `<mark>`, then types `<img>` and expects that text with no image element.
+- `npm run test:browser` runs two checks in Chromium, Firefox and WebKit. On the cursor page, it places the cursor after `Hello`, inserts ✨ and expects `Hello✨ world`; typing `!` then gives `Hello✨! world`, which shows the cursor landed after the inserted text. On the highlight page, it types `A #tag# B` and expects `#tag#` inside a `<mark>`. It puts the cursor after `A ` and types `xy`: each letter rebuilds the editor, and getting `A xy#tag# B` shows the cursor was restored in between. Then it types `<img>` and expects that text with no image element.
 - The [migration ledger](../../docs/migration.md) links to the original version, the `rich-text` folder.
 - Original code is MIT; see [NOTICE.md](../../NOTICE.md).

@@ -33,5 +33,5 @@ The original sample listened for mouse events on the whole document. [Pointer Ev
 
 ## Checks and credits
 
-- `npm run test:browser` drags each block with real mouse input in Chromium, Firefox and WebKit and checks that both move the same 130 pixels to the right. It then presses the right arrow key on the **Pointer** block and checks that it moves 10 more. The stop at the edges is not tested, and neither are touch and pen; try those on a real device. `npx playwright test tests/browser/visuals.spec.js` runs the visual tests on their own.
+- `npm run test:browser` drags each block with real mouse input in Chromium, Firefox and WebKit and checks that both move the same 130 pixels to the right. It then presses the right arrow key on the **Pointer** block and checks that it moves 10 more. Finally it drags both blocks past the right edge and checks that each stops exactly at the edge of its field. Touch and pen are not tested; try those on a real device. `npx playwright test tests/browser/visuals.spec.js` runs the visual tests on their own.
 - Source: the [original drag sample](https://github.com/L-Jovi/latte-web/tree/1be029e8f4fdc38a0c62ec2a9569187c1659875f/vision-samples/drag). Original code is MIT; see [NOTICE.md](../../../NOTICE.md).
