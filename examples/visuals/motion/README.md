@@ -21,7 +21,7 @@ You can also open the [live demo](https://l-jovi.github.io/latte-web/examples/vi
 
 ## How it works
 
-Read [index.html](index.html) (91 lines) for the markup and the CSS, then [app.js](app.js) (46 lines).
+Read [index.html](index.html) (91 lines) for the markup and the CSS, then [app.js](app.js) (47 lines).
 
 - **CSS transition**: `transition: width 0.25s` and a wider `width` on `:hover` and `:focus-visible`. The browser animates the change and reverses it when you leave.
 - **JavaScript tween**: on `mouseenter`, `mouseleave`, `focus` and `blur`, `tween()` reads the current width and animates it to 260 or 180 pixels over 250 ms. Each `requestAnimationFrame` callback works out how far along it is, `t`, from the time that has passed, and eases it with `1 - (1 - t) ** 3`: fast at first, slow at the end. A new tween cancels the old one and starts from the current width, so changing direction half-way stays smooth. With reduced motion, it jumps straight to the end.

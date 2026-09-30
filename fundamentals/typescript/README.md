@@ -42,7 +42,7 @@ Redux code of that time was written like this: action type constants, action cre
 ## Checks and credits
 
 - `npm run typecheck` runs `tsc --noEmit` in every workspace, this one included, with `strict` mode on.
-- After the build, `npm run test:tooling` loads `dist/reducers/index.js`. It checks that a decrement from the starting state keeps the level at 1, and that an increment then raises it to 2.
+- After the build, `npm run test:tooling` loads `dist/reducers/index.js`. It checks that a decrement from the starting state keeps the level at 1, that an increment then raises it to 2, and that the state keeps exactly its two fields.
 - `npm run check` runs both, together with the rest of the repository's checks. `dist/` is not committed; the build creates it.
 - The [migration ledger](../../docs/migration.md) links to the original version, in the `typescript` folder.
 - Original code is MIT; see [NOTICE.md](../../NOTICE.md).

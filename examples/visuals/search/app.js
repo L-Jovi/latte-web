@@ -50,7 +50,8 @@ input.oninput = () => {
   list.hidden = matches.length === 0;
   input.setAttribute('aria-expanded', String(matches.length > 0));
   highlight();
-  output.textContent = matches.length + ' suggestions';
+  output.textContent =
+    matches.length + (matches.length === 1 ? ' suggestion' : ' suggestions');
 };
 input.onkeydown = (event) => {
   if (event.key === 'Escape') {
