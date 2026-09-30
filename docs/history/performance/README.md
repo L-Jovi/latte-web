@@ -2,7 +2,7 @@
 
 English | [简体中文](README.zh-Hans.md)
 
-How page speed was usually measured around 2019, and why the same numbers are read differently today. This is a short, company-neutral summary. The original 2019 report described one specific product and has been withdrawn from this repository.
+How page speed was measured with `performance.timing`, and why those numbers are read differently now. This is a short, company-neutral summary of how it was usually done around 2019. The original 2019 report described one specific product and has been withdrawn from this repository.
 
 ## What people measured
 

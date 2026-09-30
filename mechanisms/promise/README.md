@@ -1,29 +1,53 @@
-# Promise: three steps
+# Promise from scratch
 
 English | [简体中文](README.zh-Hans.md)
 
-Start with a state machine, then add chaining, then examine aggregation.
+Grow a Promise in three steps, from a tiny state machine to a version that passes all 872 official Promises/A+ tests.
 
-## Run and observe
+## Try it
 
-From the repository root: `npm ci`, then `npm run dev`. Open `http://127.0.0.1:4173/mechanisms/promise/index.html`.
+```sh
+npm run dev
+# open http://127.0.0.1:4173/mechanisms/promise/
+```
 
-## Read the mechanism
+The page chains two `then` calls and shows `1,2`. You can also open the [live demo](https://l-jovi.github.io/latte-web/mechanisms/promise/index.html).
 
-Start with [simple.js](simple.js), [promise-a+.js](promise-a+.js), [index.js](index.js).
+To run the official test suite against the full version:
 
-simple.js is intentionally not Promise/A+ compliant: then subscribes without creating a chain. promise-a+.js implements the resolution procedure and runs the official A+ suite. index.js keeps the original class/callback style and adds all, race and finally. None is a replacement for native Promise in production.
+```sh
+npm ci
+npm run test:aplus
+```
 
-## Today and earlier approaches
+It should finish with `872 passing`.
 
-Run npm run test:aplus. Page output is 1,2. Read why a handler is queued, a then getter is read once and only the first resolution wins.
+## How it works
 
-## Verification and sources
+A promise is a small state machine. It starts as _pending_ and settles exactly once: _fulfilled_ with a value, or _rejected_ with a reason. Callbacks registered with `then` wait in a queue and always run later, as microtasks, never in the middle of your code.
 
-`npm test` covers mechanism contracts. Browser entries are exercised by `npm run test:browser`. Preserve the source links in code; the [migration map](../../docs/migration.md) links to the original revision.
+Read the three versions in order:
 
-## License
+1. [simple.js](simple.js) (23 lines) has only the state machine and the queue. `then` returns the same promise, so it cannot chain yet.
+2. [promise-a+.js](promise-a+.js) (59 lines) adds the _resolution procedure_. `then` returns a new promise, and if a callback returns another promise (or any object with a `then` method), the new promise takes on its result. It also rejects a promise that tries to resolve to itself, and reads `then` only once. This is the version that passes the official tests.
+3. [index.js](index.js) is the repository's original class-based version, with `all`, `race` and `finally` added.
 
-MIT for original code; see [third-party notices](../../NOTICE.md).
+The [samples page](samples/index.html) logs a set of nested `then` callbacks. Guess the order first, then open the browser console.
 
-The official A+ suite is unchanged. Root npm overrides select Mocha 12.0.2 and Underscore 1.13.8 to remove known vulnerabilities in its old runner dependencies; `npm run test:aplus` checks this compatibility. The adapter evaluates the classic script in the test runner’s realm so its `TypeError` identity matches the specification assertions.
+## Then and now
+
+Before 2015, promises came from libraries such as Q and Bluebird, and the community specification [Promises/A+](https://promisesaplus.com/) made them work together. ES2015 added `Promise` to JavaScript, and ES2017 added `async`/`await`, which is built on promises. Use the native versions in real code. [How the ecosystem changed](../../docs/ecosystem.md) tells the longer story.
+
+## Limits
+
+- `simple.js` is incomplete on purpose: no chaining, and it does not take on the result of another promise.
+- `promise-a+.js` covers what the specification defines, `then` (plus `catch`). It has no `resolve`, `reject`, `all` or `race` helpers.
+- `index.js` adds `all`, `race` and `finally`, but only `promise-a+.js` runs against the full test suite.
+- None of them is meant for production: the native `Promise` is faster and far better tested.
+
+## Checks and credits
+
+- `npm run test:aplus` runs the unmodified [Promises/A+ test suite](https://github.com/promises-aplus/promises-tests) against `promise-a+.js`. The suite's old test runner is pinned to patched versions of Mocha and Underscore through `overrides` in the root `package.json`. The adapter loads the file in the test runner's own context, so the suite's `TypeError` checks work as the specification expects.
+- `npm test` checks the other two versions, and `npm run test:browser` opens this page in Chromium, Firefox and WebKit.
+- The class-based version first followed [this article on Zhihu](https://zhuanlan.zhihu.com/p/58428287); the nested-callback quiz comes from [this article on Juejin](https://juejin.cn/post/6844904158848352264).
+- Original code is MIT; see [NOTICE.md](../../NOTICE.md) for third-party material.

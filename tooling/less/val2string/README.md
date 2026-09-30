@@ -2,6 +2,8 @@
 
 English | [简体中文](README.zh-Hans.md)
 
-The @{name} syntax inserts a Less variable into a string at compile time. It does not execute arbitrary text as JavaScript.
+`@{name}` inserts the value of a Less variable into a string. In [val2string.less](val2string.less), `@name: "latte"` and `content: "@{name} Web"` compile to `content: "latte Web"`. This happens once, while the file is compiled: Less copies the value in, and nothing in the string is run as JavaScript.
 
-Run `npm run build -w @latte/less` at the root, then inspect `tooling/less/dist/val2string`. See the [parent guide](../README.md). GPL-2.0-only.
+To see the output, run `npm run build -w @latte/less` from the repository root and open `tooling/less/dist/val2string/val2string.css`. The [Less overview](../README.md) lists the other examples.
+
+GPL-2.0-only, like the rest of `tooling/less`; see [LICENSE](../LICENSE).

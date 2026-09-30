@@ -1,21 +1,68 @@
-# Classic React and Redux
+# Todo app, 2018 style: classes, Redux, Saga, Immutable
 
 English | [简体中文](README.zh-Hans.md)
 
-Both versions start with Use Redux and support add, edit, delete, toggle, filter, toggle-all, clear-completed, asynchronous import and About routing. Editing to an empty string deletes the item. Imports use fictional local todos.json, allocate fresh IDs and expose failures with a retry. Reloading resets all state; there is no persistence or remote user account. Hash routing lets both builds run on a simple static server. Class components and connect isolate view state from an Immutable Map/List store. Explicit action creators feed a reducer; Saga orchestrates import and catches errors. This keeps the original architecture readable on React 19 without deprecated lifecycles or router-in-Redux synchronization. React still supports class components. The old generic recursive action-binding helper and BEFORE_ fan-out are unnecessary for this small scenario and remain recoverable in Git. Draft EditorState has its own rich-text example. Compare [the modern version](../react-modern/README.md) and [historical architecture notes](../../docs/history/react/README.md).
+The original architecture, repaired and running on React 19. It has the same features as [today's version](../react-modern/README.md), so you can compare the two file by file.
 
-## Run and observe
+## Try it
 
-From the repository root: `npm ci`, `npm run build -w @latte/react-classic`, then `npm run dev`. Open `http://127.0.0.1:4173/examples/react-classic/dist/index.html`.
+```sh
+npm ci
+npm run build -w @latte/react-classic
+npm run dev
+# open http://127.0.0.1:4173/examples/react-classic/dist/
+```
 
-## Where to start
+The list starts with one todo, **Use Redux**. Things to try:
 
-[src/App.jsx](src/App.jsx), [src/actions.js](src/actions.js), [src/reducer.js](src/reducer.js), [src/sagas.js](src/sagas.js), [src/store.js](src/store.js).
+- Add, edit, tick and delete todos. Saving an empty text deletes the todo.
+- Filter with **All**, **Active** and **Completed**, or use **Toggle all** and **Clear completed**.
+- **Import examples** loads two made-up titles from a local `todos.json` and says `Imported 2 todos`. If loading fails, the page says `Import failed. Try again.`, and you can click again.
+- **About** opens a second page. The browser's Back and Forward buttons move between the two.
 
-## Verification
+Nothing is saved: reloading starts over. You can also open the [live demo](https://l-jovi.github.io/latte-web/examples/react-classic/dist/index.html).
 
-`npm run test:apps` runs current component and renderer tests. `npm run test:browser` exercises the visible behavior in Chromium, Firefox and WebKit after building. Historical files are not executed. The scope and deliberate limitations are described above.
+## How it works
 
-## Sources and license
+Every change goes through Redux. A component dispatches an _action_ (a plain object that says what happened), a _reducer_ (a function) returns the next state, and the components that read that state render again. Read the files in this order:
 
-Original implementation and these explanations are MIT unless a local license states otherwise. See the [migration ledger](../../docs/migration.md) for the exact original revision and [NOTICE](../../NOTICE.md) for third-party attribution.
+1. [src/actions.js](src/actions.js) (11 lines) makes one action creator per operation with `createAction` from redux-actions.
+2. [src/reducer.js](src/reducer.js) (97 lines) handles each action type in a `switch`. The state is an Immutable.js `Map` that holds a `List` of todos, so every update returns a new object instead of changing the old one.
+3. [src/sagas.js](src/sagas.js) (21 lines) runs the import. A _saga_ is a generator function that describes side effects step by step: announce the start, `call` the function that fetches the file, then `put` either the titles or an error into the store. `takeLeading` ignores new import requests while one is still running. The file must contain a list of strings, or the import fails.
+4. [src/store.js](src/store.js) (10 lines) creates the store with the saga middleware.
+5. [src/App.jsx](src/App.jsx) (101 lines) and [src/TodoItem.jsx](src/TodoItem.jsx) (46 lines) are class components. `connect` gives the page the visible todos, the filter, the status and error messages, and the action creators as props, and the page hands each todo and the action creators to a `TodoItem`. Text that is still being typed stays in the component's own `state`, not in the store.
+
+Imported titles get fresh IDs, so they never clash with todos you added. The router is a `HashRouter`: the page name sits after `#`, as in `#/about`, so any plain static server can serve both pages.
+
+## Then and now
+
+In 2018 this was a common way to build a React app. Redux (2015) made every change an action handled by a pure reducer. Teams wrote the actions and reducers by hand, added Redux-Saga for side effects, and used Immutable.js to avoid changing state by accident. The original version of this app also used lifecycle methods that React has since deprecated, copied the router's state into Redux, and passed an extra `BEFORE_` copy of every action through a middleware. The repaired version drops those and keeps the rest. React 19 still supports class components.
+
+As of 2026-09, [Redux Toolkit is the officially recommended way to write Redux](https://redux.js.org/introduction/why-rtk-is-redux-today), and new components are functions with Hooks, stable since [React 16.8 (2019-02-06)](https://legacy.reactjs.org/blog/2019/02/06/react-v16.8.0.html). Redux now marks `createStore` as deprecated in favour of Redux Toolkit's `configureStore`; `store.js` uses the same function under its other name, `legacy_createStore`, which does not show the warning.
+
+The two versions side by side:
+
+| Job                  | 2018 style (this folder)                                             | Today's style ([react-modern](../react-modern/README.md))                    |
+| -------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Components           | Classes, connected to the store with `connect`                       | Functions using the `useAppSelector` and `useAppDispatch` Hooks              |
+| Actions              | Written by hand with `createAction` in `actions.js`                  | Generated by `createSlice` in `store.ts`                                     |
+| State updates        | A `switch` in `reducer.js` returning new Immutable.js `Map` and `List` | Slice reducers that change a draft; Immer turns the changes into a new object |
+| Loading the examples | A saga in `sagas.js` (`call`, `put`, `takeLeading`)                  | An RTK Query endpoint in `store.ts`, started with `useLazyExamplesQuery`     |
+| Loading and errors   | Reducer cases for the start, the result and the failure             | Tracked by RTK Query (`isFetching`, `isError`)                               |
+| Store setup          | `legacy_createStore` and the saga middleware in `store.js`           | `configureStore` in `store.ts`                                               |
+| Language             | JavaScript                                                           | TypeScript in `strict` mode                                                  |
+
+[How the ecosystem changed](../../docs/ecosystem.md) tells the longer story.
+
+## Limits
+
+- The same small scenario as today's version: no saving, no accounts and no server.
+- The original app also kept a Draft.js editor in its store. That part is now its own example, [Rich text with Draft.js](../rich-text-draft/README.md).
+- A helper that bound action creators recursively and the `BEFORE_` middleware are not needed at this size. The [migration ledger](../../docs/migration.md) links to the original code if you want to read them.
+
+## Checks and credits
+
+- `npm run test:apps` renders both versions with Testing Library and runs the same steps on each: add, tick, filter, edit and delete.
+- After the build, `npm run test:browser` runs a longer scenario on both versions in Chromium, Firefox and WebKit: those steps plus **Clear completed**, the import, the About page with Back and Forward, and a failed import that shows the error and then succeeds on retry.
+- The [React architecture notes from 2018](../../docs/history/react/README.md) explain how the original app was organised. They are kept for reading and are not run.
+- Original code is MIT; see [NOTICE.md](../../NOTICE.md).

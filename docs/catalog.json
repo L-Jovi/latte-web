@@ -4,7 +4,7 @@
     "title": "JavaScript basics: closures, this and new",
     "titleZh": "JavaScript 基础：闭包、this 与 new",
     "summary": "Short scripts that show how closures, `this` and object construction really work.",
-    "summaryZh": "用几段短脚本，看懂闭包、this 和对象构造的真实行为。",
+    "summaryZh": "用几段短脚本，看懂闭包、`this` 和对象构造的真实行为。",
     "kind": "foundation",
     "status": "maintained",
     "pages": [
@@ -16,7 +16,7 @@
     "title": "call, apply and bind by hand",
     "titleZh": "手写 call、apply 与 bind",
     "summary": "Rebuild call, apply and bind to see how a function decides what `this` is.",
-    "summaryZh": "自己实现 call、apply 和 bind，看懂函数调用时 this 是怎么确定的。",
+    "summaryZh": "自己实现 call、apply 和 bind，看懂函数调用时 `this` 是怎么确定的。",
     "kind": "foundation",
     "status": "maintained",
     "pages": [
@@ -28,7 +28,7 @@
     "title": "new and instanceof by hand",
     "titleZh": "手写 new 与 instanceof",
     "summary": "Rebuild `new` and `instanceof`: create the object, run the constructor, walk the prototype chain.",
-    "summaryZh": "自己实现 new 和 instanceof：创建对象、执行构造函数、沿原型链查找。",
+    "summaryZh": "自己实现 `new` 和 `instanceof`：创建对象、执行构造函数、沿原型链查找。",
     "kind": "foundation",
     "status": "maintained",
     "pages": [
@@ -40,7 +40,7 @@
     "title": "What class extends does under the hood",
     "titleZh": "class extends 背后做了什么",
     "summary": "Compare `class extends` with old-style function inheritance, including why static members are inherited too.",
-    "summaryZh": "对比 class extends 和老式函数继承，包括静态成员为什么也会被继承。",
+    "summaryZh": "对比 `class extends` 和老式函数继承，包括静态成员为什么也会被继承。",
     "kind": "foundation",
     "status": "maintained",
     "pages": [
@@ -52,7 +52,7 @@
     "title": "Promise chains vs async/await",
     "titleZh": "Promise 链与 async/await 对照",
     "summary": "The same two-step calculation written with `.then()` and with `await`.",
-    "summaryZh": "同一个两步计算，分别用 .then() 和 await 来写。",
+    "summaryZh": "同一个两步计算，分别用 `.then()` 和 `await` 来写。",
     "kind": "foundation",
     "status": "maintained",
     "pages": [
@@ -77,7 +77,7 @@
     "title": "Moving an element: layout vs transform",
     "titleZh": "移动元素：改布局还是用 transform",
     "summary": "Move the same box with `top` and with `transform`, and see which one makes the browser redo layout.",
-    "summaryZh": "分别用 top 和 transform 移动同一个方块，看哪种会让浏览器重新计算布局。",
+    "summaryZh": "分别用 `top` 和 `transform` 移动同一个方块，看哪种会让浏览器重新计算布局。",
     "kind": "foundation",
     "status": "maintained",
     "pages": [
@@ -128,7 +128,7 @@
     "title": "How generators pause and resume",
     "titleZh": "Generator 如何暂停与恢复",
     "summary": "See the state machine that Babel turns `yield` into, and how values flow in and out.",
-    "summaryZh": "看 Babel 把 yield 编译成的状态机，以及值是怎样传进传出的。",
+    "summaryZh": "看 Babel 把 `yield` 编译成的状态机，以及值是怎样传进传出的。",
     "kind": "mechanism",
     "status": "maintained",
     "pages": [
@@ -152,8 +152,8 @@
     "path": "mechanisms/design-patterns/inherit",
     "title": "Prototype inheritance, including the mistakes",
     "titleZh": "原型继承，以及常见的错误写法",
-    "summary": "Compare shared prototypes, borrowed constructors and `Object.create`, and see what each one gets wrong.",
-    "summaryZh": "对比共享原型、借用构造函数和 Object.create，看每种写法各自的问题。",
+    "summary": "See what goes wrong with a shared prototype or a borrowed constructor, and how `Object.create` fixes it.",
+    "summaryZh": "看共享原型和借用构造函数会出什么问题，以及 `Object.create` 怎样解决。",
     "kind": "mechanism",
     "status": "maintained",
     "pages": [
@@ -165,7 +165,7 @@
     "title": "Proxy traps and event delegation",
     "titleZh": "Proxy 拦截与事件委托",
     "summary": "Intercept property access with `Proxy`, and handle many clicks from one parent element.",
-    "summaryZh": "用 Proxy 拦截属性读写，用一个父元素处理所有子元素的点击。",
+    "summaryZh": "用 `Proxy` 拦截属性读写，用一个父元素处理所有子元素的点击。",
     "kind": "mechanism",
     "status": "maintained",
     "pages": [
@@ -177,7 +177,7 @@
     "title": "Publish and subscribe",
     "titleZh": "发布订阅",
     "summary": "A minimal `on` / `emit` / `off` event hub; senders never need to know who is listening.",
-    "summaryZh": "一个最小的 on / emit / off 事件中心，发送方不需要知道谁在监听。",
+    "summaryZh": "一个最小的 `on` / `emit` / `off` 事件中心，发送方不需要知道谁在监听。",
     "kind": "mechanism",
     "status": "maintained",
     "pages": []
@@ -197,7 +197,7 @@
     "title": "Shallow copy vs deep clone",
     "titleZh": "浅拷贝与深拷贝",
     "summary": "Copy an object graph while keeping shared references and cycles, then compare with `structuredClone`.",
-    "summaryZh": "复制对象图时保留共享引用和循环引用，再和 structuredClone 对比。",
+    "summaryZh": "复制对象图时保留共享引用和循环引用，再和 `structuredClone` 对比。",
     "kind": "mechanism",
     "status": "maintained",
     "pages": [
@@ -208,7 +208,7 @@
     "path": "mechanisms/utilities/circle-ref",
     "title": "Detecting circular references",
     "titleZh": "检测循环引用",
-    "summary": "Tell a real cycle apart from an object that is simply referenced twice.",
+    "summary": "Tell a real cycle apart from an object that is referenced twice.",
     "summaryZh": "区分真正的循环引用，和只是被引用了两次的对象。",
     "kind": "mechanism",
     "status": "maintained",
@@ -257,7 +257,7 @@
     "title": "Thousands separators without losing precision",
     "titleZh": "千分位格式化，不丢精度",
     "summary": "Group the digits of a number string without converting it to `Number`; compare with `Intl.NumberFormat`.",
-    "summaryZh": "不把数字字符串转成 Number 也能加千分位；再和 Intl.NumberFormat 对比。",
+    "summaryZh": "不把数字字符串转成 `Number` 也能加千分位；再和 `Intl.NumberFormat` 对比。",
     "kind": "mechanism",
     "status": "maintained",
     "pages": [
@@ -481,7 +481,7 @@
     "title": "Template compiling and HTML escaping",
     "titleZh": "模板编译与 HTML 转义",
     "summary": "Compile a Handlebars template and see why `{{value}}` is escaped while `{{{value}}}` is not.",
-    "summaryZh": "编译 Handlebars 模板，看为什么 {{value}} 会转义而 {{{value}}} 不会。",
+    "summaryZh": "编译 Handlebars 模板，看为什么 `{{value}}` 会转义而 `{{{value}}}` 不会。",
     "kind": "tooling",
     "status": "maintained",
     "pages": [
@@ -492,8 +492,8 @@
     "path": "fundamentals/typescript",
     "title": "TypeScript: typed actions and reducers",
     "titleZh": "TypeScript：给 action 和 reducer 加类型",
-    "summary": "A discriminated union lets the compiler check every branch of a reducer.",
-    "summaryZh": "用可辨识联合类型，让编译器检查 reducer 的每个分支。",
+    "summary": "A discriminated union tells the compiler which action each branch of a reducer handles.",
+    "summaryZh": "用可辨识联合类型，让编译器知道 reducer 的每个分支处理的是哪种 action。",
     "kind": "foundation",
     "status": "maintained",
     "pages": []
@@ -515,7 +515,7 @@
     "title": "TypeScript and React through webpack",
     "titleZh": "通过 webpack 使用 TypeScript 和 React",
     "summary": "See why Babel strips types without checking them, and where `tsc` still fits in.",
-    "summaryZh": "看懂 Babel 为什么只删类型不检查，以及 tsc 还负责什么。",
+    "summaryZh": "看懂 Babel 为什么只删类型不检查，以及 `tsc` 还负责什么。",
     "kind": "tooling",
     "status": "maintained",
     "pages": [
@@ -564,7 +564,7 @@
     "title": "Function composition (compose)",
     "titleZh": "函数组合（compose）",
     "summary": "The `compose` helper behind Redux middleware, written by hand.",
-    "summaryZh": "Redux 中间件背后的 compose，自己写一遍。",
+    "summaryZh": "Redux 中间件背后的 `compose`，自己写一遍。",
     "kind": "mechanism",
     "status": "maintained",
     "pages": [
@@ -634,8 +634,8 @@
   },
   {
     "path": "docs/history/react",
-    "title": "React architecture notes from 2019",
-    "titleZh": "2019 年的 React 架构笔记",
+    "title": "React architecture notes from 2018",
+    "titleZh": "2018 年的 React 架构笔记",
     "summary": "The original notes (in Chinese) on domain-driven structure, sagas and routing.",
     "summaryZh": "原始的中文笔记：领域驱动的目录结构、saga 与路由。",
     "kind": "history",
@@ -657,7 +657,7 @@
     "title": "JSONP vs fetch with CORS",
     "titleZh": "JSONP 与 fetch + CORS 对照",
     "summary": "Read the same cross-origin data two ways, and cancel a request with `AbortController`.",
-    "summaryZh": "用两种方式读取同一份跨域数据，并用 AbortController 取消请求。",
+    "summaryZh": "用两种方式读取同一份跨域数据，并用 `AbortController` 取消请求。",
     "kind": "example",
     "status": "maintained",
     "pages": [
@@ -728,7 +728,7 @@
     "title": "Rust to WebAssembly in the browser",
     "titleZh": "在浏览器里运行 Rust（WebAssembly）",
     "summary": "Compile a Rust function to `.wasm` and call it from a button.",
-    "summaryZh": "把一个 Rust 函数编译成 .wasm，再通过按钮调用它。",
+    "summaryZh": "把一个 Rust 函数编译成 `.wasm`，再通过按钮调用它。",
     "kind": "example",
     "status": "maintained",
     "pages": [
@@ -824,7 +824,7 @@
     "title": "Menu, step bar and progress ring",
     "titleZh": "导航、步骤条与环形进度",
     "summary": "An expanding menu (JavaScript tween vs CSS transition), a step bar and a `conic-gradient` progress ring.",
-    "summaryZh": "展开的导航（JS 补间与 CSS 过渡对比）、步骤条，以及用 conic-gradient 画的环形进度。",
+    "summaryZh": "展开的导航（JS 补间与 CSS 过渡对比）、步骤条，以及用 `conic-gradient` 画的环形进度。",
     "kind": "example",
     "status": "maintained",
     "pages": [
@@ -870,7 +870,7 @@
     "title": "Measuring page speed in 2019",
     "titleZh": "2019 年怎样测页面速度",
     "summary": "How page speed was measured with `performance.timing`, and why those numbers are read differently now.",
-    "summaryZh": "当年怎样用 performance.timing 测速，以及为什么今天要换一种方式解读。",
+    "summaryZh": "当年怎样用 `performance.timing` 测速，以及为什么今天要换一种方式解读。",
     "kind": "history",
     "status": "historical",
     "pages": []
