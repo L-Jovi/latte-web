@@ -185,7 +185,7 @@ Many examples here were first written between 2018 and 2022, and the tools aroun
 
 A latte is one part espresso, two parts milk and one part foam: the most common coffee, and the one almost everyone enjoys. Among the author's coffee-named repositories, the web plays that role: the everyday, widely loved blend.
 
-The rest of the series: [espresso-algorithm](https://github.com/L-Jovi/espresso-algorithm) (algorithms, pure concentration), [roaster-linux](https://github.com/L-Jovi/roaster-linux) (Linux tools, where the beans are roasted), [barista-services](https://github.com/L-Jovi/barista-services) (services, the barista) and [cappuccino-ios](https://github.com/L-Jovi/cappuccino-ios) (iOS apps, lighter than a latte).
+The rest of the series: [espresso-algorithm](https://github.com/L-Jovi/espresso-algorithm) (algorithms, pure concentration), [roaster-linux](https://github.com/L-Jovi/roaster-linux) (Linux tools, where the beans are roasted), [barista-services](https://github.com/L-Jovi/barista-services) (services, the barista) and cappuccino-ios (iOS apps, lighter than a latte; retired in 2026).
 
 ## Status
 
