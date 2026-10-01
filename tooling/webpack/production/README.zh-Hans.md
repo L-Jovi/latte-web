@@ -21,7 +21,7 @@ npm run dev
 
 [webpack.config.cjs](webpack.config.cjs)（3 行）保留[共用配置](../base.cjs)里的生产模式，并加上 `devtool: 'source-map'`，把 source map 写成单独的文件 `bundle.js.map`。生产模式会压缩代码，并把 `process.env.NODE_ENV` 设为 `'production'`。[src/index.js](src/index.js)（15 行）会检查这个值，所以它的 `if` 有一个分支永远不会执行，压缩工具就把它删掉了。（页面上的逗号，是因为代码把一个数组赋给了 `innerHTML`，数组各项会用逗号连起来。）
 
-[webpack.dev.cjs](webpack.dev.cjs)（6 行）加载上面那份配置，用对象展开（`...config`）复制一份，再改两项：`mode: 'development'` 和 `devtool: 'inline-source-map'`。构建脚本只构建生产配置。想试试开发配置，运行 `npm exec -w @latte/webpack -- webpack serve --config production/webpack.dev.cjs`，然后打开 http://127.0.0.1:4180/：控制台这次打印 `Looks like we are in development mode!`。
+[webpack.dev.cjs](webpack.dev.cjs)（6 行）加载上面那份配置，用对象展开（`...config`）复制一份，再改两项：`mode: 'development'` 和 `devtool: 'inline-source-map'`。构建脚本只构建生产配置。想试试开发配置，运行 `npm exec -w @latte/webpack -- webpack serve --config production/webpack.dev.cjs`，然后打开 <http://127.0.0.1:4180/>：控制台这次打印 `Looks like we are in development mode!`。
 
 [src/math.js](src/math.js) 导出了 `square` 和 `cube`，但只有 `cube` 被导入。[Tree shaking：去掉没用到的导出](../tree-shaking/README.zh-Hans.md)专门讲这一步。
 

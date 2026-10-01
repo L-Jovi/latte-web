@@ -17,7 +17,7 @@ npm run dev
 
 页面上会出现一张卡片，里面有一个**计数：0** 按钮，每点一次加一。`dist/consumer/consumer.html` 这个页面改为加载 Babel 的产物，在同样的卡片里显示一个 **Babel 包已加载**按钮。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/components/dist/demo/index.html?lang=zh)和 [Babel 产物的在线页面](https://l-jovi.github.io/latte-web/examples/components/dist/consumer/consumer.html?lang=zh)。
 
-想浏览那两条 Storybook 故事，运行 `npm run storybook -w @latte/components`，然后打开 http://127.0.0.1:6006。
+想浏览那两条 Storybook 故事，运行 `npm run storybook -w @latte/components`，然后打开 <http://127.0.0.1:6006>。
 
 ## 原理
 
