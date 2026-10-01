@@ -13,7 +13,7 @@ npm run dev
 # open http://127.0.0.1:4173/tooling/webpack/lazy-loading/dist/
 ```
 
-Open the Network tab of the browser's developer tools, then load the page. It shows **Hello webpack** and a button, and the only script is `bundle.js`. Click the button: a file with a name such as `print.75b9ede9392a312ac178.js` arrives, and the console prints `The print.js module has loaded! See the network tab in dev tools...`, then `Button Clicked: Here's "some text"!`. Click again, and only the second line appears: the module has already loaded, so it does not run a second time. You can also open the [live demo](https://latte.jovipro.com/tooling/webpack/lazy-loading/dist/index.html).
+Open the Network tab of the browser's developer tools, then load the page. It shows **Hello webpack** and a button, and the only script is `bundle.js`. Click the button: a file with a name such as `print.75b9ede9392a312ac178.js` arrives, and the console prints `The print.js module has loaded! See the network tab in dev tools...`, then `Button Clicked: Here's "some text"!`. Click again, and only the second line appears: the module has already loaded, so it does not run a second time. You can also open the [live demo](https://l-jovi.github.io/latte-web/tooling/webpack/lazy-loading/dist/index.html).
 
 ## How it works
 

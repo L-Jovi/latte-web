@@ -11,7 +11,7 @@ npm run dev
 # open http://127.0.0.1:4173/examples/visuals/lottery/
 ```
 
-Click **Spin**. The wheel turns three full times and stops with one sector over the fixed pointer, and the text below says the same letter. No build step is needed. You can also open the [live demo](https://latte.jovipro.com/examples/visuals/lottery/index.html).
+Click **Spin**. The wheel turns three full times and stops with one sector over the fixed pointer, and the text below says the same letter. No build step is needed. You can also open the [live demo](https://l-jovi.github.io/latte-web/examples/visuals/lottery/index.html).
 
 ## How it works
 

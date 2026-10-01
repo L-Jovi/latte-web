@@ -11,7 +11,7 @@ npm run dev
 # open http://127.0.0.1:4173/mechanisms/utilities/debounce/
 ```
 
-Open the browser console and click **Test Debounce** several times in quick succession. Nothing is logged while you keep clicking; half a second after the last click, the console shows `1 2` once. No install or build is needed: `npm run dev` works right after cloning. You can also open the [live demo](https://latte.jovipro.com/mechanisms/utilities/debounce/index.html).
+Open the browser console and click **Test Debounce** several times in quick succession. Nothing is logged while you keep clicking; half a second after the last click, the console shows `1 2` once. No install or build is needed: `npm run dev` works right after cloning. You can also open the [live demo](https://l-jovi.github.io/latte-web/mechanisms/utilities/debounce/index.html).
 
 ## How it works
 

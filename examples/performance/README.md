@@ -20,7 +20,7 @@ Below the table, Navigation Timing, the browser's own timings for loading this p
 - Click **Run 120 ms of work**. The page freezes for 120 ms, the text says `Measured work:` followed by about 120 ms, a `measure: controlled-work` entry appears, and INP gets a value.
 - Click **Insert late content**. 700 ms later a green block appears at the top and pushes everything down, and the CLS number goes up.
 
-CLS may already show a small value before you click anything: the page's own output changes size after loading and moves what is below it. No data leaves the page. You can also open the [live demo](https://latte.jovipro.com/examples/performance/dist/index.html).
+CLS may already show a small value before you click anything: the page's own output changes size after loading and moves what is below it. No data leaves the page. You can also open the [live demo](https://l-jovi.github.io/latte-web/examples/performance/dist/index.html).
 
 ## How it works
 

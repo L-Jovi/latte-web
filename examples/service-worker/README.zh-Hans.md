@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 不依赖框架，完成注册、缓存、离线访问和清理。Service Worker 是浏览器与页面并行运行的一段脚本，它可以自己响应页面发出的请求，即使没有网络也行。
 
@@ -19,7 +19,7 @@ npm run dev
 2. 在浏览器的开发者工具里把网络切换成离线，然后刷新。页面仍然能打开，标题 **Offline notebook** 和 `Offline` 字样都在。
 3. 恢复网络，点击 **Clear this experiment**，再刷新。页面重新显示 `Not registered`：这个 worker 已经不再控制它了。
 
-也可以直接打开[在线演示](https://latte.jovipro.com/examples/service-worker/index.html)。
+也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/service-worker/index.html)。
 
 ## 原理
 

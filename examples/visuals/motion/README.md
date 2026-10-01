@@ -17,7 +17,7 @@ It works right after cloning; no `npm ci` or build step is needed. The page has 
 - The step bar: click **Next** to move the highlight from **Read** to **Run** and then **Compare**; **Back** goes the other way. The text under the buttons says `Step 2 of 3` and so on.
 - The progress ring: drag the **Progress** slider. The coloured part of the ring and the percentage in its middle follow it.
 
-You can also open the [live demo](https://latte.jovipro.com/examples/visuals/motion/index.html).
+You can also open the [live demo](https://l-jovi.github.io/latte-web/examples/visuals/motion/index.html).
 
 ## How it works
 

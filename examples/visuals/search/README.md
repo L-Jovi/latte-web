@@ -11,7 +11,7 @@ npm run dev
 # open http://127.0.0.1:4173/examples/visuals/search/
 ```
 
-It works right after cloning; no `npm ci` or build step is needed. Type `graph` in the **Topic** box: one suggestion, **GraphQL**, appears. Press the down arrow, then Enter: the box fills in and the text below says `Selected: GraphQL`. Clicking a suggestion picks it too. Escape, or moving the focus away from the box, closes the list. You can also open the [live demo](https://latte.jovipro.com/examples/visuals/search/index.html).
+It works right after cloning; no `npm ci` or build step is needed. Type `graph` in the **Topic** box: one suggestion, **GraphQL**, appears. Press the down arrow, then Enter: the box fills in and the text below says `Selected: GraphQL`. Clicking a suggestion picks it too. Escape, or moving the focus away from the box, closes the list. You can also open the [live demo](https://l-jovi.github.io/latte-web/examples/visuals/search/index.html).
 
 ## How it works
 

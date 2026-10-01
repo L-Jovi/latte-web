@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 通过读写像素，实现缩放、水印、放大镜和滤镜。
 
@@ -20,7 +20,7 @@ npm run dev
 - 勾选 **Watermark**，右下角附近会写上 `latte-web`。
 - 勾选 **Magnifier**，把指针移到画布上，会出现一个圆形镜片，以当前比例的两倍显示未经滤镜处理的原图。也可以用 Tab 键让画布获得焦点，再用方向键移动镜片。
 
-也可以直接打开[在线演示](https://latte.jovipro.com/examples/visuals/canvas-image/index.html)。
+也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/visuals/canvas-image/index.html)。
 
 ## 原理
 

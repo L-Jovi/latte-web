@@ -13,7 +13,7 @@ npm run dev
 # open http://127.0.0.1:4173/tooling/webpack-typescript/dist/
 ```
 
-The page shows the heading **Render component from TypeScript and React 19**. You can also open the [live demo](https://latte.jovipro.com/tooling/webpack-typescript/dist/index.html).
+The page shows the heading **Render component from TypeScript and React 19**. You can also open the [live demo](https://l-jovi.github.io/latte-web/tooling/webpack-typescript/dist/index.html).
 
 ## How it works
 

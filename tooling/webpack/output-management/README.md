@@ -13,7 +13,7 @@ npm run dev
 # open http://127.0.0.1:4173/tooling/webpack/output-management/dist/
 ```
 
-The page shows **Hello webpack** and a button. Click it, and the console prints `I get called from print.js!`. Open `dist/index.html`: it has two script tags, one for `app.js` and one for `print.js`, both written by the build. You can also open the [live demo](https://latte.jovipro.com/tooling/webpack/output-management/dist/index.html).
+The page shows **Hello webpack** and a button. Click it, and the console prints `I get called from print.js!`. Open `dist/index.html`: it has two script tags, one for `app.js` and one for `print.js`, both written by the build. You can also open the [live demo](https://l-jovi.github.io/latte-web/tooling/webpack/output-management/dist/index.html).
 
 ## How it works
 

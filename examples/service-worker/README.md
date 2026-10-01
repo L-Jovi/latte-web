@@ -17,7 +17,7 @@ It works right after cloning; no `npm ci` or build step is needed. The page says
 2. In the browser's developer tools, switch the network to offline, then reload. The page still appears, with its heading **Offline notebook** and the word `Offline`.
 3. Switch the network back on, click **Clear this experiment** and reload. The page says `Not registered` again: the worker no longer controls it.
 
-You can also open the [live demo](https://latte.jovipro.com/examples/service-worker/index.html).
+You can also open the [live demo](https://l-jovi.github.io/latte-web/examples/service-worker/index.html).
 
 ## How it works
 

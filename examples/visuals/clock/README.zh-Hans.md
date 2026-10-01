@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 用点阵画出数字；数字变化时，点会化作粒子落下。
 
@@ -13,7 +13,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/examples/visuals/clock/
 ```
 
-克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。画布上用蓝色圆点显示 `00:00:10`。点击 **Start 10-second countdown**：画布下方的文字变成 `10 seconds remaining`，之后每秒减一。每当某一位数字变化，旧数字的圆点就会变成彩色粒子，先跳起，再落下，在底部弹跳。任何时候再点一次按钮，都会从头开始。也可以直接打开[在线演示](https://latte.jovipro.com/examples/visuals/clock/index.html)。
+克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。画布上用蓝色圆点显示 `00:00:10`。点击 **Start 10-second countdown**：画布下方的文字变成 `10 seconds remaining`，之后每秒减一。每当某一位数字变化，旧数字的圆点就会变成彩色粒子，先跳起，再落下，在底部弹跳。任何时候再点一次按钮，都会从头开始。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/visuals/clock/index.html)。
 
 ## 原理
 

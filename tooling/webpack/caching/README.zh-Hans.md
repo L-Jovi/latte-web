@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 只有内容变了文件名才变，浏览器就能放心缓存。内容哈希（content hash）是根据文件内容算出的一小段“指纹”，写在文件名里。
 
@@ -15,7 +15,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/tooling/webpack/caching/dist/
 ```
 
-页面上显示 **Hello webpack**；点击这行文字，控制台打印 `Hello webpack!`。`dist/` 里有三个脚本，文件名里都带着哈希，比如 `main.23cd93cf2c0e2c425520.js`（你的代码）、`637.40779b51713db0a1f01b.js`（Lodash）和 `runtime.613ea7698a113b2af393.js`（webpack 的加载器），`index.html` 引用了这三个文件。现在修改 [src/print.js](src/print.js)，比如把 `console.log` 改成 `console.info`，再构建一次：只有 `main` 文件换了名字，Lodash 和运行时的文件名都没变。也可以直接打开[在线演示](https://latte.jovipro.com/tooling/webpack/caching/dist/index.html)。
+页面上显示 **Hello webpack**；点击这行文字，控制台打印 `Hello webpack!`。`dist/` 里有三个脚本，文件名里都带着哈希，比如 `main.23cd93cf2c0e2c425520.js`（你的代码）、`637.40779b51713db0a1f01b.js`（Lodash）和 `runtime.613ea7698a113b2af393.js`（webpack 的加载器），`index.html` 引用了这三个文件。现在修改 [src/print.js](src/print.js)，比如把 `console.log` 改成 `console.info`，再构建一次：只有 `main` 文件换了名字，Lodash 和运行时的文件名都没变。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/caching/dist/index.html)。
 
 ## 原理
 

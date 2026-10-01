@@ -13,7 +13,7 @@ npm run dev
 # open http://127.0.0.1:4173/tooling/webpack/asset-management/dist/
 ```
 
-The page shows **Hello webpack** in red, on a repeating icon background, followed by the same icon as an image. The browser console prints `note`, the name of the XML file's root element. `dist/` also contains the SVG, saved once under a hashed name such as `427e6e23fcca9a23d75f.svg`. You can also open the [live demo](https://latte.jovipro.com/tooling/webpack/asset-management/dist/index.html).
+The page shows **Hello webpack** in red, on a repeating icon background, followed by the same icon as an image. The browser console prints `note`, the name of the XML file's root element. `dist/` also contains the SVG, saved once under a hashed name such as `427e6e23fcca9a23d75f.svg`. You can also open the [live demo](https://l-jovi.github.io/latte-web/tooling/webpack/asset-management/dist/index.html).
 
 ## How it works
 

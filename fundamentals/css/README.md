@@ -18,7 +18,7 @@ No install or build is needed: `npm run dev` works right after cloning. The page
 - [grid/index.html](grid/index.html) places nine numbered cells in three rows and three columns.
 - [basic/index.html](basic/index.html) shows a grey box whose width comes from a second stylesheet.
 
-You can also open the live demos: [BFC](https://latte.jovipro.com/fundamentals/css/bfc/bfc.html), [basic](https://latte.jovipro.com/fundamentals/css/basic/index.html), [centering](https://latte.jovipro.com/fundamentals/css/vertical-center/index.html) and [grid](https://latte.jovipro.com/fundamentals/css/grid/index.html).
+You can also open the live demos: [BFC](https://l-jovi.github.io/latte-web/fundamentals/css/bfc/bfc.html), [basic](https://l-jovi.github.io/latte-web/fundamentals/css/basic/index.html), [centering](https://l-jovi.github.io/latte-web/fundamentals/css/vertical-center/index.html) and [grid](https://l-jovi.github.io/latte-web/fundamentals/css/grid/index.html).
 
 ## How it works
 

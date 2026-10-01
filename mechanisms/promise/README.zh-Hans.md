@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 分三步写出 Promise：从最小的状态机，到通过全部 872 项 Promises/A+ 官方测试的版本。
 
@@ -13,7 +13,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/mechanisms/promise/
 ```
 
-页面串联了两次 `then`，显示 `1,2`。也可以直接打开[在线演示](https://latte.jovipro.com/mechanisms/promise/index.html)。
+页面串联了两次 `then`，显示 `1,2`。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/promise/index.html)。
 
 用官方测试集检验完整版：
 

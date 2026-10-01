@@ -13,7 +13,7 @@ npm run dev
 # open http://127.0.0.1:4173/tooling/webpack/code-splitting/dist/
 ```
 
-The page shows `index+module+loaded!`, and the console prints `Another module loaded!`. `dist/` has four scripts, and `index.html` loads all of them: `index.js` and `another.js` hold only your code, a few hundred bytes each; `shared.js` holds Lodash, about 70 KB; and `runtime.js` holds webpack's small module loader. You can also open the [live demo](https://latte.jovipro.com/tooling/webpack/code-splitting/dist/index.html).
+The page shows `index+module+loaded!`, and the console prints `Another module loaded!`. `dist/` has four scripts, and `index.html` loads all of them: `index.js` and `another.js` hold only your code, a few hundred bytes each; `shared.js` holds Lodash, about 70 KB; and `runtime.js` holds webpack's small module loader. You can also open the [live demo](https://l-jovi.github.io/latte-web/tooling/webpack/code-splitting/dist/index.html).
 
 ## How it works
 

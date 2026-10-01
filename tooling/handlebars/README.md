@@ -13,7 +13,7 @@ npm run dev
 # open http://127.0.0.1:4173/tooling/handlebars/dist/
 ```
 
-Under the heading **What `{{info}}` printed**, the page shows the text `<img src=x onerror=alert(1)>`. It is only text: no image is created and no alert appears. You can also open the [live demo](https://latte.jovipro.com/tooling/handlebars/dist/index.html).
+Under the heading **What `{{info}}` printed**, the page shows the text `<img src=x onerror=alert(1)>`. It is only text: no image is created and no alert appears. You can also open the [live demo](https://l-jovi.github.io/latte-web/tooling/handlebars/dist/index.html).
 
 ## How it works
 
