@@ -202,7 +202,8 @@ const siblings = [
   ['espresso-algorithm', 'algorithms'],
   ['roaster-linux', 'Linux tools'],
   ['barista-services', 'services'],
-  ['cappuccino-ios', 'iOS apps'],
+  // Retired on 2026-10-01: the repository is now private, so a link would only show a 404.
+  ['cappuccino-ios', 'iOS apps, retired', false],
 ];
 emit(
   'index.html',
@@ -284,7 +285,7 @@ ${groups
   })
   .join('\n')}
 <footer>
-<p>Part of a coffee-named series: ${siblings.map(([name, what]) => `<a href="https://github.com/L-Jovi/${name}">${name}</a> (${what})`).join(', ')}.</p>
+<p>Part of a coffee-named series: ${siblings.map(([name, what, linked = true]) => `${linked ? `<a href="https://github.com/L-Jovi/${name}">${name}</a>` : name} (${what})`).join(', ')}.</p>
 <p>Original code and documentation are MIT licensed. <a href="${source.replace('/tree/main/', '')}">github.com/L-Jovi/latte-web</a></p>
 </footer>
 </body>
