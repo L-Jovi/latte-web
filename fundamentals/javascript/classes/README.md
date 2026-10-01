@@ -11,7 +11,7 @@ npm run dev
 # open http://127.0.0.1:4173/fundamentals/javascript/classes/
 ```
 
-No install or build is needed: `npm run dev` works right after cloning. Open the browser console. It shows `true`, `true` and `false`: the three comparisons in [extends.js](extends.js), explained below. You can also open the [live demo](https://latte.jovipro.com/fundamentals/javascript/classes/index.html).
+No install or build is needed: `npm run dev` works right after cloning. Open the browser console. It shows `true`, `true` and `false`: the three comparisons in [extends.js](extends.js), explained below. You can also open the [live demo](https://l-jovi.github.io/latte-web/fundamentals/javascript/classes/index.html).
 
 ## How it works
 

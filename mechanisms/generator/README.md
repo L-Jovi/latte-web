@@ -11,9 +11,9 @@ npm run dev
 # open http://127.0.0.1:4173/mechanisms/generator/
 ```
 
-It works right after cloning; no `npm ci` or build step is needed. The page calls `next()` twice on a native generator and twice on a hand-made one, and prints both results. They match: first `{ value: 1, done: false }`, then `{ value: 5, done: true }`. The first call stops at `yield 1`. The second call sends in `3`, which comes back out as `3 + 2`. You can also open the [live demo](https://latte.jovipro.com/mechanisms/generator/index.html).
+It works right after cloning; no `npm ci` or build step is needed. The page calls `next()` twice on a native generator and twice on a hand-made one, and prints both results. They match: first `{ value: 1, done: false }`, then `{ value: 5, done: true }`. The first call stops at `yield 1`. The second call sends in `3`, which comes back out as `3 + 2`. You can also open the [live demo](https://l-jovi.github.io/latte-web/mechanisms/generator/index.html).
 
-Then open the browser console and load [transformed.html](transformed.html) from the same folder ([live demo](https://latte.jovipro.com/mechanisms/generator/transformed.html)). It runs the code Babel produced for a generator and logs `param-a this is a`, `param-b this is b` and `undefined this is c`.
+Then open the browser console and load [transformed.html](transformed.html) from the same folder ([live demo](https://l-jovi.github.io/latte-web/mechanisms/generator/transformed.html)). It runs the code Babel produced for a generator and logs `param-a this is a`, `param-b this is b` and `undefined this is c`.
 
 ## How it works
 

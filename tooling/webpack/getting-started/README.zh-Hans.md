@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 一个入口文件打包成一个文件，看中间的依赖图是怎么走的。这里的入口导入了 Lodash，webpack 把两者一起放进同一个 `bundle.js`。
 
@@ -15,7 +15,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/tooling/webpack/getting-started/dist/
 ```
 
-页面上显示 **Hello Webpack**。`dist/` 里有三个文件：`index.html`；`bundle.js`，Lodash 和你的代码被压缩在这一个文件里；还有 `bundle.js.LICENSE.txt`，压缩工具把 Lodash 的许可注释挪到了这里。也可以直接打开[在线演示](https://latte.jovipro.com/tooling/webpack/getting-started/dist/index.html)。
+页面上显示 **Hello Webpack**。`dist/` 里有三个文件：`index.html`；`bundle.js`，Lodash 和你的代码被压缩在这一个文件里；还有 `bundle.js.LICENSE.txt`，压缩工具把 Lodash 的许可注释挪到了这里。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/getting-started/dist/index.html)。
 
 ## 原理
 

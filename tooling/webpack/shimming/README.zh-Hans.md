@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 给从不 import 的旧代码提供它依赖的全局变量。shim（垫片）的作用，是让旧代码在它原本没有考虑过的环境里也能运行。
 
@@ -15,7 +15,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/tooling/webpack/shimming/dist/
 ```
 
-页面上显示 **Hello webpack**。写出这行字的 [src/index.js](src/index.js) 调用了 `join(...)`，却既没有导入它，也没有定义它；如果没有下面的插件，这一行会报错 `join is not defined`。也可以直接打开[在线演示](https://latte.jovipro.com/tooling/webpack/shimming/dist/index.html)。
+页面上显示 **Hello webpack**。写出这行字的 [src/index.js](src/index.js) 调用了 `join(...)`，却既没有导入它，也没有定义它；如果没有下面的插件，这一行会报错 `join is not defined`。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/shimming/dist/index.html)。
 
 ## 原理
 

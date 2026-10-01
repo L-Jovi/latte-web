@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 用几段短脚本，看懂闭包、this 和对象构造的真实行为。这个目录里有一个闭包示例和一份总览；下面四个子目录各自手写实现语言的一小块。
 
@@ -13,7 +13,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/fundamentals/javascript/
 ```
 
-不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。打开浏览器控制台：页面用 `forgeNew`（[instance](instance/README.zh-Hans.md) 里手写的 `new`）创建一个对象，并把它打印在两行 `=== forge new ===` 之间，它的 `name` 是 `'saber'`。也可以直接打开[在线演示](https://latte.jovipro.com/fundamentals/javascript/index.html)。
+不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。打开浏览器控制台：页面用 `forgeNew`（[instance](instance/README.zh-Hans.md) 里手写的 `new`）创建一个对象，并把它打印在两行 `=== forge new ===` 之间，它的 `name` 是 `'saber'`。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/fundamentals/javascript/index.html)。
 
 闭包示例没有页面，在仓库根目录用 Node 运行：
 

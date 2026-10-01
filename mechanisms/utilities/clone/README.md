@@ -11,7 +11,7 @@ npm run dev
 # open http://127.0.0.1:4173/mechanisms/utilities/clone/
 ```
 
-Open the browser console. The page builds an object, `source`, with nested arrays, a DOM element, a function, a symbol key and a property, `circleRef`, that points back to `source` itself, and logs `cloneDeep(source)`. Now type `structuredClone(source)`: it throws a `DataCloneError`, because the built-in cannot copy DOM elements or functions. No install or build is needed: `npm run dev` works right after cloning. You can also open the [live demo](https://latte.jovipro.com/mechanisms/utilities/clone/index.html).
+Open the browser console. The page builds an object, `source`, with nested arrays, a DOM element, a function, a symbol key and a property, `circleRef`, that points back to `source` itself, and logs `cloneDeep(source)`. Now type `structuredClone(source)`: it throws a `DataCloneError`, because the built-in cannot copy DOM elements or functions. No install or build is needed: `npm run dev` works right after cloning. You can also open the [live demo](https://l-jovi.github.io/latte-web/mechanisms/utilities/clone/index.html).
 
 ## How it works
 

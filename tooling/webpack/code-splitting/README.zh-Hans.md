@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 两个入口共享一份 Lodash，不再各打包一份。两个入口都用到 Lodash，于是把它放进第三个文件，页面只加载一次。
 
@@ -15,7 +15,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/tooling/webpack/code-splitting/dist/
 ```
 
-页面上显示 `index+module+loaded!`，控制台打印 `Another module loaded!`。`dist/` 里有四个脚本，`index.html` 全都加载了：`index.js` 和 `another.js` 只有你自己的代码，各几百字节；`shared.js` 是 Lodash，约 70 KB；`runtime.js` 是 webpack 的小型模块加载器。也可以直接打开[在线演示](https://latte.jovipro.com/tooling/webpack/code-splitting/dist/index.html)。
+页面上显示 `index+module+loaded!`，控制台打印 `Another module loaded!`。`dist/` 里有四个脚本，`index.html` 全都加载了：`index.js` 和 `another.js` 只有你自己的代码，各几百字节；`shared.js` 是 Lodash，约 70 KB；`runtime.js` 是 webpack 的小型模块加载器。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/code-splitting/dist/index.html)。
 
 ## 原理
 

@@ -13,7 +13,7 @@ npm run dev
 # open http://127.0.0.1:4173/examples/react-modern/dist/
 ```
 
-You should see the same app as the 2018 version: one todo, **Use Redux**, the same buttons and filters, `Imported 2 todos` after **Import examples**, the same `Import failed. Try again.` message when loading fails, and an **About** page that works with Back and Forward. Only the subtitle and the About text name the approach. Nothing is saved: reloading starts over. You can also open the [live demo](https://latte.jovipro.com/examples/react-modern/dist/index.html).
+You should see the same app as the 2018 version: one todo, **Use Redux**, the same buttons and filters, `Imported 2 todos` after **Import examples**, the same `Import failed. Try again.` message when loading fails, and an **About** page that works with Back and Forward. Only the subtitle and the About text name the approach. Nothing is saved: reloading starts over. You can also open the [live demo](https://l-jovi.github.io/latte-web/examples/react-modern/dist/index.html).
 
 ## How it works
 

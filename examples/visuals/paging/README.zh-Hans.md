@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 用距离和速度阈值把滑动变成翻页，分别用 touch 事件和 Pointer Events 实现。
 
@@ -18,7 +18,7 @@ npm run dev
 - **Touch Events** 这条轨道左右翻页，只响应手指。在电脑上请点 **Next touch page**，或者让轨道获得焦点后按方向键。
 - **Pointer Events** 这条轨道上下翻页，也能用鼠标拖：往上拖就翻到下一页。
 
-滑动距离够了，下一页就会滑进来，下方文字变成 `Page 2 of 3`。快速一划需要的距离比慢慢拖要短；距离不够，轨道就会弹回原位。到第三页时，这条轨道的 **Next** 按钮会被禁用。也可以直接打开[在线演示](https://latte.jovipro.com/examples/visuals/paging/index.html)。
+滑动距离够了，下一页就会滑进来，下方文字变成 `Page 2 of 3`。快速一划需要的距离比慢慢拖要短；距离不够，轨道就会弹回原位。到第三页时，这条轨道的 **Next** 按钮会被禁用。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/visuals/paging/index.html)。
 
 ## 原理
 

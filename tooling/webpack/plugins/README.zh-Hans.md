@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 一个接入构建流程、输出全部产物清单的插件。插件（plugin）在构建的固定时刻介入，可以处理整个构建；相比之下，loader 一次只转换一个文件。
 
@@ -25,7 +25,7 @@ npm run dev
 - index.html
 ```
 
-也可以直接打开这个页面的[在线演示](https://latte.jovipro.com/tooling/webpack/plugins/dist/index.html)。
+也可以直接打开这个页面的[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/plugins/dist/index.html)。
 
 ## 原理
 

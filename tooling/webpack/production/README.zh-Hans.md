@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 同一个项目两套配置：调试用可读的输出，发布用优化后的输出。这里以生产构建为主配置，另一个 6 行的文件把它改成开发构建。
 
@@ -15,7 +15,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/tooling/webpack/production/dist/
 ```
 
-页面上显示 `Hello webpack!,5 cubed is equal to 125`，控制台打印 `Looks like we are in production mode!`。`dist/bundle.js` 只有 257 字节：先是一行代码，webpack 已经在里面把 `cube(5)` 算成了 `125`，开发模式的提示和没用到的 `square` 函数都去掉了；后面跟着 `//# sourceMappingURL=bundle.js.map`，指向旁边的 source map 文件。也可以直接打开[在线演示](https://latte.jovipro.com/tooling/webpack/production/dist/index.html)。
+页面上显示 `Hello webpack!,5 cubed is equal to 125`，控制台打印 `Looks like we are in production mode!`。`dist/bundle.js` 只有 257 字节：先是一行代码，webpack 已经在里面把 `cube(5)` 算成了 `125`，开发模式的提示和没用到的 `square` 函数都去掉了；后面跟着 `//# sourceMappingURL=bundle.js.map`，指向旁边的 source map 文件。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/production/dist/index.html)。
 
 ## 原理
 

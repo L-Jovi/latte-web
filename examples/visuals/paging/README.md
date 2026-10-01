@@ -16,7 +16,7 @@ It works right after cloning; no `npm ci` or build step is needed. The page has 
 - The **Touch Events** track moves sideways and only reacts to a finger. On a computer, use **Next touch page**, or focus the track and press the arrow keys.
 - The **Pointer Events** track moves up and down and also follows a mouse: drag it upwards to go to the next page.
 
-When a swipe goes far enough, the next page slides in and the text below changes to `Page 2 of 3`. A quick flick needs less distance than a slow drag; if the swipe falls short, the track springs back. On the third page, that track's **Next** button is disabled. You can also open the [live demo](https://latte.jovipro.com/examples/visuals/paging/index.html).
+When a swipe goes far enough, the next page slides in and the text below changes to `Page 2 of 3`. A quick flick needs less distance than a slow drag; if the swipe falls short, the track springs back. On the third page, that track's **Next** button is disabled. You can also open the [live demo](https://l-jovi.github.io/latte-web/examples/visuals/paging/index.html).
 
 ## How it works
 

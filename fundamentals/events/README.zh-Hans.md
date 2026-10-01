@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 先看事件如何冒泡，再预测并验证任务、微任务和定时器的执行顺序。两个页面把结果打印到浏览器控制台，第三个脚本在 Node 里运行。
 
@@ -15,8 +15,8 @@ npm run dev
 
 不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。请一直开着浏览器控制台。
 
-- **冒泡**，就是上面这个页面（[在线演示](https://latte.jovipro.com/fundamentals/events/dom-event/index.html)）。点击里面的小方块（child）：只出现 `fire child`。点击外框（parent）里的其他地方：出现 `fire parent`。点击列表里的某个数字：控制台先显示你点中的 `<li>`，再显示负责监听的 `<ul>`。
-- **调度**，页面地址是 `/fundamentals/events/web-task/`（[在线演示](https://latte.jovipro.com/fundamentals/events/web-task/index.html)）。页面加载时，一个脚本依次打印 `script start`、`async2 end`、`Promise`、`script end`、`async3 end`、`promise1`、`async4 end`、`promise2`、`async1 end`，最后是 `setTimeout`；另一个脚本打印 `Promise.resolve:  2`。然后点击里面的方块：`click`、`promise`、`observer` 会出现两遍，先是里面的方块，再是外面的方块，之后是两行 `animationFrame` 和两行 `timeout`。
+- **冒泡**，就是上面这个页面（[在线演示](https://l-jovi.github.io/latte-web/fundamentals/events/dom-event/index.html)）。点击里面的小方块（child）：只出现 `fire child`。点击外框（parent）里的其他地方：出现 `fire parent`。点击列表里的某个数字：控制台先显示你点中的 `<li>`，再显示负责监听的 `<ul>`。
+- **调度**，页面地址是 `/fundamentals/events/web-task/`（[在线演示](https://l-jovi.github.io/latte-web/fundamentals/events/web-task/index.html)）。页面加载时，一个脚本依次打印 `script start`、`async2 end`、`Promise`、`script end`、`async3 end`、`promise1`、`async4 end`、`promise2`、`async1 end`，最后是 `setTimeout`；另一个脚本打印 `Promise.resolve:  2`。然后点击里面的方块：`click`、`promise`、`observer` 会出现两遍，先是里面的方块，再是外面的方块，之后是两行 `animationFrame` 和两行 `timeout`。
 
 Node 脚本不需要服务器。另开一个终端，在仓库根目录运行：
 

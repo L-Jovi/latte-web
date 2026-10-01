@@ -13,7 +13,7 @@ npm run dev
 # open http://127.0.0.1:4173/mechanisms/bundlers/dist/
 ```
 
-The page shows **welcome Jovi**, written into the page by the layered bundle. The browser console shows `my lord saber`, logged by the procedural bundle. Open `dist/procedural.js` in your editor: the loader is at the top, and the dependency graph is at the bottom, with each module's code stored under its file path. You can also open the [live demo](https://latte.jovipro.com/mechanisms/bundlers/dist/index.html).
+The page shows **welcome Jovi**, written into the page by the layered bundle. The browser console shows `my lord saber`, logged by the procedural bundle. Open `dist/procedural.js` in your editor: the loader is at the top, and the dependency graph is at the bottom, with each module's code stored under its file path. You can also open the [live demo](https://l-jovi.github.io/latte-web/mechanisms/bundlers/dist/index.html).
 
 ## How it works
 

@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 两个入口生成两个文件，HTML 插件自动插入对应的 script 标签。
 
@@ -15,7 +15,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/tooling/webpack/output-management/dist/
 ```
 
-页面上有 **Hello webpack** 和一个按钮。点击按钮，控制台会打印 `I get called from print.js!`。打开 `dist/index.html`，里面有两个 script 标签，分别引用 `app.js` 和 `print.js`，都是构建时写进去的。也可以直接打开[在线演示](https://latte.jovipro.com/tooling/webpack/output-management/dist/index.html)。
+页面上有 **Hello webpack** 和一个按钮。点击按钮，控制台会打印 `I get called from print.js!`。打开 `dist/index.html`，里面有两个 script 标签，分别引用 `app.js` 和 `print.js`，都是构建时写进去的。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/output-management/dist/index.html)。
 
 ## 原理
 

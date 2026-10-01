@@ -11,7 +11,7 @@ npm run dev
 # open http://127.0.0.1:4173/mechanisms/utilities/circle-ref/
 ```
 
-Open the browser console. The page builds an object whose `circleRef` property points back to the object itself, and both checks print `true`. No install or build is needed: `npm run dev` works right after cloning. You can also open the [live demo](https://latte.jovipro.com/mechanisms/utilities/circle-ref/index.html).
+Open the browser console. The page builds an object whose `circleRef` property points back to the object itself, and both checks print `true`. No install or build is needed: `npm run dev` works right after cloning. You can also open the [live demo](https://l-jovi.github.io/latte-web/mechanisms/utilities/circle-ref/index.html).
 
 ## How it works
 

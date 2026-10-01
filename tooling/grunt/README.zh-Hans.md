@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 先清理再复制的构建流程，打包器流行之前很多项目就是这样构建的。Grunt 这样的任务运行器，会按你列出的顺序执行一个个有名字的步骤，比如删除目录、复制文件。
 
@@ -15,7 +15,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/tooling/grunt/dist/
 ```
 
-Grunt 先打印 `Running "clean:dist" (clean) task`，再打印 `Running "copy:app" (copy) task` 和 `Created 1 directory, copied 2 files`，最后是 `Done.`。页面上写着 **Grunt copied this page**。`dist/` 和 `app/` 一模一样：没有任何修改、合并或压缩。也可以直接打开[在线演示](https://latte.jovipro.com/tooling/grunt/dist/index.html)。
+Grunt 先打印 `Running "clean:dist" (clean) task`，再打印 `Running "copy:app" (copy) task` 和 `Created 1 directory, copied 2 files`，最后是 `Done.`。页面上写着 **Grunt copied this page**。`dist/` 和 `app/` 一模一样：没有任何修改、合并或压缩。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/grunt/dist/index.html)。
 
 ## 原理
 

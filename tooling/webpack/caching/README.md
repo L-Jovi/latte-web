@@ -13,7 +13,7 @@ npm run dev
 # open http://127.0.0.1:4173/tooling/webpack/caching/dist/
 ```
 
-The page shows **Hello webpack**; click the text, and the console prints `Hello webpack!`. `dist/` holds three scripts with a hash in each name, such as `main.23cd93cf2c0e2c425520.js` (your code), `637.40779b51713db0a1f01b.js` (Lodash) and `runtime.613ea7698a113b2af393.js` (webpack's loader), and `index.html` points to all three. Now edit [src/print.js](src/print.js), for example change `console.log` to `console.info`, and build again: only the `main` file gets a new name, while Lodash and the runtime keep theirs. You can also open the [live demo](https://latte.jovipro.com/tooling/webpack/caching/dist/index.html).
+The page shows **Hello webpack**; click the text, and the console prints `Hello webpack!`. `dist/` holds three scripts with a hash in each name, such as `main.23cd93cf2c0e2c425520.js` (your code), `637.40779b51713db0a1f01b.js` (Lodash) and `runtime.613ea7698a113b2af393.js` (webpack's loader), and `index.html` points to all three. Now edit [src/print.js](src/print.js), for example change `console.log` to `console.info`, and build again: only the `main` file gets a new name, while Lodash and the runtime keep theirs. You can also open the [live demo](https://l-jovi.github.io/latte-web/tooling/webpack/caching/dist/index.html).
 
 ## How it works
 

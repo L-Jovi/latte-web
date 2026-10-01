@@ -11,7 +11,7 @@ npm run dev
 # open http://127.0.0.1:4173/mechanisms/utilities/throttle/
 ```
 
-Click the button as fast as you can. The counter goes up at most once every 500 ms, however many times you click. You can also open the [live demo](https://latte.jovipro.com/mechanisms/utilities/throttle/index.html).
+Click the button as fast as you can. The counter goes up at most once every 500 ms, however many times you click. You can also open the [live demo](https://l-jovi.github.io/latte-web/mechanisms/utilities/throttle/index.html).
 
 ## How it works
 

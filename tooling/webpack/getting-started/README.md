@@ -13,7 +13,7 @@ npm run dev
 # open http://127.0.0.1:4173/tooling/webpack/getting-started/dist/
 ```
 
-The page says **Hello Webpack**. In `dist/` you will find `index.html`, `bundle.js` with Lodash and your code in one minified file, and `bundle.js.LICENSE.txt`, where the minifier moved Lodash's license comment. You can also open the [live demo](https://latte.jovipro.com/tooling/webpack/getting-started/dist/index.html).
+The page says **Hello Webpack**. In `dist/` you will find `index.html`, `bundle.js` with Lodash and your code in one minified file, and `bundle.js.LICENSE.txt`, where the minifier moved Lodash's license comment. You can also open the [live demo](https://l-jovi.github.io/latte-web/tooling/webpack/getting-started/dist/index.html).
 
 ## How it works
 

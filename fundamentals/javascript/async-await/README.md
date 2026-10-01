@@ -11,7 +11,7 @@ npm run dev
 # open http://127.0.0.1:4173/fundamentals/javascript/async-await/
 ```
 
-No install or build is needed: `npm run dev` works right after cloning. The page shows `6 = 6`, the result of each version side by side. You can also open the [live demo](https://latte.jovipro.com/fundamentals/javascript/async-await/index.html).
+No install or build is needed: `npm run dev` works right after cloning. The page shows `6 = 6`, the result of each version side by side. You can also open the [live demo](https://l-jovi.github.io/latte-web/fundamentals/javascript/async-await/index.html).
 
 ## How it works
 

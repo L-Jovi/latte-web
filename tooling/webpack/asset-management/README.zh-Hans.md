@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 导入 CSS、SVG 和 XML，看各自由哪种 loader 或资源类型处理。
 
@@ -15,7 +15,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/tooling/webpack/asset-management/dist/
 ```
 
-页面上是红色的 **Hello webpack**，背景铺满了重复的图标，后面还跟着同一个图标的图片。浏览器控制台打印出 `note`，这是 XML 文件根元素的名字。`dist/` 里还多了那个 SVG，只存了一份，文件名是一串哈希，比如 `427e6e23fcca9a23d75f.svg`。也可以直接打开[在线演示](https://latte.jovipro.com/tooling/webpack/asset-management/dist/index.html)。
+页面上是红色的 **Hello webpack**，背景铺满了重复的图标，后面还跟着同一个图标的图片。浏览器控制台打印出 `note`，这是 XML 文件根元素的名字。`dist/` 里还多了那个 SVG，只存了一份，文件名是一串哈希，比如 `427e6e23fcca9a23d75f.svg`。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/asset-management/dist/index.html)。
 
 ## 原理
 

@@ -11,7 +11,7 @@ npm run dev
 # open http://127.0.0.1:4173/examples/visuals/photo-wall/
 ```
 
-It works right after cloning; no `npm ci` or build step is needed. Six cards, each a small landscape drawn in CSS, lie at different angles. Hover over a card, or move to it with the Tab key: it straightens, grows a little and rises above its neighbours. Make the window narrower and the wall uses fewer columns. You can also open the [live demo](https://latte.jovipro.com/examples/visuals/photo-wall/index.html).
+It works right after cloning; no `npm ci` or build step is needed. Six cards, each a small landscape drawn in CSS, lie at different angles. Hover over a card, or move to it with the Tab key: it straightens, grows a little and rises above its neighbours. Make the window narrower and the wall uses fewer columns. You can also open the [live demo](https://l-jovi.github.io/latte-web/examples/visuals/photo-wall/index.html).
 
 ## How it works
 

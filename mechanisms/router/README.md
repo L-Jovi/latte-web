@@ -13,7 +13,7 @@ npm run dev
 # open http://127.0.0.1:4173/mechanisms/router/dist/
 ```
 
-The page shows **Home view**. Click **About**: the address changes to end in `/about` and **About view** appears, without a page reload. The browser's back and forward buttons switch between the two views. Reloading on `/about` works here too, because the local server answers that address with the app's `index.html`. You can also open the [live demo](https://latte.jovipro.com/mechanisms/router/dist/index.html); reloading behaves differently there (see Limits).
+The page shows **Home view**. Click **About**: the address changes to end in `/about` and **About view** appears, without a page reload. The browser's back and forward buttons switch between the two views. Reloading on `/about` works here too, because the local server answers that address with the app's `index.html`. You can also open the [live demo](https://l-jovi.github.io/latte-web/mechanisms/router/dist/index.html); reloading behaves differently there (see Limits).
 
 ## How it works
 
@@ -29,7 +29,7 @@ The listener, `onChangeView`, is created once, as a class field. So `removeEvent
 
 `Link` leaves some clicks to the browser: clicks with Ctrl, Cmd, Shift or Alt held down, clicks with a button other than the left one, links with a `target` other than `_self` or with a `download` attribute, and links to another origin.
 
-All paths start with the folder the app is served from. Vite's `base` option in [vite.config.js](vite.config.js) provides it. To publish the site under a sub-path, such as `/latte-web/`, build with `LATTE_PAGES_BASE` set to that path; the live demo is served from the root of its domain and needs none.
+All paths start with the folder the app is served from. Vite's `base` option in [vite.config.js](vite.config.js) provides it, and the GitHub Pages build adds the `/latte-web/` prefix.
 
 ## Then and now
 
@@ -43,6 +43,6 @@ Apps used to copy the current URL into the Redux store, with libraries such as r
 ## Checks and credits
 
 - `npm run test:browser` clicks **About**, goes back and forward, then reloads, in Chromium, Firefox and WebKit, and checks that **About view** still shows after the reload. That reload relies on the local server's special rule.
-- `npm run test:pages` serves the built GitHub Pages site without that rule, as GitHub Pages does. It checks in Chromium that **About** leads to `/mechanisms/router/dist/about` and that going back shows **Home view**. It does not reload.
+- `npm run test:pages` serves the built GitHub Pages site under `/latte-web/` without that rule, as GitHub Pages does. It checks in Chromium that **About** leads to `/latte-web/mechanisms/router/dist/about` and that going back shows **Home view**. It does not reload.
 - The first version passed a freshly bound function to `removeEventListener`, and called it before mounting instead of at unmount, so its `popstate` listener was never removed. The [migration ledger](../../docs/migration.md) links to it, the `router-scratch` folder.
 - Original code is MIT; see [NOTICE.md](../../NOTICE.md).

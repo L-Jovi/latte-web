@@ -11,7 +11,7 @@ npm run dev
 # open http://127.0.0.1:4173/fundamentals/browser/render.html
 ```
 
-No install or build is needed: `npm run dev` works right after cloning. Click **Move with top**: the box moves 100 px down, and a second click moves it back. **Move with transform** does the same. You can also open the [live demo](https://latte.jovipro.com/fundamentals/browser/render.html).
+No install or build is needed: `npm run dev` works right after cloning. Click **Move with top**: the box moves 100 px down, and a second click moves it back. **Move with transform** does the same. You can also open the [live demo](https://l-jovi.github.io/latte-web/fundamentals/browser/render.html).
 
 To see the difference, open DevTools:
 

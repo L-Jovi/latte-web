@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 单例、工厂、适配器、代理、发布订阅，每个只用几行代码。
 
@@ -13,7 +13,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/mechanisms/design-patterns/
 ```
 
-克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。打开浏览器控制台，会看到 `true`（单例）、`saber and archer`（适配器）和 `yck false`（只读属性）。也可以直接打开[在线演示](https://latte.jovipro.com/mechanisms/design-patterns/index.html)。
+克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。打开浏览器控制台，会看到 `true`（单例）、`saber and archer`（适配器）和 `yck false`（只读属性）。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/design-patterns/index.html)。
 
 页面没有加载两个工厂示例，请在仓库根目录用 Node 运行它们：`node mechanisms/design-patterns/factory/simple-factory.js` 会打印 `yck`。
 

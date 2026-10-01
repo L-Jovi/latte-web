@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 编译 Handlebars 模板，看为什么 `{{value}}` 会转义而 `{{{value}}}` 不会。转义（escaping）把 `<` 这样的字符换成 `&lt;` 这样的编码，这样用户提交的文字就只会显示为文字，而不会变成 HTML。
 
@@ -15,7 +15,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/tooling/handlebars/dist/
 ```
 
-在标题 **What `{{info}}` printed** 下面，页面显示文字 `<img src=x onerror=alert(1)>`。它只是文字：既没有生成图片，也没有弹出提示框。也可以直接打开[在线演示](https://latte.jovipro.com/tooling/handlebars/dist/index.html)。
+在标题 **What `{{info}}` printed** 下面，页面显示文字 `<img src=x onerror=alert(1)>`。它只是文字：既没有生成图片，也没有弹出提示框。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/handlebars/dist/index.html)。
 
 ## 原理
 

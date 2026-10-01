@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { existsSync, readFileSync } from 'node:fs';
 
-// Every page marked as a live demo must work as published at latte.jovipro.com.
+// Every page marked as a live demo must work from the /latte-web/ sub-path.
 const catalog = JSON.parse(readFileSync('docs/catalog.json', 'utf8'));
 const live = catalog.filter((e) => e.pages?.length && e.live !== false);
 
@@ -33,13 +33,15 @@ for (const entry of live)
     expect(errors).toEqual([]);
   });
 
-test('the handwritten router navigates under its Vite base', async ({
+test('the handwritten router navigates under the site prefix', async ({
   page,
 }) => {
   await page.goto('mechanisms/router/dist/index.html');
   await page.getByRole('link', { name: 'About', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'About view' })).toBeVisible();
-  expect(new URL(page.url()).pathname).toBe('/mechanisms/router/dist/about');
+  expect(new URL(page.url()).pathname).toBe(
+    '/latte-web/mechanisms/router/dist/about',
+  );
   await page.goBack();
   await expect(page.getByRole('heading', { name: 'Home view' })).toBeVisible();
 });

@@ -15,7 +15,7 @@ Click inside **Hello world**, for example right after `Hello`, then click **Inse
 
 Then open `http://127.0.0.1:4173/mechanisms/selection/ec-richtext.html` and type `A #tag# B`. As you type, `#tag#` is highlighted and the cursor stays where it was.
 
-No install or build is needed: `npm run dev` works right after cloning. You can also open the live demos of the [cursor page](https://latte.jovipro.com/mechanisms/selection/index.html) and the [highlight page](https://latte.jovipro.com/mechanisms/selection/ec-richtext.html).
+No install or build is needed: `npm run dev` works right after cloning. You can also open the live demos of the [cursor page](https://l-jovi.github.io/latte-web/mechanisms/selection/index.html) and the [highlight page](https://l-jovi.github.io/latte-web/mechanisms/selection/ec-richtext.html).
 
 ## How it works
 

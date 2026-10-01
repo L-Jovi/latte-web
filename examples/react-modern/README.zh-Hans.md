@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 功能和 [2018 版](../react-classic/README.zh-Hans.md)完全相同，方便两边对照阅读。
 
@@ -15,7 +15,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/examples/react-modern/dist/
 ```
 
-你看到的应该和 2018 版一模一样：一条 **Use Redux** 待办，同样的按钮和筛选，点 **Import examples** 后显示 `Imported 2 todos`，读取失败时显示同样的 `Import failed. Try again.`，还有一个支持后退、前进的 **About** 页面。只有副标题和 About 页的文字写出了各自的做法。什么都不会保存：刷新页面就从头开始。也可以直接打开[在线演示](https://latte.jovipro.com/examples/react-modern/dist/index.html)。
+你看到的应该和 2018 版一模一样：一条 **Use Redux** 待办，同样的按钮和筛选，点 **Import examples** 后显示 `Imported 2 todos`，读取失败时显示同样的 `Import failed. Try again.`，还有一个支持后退、前进的 **About** 页面。只有副标题和 About 页的文字写出了各自的做法。什么都不会保存：刷新页面就从头开始。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/react-modern/dist/index.html)。
 
 ## 原理
 

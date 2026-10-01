@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 用几何计算排布层叠的轮播图，再让 CSS Scroll Snap 原生完成类似的事。
 
@@ -18,7 +18,7 @@ npm run dev
 - **Handwritten slot geometry**（手写位置计算）：最前面的卡片是原始大小，其余卡片排在两侧，越往外越小、越淡、越靠后，看起来就有了纵深。点击 **Next layered card**，或者让轮播获得焦点后按右方向键：所有卡片都挪动一个位置，下方文字显示 `Card 2`。它会循环，Card 5 之后又回到 Card 1。
 - **Native Scroll Snap**（原生滚动吸附）：一条由浏览器负责滚动的长条。用手指滑、横向滚动、按方向键或点击 **Next snap card**，它总会停在一整张卡片上，文字也随之更新。滚到两端就停下，对应的按钮会被禁用。
 
-也可以直接打开[在线演示](https://latte.jovipro.com/examples/visuals/carousel/index.html)。
+也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/visuals/carousel/index.html)。
 
 ## 原理
 
