@@ -10,10 +10,10 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/mechanisms/utilities/throttle/
+# 打开 http://127.0.0.1:4173/mechanisms/utilities/throttle/?lang=zh
 ```
 
-尽可能快地连续点击按钮。不管点多少次，计数每 500 毫秒最多增加一次。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/throttle/index.html)。
+尽可能快地连续点击按钮。不管点多少次，计数每 500 毫秒最多增加一次。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/throttle/index.html?lang=zh)。
 
 ## 原理
 

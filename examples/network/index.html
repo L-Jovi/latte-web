@@ -1,15 +1,19 @@
 <!doctype html>
-<html lang="en">
-  <meta charset="utf-8" /><title>JSONP vs fetch with CORS · Latte Web</title><!-- latte-site:css --><link rel="stylesheet" href="../../assets/site.css"><!-- /latte-site:css --><!-- latte-site:guide --><script src="../../assets/guide.js" data-guide="../../assets/guides/examples/network/index.json"></script><!-- /latte-site:guide -->
-  <!-- latte-site:bar --><nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="../../index.html">Latte Web</a><span class="latte-crumb">Applications and experiments</span><span class="latte-links"><a href="https://github.com/L-Jovi/latte-web/tree/main/examples/network">README</a><a href="https://github.com/L-Jovi/latte-web/blob/main/examples/network/README.zh-Hans.md" lang="zh-Hans">中文</a></span></nav><!-- /latte-site:bar --><h1>One response, two transports</h1>
-  <p>
+<html lang="en" data-title-en="JSONP vs fetch with CORS · Latte Web" data-title-zh="JSONP 与 fetch + CORS 对照 · Latte Web">
+  <meta charset="utf-8" /><title>JSONP vs fetch with CORS · Latte Web</title><!-- latte-site:css --><link rel="stylesheet" href="../../assets/site.css"><script src="../../assets/language.js"></script><!-- /latte-site:css --><!-- latte-site:guide --><script src="../../assets/guide.js" data-guide="../../assets/guides/examples/network/index.json"></script><!-- /latte-site:guide -->
+  <!-- latte-site:bar --><nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="../../index.html">Latte Web</a><span class="latte-crumb"><span data-l="en">Applications and experiments</span><span data-l="zh">应用与实验</span></span><span class="latte-links"><a data-l="en" href="https://github.com/L-Jovi/latte-web/tree/main/examples/network">README</a><a data-l="zh" href="https://github.com/L-Jovi/latte-web/blob/main/examples/network/README.zh-Hans.md">README</a><button type="button" class="latte-language" data-language-switch hidden>中文</button></span></nav><!-- /latte-site:bar --><h1><span data-l="en">One response, two transports</span><span data-l="zh">同一份回答，两种传输方式</span></h1>
+  <p data-l="en">
     Start <code>node examples/network/server.js</code> in another terminal. Port
     4002 is a different origin from this page.
   </p>
-  <button id="jsonp">Request with JSONP</button
-  ><button id="fetch">Request with Fetch</button
-  ><button id="slow">Start slow Fetch</button
-  ><button id="cancel">Cancel request</button>
-  <output aria-live="polite">Ready</output>
+  <p data-l="zh">
+    请先在另一个终端里运行 <code>node examples/network/server.js</code>。4002
+    端口和这个页面属于不同的源。
+  </p>
+  <button id="jsonp" data-text-en="Request with JSONP" data-text-zh="用 JSONP 请求">Request with JSONP</button
+  ><button id="fetch" data-text-en="Request with Fetch" data-text-zh="用 Fetch 请求">Request with Fetch</button
+  ><button id="slow" data-text-en="Start slow Fetch" data-text-zh="发起慢速 Fetch">Start slow Fetch</button
+  ><button id="cancel" data-text-en="Cancel request" data-text-zh="取消请求">Cancel request</button>
+  <output aria-live="polite"><span data-l="en">Ready</span><span data-l="zh">就绪</span></output>
   <script type="module" src="app.js"></script>
 </html>

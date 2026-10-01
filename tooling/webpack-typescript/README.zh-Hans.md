@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 看懂 Babel 为什么只删类型不检查，以及 tsc 还负责什么。构建时由 Babel 把 TypeScript 和 JSX 转换成 JavaScript，类型则交给单独运行的 `tsc` 检查。
 
@@ -12,10 +12,10 @@
 npm ci
 npm run build -w @latte/webpack-typescript
 npm run dev
-# 打开 http://127.0.0.1:4173/tooling/webpack-typescript/dist/
+# 打开 http://127.0.0.1:4173/tooling/webpack-typescript/dist/?lang=zh
 ```
 
-页面上显示标题 **Render component from TypeScript and React 19**。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack-typescript/dist/index.html)。
+页面上显示标题**渲染组件，来自 TypeScript 和 React 19**。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack-typescript/dist/index.html?lang=zh)。
 
 ## 原理
 
@@ -24,9 +24,9 @@ npm run dev
 - `@babel/preset-typescript` 删掉所有只用来描述类型的代码，比如 `HelloProps` 接口，但不做任何检查。
 - `@babel/preset-react` 把 JSX 转换成函数调用；`runtime: 'automatic'` 表示文件不必为此专门导入 React。
 
-[src/components/Hello.tsx](src/components/Hello.tsx)（18 行）是一个 class 组件，它的 props 必须是两个字符串：`compiler` 和 `framework`。[src/index.tsx](src/index.tsx)（5 行）用 `createRoot` 挂载它，HtmlWebpackPlugin 则把脚本加进提供 `#root` 元素的 [index.html](index.html)。
+[src/components/Hello.tsx](src/components/Hello.tsx)（29 行）是一个 class 组件，它的 props 必须是两个字符串：`compiler` 和 `framework`。[src/index.tsx](src/index.tsx)（5 行）用 `createRoot` 挂载它，HtmlWebpackPlugin 则把脚本加进提供 `#root` 元素的 [index.html](index.html)。
 
-Babel 一次只处理一个文件，而且从不看类型，所以它发现不了缺少的 prop。这件事归 `tsc` 管：[tsconfig.json](tsconfig.json) 设置了 `noEmit: true`，所以 `tsc` 只做检查，不写任何文件。想看这种分工，可以把 `src/index.tsx` 里的 `framework="React 19"` 删掉，再构建一次：构建照样成功，标题变成以“and”结尾。然后运行 `npm run typecheck -w @latte/webpack-typescript`：`tsc` 会报告缺少必需的 `framework` 属性。
+Babel 一次只处理一个文件，而且从不看类型，所以它发现不了缺少的 prop。这件事归 `tsc` 管：[tsconfig.json](tsconfig.json) 设置了 `noEmit: true`，所以 `tsc` 只做检查，不写任何文件。想看这种分工，可以把 `src/index.tsx` 里的 `framework="React 19"` 删掉，再构建一次：构建照样成功，标题变成以“和”结尾。然后运行 `npm run typecheck -w @latte/webpack-typescript`：`tsc` 会报告缺少必需的 `framework` 属性。
 
 ## 过去与现在
 

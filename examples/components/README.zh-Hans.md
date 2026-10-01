@@ -12,10 +12,10 @@
 npm ci
 npm run build -w @latte/components
 npm run dev
-# 打开 http://127.0.0.1:4173/examples/components/dist/demo/
+# 打开 http://127.0.0.1:4173/examples/components/dist/demo/?lang=zh
 ```
 
-页面上会出现一张卡片，里面有一个 **Count: 0** 按钮，每点一次加一。`dist/consumer/consumer.html` 这个页面改为加载 Babel 的产物，在同样的卡片里显示一个 **Babel package loaded** 按钮。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/components/dist/demo/index.html)和 [Babel 产物的在线页面](https://l-jovi.github.io/latte-web/examples/components/dist/consumer/consumer.html)。
+页面上会出现一张卡片，里面有一个**计数：0** 按钮，每点一次加一。`dist/consumer/consumer.html` 这个页面改为加载 Babel 的产物，在同样的卡片里显示一个 **Babel 包已加载**按钮。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/components/dist/demo/index.html?lang=zh)和 [Babel 产物的在线页面](https://l-jovi.github.io/latte-web/examples/components/dist/consumer/consumer.html?lang=zh)。
 
 想浏览那两条 Storybook 故事，运行 `npm run storybook -w @latte/components`，然后打开 http://127.0.0.1:6006。
 
@@ -25,13 +25,13 @@ npm run dev
 
 [build.mjs](build.mjs)（44 行）依次运行各个工具，每个工具在 `dist/` 下写出自己的目录：
 
-| 目录             | 工具与配置                                                        | 产物                                                                                |
-| ---------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `dist/demo/`     | Vite，[vite.config.js](vite.config.js)                            | 计数器页面，按应用打包                                                              |
-| `dist/vite/`     | Vite 库模式，[vite.library.config.js](vite.library.config.js)     | `index.js`（ES 模块）、`index.cjs`（CommonJS），以及单独的 `components.css`         |
-| `dist/webpack/`  | webpack，[webpack.config.cjs](webpack.config.cjs)                 | `index.cjs`，CSS 打进了 JavaScript，代码在浏览器里运行时才插入页面                  |
-| `dist/babel/`    | Babel，[babel.config.cjs](babel.config.cjs)                       | 每个源文件对应一个输出文件：JSX 变成普通 JavaScript，`import './card.css'` 保持原样 |
-| `dist/consumer/` | Vite，[vite.consumer.config.js](vite.consumer.config.js)          | 一个导入 `dist/babel/` 的页面                                                       |
+| 目录             | 工具与配置                                                    | 产物                                                                                |
+| ---------------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `dist/demo/`     | Vite，[vite.config.js](vite.config.js)                        | 计数器页面，按应用打包                                                              |
+| `dist/vite/`     | Vite 库模式，[vite.library.config.js](vite.library.config.js) | `index.js`（ES 模块）、`index.cjs`（CommonJS），以及单独的 `components.css`         |
+| `dist/webpack/`  | webpack，[webpack.config.cjs](webpack.config.cjs)             | `index.cjs`，CSS 打进了 JavaScript，代码在浏览器里运行时才插入页面                  |
+| `dist/babel/`    | Babel，[babel.config.cjs](babel.config.cjs)                   | 每个源文件对应一个输出文件：JSX 变成普通 JavaScript，`import './card.css'` 保持原样 |
+| `dist/consumer/` | Vite，[vite.consumer.config.js](vite.consumer.config.js)      | 一个导入 `dist/babel/` 的页面                                                       |
 
 有两个细节值得注意：
 

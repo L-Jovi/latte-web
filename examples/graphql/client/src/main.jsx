@@ -27,4 +27,8 @@ function Root() {
     </ApolloProvider>
   );
 }
-createRoot(document.getElementById('root')).render(<Root />);
+const root = createRoot(document.getElementById('root'));
+root.render(<Root />);
+// The page can switch language (assets/language.js). Rendering the same tree
+// again keeps the session and the cache; only the words change.
+document.addEventListener('languagechange', () => root.render(<Root />));

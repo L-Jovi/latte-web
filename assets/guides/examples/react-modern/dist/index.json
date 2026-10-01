@@ -4,7 +4,7 @@
       "title": "Today's Todo app",
       "titleZh": "今天风格的 Todo",
       "text": "The same Todo app in today's style: function components with Hooks, TypeScript, Redux Toolkit's `createSlice` for the state, and RTK Query for the import. It starts with the same todo, **Use Redux**. The next steps are the ones in the guide for the 2018 version: add, tick, filter, import, open **About** and go back.",
-      "textZh": "同一个 Todo 应用，换成今天的写法：使用 Hooks 的函数组件、TypeScript、管理状态的 Redux Toolkit `createSlice`，以及负责导入的 RTK Query。它一开始也只有 **Use Redux** 这一条待办。接下来的步骤和 2018 年版本的说明完全相同：新增、勾选、筛选、导入、打开 **About**，再后退。",
+      "textZh": "同一个 Todo 应用，换成今天的写法：使用 Hooks 的函数组件、TypeScript、管理状态的 Redux Toolkit `createSlice`，以及负责导入的 RTK Query。它一开始也只有**使用 Redux** 这一条待办。接下来的步骤和 2018 年版本的说明完全相同：新增、勾选、筛选、导入、打开**关于**，再后退。",
       "watch": [
         {
           "label": "todos on screen",
@@ -25,16 +25,17 @@
       "title": "Add a todo",
       "titleZh": "新增一条待办",
       "text": "What you type stays in `useState` inside `TodoPage`, not in the store. **Add** dispatches `actions.addTodo(text)`, an action creator that `createSlice` generated together with its reducer. The reducer calls `state.items.push(...)` as if it changed the state in place; Immer, built into Redux Toolkit, turns that change into a new state object. `useAppSelector` gets the new list, and `TodoPage` renders again. The field is empty again because `submit` calls `setText('')`.",
-      "textZh": "输入的文字保存在 `TodoPage` 里的 `useState` 中，不进 store。**Add** 派发 `actions.addTodo(text)`，这个 action creator 是 `createSlice` 连同 reducer 一起生成的。reducer 调用 `state.items.push(...)`，看上去像是在原地修改状态；Redux Toolkit 内置的 Immer 会把这次修改变成一个新的状态对象。`useAppSelector` 拿到新的列表，`TodoPage` 随之重新渲染。输入框又空了，因为 `submit` 调用了 `setText('')`。",
+      "textZh": "输入的文字保存在 `TodoPage` 里的 `useState` 中，不进 store。**新增**派发 `actions.addTodo(text)`，这个 action creator 是 `createSlice` 连同 reducer 一起生成的。reducer 调用 `state.items.push(...)`，看上去像是在原地修改状态；Redux Toolkit 内置的 Immer 会把这次修改变成一个新的状态对象。`useAppSelector` 拿到新的列表，`TodoPage` 随之重新渲染。输入框又空了，因为 `submit` 调用了 `setText('')`。",
       "action": {
         "fill": {
           "target": "main > form input",
-          "value": "Read the source"
+          "value": "Read the source",
+          "valueZh": "读一读源码"
         },
-        "clickText": "Add"
+        "click": "main > form button"
       },
       "actionLabel": "Type “Read the source” and click Add",
-      "actionLabelZh": "输入“Read the source”，再点 Add",
+      "actionLabelZh": "输入“读一读源码”，再点「新增」",
       "watch": [
         {
           "label": "todos on screen",
@@ -55,13 +56,13 @@
       "title": "Tick it, then filter",
       "titleZh": "勾选它，再筛选",
       "text": "Ticking dispatches `completeTodo`, and its reducer writes `todo.completed = !todo.completed` on the draft. **Active** dispatches `setVisibilityFilter`, which stores the filter in the slice. `TodoPage` filters `items` each time it renders, so **Read the source** leaves the screen, but it is still in the store.",
-      "textZh": "勾选会派发 `completeTodo`，它的 reducer 在草稿上写 `todo.completed = !todo.completed`。**Active** 派发 `setVisibilityFilter`，把筛选条件存进 slice。`TodoPage` 每次渲染时都会过滤 `items`，所以 **Read the source** 从屏幕上消失了，但它仍在 store 里。",
+      "textZh": "勾选会派发 `completeTodo`，它的 reducer 在草稿上写 `todo.completed = !todo.completed`。**未完成**派发 `setVisibilityFilter`，把筛选条件存进 slice。`TodoPage` 每次渲染时都会过滤 `items`，所以**读一读源码**从屏幕上消失了，但它仍在 store 里。",
       "action": {
         "click": "#root li:last-child input[type=checkbox]",
-        "clickText": "Active"
+        "run": "document.querySelectorAll('#root button[aria-pressed]')[1].click()"
       },
       "actionLabel": "Tick “Read the source”, then click Active",
-      "actionLabelZh": "勾选“Read the source”，再点 Active",
+      "actionLabelZh": "勾选“读一读源码”，再点「未完成」",
       "watch": [
         {
           "label": "todos on screen",
@@ -82,13 +83,13 @@
       "title": "Import two examples",
       "titleZh": "导入两条示例",
       "text": "This step shows **All** again, then clicks **Import examples**, which calls `load()` from `useLazyExamplesQuery`. RTK Query sends the request and keeps track of it: the button is disabled while `isFetching` is true, and `isError` would show `Import failed. Try again.` When the titles arrive, `TodoPage` copies them into the slice with `addBatch` and writes `Imported 2 todos` with `setStatus`. No action or reducer for loading was written by hand.",
-      "textZh": "这一步先切回 **All**，再点击 **Import examples**，它会调用 `useLazyExamplesQuery` 提供的 `load()`。RTK Query 发出请求并跟踪它的状态：`isFetching` 为 true 时按钮不可用，出错时 `isError` 会让页面显示 `Import failed. Try again.`。标题到达后，`TodoPage` 用 `addBatch` 把它们复制进 slice，再用 `setStatus` 写出 `Imported 2 todos`。和加载有关的 action 和 reducer，一个都不用手写。",
+      "textZh": "这一步先切回**全部**，再点击**导入示例**，它会调用 `useLazyExamplesQuery` 提供的 `load()`。RTK Query 发出请求并跟踪它的状态：`isFetching` 为 true 时按钮不可用，出错时 `isError` 会让页面显示「导入失败，请重试」。标题到达后，`TodoPage` 用 `addBatch` 把它们复制进 slice，再用 `setStatus` 写出状态消息，页面上显示「已导入 2 条待办」。和加载有关的 action 和 reducer，一个都不用手写。",
       "action": {
         "click": "#root button[aria-pressed]",
-        "clickText": "Import examples"
+        "run": "document.querySelector('main > button:last-of-type').click()"
       },
       "actionLabel": "Show All, then click Import examples",
-      "actionLabelZh": "切回 All，再点 Import examples",
+      "actionLabelZh": "切回「全部」，再点「导入示例」",
       "watch": [
         {
           "label": "todos on screen",
@@ -107,14 +108,14 @@
     },
     {
       "title": "Open About",
-      "titleZh": "打开 About",
+      "titleZh": "打开「关于」",
       "text": "The router is react-router-dom's `HashRouter`, as in the 2018 version. Its `Link` changes the address with `history.pushState` and keeps the page name after `#`, so the address now ends in `#/about`. Any static server can serve that, because the part after `#` is never sent to the server. `TodoPage` is gone from the screen, and its `useState` values with it; the slice in the store still holds the todos.",
       "textZh": "路由和 2018 年版本一样，是 react-router-dom 的 `HashRouter`。它的 `Link` 用 `history.pushState` 修改地址，并把页面名放在 `#` 后面，所以地址现在以 `#/about` 结尾。任何静态服务器都能提供这样的地址，因为 `#` 后面的部分从来不会发给服务器。`TodoPage` 从屏幕上消失了，它的 `useState` 值也随之消失；store 里的 slice 仍然保存着这些待办。",
       "action": {
-        "clickText": "About"
+        "click": "#root nav a[href='#/about']"
       },
       "actionLabel": "Open the About page",
-      "actionLabelZh": "打开 About 页面",
+      "actionLabelZh": "打开「关于」页面",
       "watch": [
         {
           "label": "heading",
@@ -135,7 +136,7 @@
       "title": "Go back",
       "titleZh": "后退",
       "text": "The browser fires `popstate`, and the router shows a new `TodoPage`. All four todos are there, because the slice keeps them. `Imported 2 todos` is gone: in this version the message lived in `useState` inside `TodoPage`, and the new `TodoPage` starts with an empty one. The 2018 version keeps its status in the store, so there the message stays.",
-      "textZh": "浏览器触发 `popstate`，路由显示一个新的 `TodoPage`。四条待办都还在，因为 slice 保存着它们。`Imported 2 todos` 却不见了：在这个版本里，这条消息保存在 `TodoPage` 的 `useState` 中，新的 `TodoPage` 从空消息开始。2018 年版本把状态消息放在 store 里，所以那边的消息会留下来。",
+      "textZh": "浏览器触发 `popstate`，路由显示一个新的 `TodoPage`。四条待办都还在，因为 slice 保存着它们。「已导入 2 条待办」却不见了：在这个版本里，这条消息保存在 `TodoPage` 的 `useState` 中，新的 `TodoPage` 从空消息开始。2018 年版本把状态消息放在 store 里，所以那边的消息会留下来。",
       "action": {
         "run": "if (location.hash === '#/about') history.back()"
       },

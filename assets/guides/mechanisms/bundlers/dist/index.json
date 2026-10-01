@@ -4,12 +4,12 @@
       "title": "Two bundles, two results",
       "titleZh": "两个打包结果，两种输出",
       "text": "The page loads two files, written by the two bundlers in this folder. `layered.js` wrote **welcome Jovi** into the page, and `procedural.js` printed `my lord saber` in the console below. Both are plain scripts: each carries its own modules and a small loader, so the browser needs no module support to run them.",
-      "textZh": "页面加载了两个文件，分别由这个目录里的两个打包器生成。`layered.js` 把 **welcome Jovi** 写进了页面，`procedural.js` 在下面的控制台打印了 `my lord saber`。两者都是普通脚本：各自带着自己的模块和一个小加载器，所以浏览器不需要支持模块也能运行它们。",
+      "textZh": "页面加载了两个文件，分别由这个目录里的两个打包器生成。`layered.js` 把**欢迎 Jovi** 写进了页面，`procedural.js` 在下面的控制台打印了 `my lord saber`。两者都是普通脚本：各自带着自己的模块和一个小加载器，所以浏览器不需要支持模块也能运行它们。",
       "watch": [
         {
           "label": "Page scripts (not counting the guide)",
           "labelZh": "页面脚本（不含说明面板）",
-          "value": "[...document.scripts].filter((s) => !s.src.endsWith('/guide.js')).map((s) => s.getAttribute('src')).join(', ')",
+          "value": "[...document.scripts].filter((s) => !/\\/(guide|language)\\.js$/.test(s.src)).map((s) => s.getAttribute('src')).join(', ')",
           "expect": "procedural.js, layered.js"
         },
         {

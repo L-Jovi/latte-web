@@ -11,7 +11,7 @@
 
 从零实现一些小版本，看懂 Web 是怎样工作的：Promise/A+、mini React、前端路由、打包器，等等。每个示例都小到可以一口气读完。先运行，看看发生了什么；再读代码；最后看看今天的人怎样解决同一个问题。
 
-**[打开在线演示 →](https://l-jovi.github.io/latte-web/)**
+**[打开在线演示 →](https://l-jovi.github.io/latte-web/?lang=zh)**
 
 ## 这里有什么
 
@@ -29,7 +29,7 @@
 
 ## 试一试
 
-**在浏览器里：** 打开[在线演示](https://l-jovi.github.io/latte-web/)。大部分演示页旁边都有一份说明：它带你一步一步看完页面，并显示页面脚本打印的内容，可以切换中英文，不用打开浏览器控制台。少数示例需要本地服务器（GraphQL 和网络实验），它们的 README 里写了运行方法。
+**在浏览器里：** 打开[在线演示](https://l-jovi.github.io/latte-web/?lang=zh)。每个页面都能用右上角的按钮在英文和中文之间切换，一次只显示一种语言。大部分演示页旁边都有一份说明：它带你一步一步看完页面，并显示页面脚本打印的内容，不用打开浏览器控制台。少数示例需要本地服务器（GraphQL 和网络实验），它们的 README 里写了运行方法。
 
 **在自己电脑上**（Node 24 LTS）：
 
@@ -37,7 +37,7 @@
 git clone https://github.com/L-Jovi/latte-web.git
 cd latte-web
 npm run dev
-# 打开 http://127.0.0.1:4173
+# 打开 http://127.0.0.1:4173/?lang=zh
 ```
 
 大部分页面是纯 HTML 和 JavaScript，clone 下来直接 `npm run dev` 就能看，什么都不用装。应用和构建工具类的示例需要先安装依赖并构建：
@@ -73,15 +73,15 @@ npm run dev
 
 | 主题 | 你会看到什么 | 试一试 |
 | --- | --- | --- |
-| [JavaScript 基础：闭包、this 与 new](fundamentals/javascript/README.zh-Hans.md) | 用几段短脚本，看懂闭包、`this` 和对象构造的真实行为。 | [在线演示](https://l-jovi.github.io/latte-web/fundamentals/javascript/index.html) |
-| [手写 call、apply 与 bind](fundamentals/javascript/context/README.zh-Hans.md) | 自己实现 call、apply 和 bind，看懂函数调用时 `this` 是怎么确定的。 | [在线演示](https://l-jovi.github.io/latte-web/fundamentals/javascript/context/index.html) |
-| [手写 new 与 instanceof](fundamentals/javascript/instance/README.zh-Hans.md) | 自己实现 `new` 和 `instanceof`：创建对象、执行构造函数、沿原型链查找。 | [在线演示](https://l-jovi.github.io/latte-web/fundamentals/javascript/instance/index.html) |
-| [class extends 背后做了什么](fundamentals/javascript/classes/README.zh-Hans.md) | 对比 `class extends` 和老式函数继承，包括静态成员为什么也会被继承。 | [在线演示](https://l-jovi.github.io/latte-web/fundamentals/javascript/classes/index.html) |
-| [Promise 链与 async/await 对照](fundamentals/javascript/async-await/README.zh-Hans.md) | 同一个两步计算，分别用 `.then()` 和 `await` 来写。 | [在线演示](https://l-jovi.github.io/latte-web/fundamentals/javascript/async-await/index.html) |
-| [事件传播与事件循环](fundamentals/events/README.zh-Hans.md) | 先看事件如何冒泡，再预测并验证任务、微任务和定时器的执行顺序。 | [在线演示](https://l-jovi.github.io/latte-web/fundamentals/events/dom-event/index.html) |
-| [移动元素：改布局还是用 transform](fundamentals/browser/README.zh-Hans.md) | 分别用 `top` 和 `transform` 移动同一个方块，看哪种会让浏览器重新计算布局。 | [在线演示](https://l-jovi.github.io/latte-web/fundamentals/browser/render.html) |
-| [CSS 布局：BFC、Grid 与居中](fundamentals/css/README.zh-Hans.md) | 块格式化上下文、Grid 布局，以及几种居中方法。 | [在线演示](https://l-jovi.github.io/latte-web/fundamentals/css/bfc/bfc.html) |
-| [语义化 HTML](fundamentals/html/README.zh-Hans.md) | 用有含义的标签搭页面，而不是一堆没有含义的盒子。 | [在线演示](https://l-jovi.github.io/latte-web/fundamentals/html/semantic.html) |
+| [JavaScript 基础：闭包、this 与 new](fundamentals/javascript/README.zh-Hans.md) | 用几段短脚本，看懂闭包、`this` 和对象构造的真实行为。 | [在线演示](https://l-jovi.github.io/latte-web/fundamentals/javascript/index.html?lang=zh) |
+| [手写 call、apply 与 bind](fundamentals/javascript/context/README.zh-Hans.md) | 自己实现 call、apply 和 bind，看懂函数调用时 `this` 是怎么确定的。 | [在线演示](https://l-jovi.github.io/latte-web/fundamentals/javascript/context/index.html?lang=zh) |
+| [手写 new 与 instanceof](fundamentals/javascript/instance/README.zh-Hans.md) | 自己实现 `new` 和 `instanceof`：创建对象、执行构造函数、沿原型链查找。 | [在线演示](https://l-jovi.github.io/latte-web/fundamentals/javascript/instance/index.html?lang=zh) |
+| [class extends 背后做了什么](fundamentals/javascript/classes/README.zh-Hans.md) | 对比 `class extends` 和老式函数继承，包括静态成员为什么也会被继承。 | [在线演示](https://l-jovi.github.io/latte-web/fundamentals/javascript/classes/index.html?lang=zh) |
+| [Promise 链与 async/await 对照](fundamentals/javascript/async-await/README.zh-Hans.md) | 同一个两步计算，分别用 `.then()` 和 `await` 来写。 | [在线演示](https://l-jovi.github.io/latte-web/fundamentals/javascript/async-await/index.html?lang=zh) |
+| [事件传播与事件循环](fundamentals/events/README.zh-Hans.md) | 先看事件如何冒泡，再预测并验证任务、微任务和定时器的执行顺序。 | [在线演示](https://l-jovi.github.io/latte-web/fundamentals/events/dom-event/index.html?lang=zh) |
+| [移动元素：改布局还是用 transform](fundamentals/browser/README.zh-Hans.md) | 分别用 `top` 和 `transform` 移动同一个方块，看哪种会让浏览器重新计算布局。 | [在线演示](https://l-jovi.github.io/latte-web/fundamentals/browser/render.html?lang=zh) |
+| [CSS 布局：BFC、Grid 与居中](fundamentals/css/README.zh-Hans.md) | 块格式化上下文、Grid 布局，以及几种居中方法。 | [在线演示](https://l-jovi.github.io/latte-web/fundamentals/css/bfc/bfc.html?lang=zh) |
+| [语义化 HTML](fundamentals/html/README.zh-Hans.md) | 用有含义的标签搭页面，而不是一堆没有含义的盒子。 | [在线演示](https://l-jovi.github.io/latte-web/fundamentals/html/semantic.html?lang=zh) |
 | [TypeScript：给 action 和 reducer 加类型](fundamentals/typescript/README.zh-Hans.md) | 用可辨识联合类型，让编译器知道 reducer 的每个分支处理的是哪种 action。 | — |
 
 ### 动手实现
@@ -90,25 +90,25 @@ npm run dev
 
 | 主题 | 你会看到什么 | 试一试 |
 | --- | --- | --- |
-| [从零实现 Promise](mechanisms/promise/README.zh-Hans.md) | 分三步写出 Promise：从最小的状态机，到通过全部 872 项 Promises/A+ 官方测试的版本。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/promise/index.html) |
-| [Generator 如何暂停与恢复](mechanisms/generator/README.zh-Hans.md) | 看 Babel 把 `yield` 编译成的状态机，以及值是怎样传进传出的。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/generator/index.html) |
-| [小例子讲设计模式](mechanisms/design-patterns/README.zh-Hans.md) | 单例、工厂、适配器、代理、发布订阅，每个只用几行代码。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/design-patterns/index.html) |
-| [原型继承，以及常见的错误写法](mechanisms/design-patterns/inherit/README.zh-Hans.md) | 看共享原型和借用构造函数会出什么问题，以及 `Object.create` 怎样解决。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/design-patterns/inherit/index.html) |
-| [Proxy 拦截与事件委托](mechanisms/design-patterns/proxy/README.zh-Hans.md) | 用 `Proxy` 拦截属性读写，用一个父元素处理所有子元素的点击。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/design-patterns/proxy/index.html) |
+| [从零实现 Promise](mechanisms/promise/README.zh-Hans.md) | 分三步写出 Promise：从最小的状态机，到通过全部 872 项 Promises/A+ 官方测试的版本。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/promise/index.html?lang=zh) |
+| [Generator 如何暂停与恢复](mechanisms/generator/README.zh-Hans.md) | 看 Babel 把 `yield` 编译成的状态机，以及值是怎样传进传出的。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/generator/index.html?lang=zh) |
+| [小例子讲设计模式](mechanisms/design-patterns/README.zh-Hans.md) | 单例、工厂、适配器、代理、发布订阅，每个只用几行代码。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/design-patterns/index.html?lang=zh) |
+| [原型继承，以及常见的错误写法](mechanisms/design-patterns/inherit/README.zh-Hans.md) | 看共享原型和借用构造函数会出什么问题，以及 `Object.create` 怎样解决。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/design-patterns/inherit/index.html?lang=zh) |
+| [Proxy 拦截与事件委托](mechanisms/design-patterns/proxy/README.zh-Hans.md) | 用 `Proxy` 拦截属性读写，用一个父元素处理所有子元素的点击。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/design-patterns/proxy/index.html?lang=zh) |
 | [发布订阅](mechanisms/design-patterns/pub-sub/README.zh-Hans.md) | 一个最小的 `on` / `emit` / `off` 事件中心，发送方不需要知道谁在监听。 | — |
 | [手写常用工具函数](mechanisms/utilities/README.zh-Hans.md) | 防抖、节流、深拷贝等，写成边界清楚的短算法。 | — |
-| [浅拷贝与深拷贝](mechanisms/utilities/clone/README.zh-Hans.md) | 复制对象图时保留共享引用和循环引用，再和 `structuredClone` 对比。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/clone/index.html) |
-| [检测循环引用](mechanisms/utilities/circle-ref/README.zh-Hans.md) | 区分真正的循环引用，和只是被引用了两次的对象。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/circle-ref/index.html) |
-| [防抖](mechanisms/utilities/debounce/README.zh-Hans.md) | 等一连串调用停下来之后，只执行一次。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/debounce/index.html) |
-| [节流](mechanisms/utilities/throttle/README.zh-Hans.md) | 每个时间间隔最多执行一次，第一次调用立即执行。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/throttle/index.html) |
-| [定时器为什么会漂移，以及如何校正](mechanisms/utilities/timer/README.zh-Hans.md) | 测量定时器回调晚了多少，并据此调整下一次的触发时间。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/timer/index.html) |
-| [千分位格式化，不丢精度](mechanisms/utilities/format/README.zh-Hans.md) | 不把数字字符串转成 `Number` 也能加千分位；再和 `Intl.NumberFormat` 对比。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/format/index.html) |
-| [add(1)(2)(3)：柯里化与类型转换](mechanisms/utilities/add/README.zh-Hans.md) | 用闭包累加，再看一个函数是怎么变成数字的。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/add/index.html) |
-| [手写打包器（两种写法）](mechanisms/bundlers/README.zh-Hans.md) | 解析 import、构建依赖图、输出一个文件；先用几个函数写，再改成一个小型编译器。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/bundlers/dist/index.html) |
-| [手写一个 React 风格的渲染器](mechanisms/mini-react/README.zh-Hans.md) | 用几个文件实现 createElement、挂载和 setState；两个计数器各自保存状态。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/mini-react/index.html) |
-| [手写前端路由](mechanisms/router/README.zh-Hans.md) | 基于 History API 的小路由：点击链接、前进后退，都不刷新页面。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/router/dist/index.html) |
-| [函数组合（compose）](mechanisms/compose/README.zh-Hans.md) | Redux 中间件背后的 `compose`，自己写一遍。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/compose/index.html) |
-| [可编辑文本里的光标与选区](mechanisms/selection/README.zh-Hans.md) | 在失去焦点前保存光标，在光标处插入文字，重新渲染后再恢复光标。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/selection/index.html) |
+| [浅拷贝与深拷贝](mechanisms/utilities/clone/README.zh-Hans.md) | 复制对象图时保留共享引用和循环引用，再和 `structuredClone` 对比。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/clone/index.html?lang=zh) |
+| [检测循环引用](mechanisms/utilities/circle-ref/README.zh-Hans.md) | 区分真正的循环引用，和只是被引用了两次的对象。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/circle-ref/index.html?lang=zh) |
+| [防抖](mechanisms/utilities/debounce/README.zh-Hans.md) | 等一连串调用停下来之后，只执行一次。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/debounce/index.html?lang=zh) |
+| [节流](mechanisms/utilities/throttle/README.zh-Hans.md) | 每个时间间隔最多执行一次，第一次调用立即执行。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/throttle/index.html?lang=zh) |
+| [定时器为什么会漂移，以及如何校正](mechanisms/utilities/timer/README.zh-Hans.md) | 测量定时器回调晚了多少，并据此调整下一次的触发时间。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/timer/index.html?lang=zh) |
+| [千分位格式化，不丢精度](mechanisms/utilities/format/README.zh-Hans.md) | 不把数字字符串转成 `Number` 也能加千分位；再和 `Intl.NumberFormat` 对比。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/format/index.html?lang=zh) |
+| [add(1)(2)(3)：柯里化与类型转换](mechanisms/utilities/add/README.zh-Hans.md) | 用闭包累加，再看一个函数是怎么变成数字的。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/add/index.html?lang=zh) |
+| [手写打包器（两种写法）](mechanisms/bundlers/README.zh-Hans.md) | 解析 import、构建依赖图、输出一个文件；先用几个函数写，再改成一个小型编译器。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/bundlers/dist/index.html?lang=zh) |
+| [手写一个 React 风格的渲染器](mechanisms/mini-react/README.zh-Hans.md) | 用几个文件实现 createElement、挂载和 setState；两个计数器各自保存状态。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/mini-react/index.html?lang=zh) |
+| [手写前端路由](mechanisms/router/README.zh-Hans.md) | 基于 History API 的小路由：点击链接、前进后退，都不刷新页面。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/router/dist/index.html?lang=zh) |
+| [函数组合（compose）](mechanisms/compose/README.zh-Hans.md) | Redux 中间件背后的 `compose`，自己写一遍。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/compose/index.html?lang=zh) |
+| [可编辑文本里的光标与选区](mechanisms/selection/README.zh-Hans.md) | 在失去焦点前保存光标，在光标处插入文字，重新渲染后再恢复光标。 | [在线演示](https://l-jovi.github.io/latte-web/mechanisms/selection/index.html?lang=zh) |
 
 ### 构建工具
 
@@ -117,24 +117,24 @@ npm run dev
 | 主题 | 你会看到什么 | 试一试 |
 | --- | --- | --- |
 | [webpack 逐项拆解](tooling/webpack/README.zh-Hans.md) | 一组小构建，每个只改一处：入口、loader、source map、热更新、拆包、缓存等。 | — |
-| [第一个 webpack 构建](tooling/webpack/getting-started/README.zh-Hans.md) | 一个入口文件打包成一个文件，看中间的依赖图是怎么走的。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/getting-started/dist/index.html) |
-| [加载 CSS、图片和数据文件](tooling/webpack/asset-management/README.zh-Hans.md) | 导入 CSS、SVG 和 XML，看各自由哪种 loader 或资源类型处理。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/asset-management/dist/index.html) |
-| [多个入口](tooling/webpack/output-management/README.zh-Hans.md) | 两个入口生成两个文件，HTML 插件自动插入对应的 script 标签。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/output-management/dist/index.html) |
-| [用 source map 调试](tooling/webpack/development/README.zh-Hans.md) | 用开发模式构建，在 DevTools 里看到原始源码。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/development/dist/index.html) |
-| [模块热替换（HMR）](tooling/webpack/hot-module-replacement/README.zh-Hans.md) | 开发服务器运行时修改模块，页面不刷新就能更新。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/hot-module-replacement/dist/index.html) |
-| [用 import() 按需加载](tooling/webpack/lazy-loading/README.zh-Hans.md) | 点击按钮时才下载对应的模块。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/lazy-loading/dist/index.html) |
-| [多入口共享代码](tooling/webpack/code-splitting/README.zh-Hans.md) | 两个入口共享一份 Lodash，不再各打包一份。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/code-splitting/dist/index.html) |
-| [用内容哈希做长期缓存](tooling/webpack/caching/README.zh-Hans.md) | 只有内容变了文件名才变，浏览器就能放心缓存。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/caching/dist/index.html) |
-| [开发构建与生产构建](tooling/webpack/production/README.zh-Hans.md) | 同一个项目两套配置：调试用可读的输出，发布用优化后的输出。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/production/dist/index.html) |
-| [Tree shaking：去掉没用到的导出](tooling/webpack/tree-shaking/README.zh-Hans.md) | 只导入一个函数，看没用到的那个从生产包里消失。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/tree-shaking/dist/index.html) |
-| [为旧式全局代码做适配（shimming）](tooling/webpack/shimming/README.zh-Hans.md) | 给从不 import 的旧代码提供它依赖的全局变量。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/shimming/dist/index.html) |
-| [编写 webpack 插件](tooling/webpack/plugins/README.zh-Hans.md) | 一个接入构建流程、输出全部产物清单的插件。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/plugins/dist/index.html) |
+| [第一个 webpack 构建](tooling/webpack/getting-started/README.zh-Hans.md) | 一个入口文件打包成一个文件，看中间的依赖图是怎么走的。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/getting-started/dist/index.html?lang=zh) |
+| [加载 CSS、图片和数据文件](tooling/webpack/asset-management/README.zh-Hans.md) | 导入 CSS、SVG 和 XML，看各自由哪种 loader 或资源类型处理。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/asset-management/dist/index.html?lang=zh) |
+| [多个入口](tooling/webpack/output-management/README.zh-Hans.md) | 两个入口生成两个文件，HTML 插件自动插入对应的 script 标签。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/output-management/dist/index.html?lang=zh) |
+| [用 source map 调试](tooling/webpack/development/README.zh-Hans.md) | 用开发模式构建，在 DevTools 里看到原始源码。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/development/dist/index.html?lang=zh) |
+| [模块热替换（HMR）](tooling/webpack/hot-module-replacement/README.zh-Hans.md) | 开发服务器运行时修改模块，页面不刷新就能更新。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/hot-module-replacement/dist/index.html?lang=zh) |
+| [用 import() 按需加载](tooling/webpack/lazy-loading/README.zh-Hans.md) | 点击按钮时才下载对应的模块。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/lazy-loading/dist/index.html?lang=zh) |
+| [多入口共享代码](tooling/webpack/code-splitting/README.zh-Hans.md) | 两个入口共享一份 Lodash，不再各打包一份。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/code-splitting/dist/index.html?lang=zh) |
+| [用内容哈希做长期缓存](tooling/webpack/caching/README.zh-Hans.md) | 只有内容变了文件名才变，浏览器就能放心缓存。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/caching/dist/index.html?lang=zh) |
+| [开发构建与生产构建](tooling/webpack/production/README.zh-Hans.md) | 同一个项目两套配置：调试用可读的输出，发布用优化后的输出。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/production/dist/index.html?lang=zh) |
+| [Tree shaking：去掉没用到的导出](tooling/webpack/tree-shaking/README.zh-Hans.md) | 只导入一个函数，看没用到的那个从生产包里消失。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/tree-shaking/dist/index.html?lang=zh) |
+| [为旧式全局代码做适配（shimming）](tooling/webpack/shimming/README.zh-Hans.md) | 给从不 import 的旧代码提供它依赖的全局变量。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/shimming/dist/index.html?lang=zh) |
+| [编写 webpack 插件](tooling/webpack/plugins/README.zh-Hans.md) | 一个接入构建流程、输出全部产物清单的插件。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/plugins/dist/index.html?lang=zh) |
 | [用 webpack 打包一个库](tooling/webpack/library/README.zh-Hans.md) | 把一个很小的数字与英文单词互转工具打包成库，再在另一个 Node 程序里加载。 | — |
-| [Grunt：基于任务的构建](tooling/grunt/README.zh-Hans.md) | 先清理再复制的构建流程，打包器流行之前很多项目就是这样构建的。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/grunt/dist/index.html) |
-| [Less，以及今天原生 CSS 能做到的](tooling/less/README.zh-Hans.md) | Less 的变量、混入和条件守卫；以及为什么原生 CSS 变量能在运行时改变，而 Less 变量不能。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/less/modern.html) |
-| [模板编译与 HTML 转义](tooling/handlebars/README.zh-Hans.md) | 编译 Handlebars 模板，看为什么 `{{value}}` 会转义而 `{{{value}}}` 不会。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/handlebars/dist/index.html) |
-| [Gulp：按顺序执行任务](tooling/gulp-typescript/README.zh-Hans.md) | 用一条小的 Gulp 流水线完成清理、编译 TypeScript 和复制 HTML。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/gulp-typescript/dist/index.html) |
-| [通过 webpack 使用 TypeScript 和 React](tooling/webpack-typescript/README.zh-Hans.md) | 看懂 Babel 为什么只删类型不检查，以及 `tsc` 还负责什么。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack-typescript/dist/index.html) |
+| [Grunt：基于任务的构建](tooling/grunt/README.zh-Hans.md) | 先清理再复制的构建流程，打包器流行之前很多项目就是这样构建的。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/grunt/dist/index.html?lang=zh) |
+| [Less，以及今天原生 CSS 能做到的](tooling/less/README.zh-Hans.md) | Less 的变量、混入和条件守卫；以及为什么原生 CSS 变量能在运行时改变，而 Less 变量不能。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/less/modern.html?lang=zh) |
+| [模板编译与 HTML 转义](tooling/handlebars/README.zh-Hans.md) | 编译 Handlebars 模板，看为什么 `{{value}}` 会转义而 `{{{value}}}` 不会。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/handlebars/dist/index.html?lang=zh) |
+| [Gulp：按顺序执行任务](tooling/gulp-typescript/README.zh-Hans.md) | 用一条小的 Gulp 流水线完成清理、编译 TypeScript 和复制 HTML。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/gulp-typescript/dist/index.html?lang=zh) |
+| [通过 webpack 使用 TypeScript 和 React](tooling/webpack-typescript/README.zh-Hans.md) | 看懂 Babel 为什么只删类型不检查，以及 `tsc` 还负责什么。 | [在线演示](https://l-jovi.github.io/latte-web/tooling/webpack-typescript/dist/index.html?lang=zh) |
 
 ### 应用与实验
 
@@ -142,29 +142,29 @@ npm run dev
 
 | 主题 | 你会看到什么 | 试一试 |
 | --- | --- | --- |
-| [一个组件库，三种构建方式](examples/components/README.zh-Hans.md) | 同一组 Card 和 Button，分别用 Vite、webpack 和 Babel 构建，并实际加载每种产物。 | [在线演示](https://l-jovi.github.io/latte-web/examples/components/dist/demo/index.html) |
-| [2018 年风格的 Todo：class、Redux、Saga、Immutable](examples/react-classic/README.zh-Hans.md) | 原来的架构，修好后运行在 React 19 上。 | [在线演示](https://l-jovi.github.io/latte-web/examples/react-classic/dist/index.html) |
-| [今天风格的 Todo：Hooks、TypeScript、Redux Toolkit](examples/react-modern/README.zh-Hans.md) | 功能和 2018 版完全相同，方便两边对照阅读。 | [在线演示](https://l-jovi.github.io/latte-web/examples/react-modern/dist/index.html) |
-| [用 Draft.js 做富文本（已归档）](examples/rich-text-draft/README.zh-Hans.md) | 输入、加粗、保存为 JSON；Draft.js 已于 2023 年被 Meta 归档。 | [在线演示](https://l-jovi.github.io/latte-web/examples/rich-text-draft/dist/index.html) |
-| [用 Lexical 做富文本](examples/rich-text-lexical/README.zh-Hans.md) | 同样的输入、加粗、保存流程，换成 Draft.js 的继任者。 | [在线演示](https://l-jovi.github.io/latte-web/examples/rich-text-lexical/dist/index.html) |
+| [一个组件库，三种构建方式](examples/components/README.zh-Hans.md) | 同一组 Card 和 Button，分别用 Vite、webpack 和 Babel 构建，并实际加载每种产物。 | [在线演示](https://l-jovi.github.io/latte-web/examples/components/dist/demo/index.html?lang=zh) |
+| [2018 年风格的 Todo：class、Redux、Saga、Immutable](examples/react-classic/README.zh-Hans.md) | 原来的架构，修好后运行在 React 19 上。 | [在线演示](https://l-jovi.github.io/latte-web/examples/react-classic/dist/index.html?lang=zh) |
+| [今天风格的 Todo：Hooks、TypeScript、Redux Toolkit](examples/react-modern/README.zh-Hans.md) | 功能和 2018 版完全相同，方便两边对照阅读。 | [在线演示](https://l-jovi.github.io/latte-web/examples/react-modern/dist/index.html?lang=zh) |
+| [用 Draft.js 做富文本（已归档）](examples/rich-text-draft/README.zh-Hans.md) | 输入、加粗、保存为 JSON；Draft.js 已于 2023 年被 Meta 归档。 | [在线演示](https://l-jovi.github.io/latte-web/examples/rich-text-draft/dist/index.html?lang=zh) |
+| [用 Lexical 做富文本](examples/rich-text-lexical/README.zh-Hans.md) | 同样的输入、加粗、保存流程，换成 Draft.js 的继任者。 | [在线演示](https://l-jovi.github.io/latte-web/examples/rich-text-lexical/dist/index.html?lang=zh) |
 | [JSONP 与 fetch + CORS 对照](examples/network/README.zh-Hans.md) | 用两种方式读取同一份跨域数据，并用 `AbortController` 取消请求。 | 本地运行 |
 | [用 Service Worker 实现离线访问](examples/service-worker/README.zh-Hans.md) | 不依赖框架，完成注册、缓存、离线访问和清理。 | [在线演示](https://l-jovi.github.io/latte-web/examples/service-worker/index.html) |
 | [从零搭一个 GraphQL HTTP 服务](examples/graphql-http/README.zh-Hans.md) | Schema、resolver 和 JSON 响应：最小的一次完整 GraphQL 请求。 | 本地运行 |
 | [全栈 GraphQL：Apollo、订阅与 SQLite](examples/graphql/README.zh-Hans.md) | 一个小型链接分享站：注册登录、投票、分页和实时更新。 | 本地运行 |
 | [GraphQL 服务端与数据库](examples/graphql/server/README.zh-Hans.md) | Apollo Server + Prisma + SQLite，用迁移脚本和虚构数据重建。 | — |
 | [Apollo Client 前端](examples/graphql/client/README.zh-Hans.md) | 在 Vite 应用里发起查询、变更和实时订阅。 | — |
-| [在浏览器里运行 Rust（WebAssembly）](examples/wasm/README.zh-Hans.md) | 把一个 Rust 函数编译成 `.wasm`，再通过按钮调用它。 | [在线演示](https://l-jovi.github.io/latte-web/examples/wasm/dist/index.html) |
-| [Canvas 点阵倒计时](examples/visuals/clock/README.zh-Hans.md) | 用点阵画出数字；数字变化时，点会化作粒子落下。 | [在线演示](https://l-jovi.github.io/latte-web/examples/visuals/clock/index.html) |
-| [用 Canvas 像素做图像处理](examples/visuals/canvas-image/README.zh-Hans.md) | 通过读写像素，实现缩放、水印、放大镜和滤镜。 | [在线演示](https://l-jovi.github.io/latte-web/examples/visuals/canvas-image/index.html) |
-| [用鼠标事件和 Pointer Events 实现拖拽](examples/visuals/drag/README.zh-Hans.md) | 同一个拖拽写两遍；Pointer Events 同时支持触屏和手写笔。 | [在线演示](https://l-jovi.github.io/latte-web/examples/visuals/drag/index.html) |
-| [滑动翻页](examples/visuals/paging/README.zh-Hans.md) | 用距离和速度阈值把滑动变成翻页，分别用 touch 事件和 Pointer Events 实现。 | [在线演示](https://l-jovi.github.io/latte-web/examples/visuals/paging/index.html) |
-| [3D 轮播与 CSS Scroll Snap](examples/visuals/carousel/README.zh-Hans.md) | 用几何计算排布层叠的轮播图，再让 CSS Scroll Snap 原生完成类似的事。 | [在线演示](https://l-jovi.github.io/latte-web/examples/visuals/carousel/index.html) |
-| [CSS transform 照片墙](examples/visuals/photo-wall/README.zh-Hans.md) | 散落倾斜的卡片，鼠标悬停时摆正并放大。 | [在线演示](https://l-jovi.github.io/latte-web/examples/visuals/photo-wall/index.html) |
-| [可以用键盘操作的搜索建议](examples/visuals/search/README.zh-Hans.md) | 边输入边筛选建议，用方向键选择；使用无障碍的 combobox 标记。 | [在线演示](https://l-jovi.github.io/latte-web/examples/visuals/search/index.html) |
-| [导航、步骤条与环形进度](examples/visuals/motion/README.zh-Hans.md) | 展开的导航（JS 补间与 CSS 过渡对比）、步骤条，以及用 `conic-gradient` 画的环形进度。 | [在线演示](https://l-jovi.github.io/latte-web/examples/visuals/motion/index.html) |
-| [抽奖转盘](examples/visuals/lottery/README.zh-Hans.md) | 转盘停下的扇区和显示的结果始终一致，用 Web Animations API 实现。 | [在线演示](https://l-jovi.github.io/latte-web/examples/visuals/lottery/index.html) |
+| [在浏览器里运行 Rust（WebAssembly）](examples/wasm/README.zh-Hans.md) | 把一个 Rust 函数编译成 `.wasm`，再通过按钮调用它。 | [在线演示](https://l-jovi.github.io/latte-web/examples/wasm/dist/index.html?lang=zh) |
+| [Canvas 点阵倒计时](examples/visuals/clock/README.zh-Hans.md) | 用点阵画出数字；数字变化时，点会化作粒子落下。 | [在线演示](https://l-jovi.github.io/latte-web/examples/visuals/clock/index.html?lang=zh) |
+| [用 Canvas 像素做图像处理](examples/visuals/canvas-image/README.zh-Hans.md) | 通过读写像素，实现缩放、水印、放大镜和滤镜。 | [在线演示](https://l-jovi.github.io/latte-web/examples/visuals/canvas-image/index.html?lang=zh) |
+| [用鼠标事件和 Pointer Events 实现拖拽](examples/visuals/drag/README.zh-Hans.md) | 同一个拖拽写两遍；Pointer Events 同时支持触屏和手写笔。 | [在线演示](https://l-jovi.github.io/latte-web/examples/visuals/drag/index.html?lang=zh) |
+| [滑动翻页](examples/visuals/paging/README.zh-Hans.md) | 用距离和速度阈值把滑动变成翻页，分别用 touch 事件和 Pointer Events 实现。 | [在线演示](https://l-jovi.github.io/latte-web/examples/visuals/paging/index.html?lang=zh) |
+| [3D 轮播与 CSS 滚动吸附](examples/visuals/carousel/README.zh-Hans.md) | 用几何计算排布层叠的轮播图，再让 CSS Scroll Snap 原生完成类似的事。 | [在线演示](https://l-jovi.github.io/latte-web/examples/visuals/carousel/index.html?lang=zh) |
+| [CSS transform 照片墙](examples/visuals/photo-wall/README.zh-Hans.md) | 散落倾斜的卡片，鼠标悬停时摆正并放大。 | [在线演示](https://l-jovi.github.io/latte-web/examples/visuals/photo-wall/index.html?lang=zh) |
+| [可以用键盘操作的搜索建议](examples/visuals/search/README.zh-Hans.md) | 边输入边筛选建议，用方向键选择；使用无障碍的 combobox 标记。 | [在线演示](https://l-jovi.github.io/latte-web/examples/visuals/search/index.html?lang=zh) |
+| [导航、步骤条与环形进度](examples/visuals/motion/README.zh-Hans.md) | 展开的导航（JS 补间与 CSS 过渡对比）、步骤条，以及用 `conic-gradient` 画的环形进度。 | [在线演示](https://l-jovi.github.io/latte-web/examples/visuals/motion/index.html?lang=zh) |
+| [抽奖转盘](examples/visuals/lottery/README.zh-Hans.md) | 转盘停下的扇区和显示的结果始终一致，用 Web Animations API 实现。 | [在线演示](https://l-jovi.github.io/latte-web/examples/visuals/lottery/index.html?lang=zh) |
 | [视觉实验](examples/visuals/README.zh-Hans.md) | 直接在浏览器里运行的 Canvas、CSS 和指针交互实验。 | — |
-| [今天怎样测页面速度](examples/performance/README.zh-Hans.md) | 用 Navigation Timing、PerformanceObserver 和 Core Web Vitals 测量你自己的这次访问。 | [在线演示](https://l-jovi.github.io/latte-web/examples/performance/dist/index.html) |
+| [今天怎样测页面速度](examples/performance/README.zh-Hans.md) | 用 Navigation Timing、PerformanceObserver 和 Core Web Vitals 测量你自己的这次访问。 | [在线演示](https://l-jovi.github.io/latte-web/examples/performance/dist/index.html?lang=zh) |
 
 ### 历史笔记
 

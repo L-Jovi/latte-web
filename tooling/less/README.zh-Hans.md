@@ -12,10 +12,10 @@ Less 的变量、混入和条件守卫；以及为什么原生 CSS 变量能在�
 npm ci
 npm run build -w @latte/less
 npm run dev
-# 打开 http://127.0.0.1:4173/tooling/less/modern.html
+# 打开 http://127.0.0.1:4173/tooling/less/modern.html?lang=zh
 ```
 
-页面上有一张钢蓝色的卡片。点击 **Change theme**，卡片立刻变成铁锈般的棕色，不需要重新构建：页面在运行时改了一个原生 CSS 变量。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/less/modern.html)。
+页面上有一张钢蓝色的卡片。点击**切换主题**，卡片立刻变成铁锈般的棕色，不需要重新构建：页面在运行时改了一个原生 CSS 变量。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/less/modern.html?lang=zh)。
 
 构建会为每个 `.less` 文件在 `dist/` 里写出一个 CSS 文件，放在同名目录下：比如 [mix/mix.less](mix/mix.less) 会变成 `dist/mix/mix.css`。把两个文件并排打开，就能看出编译器做了什么。
 

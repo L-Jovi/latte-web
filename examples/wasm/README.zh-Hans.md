@@ -2,22 +2,22 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 把一个 Rust 函数编译成 .wasm，再通过按钮调用它。WebAssembly（Wasm）是一种紧凑的二进制格式，浏览器可以把它和 JavaScript 放在一起运行；这里跟着一个函数走完全程：Rust 的 `add(i32, i32)` → `.wasm` 文件 → `WebAssembly.instantiate` → 一次点击。
 
 ## 试一试
 
-只有这个示例需要 Rust。[在线演示](https://l-jovi.github.io/latte-web/examples/wasm/dist/index.html)不装 Rust 也能用，因为网站构建时已经编译好了模块。想自己构建，请先用 [rustup](https://rust-lang.org/tools/install/) 安装 Rust。本目录的 `rust-toolchain.toml` 要求使用 Rust 1.98.1 和 `wasm32-unknown-unknown` 目标（也就是编译的目标平台：纯 WebAssembly），运行 `rustup toolchain install 1.98.1 --profile minimal --target wasm32-unknown-unknown` 就能把两者都装好。然后：
+只有这个示例需要 Rust。[在线演示](https://l-jovi.github.io/latte-web/examples/wasm/dist/index.html?lang=zh)不装 Rust 也能用，因为网站构建时已经编译好了模块。想自己构建，请先用 [rustup](https://rust-lang.org/tools/install/) 安装 Rust。本目录的 `rust-toolchain.toml` 要求使用 Rust 1.98.1 和 `wasm32-unknown-unknown` 目标（也就是编译的目标平台：纯 WebAssembly），运行 `rustup toolchain install 1.98.1 --profile minimal --target wasm32-unknown-unknown` 就能把两者都装好。然后：
 
 ```sh
 npm ci
 npm run build:wasm
 npm run dev
-# 打开 http://127.0.0.1:4173/examples/wasm/dist/
+# 打开 http://127.0.0.1:4173/examples/wasm/dist/?lang=zh
 ```
 
-点击 **Add in Rust**：页面显示 `5`，也就是两个输入框里的数（2 和 3）之和，由编译好的 Rust 代码算出。试试 `2147483647` 和 `1`：结果会绕回到 `-2147483648`。输入带小数的数，或者超出有符号 32 位整数范围（`-2147483648` 到 `2147483647`）的数，会显示 `Enter signed 32-bit integers`。如果还没有构建模块，页面会改为显示 `Build the Rust module with npm run build:wasm`。
+点击**用 Rust 相加**：页面显示 `5`，也就是两个输入框里的数（2 和 3）之和，由编译好的 Rust 代码算出。试试 `2147483647` 和 `1`：结果会绕回到 `-2147483648`。输入带小数的数，或者超出有符号 32 位整数范围（`-2147483648` 到 `2147483647`）的数，会显示 `请输入有符号 32 位整数`。如果还没有构建模块，页面会改为显示 `请先用 npm run build:wasm 构建 Rust 模块`。
 
 ## 原理
 
@@ -25,7 +25,7 @@ npm run dev
 
 1. [rust/src/lib.rs](rust/src/lib.rs)（13 行）定义了 `add(a: i32, b: i32) -> i32`。`extern "C"` 和 `#[unsafe(no_mangle)]` 让它以原本的名字导出，JavaScript 才能找到它。它用的是 `wrapping_add`，所以溢出时总会绕回，这是有意为之，而且在任何构建方式下都一样。两个 Rust 单元测试检查了 `2 + 3`、`-8 + 3`、`0 + 0` 以及溢出。
 2. [build.mjs](build.mjs)（29 行）先运行 `cargo test`，再运行 `cargo build --release --target wasm32-unknown-unknown`，然后把结果复制到 `public/add.wasm`，页面构建时会把它带上。`npm run build:wasm` 先运行这个脚本，再构建页面。
-3. [main.js](main.js)（25 行）检查两个输入框里都是有符号 32 位整数，第一次点击时取回 `add.wasm`，用 `WebAssembly.instantiate` 把它变成模块，然后像调用普通函数一样调用 `module.instance.exports.add(a, b)`。
+3. [main.js](main.js)（47 行）检查两个输入框里都是有符号 32 位整数，第一次点击时取回 `add.wasm`，用 `WebAssembly.instantiate` 把它变成模块，然后像调用普通函数一样调用 `module.instance.exports.add(a, b)`。
 
 这里在 JavaScript 和 Wasm 之间传递的只有普通数字，所以不需要生成任何“胶水”代码。这就是原版依赖的 wasm-bindgen 被去掉的原因。如果要传字符串、对象或回调，就又需要这类生成的绑定了。
 

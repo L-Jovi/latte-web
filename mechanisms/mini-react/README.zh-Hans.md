@@ -10,10 +10,10 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/mechanisms/mini-react/
+# 打开 http://127.0.0.1:4173/mechanisms/mini-react/?lang=zh
 ```
 
-页面上出现两个按钮：**First: 0** 和 **Second: 0**。点几下 **First**，只有它自己的计数会增加。浏览器控制台会打印 `mounted after insertion First true` 和 `mounted after insertion Second true`，分别在两个计数器第一次加到页面上时输出。不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/mini-react/index.html)。
+页面上出现两个按钮：**第一个：0** 和**第二个：0**。点几下**第一个**，只有它自己的计数会增加。浏览器控制台会打印 `mounted after insertion First true` 和 `mounted after insertion Second true`，分别在两个计数器第一次加到页面上时输出。不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/mini-react/index.html?lang=zh)。
 
 ## 原理
 

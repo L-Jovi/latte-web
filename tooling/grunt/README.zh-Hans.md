@@ -12,10 +12,10 @@
 npm ci
 npm run build -w @latte/grunt
 npm run dev
-# 打开 http://127.0.0.1:4173/tooling/grunt/dist/
+# 打开 http://127.0.0.1:4173/tooling/grunt/dist/?lang=zh
 ```
 
-Grunt 先打印 `Running "clean:dist" (clean) task`，再打印 `Running "copy:app" (copy) task` 和 `Created 1 directory, copied 2 files`，最后是 `Done.`。页面上写着 **Grunt copied this page**。`dist/` 和 `app/` 一模一样：没有任何修改、合并或压缩。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/grunt/dist/index.html)。
+Grunt 先打印 `Running "clean:dist" (clean) task`，再打印 `Running "copy:app" (copy) task` 和 `Created 1 directory, copied 2 files`，最后是 `Done.`。页面上写着**这个页面是 Grunt 复制的**。`dist/` 和 `app/` 一模一样：没有任何修改、合并或压缩。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/grunt/dist/index.html?lang=zh)。
 
 ## 原理
 

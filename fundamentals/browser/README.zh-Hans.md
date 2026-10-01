@@ -10,15 +10,15 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/fundamentals/browser/render.html
+# 打开 http://127.0.0.1:4173/fundamentals/browser/render.html?lang=zh
 ```
 
-不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。点击 **Move with top**：方块向下移动 100 px，再点一次就移回原处。**Move with transform** 的效果相同。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/fundamentals/browser/render.html)。
+不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。点击**用 top 移动**：方块向下移动 100 px，再点一次就移回原处。**用 transform 移动**的效果相同。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/fundamentals/browser/render.html?lang=zh)。
 
 想看出区别，就打开开发者工具：
 
-- 每次点击后在控制台输入 `box.offsetTop`。点了 **Move with top** 之后它是 `100`；点了 **Move with transform** 之后它仍然是 `0`，尽管方块画在同一个位置。
-- 在 **Performance** 面板里开始录制，把同一个按钮点几次，然后停止。**Move with top** 的点击会包含一个 _Layout_（布局）步骤；**Move with transform** 的点击应该没有。
+- 每次点击后在控制台输入 `box.offsetTop`。点了**用 top 移动**之后它是 `100`；点了**用 transform 移动**之后它仍然是 `0`，尽管方块画在同一个位置。
+- 在 **Performance** 面板里开始录制，把同一个按钮点几次，然后停止。**用 top 移动**的点击会包含一个 _Layout_（布局）步骤；**用 transform 移动**的点击应该没有。
 
 ## 原理
 

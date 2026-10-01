@@ -9,7 +9,7 @@
         {
           "label": "Page scripts (not counting the guide)",
           "labelZh": "页面脚本（不含说明面板）",
-          "value": "[...document.scripts].filter((s) => !s.src.endsWith('/guide.js')).map((s) => s.getAttribute('src')).join(', ')",
+          "value": "[...document.scripts].filter((s) => !/\\/(guide|language)\\.js$/.test(s.src)).map((s) => s.getAttribute('src')).join(', ')",
           "expect": "bundle.js"
         }
       ],
@@ -22,7 +22,7 @@
       "textZh": "`src/print.js` 里的 `printMe` 先在下面的控制台打印 `I get called from print.js.`，再弹出提示框 `trigger from button :)`。关掉提示框再继续。",
       "action": {
         "clear": true,
-        "clickText": "Click me and check the console!"
+        "click": "body > div button"
       },
       "actionLabel": "Click the page's button",
       "actionLabelZh": "点击页面上的按钮",

@@ -10,10 +10,10 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/mechanisms/design-patterns/
+# 打开 http://127.0.0.1:4173/mechanisms/design-patterns/?lang=zh
 ```
 
-克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。打开浏览器控制台，会看到 `true`（单例）、`saber and archer`（适配器）和 `yck false`（只读属性）。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/design-patterns/index.html)。
+克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。打开浏览器控制台，会看到 `true`（单例）、`saber and archer`（适配器）和 `yck false`（只读属性）。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/design-patterns/index.html?lang=zh)。
 
 页面没有加载两个工厂示例，请在仓库根目录用 Node 运行它们：`node mechanisms/design-patterns/factory/simple-factory.js` 会打印 `yck`。
 

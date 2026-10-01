@@ -10,7 +10,7 @@
 
 ```sh
 npm run dev
-# 打开下面任意一个页面，例如 http://127.0.0.1:4173/mechanisms/utilities/debounce/
+# 打开下面任意一个页面，例如 http://127.0.0.1:4173/mechanisms/utilities/debounce/?lang=zh
 ```
 
 不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。大多数页面把结果打印在浏览器控制台里。想一次运行全部检查，可以执行 `npm test`，它同样只需要 Node。

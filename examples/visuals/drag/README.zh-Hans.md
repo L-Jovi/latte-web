@@ -10,10 +10,10 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/examples/visuals/drag/
+# 打开 http://127.0.0.1:4173/examples/visuals/drag/?lang=zh
 ```
 
-克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。分别拖动 **Mouse** 方块和 **Pointer** 方块：它们都会跟着指针移动，并停在浅色区域的边缘。然后用 Tab 键把焦点移到 **Pointer** 方块上，按方向键：每按一次移动 10 像素。在手机或平板上，应该只有 **Pointer** 方块会跟着手指走，因为用手指拖动不会产生鼠标事件。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/visuals/drag/index.html)。
+克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。分别拖动**鼠标**方块和**指针**方块：它们都会跟着指针移动，并停在浅色区域的边缘。然后用 Tab 键把焦点移到**指针**方块上，按方向键：每按一次移动 10 像素。在手机或平板上，应该只有**指针**方块会跟着手指走，因为用手指拖动不会产生鼠标事件。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/visuals/drag/index.html?lang=zh)。
 
 ## 原理
 
@@ -30,7 +30,7 @@ npm run dev
 ## 刻意省略
 
 - 松手后没有惯性，不能在元素之间拖放数据，也不能排序。
-- 只有 **Pointer** 方块可以用键盘移动。
+- 只有**指针**方块可以用键盘移动。
 - 同一时间只认一个指针，所以不支持多点触控。
 
 ## 验证与来源

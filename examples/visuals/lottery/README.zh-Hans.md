@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 转盘停下的扇区和显示的结果始终一致，用 Web Animations API 实现。
 
@@ -10,14 +10,14 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/examples/visuals/lottery/
+# 打开 http://127.0.0.1:4173/examples/visuals/lottery/?lang=zh
 ```
 
-点击 **Spin**。转盘转满三圈后停下，某个扇区正对着固定的指针，下方文字显示的也是同一个字母。不需要构建。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/visuals/lottery/index.html)。
+点击**旋转**。转盘转满三圈后停下，某个扇区正对着固定的指针，下方文字显示的也是同一个字母。不需要构建。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/visuals/lottery/index.html?lang=zh)。
 
 ## 原理
 
-全部代码都在 [app.js](app.js)（30 行）里：
+全部代码都在 [app.js](app.js)（44 行）里：
 
 1. 随机选一个扇区，然后算出让它的中心正对指针所需的角度。
 2. 在当前角度上再加三整圈（1080°），保证转盘总是向前转。

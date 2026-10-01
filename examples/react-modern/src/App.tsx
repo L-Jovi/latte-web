@@ -12,6 +12,25 @@ import {
 } from './store';
 const useAppDispatch = useDispatch.withTypes<AppDispatch>();
 const useAppSelector = useSelector.withTypes<RootState>();
+// The page shows one language at a time (assets/language.js): English by
+// default, Chinese after the switch. say() picks the words for the one shown.
+const say = (en: string, zh: string) =>
+  document.documentElement.dataset.language === 'zh' ? zh : en;
+// The slice keeps the filter names and the sample todos in English, and
+// TodoPage keeps its status in English. These are the words the Chinese page
+// shows for them; a todo the reader typed is shown as typed.
+const chinese: Record<string, string> = {
+  All: '全部',
+  Active: '未完成',
+  Completed: '已完成',
+  Loading: '加载中',
+  'Use Redux': '使用 Redux',
+  'Read a dependency graph': '读一张依赖图',
+  'Keep examples small': '让示例保持精简',
+};
+const toChinese = (english: string) =>
+  chinese[english] ??
+  english.replace(/^Imported (\d+) todos$/, '已导入 $1 条待办');
 function TodoItem({ todo }: { todo: Todo }) {
   const dispatch = useAppDispatch();
   const [editing, setEditing] = useState(false);
@@ -30,11 +49,11 @@ function TodoItem({ todo }: { todo: Todo }) {
       {editing ? (
         <form onSubmit={save}>
           <input
-            aria-label="Edit todo"
+            aria-label={say('Edit todo', '编辑待办')}
             value={text}
             onChange={(event) => setText(event.target.value)}
           />
-          <button>Save</button>
+          <button>{say('Save', '保存')}</button>
         </form>
       ) : (
         <>
@@ -44,7 +63,7 @@ function TodoItem({ todo }: { todo: Todo }) {
               checked={todo.completed}
               onChange={() => dispatch(actions.completeTodo(todo.id))}
             />
-            {todo.text}
+            {say(todo.text, toChinese(todo.text))}
           </label>
           <button
             onClick={() => {
@@ -52,10 +71,10 @@ function TodoItem({ todo }: { todo: Todo }) {
               setEditing(true);
             }}
           >
-            Edit
+            {say('Edit', '编辑')}
           </button>
           <button onClick={() => dispatch(actions.deleteTodo(todo.id))}>
-            Delete
+            {say('Delete', '删除')}
           </button>
         </>
       )}
@@ -90,17 +109,22 @@ export function TodoPage() {
   }
   return (
     <main>
-      <h1>Todos</h1>
-      <p>Modern: Hooks, TypeScript, Redux Toolkit and RTK Query.</p>
+      <h1>{say('Todos', '待办')}</h1>
+      <p>
+        {say(
+          'Modern: Hooks, TypeScript, Redux Toolkit and RTK Query.',
+          '现代写法：Hooks、TypeScript、Redux Toolkit 和 RTK Query。',
+        )}
+      </p>
       <form onSubmit={submit}>
         <label>
-          New todo{' '}
+          {say('New todo', '新待办')}{' '}
           <input
             value={text}
             onChange={(event) => setText(event.target.value)}
           />
         </label>
-        <button>Add</button>
+        <button>{say('Add', '新增')}</button>
       </form>
       <div>
         {(['All', 'Active', 'Completed'] as Filter[]).map((value) => (
@@ -109,26 +133,30 @@ export function TodoPage() {
             aria-pressed={filter === value}
             onClick={() => dispatch(actions.setVisibilityFilter(value))}
           >
-            {value}
+            {say(value, toChinese(value))}
           </button>
         ))}
       </div>
-      <ul aria-label="Todo list">
+      <ul aria-label={say('Todo list', '待办列表')}>
         {todos.map((todo) => (
           <TodoItem key={todo.id} todo={todo} />
         ))}
       </ul>
       <button onClick={() => dispatch(actions.completeAllTodos())}>
-        Toggle all
+        {say('Toggle all', '全部切换')}
       </button>
       <button onClick={() => dispatch(actions.clearCompleted())}>
-        Clear completed
+        {say('Clear completed', '清除已完成')}
       </button>
       <button disabled={isFetching} onClick={importExamples}>
-        Import examples
+        {say('Import examples', '导入示例')}
       </button>
-      <p role="status">{status}</p>
-      {isError && <p role="alert">Import failed. Try again.</p>}
+      <p role="status">{say(status, toChinese(status))}</p>
+      {isError && (
+        <p role="alert">
+          {say('Import failed. Try again.', '导入失败，请重试。')}
+        </p>
+      )}
     </main>
   );
 }
@@ -137,8 +165,8 @@ export default function App({ store }: { store: AppStore }) {
     <Provider store={store}>
       <HashRouter>
         <nav>
-          <Link to="/">Todos</Link>
-          <Link to="/about">About</Link>
+          <Link to="/">{say('Todos', '待办')}</Link>
+          <Link to="/about">{say('About', '关于')}</Link>
         </nav>
         <Routes>
           <Route path="/" element={<TodoPage />} />
@@ -146,15 +174,20 @@ export default function App({ store }: { store: AppStore }) {
             path="/about"
             element={
               <main>
-                <h1>About this comparison</h1>
+                <h1>{say('About this comparison', '关于这组对照')}</h1>
                 <p>
-                  RTK Query owns the request lifecycle; the slice owns local
-                  Todo state.
+                  {say(
+                    'RTK Query owns the request lifecycle; the slice owns local Todo state.',
+                    'RTK Query 负责请求的生命周期；slice 负责本地的 Todo 状态。',
+                  )}
                 </p>
               </main>
             }
           />
-          <Route path="*" element={<h1>Page not found</h1>} />
+          <Route
+            path="*"
+            element={<h1>{say('Page not found', '找不到这个页面')}</h1>}
+          />
         </Routes>
       </HashRouter>
     </Provider>

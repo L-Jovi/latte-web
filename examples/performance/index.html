@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-title-en="Measuring page speed today · Latte Web" data-title-zh="今天怎样测页面速度 · Latte Web">
   <meta charset="utf-8" /><meta
     name="viewport"
     content="width=device-width,initial-scale=1"
-  /><title>Measuring page speed today · Latte Web</title><!-- latte-site:css --><script type="module">import '../../assets/site.css';</script><!-- /latte-site:css --><!-- latte-site:guide --><script src="../../../assets/guide.js" data-guide="../../../assets/guides/examples/performance/dist/index.json" vite-ignore></script><!-- /latte-site:guide -->
+  /><title>Measuring page speed today · Latte Web</title><!-- latte-site:css --><script type="module">import '../../assets/site.css';</script><script src="../../../assets/language.js" vite-ignore></script><!-- /latte-site:css --><!-- latte-site:guide --><script src="../../../assets/guide.js" data-guide="../../../assets/guides/examples/performance/dist/index.json" vite-ignore></script><!-- /latte-site:guide -->
   <style>
     table {
       margin: 1rem 0;
@@ -27,43 +27,46 @@
       min-height: 2rem;
     }
   </style>
-  <!-- latte-site:bar --><nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="../../../index.html">Latte Web</a><span class="latte-crumb">Applications and experiments</span><span class="latte-links"><a href="https://github.com/L-Jovi/latte-web/tree/main/examples/performance">README</a><a href="https://github.com/L-Jovi/latte-web/blob/main/examples/performance/README.zh-Hans.md" lang="zh-Hans">中文</a></span></nav><!-- /latte-site:bar --><h1>Measuring page speed today</h1>
-  <p>
+  <!-- latte-site:bar --><nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="../../../index.html">Latte Web</a><span class="latte-crumb"><span data-l="en">Applications and experiments</span><span data-l="zh">应用与实验</span></span><span class="latte-links"><a data-l="en" href="https://github.com/L-Jovi/latte-web/tree/main/examples/performance">README</a><a data-l="zh" href="https://github.com/L-Jovi/latte-web/blob/main/examples/performance/README.zh-Hans.md">README</a><button type="button" class="latte-language" data-language-switch hidden>中文</button></span></nav><!-- /latte-site:bar --><h1><span data-l="en">Measuring page speed today</span><span data-l="zh">今天怎样测页面速度</span></h1>
+  <p data-l="en">
     These numbers describe this visit. They are not a population percentile or a
     product benchmark.
   </p>
-  <div id="content"><p>Watch the page move after a delayed insertion.</p></div>
-  <button id="work">Run 120 ms of work</button
-  ><button id="shift">Insert late content</button
+  <p data-l="zh">
+    这些数字只描述你的这一次访问，既不是大量访客的分位数，也不是产品的性能基准。
+  </p>
+  <div id="content"><p data-l="en">Watch the page move after a delayed insertion.</p><p data-l="zh">内容延迟插入之后，留意页面怎样移动。</p></div>
+  <button id="work" data-text-en="Run 120 ms of work" data-text-zh="运行 120 毫秒的任务">Run 120 ms of work</button
+  ><button id="shift" data-text-en="Insert late content" data-text-zh="插入迟来的内容">Insert late content</button
   ><output aria-live="polite">Ready</output>
   <table>
     <caption>
-      Core Web Vitals for this visit
+      <span data-l="en">Core Web Vitals for this visit</span><span data-l="zh">这次访问的 <span lang="en">Core Web Vitals</span></span>
     </caption>
     <thead>
       <tr>
-        <th>Metric</th>
-        <th>Observed value</th>
+        <th><span data-l="en">Metric</span><span data-l="zh">指标</span></th>
+        <th><span data-l="en">Observed value</span><span data-l="zh">观测值</span></th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <th>LCP (ms)</th>
+        <th><span data-l="en">LCP (ms)</span><span data-l="zh">LCP（毫秒）</span></th>
         <td id="LCP"></td>
       </tr>
       <tr>
-        <th>INP (ms)</th>
+        <th><span data-l="en">INP (ms)</span><span data-l="zh">INP（毫秒）</span></th>
         <td id="INP"></td>
       </tr>
       <tr>
-        <th>CLS (unitless)</th>
+        <th><span data-l="en">CLS (unitless)</span><span data-l="zh">CLS（无单位）</span></th>
         <td id="CLS"></td>
       </tr>
     </tbody>
   </table>
   <h2>Navigation Timing</h2>
-  <pre id="navigation">Waiting for load</pre>
-  <h2>PerformanceObserver entries</h2>
+  <pre id="navigation"><span data-l="en">Waiting for load</span><span data-l="zh">等待页面加载完成</span></pre>
+  <h2><span data-l="en">PerformanceObserver entries</span><span data-l="zh">PerformanceObserver 记录</span></h2>
   <pre id="entries"></pre>
   <script type="module" src="main.js"></script>
 </html>

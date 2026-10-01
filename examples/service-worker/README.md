@@ -21,7 +21,7 @@ You can also open the [live demo](https://l-jovi.github.io/latte-web/examples/se
 
 ## How it works
 
-Read [app.js](app.js) (40 lines), the page's side, then [service-worker.js](service-worker.js) (42 lines), the worker itself.
+Read [app.js](app.js) (80 lines), the page's side, then [service-worker.js](service-worker.js) (42 lines), the worker itself.
 
 1. **Register.** `navigator.serviceWorker.register('./service-worker.js', { scope: './' })` installs the worker for this folder only. Once the worker controls the page, the `controllerchange` event fires and the page shows `Offline cache ready`.
 2. **Install.** The worker's `install` handler stores three files in a cache named `latte-offline-v1`: the folder's address, `index.html` and `app.js`. `skipWaiting()` lets a new worker take over at once instead of waiting for old tabs to close.

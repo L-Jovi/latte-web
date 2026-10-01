@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 Schema、resolver 和 JSON 响应：最小的一次完整 GraphQL 请求。服务端保留了原版里的 hello、掷骰子和留言三个练习。
 
@@ -17,7 +17,7 @@ npm run dev -w @latte/graphql-http
 npm run dev
 ```
 
-打开 http://127.0.0.1:4173/examples/graphql-http/，点击 **Run query**。按钮下方会出现 JSON 格式的回答：`"foo": "Hello world!"`、`"bar": ["bar", "baz"]`，以及三次 1 到 6 之间的掷骰结果。API 本身的地址是 http://127.0.0.1:4001/graphql。
+打开 http://127.0.0.1:4173/examples/graphql-http/?lang=zh，点击**运行查询**。按钮下方会出现 JSON 格式的回答：`"foo": "Hello world!"`、`"bar": ["bar", "baz"]`，以及三次 1 到 6 之间的掷骰结果。API 本身的地址是 http://127.0.0.1:4001/graphql。
 
 接着把查询换成一个 mutation（变更，也就是会修改数据的操作）：
 
@@ -40,7 +40,7 @@ GraphQL 是一种给 API 用的查询语言：客户端发一个请求，准确�
 3. `rootValue` 为每个顶层的查询和 mutation 各提供一个函数。这些函数就是 resolver：负责产出数据。留言保存在内存里的一个 `Map` 中。
 4. graphql-http 的 `createHandler` 把 schema 和 resolver 变成一个 HTTP 处理函数：读取 JSON 请求，执行它，再写回 JSON 响应。
 
-页面（4173 端口）和 API（4001 端口）属于不同的源，所以服务端会发送 CORS 响应头，只允许这个页面的地址读取回答，其他地址都不行。[client.js](client.js)（13 行）用 `fetch` 发送 `POST` 请求，把输入框里的文字作为 `{ "query": … }` 发出去，再把回答打印出来。
+页面（4173 端口）和 API（4001 端口）属于不同的源，所以服务端会发送 CORS 响应头，只允许这个页面的地址读取回答，其他地址都不行。[client.js](client.js)（25 行）用 `fetch` 发送 `POST` 请求，把输入框里的文字作为 `{ "query": … }` 发出去，再把回答打印出来。
 
 输入都会经过检查：骰子有 1 到 1000 个面，一次可以掷 1 到 100 次；留言最多 1000 个字符，作者名最多 100 个字符；服务端最多保存 100 条留言。不合法的值会以 GraphQL 错误的形式返回，比如 `Expected an integer from 1 to 100`。查询不存在的留言会返回 `null`；试图修改不存在的留言则会报错。
 

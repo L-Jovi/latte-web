@@ -4,7 +4,7 @@
       "title": "The same card, from Babel's output",
       "titleZh": "同一张卡片，来自 Babel 的产物",
       "text": "This page imports `Card` and `Button` from `dist/babel/index.js`, the files Babel wrote, instead of from `src/`. It shows the same card, with a **Babel package loaded** button. That button has no `onClick`, so clicking it does nothing.",
-      "textZh": "这个页面从 `dist/babel/index.js`，也就是 Babel 写出的文件，导入 `Card` 和 `Button`，而不是从 `src/` 导入。它显示同样的卡片，里面是一个 **Babel package loaded** 按钮。这个按钮没有 `onClick`，所以点了也没有反应。",
+      "textZh": "这个页面从 `dist/babel/index.js`，也就是 Babel 写出的文件，导入 `Card` 和 `Button`，而不是从 `src/` 导入。它显示同样的卡片，里面是一个 **Babel 包已加载**按钮。这个按钮没有 `onClick`，所以点了也没有反应。",
       "watch": [
         {
           "label": "heading",

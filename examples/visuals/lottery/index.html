@@ -1,18 +1,21 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-title-en="Prize wheel · Latte Web" data-title-zh="抽奖转盘 · Latte Web">
   <meta charset="utf-8" /><meta
     name="viewport"
     content="width=device-width,initial-scale=1"
   /><title>Prize wheel · Latte Web</title
-  ><!-- latte-site:css --><link rel="stylesheet" href="../../../assets/site.css"><!-- /latte-site:css --><!-- latte-site:guide --><script src="../../../assets/guide.js" data-guide="../../../assets/guides/examples/visuals/lottery/index.json"></script><!-- /latte-site:guide --><link rel="stylesheet" href="../style.css" />
-  <!-- latte-site:bar --><nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="../../../index.html">Latte Web</a><span class="latte-crumb">Applications and experiments</span><span class="latte-links"><a href="https://github.com/L-Jovi/latte-web/tree/main/examples/visuals/lottery">README</a><a href="https://github.com/L-Jovi/latte-web/blob/main/examples/visuals/lottery/README.zh-Hans.md" lang="zh-Hans">中文</a></span></nav><!-- /latte-site:bar --><h1>Prize wheel</h1>
-  <p>This is animation math with fictional labels, not a reward system.</p>
+  ><!-- latte-site:css --><link rel="stylesheet" href="../../../assets/site.css"><script src="../../../assets/language.js"></script><!-- /latte-site:css --><!-- latte-site:guide --><script src="../../../assets/guide.js" data-guide="../../../assets/guides/examples/visuals/lottery/index.json"></script><!-- /latte-site:guide --><link rel="stylesheet" href="../style.css" />
+  <!-- latte-site:bar --><nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="../../../index.html">Latte Web</a><span class="latte-crumb"><span data-l="en">Applications and experiments</span><span data-l="zh">应用与实验</span></span><span class="latte-links"><a data-l="en" href="https://github.com/L-Jovi/latte-web/tree/main/examples/visuals/lottery">README</a><a data-l="zh" href="https://github.com/L-Jovi/latte-web/blob/main/examples/visuals/lottery/README.zh-Hans.md">README</a><button type="button" class="latte-language" data-language-switch hidden>中文</button></span></nav><!-- /latte-site:bar --><h1><span data-l="en">Prize wheel</span><span data-l="zh">抽奖转盘</span></h1>
+  <p data-l="en">This is animation math with fictional labels, not a reward system.</p>
+  <p data-l="zh">这里讲的是动画的数学，标签都是虚构的，不是抽奖系统。</p>
   <div class="wheel" aria-hidden="true">
     <span>A</span><span>B</span><span>C</span><span>D</span>
   </div>
-  <p>▲ Fixed pointer</p>
-  <button>Spin</button
-  ><output aria-live="polite">Ready</output
+  <p data-l="en">▲ Fixed pointer</p>
+  <p data-l="zh">▲ 固定指针</p>
+  <button data-text-en="Spin" data-text-zh="旋转">Spin</button
+  ><output aria-live="polite" data-text-en="Ready" data-text-zh="准备就绪"
+    >Ready</output
   ><style>
     .wheel {
       position: relative;

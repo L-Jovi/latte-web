@@ -29,7 +29,7 @@
       "title": "Call it",
       "titleZh": "调用它",
       "text": "On the first click, `main.js` fetches `add.wasm`, turns it into a module with `WebAssembly.instantiate`, and then calls `module.instance.exports.add(a, b)` with the two numbers, like any other function. Only plain numbers cross between JavaScript and Wasm, so no generated glue code is needed. With the module built, the page shows `5`. Without it, for example when you run the page before `npm run build:wasm`, the fetch fails and the page says `Build the Rust module with npm run build:wasm` instead.",
-      "textZh": "第一次点击时，`main.js` 取回 `add.wasm`，用 `WebAssembly.instantiate` 把它变成模块，然后把两个数传给 `module.instance.exports.add(a, b)`，像调用普通函数一样。在 JavaScript 和 Wasm 之间传递的只有普通数字，所以不需要生成任何“胶水”代码。模块已经构建好时，页面显示 `5`。如果还没有构建，比如在运行 `npm run build:wasm` 之前就打开了页面，取回会失败，页面改为显示 `Build the Rust module with npm run build:wasm`。",
+      "textZh": "第一次点击时，`main.js` 取回 `add.wasm`，用 `WebAssembly.instantiate` 把它变成模块，然后把两个数传给 `module.instance.exports.add(a, b)`，像调用普通函数一样。在 JavaScript 和 Wasm 之间传递的只有普通数字，所以不需要生成任何“胶水”代码。模块已经构建好时，页面显示 `5`。如果还没有构建，比如在运行 `npm run build:wasm` 之前就打开了页面，取回会失败，页面改为显示「请先用 `npm run build:wasm` 构建 Rust 模块」。",
       "action": {
         "clickText": "Add in Rust"
       },
@@ -76,7 +76,7 @@
       "title": "Numbers Rust cannot take",
       "titleZh": "Rust 接收不了的数",
       "text": "`main.js` checks both boxes before it calls Rust. `1.5` is not a whole number, so the page says `Enter signed 32-bit integers`, and `add` is never called. A number outside the `i32` range, such as `2147483648`, gets the same answer. This check runs before the module is fetched, so it works even when the module has not been built.",
-      "textZh": "`main.js` 在调用 Rust 之前会先检查两个输入框。`1.5` 不是整数，所以页面显示 `Enter signed 32-bit integers`，`add` 根本不会被调用。超出 `i32` 范围的数，比如 `2147483648`，也会得到同样的提示。这项检查在取回模块之前进行，所以即使还没有构建模块也能用。",
+      "textZh": "`main.js` 在调用 Rust 之前会先检查两个输入框。`1.5` 不是整数，所以页面显示「请输入有符号 32 位整数」，`add` 根本不会被调用。超出 `i32` 范围的数，比如 `2147483648`，也会得到同样的提示。这项检查在取回模块之前进行，所以即使还没有构建模块也能用。",
       "action": {
         "fill": {
           "target": "#a",

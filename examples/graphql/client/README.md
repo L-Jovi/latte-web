@@ -21,8 +21,8 @@ Then open the address that Vite prints.
 Read the three files in [src](src) in this order:
 
 1. [src/client.js](src/client.js) (32 lines) creates the Apollo Client. A `split` link looks at each operation: subscriptions go over a WebSocket through `GraphQLWsLink`, and queries and mutations go over HTTP through `HttpLink`. Both send the login token, if there is one.
-2. [src/main.jsx](src/main.jsx) (30 lines) keeps the session, the token and the user's name, in React state, so only in memory. When the session changes, at login or logout, it closes the old client and its WebSocket and creates a new one, with an empty cache.
-3. [src/App.jsx](src/App.jsx) (241 lines) uses Apollo Client 4's React hooks, imported from `@apollo/client/react`. `useQuery` fetches three links at a time, with the search text and the page offset as variables. `useMutation` logs in, signs up, publishes and votes. Two `useSubscription` hooks, active only while you are logged in, listen for `newLink` and `newVote`, and fetch the current page again when an event arrives.
+2. [src/main.jsx](src/main.jsx) (34 lines) keeps the session, the token and the user's name, in React state, so only in memory. When the session changes, at login or logout, it closes the old client and its WebSocket and creates a new one, with an empty cache.
+3. [src/App.jsx](src/App.jsx) (284 lines) uses Apollo Client 4's React hooks, imported from `@apollo/client/react`. `useQuery` fetches three links at a time, with the search text and the page offset as variables. `useMutation` logs in, signs up, publishes and votes. Two `useSubscription` hooks, active only while you are logged in, listen for `newLink` and `newVote`, and fetch the current page again when an event arrives.
 
 The endpoint is `http://127.0.0.1:4000/graphql`, unless `VITE_GRAPHQL_URL` sets another one at build time. Vite writes such variables into the page, where anyone can read them, so they must never hold secrets. The server's list of allowed origins (CORS) has to match the page's address. Descriptions are shown as text, never as HTML, and the server accepts only `http` and `https` links.
 

@@ -18,12 +18,12 @@
       "title": "The header and the navigation",
       "titleZh": "页头和导航",
       "text": "`<header>` holds the page title, the only `<h1>`, and one line of introduction. `<nav>` holds the links that move around the page, and its `aria-label` gives it the name `Notebook` for screen readers. Follow the first link: the address now ends in `#entry`, the `id` of the article.",
-      "textZh": "`<header>` 放页面标题（页面上唯一的 `<h1>`）和一行介绍。`<nav>` 放在页面内跳转的链接，它的 `aria-label` 给这组导航起名为 `Notebook`，供屏幕阅读器使用。点一下第一个链接：地址会以 `#entry` 结尾，这正是文章的 `id`。",
+      "textZh": "`<header>` 放页面标题（页面上唯一的 `<h1>`）和一行介绍。`<nav>` 放在页面内跳转的链接，它的 `aria-label` 给这组导航起名为「笔记」，供屏幕阅读器使用。点一下第一个链接：地址会以 `#entry` 结尾，这正是文章的 `id`。",
       "action": {
         "clickText": "Read the entry"
       },
       "actionLabel": "Click Read the entry",
-      "actionLabelZh": "点击 Read the entry",
+      "actionLabelZh": "点击「阅读文章」",
       "watch": [
         {
           "label": "address ends in",
@@ -66,7 +66,7 @@
         "clickText": "About the author"
       },
       "actionLabel": "Click About the author",
-      "actionLabelZh": "点击 About the author",
+      "actionLabelZh": "点击「关于作者」",
       "watch": [
         {
           "label": "address ends in",

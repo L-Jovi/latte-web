@@ -22,7 +22,7 @@ The page shows **Hello webpack** and a button. Click it: the console prints `I g
 - `mode: 'development'` turns off minifying, so `dist/bundle.js` stays readable, with a comment before each module that names its file.
 - `devtool: 'inline-source-map'` puts the source map inside `bundle.js` itself, as a `data:` URL in a comment on the last line. The developer tools read that comment and show your files instead of the bundle.
 
-[src/index.js](src/index.js) (18 lines) builds the page, and the button runs `printMe` from [src/print.js](src/print.js) (4 lines).
+[src/index.js](src/index.js) (28 lines) builds the page, and the button runs `printMe` from [src/print.js](src/print.js) (4 lines).
 
 To watch the map point at a mistake, change `console.log` to `cosnole.log` in `src/print.js`, build again, reload the page and click. The error names `print.js:2`, the line you need to fix, not a line somewhere inside `bundle.js`.
 

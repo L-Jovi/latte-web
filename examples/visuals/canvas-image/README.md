@@ -22,7 +22,7 @@ You can also open the [live demo](https://l-jovi.github.io/latte-web/examples/vi
 
 ## How it works
 
-Read [pixels.js](pixels.js) (66 lines), then [app.js](app.js) (84 lines).
+Read [pixels.js](pixels.js) (66 lines), then [app.js](app.js) (99 lines).
 
 Every change redraws from scratch. `app.js` draws the picture at the chosen scale, reads the canvas back with `getImageData`, passes the pixels through a filter and writes the result back with `putImageData`. The pixels arrive as one long list with four numbers per pixel: red, green, blue and alpha (opacity), each from 0 to 255.
 

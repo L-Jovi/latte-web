@@ -7,7 +7,20 @@ let balls = [],
   end = 0,
   frame = 0,
   last = 0,
-  previous = '00:00:10';
+  previous = '00:00:10',
+  left = null;
+// The page shows one language at a time (assets/language.js), so the readout
+// keeps its number and is written again when the reader switches language.
+function say(seconds) {
+  left = seconds;
+  output.textContent =
+    document.documentElement.dataset.language === 'zh'
+      ? `还剩 ${seconds} 秒`
+      : seconds + ' seconds remaining';
+}
+document.addEventListener('languagechange', () => {
+  if (left !== null) say(left);
+});
 function cells(text, visit) {
   for (let i = 0; i < text.length; i++)
     digit[text[i] === ':' ? 10 : Number(text[i])].forEach((row, y) =>
@@ -49,7 +62,7 @@ function tick(now) {
         });
     });
     previous = text;
-    output.textContent = seconds + ' seconds remaining';
+    say(seconds);
   }
   for (const ball of balls) {
     ball.x += ball.vx * dt;
@@ -68,13 +81,14 @@ function tick(now) {
   render(text);
   if (seconds || balls.length) frame = requestAnimationFrame(tick);
 }
-document.querySelector('button').onclick = () => {
+// The site bar before the heading has a button of its own: the language switch.
+document.querySelector('h1 ~ button').onclick = () => {
   cancelAnimationFrame(frame);
   balls = [];
   previous = '00:00:10';
   last = performance.now();
   end = last + 10000;
-  output.textContent = '10 seconds remaining';
+  say(10);
   frame = requestAnimationFrame(tick);
 };
 render(previous);

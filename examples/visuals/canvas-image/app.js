@@ -7,6 +7,17 @@ const scale = document.querySelector('#scale'),
   magnify = document.querySelector('#magnify');
 let mode = 'none',
   point = { x: 240, y: 150 };
+// The page shows one language at a time (assets/language.js); in Chinese the
+// readout names the filter instead of printing its data-mode value.
+const names = {
+  none: '无滤镜',
+  grey: '灰度',
+  threshold: '二值化',
+  invert: '反色',
+  blur: '模糊',
+  mosaic: '马赛克',
+  procedural: '程序化颜色',
+};
 source.src = './source.svg';
 await source.decode();
 function draw() {
@@ -49,8 +60,12 @@ function draw() {
     ctx.font = '20px system-ui';
     ctx.fillText('latte-web', 350, 275);
   }
-  document.querySelector('output').textContent = `${mode}; scale ${factor}`;
+  document.querySelector('output').textContent =
+    document.documentElement.dataset.language === 'zh'
+      ? `${names[mode]}；缩放 ${factor}`
+      : `${mode}; scale ${factor}`;
 }
+document.addEventListener('languagechange', draw);
 for (const input of [scale, watermark, magnify])
   input.addEventListener('input', draw);
 document.querySelector('#filters').onclick = (event) => {

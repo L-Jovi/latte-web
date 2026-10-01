@@ -41,12 +41,12 @@
       "title": "Next card: everything is recomputed",
       "titleZh": "下一张：全部重新计算",
       "text": "Click **Next layered card**: `current` becomes 1, and `render` recomputes all five cards from that one number. Card 2 moves to the front and gets `aria-current=\"true\"`, which tells assistive technology such as screen readers which card is current. A CSS transition animates the change.",
-      "textZh": "点击 **Next layered card**：`current` 变成 1，`render` 根据这一个数字重新计算全部五张卡片。Card 2 移到最前面，并得到 `aria-current=\"true\"`，告诉屏幕阅读器等辅助技术当前是哪一张。CSS 过渡负责动画。",
+      "textZh": "点击**下一张层叠卡片**：`current` 变成 1，`render` 根据这一个数字重新计算全部五张卡片。卡片 2 移到最前面，并得到 `aria-current=\"true\"`，告诉屏幕阅读器等辅助技术当前是哪一张。CSS 过渡负责动画。",
       "action": {
         "clickText": "Next layered card"
       },
       "actionLabel": "Click Next layered card",
-      "actionLabelZh": "点击 Next layered card",
+      "actionLabelZh": "点击「下一张层叠卡片」",
       "watch": [
         {
           "label": "front card",
@@ -77,12 +77,12 @@
       "title": "Fast clicks keep the order",
       "titleZh": "点得再快，顺序也不乱",
       "text": "This button clicks **Next layered card** four times in a row, much faster than the 0.3-second animation. Each click only changes `current` and recomputes; nothing is read back from the page, so no lock is needed while an animation runs. After Card 5 comes Card 1 again: the carousel wraps around.",
-      "textZh": "这个按钮连点四次 **Next layered card**，比 0.3 秒的动画快得多。每次点击只改变 `current` 并重新计算，从不从页面上读回位置，所以动画进行中也不需要加锁。Card 5 之后又回到 Card 1：轮播会循环。",
+      "textZh": "这个按钮连点四次**下一张层叠卡片**，比 0.3 秒的动画快得多。每次点击只改变 `current` 并重新计算，从不从页面上读回位置，所以动画进行中也不需要加锁。卡片 5 之后又回到卡片 1：轮播会循环。",
       "action": {
         "run": "const next = document.querySelector(\"#layers [data-step='1']\"); for (let i = 0; i < 4; i++) next.click();"
       },
       "actionLabel": "Click Next layered card four times",
-      "actionLabelZh": "连点四次 Next layered card",
+      "actionLabelZh": "连点四次「下一张层叠卡片」",
       "watch": [
         {
           "label": "front card",
@@ -102,12 +102,12 @@
       "title": "Scroll Snap: the browser scrolls",
       "titleZh": "Scroll Snap：交给浏览器滚动",
       "text": "The second carousel is a strip that the browser scrolls. `scroll-snap-type: x mandatory` on the strip and `scroll-snap-align: start` on each card make every scroll come to rest on a whole card. Click **Next snap card**: it calls `scrollTo` with smooth scrolling, and a `scroll` listener works out the card from `scrollLeft` and updates the text.",
-      "textZh": "第二个轮播是一条由浏览器负责滚动的长条。长条上的 `scroll-snap-type: x mandatory` 加上每张卡片的 `scroll-snap-align: start`，让每次滚动都停在一整张卡片上。点击 **Next snap card**：它调用 `scrollTo` 平滑滚动，`scroll` 监听器根据 `scrollLeft` 算出当前是哪一张，并更新文字。",
+      "textZh": "第二个轮播是一条由浏览器负责滚动的长条。长条上的 `scroll-snap-type: x mandatory` 加上每张卡片的 `scroll-snap-align: start`，让每次滚动都停在一整张卡片上。点击**下一张吸附卡片**：它调用 `scrollTo` 平滑滚动，`scroll` 监听器根据 `scrollLeft` 算出当前是哪一张，并更新文字。",
       "action": {
         "clickText": "Next snap card"
       },
       "actionLabel": "Click Next snap card",
-      "actionLabelZh": "点击 Next snap card",
+      "actionLabelZh": "点击「下一张吸附卡片」",
       "watch": [
         {
           "label": "text under the strip",
@@ -126,7 +126,7 @@
       "title": "Any scroll counts",
       "titleZh": "任何滚动都算数",
       "text": "The text follows every scroll, not only the buttons: a swipe, the mouse wheel or a script. This button sets `scrollLeft` to the end of the strip from a script, without smooth scrolling. The `scroll` listener computes `Math.round(scrollLeft / clientWidth)`, shows `Card 5` and disables **Next snap card**.",
-      "textZh": "文字跟随每一次滚动，而不只是按钮：手指滑动、鼠标滚轮或者脚本都一样。这个按钮用脚本把 `scrollLeft` 直接设到长条的末端，不做平滑滚动。`scroll` 监听器计算 `Math.round(scrollLeft / clientWidth)`，显示 `Card 5`，并禁用 **Next snap card**。",
+      "textZh": "文字跟随每一次滚动，而不只是按钮：手指滑动、鼠标滚轮或者脚本都一样。这个按钮用脚本把 `scrollLeft` 直接设到长条的末端，不做平滑滚动。`scroll` 监听器计算 `Math.round(scrollLeft / clientWidth)`，显示「卡片 5」，并禁用**下一张吸附卡片**。",
       "action": {
         "run": "const strip = document.querySelector('#snap .strip'); strip.scrollLeft = strip.scrollWidth;"
       },
@@ -147,7 +147,7 @@
         },
         {
           "label": "Next snap card disabled",
-          "labelZh": "Next snap card 已禁用",
+          "labelZh": "「下一张吸附卡片」已禁用",
           "value": "document.querySelector(\"#snap [data-step='1']\").disabled",
           "expect": "true"
         }

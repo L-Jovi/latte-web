@@ -24,12 +24,12 @@
       "title": "Change the theme while the page runs",
       "titleZh": "在页面运行时换主题",
       "text": "**Change theme** runs one line: `document.documentElement.style.setProperty('--accent', '#98542d')`. That inline style on `<html>` wins over the `:root` rule in the stylesheet, and every rule that reads `var(--accent)` picks up the new value at once. The card turns rust brown, with no new build.",
-      "textZh": "**Change theme** 只运行一行：`document.documentElement.style.setProperty('--accent', '#98542d')`。`<html>` 上的这条内联样式压过了样式表里的 `:root` 规则，所有读取 `var(--accent)` 的规则都立刻用上新值。卡片变成铁锈般的棕色，不需要重新构建。",
+      "textZh": "**切换主题**只运行一行：`document.documentElement.style.setProperty('--accent', '#98542d')`。`<html>` 上的这条内联样式压过了样式表里的 `:root` 规则，所有读取 `var(--accent)` 的规则都立刻用上新值。卡片变成铁锈般的棕色，不需要重新构建。",
       "action": {
         "click": ".card + button"
       },
       "actionLabel": "Click Change theme",
-      "actionLabelZh": "点击 Change theme",
+      "actionLabelZh": "点击「切换主题」",
       "watch": [
         {
           "label": "--accent",
