@@ -11,7 +11,7 @@ npm run dev
 # open http://127.0.0.1:4173/mechanisms/utilities/format/
 ```
 
-Open the browser console: it shows `1,234,567,890`. To see why the input is a string, type `Number('12345678901234567890')`. The result is `12345678901234567000`: the last digits are gone, because a `Number` cannot hold that many. `formatNumber('12345678901234567890')` keeps them all and gives `'12,345,678,901,234,567,890'`. No install or build is needed: `npm run dev` works right after cloning. You can also open the [live demo](https://l-jovi.github.io/latte-web/mechanisms/utilities/format/index.html).
+Open the browser console: it shows `1,234,567,890`. To see why the input is a string, type `Number('12345678901234567890')`. The result is `12345678901234567000`: the last digits are gone, because a `Number` cannot hold that many. `formatNumber('12345678901234567890')` keeps them all and gives `'12,345,678,901,234,567,890'`. No install or build is needed: `npm run dev` works right after cloning. You can also open the [live demo](https://latte.jovipro.com/mechanisms/utilities/format/index.html).
 
 ## How it works
 

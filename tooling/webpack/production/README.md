@@ -13,7 +13,7 @@ npm run dev
 # open http://127.0.0.1:4173/tooling/webpack/production/dist/
 ```
 
-The page shows `Hello webpack!,5 cubed is equal to 125`, and the console prints `Looks like we are in production mode!`. `dist/bundle.js` is only 257 bytes: one line of code, in which webpack has already worked out `cube(5)` as `125` and dropped both the development message and the unused `square` function, followed by `//# sourceMappingURL=bundle.js.map`, which points to the source map next to it. You can also open the [live demo](https://l-jovi.github.io/latte-web/tooling/webpack/production/dist/index.html).
+The page shows `Hello webpack!,5 cubed is equal to 125`, and the console prints `Looks like we are in production mode!`. `dist/bundle.js` is only 257 bytes: one line of code, in which webpack has already worked out `cube(5)` as `125` and dropped both the development message and the unused `square` function, followed by `//# sourceMappingURL=bundle.js.map`, which points to the source map next to it. You can also open the [live demo](https://latte.jovipro.com/tooling/webpack/production/dist/index.html).
 
 ## How it works
 

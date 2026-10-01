@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 块格式化上下文、Grid 布局，以及几种居中方法。四个小页面各讲一个知识点，用的都是固定尺寸的彩色方块，方便测量。
 
@@ -20,7 +20,7 @@ npm run dev
 - [grid/index.html](grid/index.html) 把九个带编号的格子排成三行三列。
 - [basic/index.html](basic/index.html) 显示一个灰色盒子，它的宽度来自另一个样式表。
 
-也可以直接打开在线演示：[BFC](https://l-jovi.github.io/latte-web/fundamentals/css/bfc/bfc.html)、[basic](https://l-jovi.github.io/latte-web/fundamentals/css/basic/index.html)、[居中](https://l-jovi.github.io/latte-web/fundamentals/css/vertical-center/index.html)和 [Grid](https://l-jovi.github.io/latte-web/fundamentals/css/grid/index.html)。
+也可以直接打开在线演示：[BFC](https://latte.jovipro.com/fundamentals/css/bfc/bfc.html)、[basic](https://latte.jovipro.com/fundamentals/css/basic/index.html)、[居中](https://latte.jovipro.com/fundamentals/css/vertical-center/index.html)和 [Grid](https://latte.jovipro.com/fundamentals/css/grid/index.html)。
 
 ## 原理
 

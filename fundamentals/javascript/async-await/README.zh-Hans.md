@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 同一个两步计算，分别用 .then() 和 await 来写。两个版本都从 `2` 开始，乘以 `3`，最后返回一个结果为 `6` 的 Promise。
 
@@ -13,7 +13,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/fundamentals/javascript/async-await/
 ```
 
-不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。页面显示 `6 = 6`，也就是两个版本的结果并排放在一起。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/fundamentals/javascript/async-await/index.html)。
+不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。页面显示 `6 = 6`，也就是两个版本的结果并排放在一起。也可以直接打开[在线演示](https://latte.jovipro.com/fundamentals/javascript/async-await/index.html)。
 
 ## 原理
 

@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 转盘停下的扇区和显示的结果始终一致，用 Web Animations API 实现。
 
@@ -13,7 +13,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/examples/visuals/lottery/
 ```
 
-点击 **Spin**。转盘转满三圈后停下，某个扇区正对着固定的指针，下方文字显示的也是同一个字母。不需要构建。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/visuals/lottery/index.html)。
+点击 **Spin**。转盘转满三圈后停下，某个扇区正对着固定的指针，下方文字显示的也是同一个字母。不需要构建。也可以直接打开[在线演示](https://latte.jovipro.com/examples/visuals/lottery/index.html)。
 
 ## 原理
 

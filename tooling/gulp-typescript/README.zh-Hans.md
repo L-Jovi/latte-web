@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 用一条小的 Gulp 流水线完成清理、编译 TypeScript 和复制 HTML。Gulp 把每一步都当作一个普通的 JavaScript 函数，一个接一个地运行，遇到第一个失败的步骤就停下。
 
@@ -15,7 +15,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/tooling/gulp-typescript/dist/
 ```
 
-Gulp 依次为 `clean`、`compile` 和 `html` 打印 `Starting` 和 `Finished`。页面标题从 `Loading greeting` 变成 **Hello from TypeScript modules via Gulp**。`dist/` 里有 `index.html`，每个 `.ts` 文件也各对应一个 `.js` 文件：`main.js` 和 `greet.js`。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/gulp-typescript/dist/index.html)。
+Gulp 依次为 `clean`、`compile` 和 `html` 打印 `Starting` 和 `Finished`。页面标题从 `Loading greeting` 变成 **Hello from TypeScript modules via Gulp**。`dist/` 里有 `index.html`，每个 `.ts` 文件也各对应一个 `.js` 文件：`main.js` 和 `greet.js`。也可以直接打开[在线演示](https://latte.jovipro.com/tooling/gulp-typescript/dist/index.html)。
 
 ## 原理
 

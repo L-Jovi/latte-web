@@ -11,7 +11,7 @@ npm run dev
 # open http://127.0.0.1:4173/mechanisms/promise/
 ```
 
-The page chains two `then` calls and shows `1,2`. You can also open the [live demo](https://l-jovi.github.io/latte-web/mechanisms/promise/index.html).
+The page chains two `then` calls and shows `1,2`. You can also open the [live demo](https://latte.jovipro.com/mechanisms/promise/index.html).
 
 To run the official test suite against the full version:
 

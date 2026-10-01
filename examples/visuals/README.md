@@ -11,7 +11,7 @@ npm run dev
 # open http://127.0.0.1:4173/examples/visuals/clock/
 ```
 
-Every experiment is a plain HTML page, so this works right after cloning; no `npm ci` is needed either. Replace `clock` with any folder name from the table below. All of them are also on the [live site](https://l-jovi.github.io/latte-web/).
+Every experiment is a plain HTML page, so this works right after cloning; no `npm ci` is needed either. Replace `clock` with any folder name from the table below. All of them are also on the [live site](https://latte.jovipro.com/).
 
 ## How it works
 

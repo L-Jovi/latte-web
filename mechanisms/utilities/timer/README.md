@@ -11,7 +11,7 @@ npm run dev
 # open http://127.0.0.1:4173/mechanisms/utilities/timer/
 ```
 
-Click **Start ten ticks**. Ten lines appear, one every 100 ms, each saying how late that tick ran, for example `3: 1.20 ms late`. The numbers change from run to run, but they do not keep growing. **Stop** cancels the next tick. No install or build is needed: `npm run dev` works right after cloning. You can also open the [live demo](https://l-jovi.github.io/latte-web/mechanisms/utilities/timer/index.html).
+Click **Start ten ticks**. Ten lines appear, one every 100 ms, each saying how late that tick ran, for example `3: 1.20 ms late`. The numbers change from run to run, but they do not keep growing. **Stop** cancels the next tick. No install or build is needed: `npm run dev` works right after cloning. You can also open the [live demo](https://latte.jovipro.com/mechanisms/utilities/timer/index.html).
 
 ## How it works
 

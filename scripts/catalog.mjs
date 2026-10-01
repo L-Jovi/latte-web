@@ -8,7 +8,7 @@ const read = (path) => JSON.parse(readFileSync(path, 'utf8'));
 const catalog = read('docs/catalog.json');
 const migration = read('docs/migration.json');
 const base = `https://github.com/L-Jovi/latte-web/tree/${migration.baseline}/`;
-const live = 'https://l-jovi.github.io/latte-web/';
+const live = 'https://latte.jovipro.com/';
 const { source, blob, groups, chrome, escape, inline, rootFrom } = site;
 // Markdown table cells cannot contain a raw pipe.
 const cell = (s) => s.replaceAll('|', '\\|');

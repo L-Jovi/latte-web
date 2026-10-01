@@ -13,7 +13,7 @@ npm run dev
 # open http://127.0.0.1:4173/tooling/webpack/shimming/dist/
 ```
 
-The page shows **Hello webpack**. The code that writes it, [src/index.js](src/index.js), calls `join(...)` without importing or defining it; without the plugin below, that line would fail with `join is not defined`. You can also open the [live demo](https://l-jovi.github.io/latte-web/tooling/webpack/shimming/dist/index.html).
+The page shows **Hello webpack**. The code that writes it, [src/index.js](src/index.js), calls `join(...)` without importing or defining it; without the plugin below, that line would fail with `join is not defined`. You can also open the [live demo](https://latte.jovipro.com/tooling/webpack/shimming/dist/index.html).
 
 ## How it works
 

@@ -13,7 +13,7 @@ npm run dev
 # open http://127.0.0.1:4173/tooling/less/modern.html
 ```
 
-The page shows a steel-blue card. Click **Change theme**, and the card turns rust brown at once, with no new build: the page changes a native CSS variable while it runs. You can also open the [live demo](https://l-jovi.github.io/latte-web/tooling/less/modern.html).
+The page shows a steel-blue card. Click **Change theme**, and the card turns rust brown at once, with no new build: the page changes a native CSS variable while it runs. You can also open the [live demo](https://latte.jovipro.com/tooling/less/modern.html).
 
 The build writes one CSS file into `dist/` for each `.less` file, in a folder of the same name: [mix/mix.less](mix/mix.less), for example, becomes `dist/mix/mix.css`. Open the two side by side to see what the compiler did.
 

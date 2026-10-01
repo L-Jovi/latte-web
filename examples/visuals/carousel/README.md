@@ -16,7 +16,7 @@ It works right after cloning; no `npm ci` or build step is needed. The page has 
 - **Handwritten slot geometry**: the front card is full size, and the others sit to its sides, smaller, fainter and further back, which looks like depth. Click **Next layered card**, or focus the carousel and press the right arrow key: every card slides one place and the text below says `Card 2`. It wraps around, so Card 1 follows Card 5.
 - **Native Scroll Snap**: a strip that the browser scrolls. Swipe it, scroll it sideways, press the arrow keys or click **Next snap card**: it always comes to rest on a whole card, and the text follows. It stops at the ends, where the matching button is disabled.
 
-You can also open the [live demo](https://l-jovi.github.io/latte-web/examples/visuals/carousel/index.html).
+You can also open the [live demo](https://latte.jovipro.com/examples/visuals/carousel/index.html).
 
 ## How it works
 

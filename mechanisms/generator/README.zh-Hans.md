@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 看 Babel 把 `yield` 编译成的状态机，以及值是怎样传进传出的。
 
@@ -13,9 +13,9 @@ npm run dev
 # 打开 http://127.0.0.1:4173/mechanisms/generator/
 ```
 
-克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。页面对一个原生 generator 和一个手写的版本各调用两次 `next()`，并把结果打印出来。两边完全一致：先是 `{ value: 1, done: false }`，再是 `{ value: 5, done: true }`。第一次调用停在 `yield 1`；第二次调用传入 `3`，它以 `3 + 2` 的结果又被送了出来。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/generator/index.html)。
+克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。页面对一个原生 generator 和一个手写的版本各调用两次 `next()`，并把结果打印出来。两边完全一致：先是 `{ value: 1, done: false }`，再是 `{ value: 5, done: true }`。第一次调用停在 `yield 1`；第二次调用传入 `3`，它以 `3 + 2` 的结果又被送了出来。也可以直接打开[在线演示](https://latte.jovipro.com/mechanisms/generator/index.html)。
 
-接着打开浏览器控制台，再打开同一目录下的 [transformed.html](transformed.html)（[在线演示](https://l-jovi.github.io/latte-web/mechanisms/generator/transformed.html)）。它运行 Babel 为一个 generator 生成的代码，依次打印 `param-a this is a`、`param-b this is b` 和 `undefined this is c`。
+接着打开浏览器控制台，再打开同一目录下的 [transformed.html](transformed.html)（[在线演示](https://latte.jovipro.com/mechanisms/generator/transformed.html)）。它运行 Babel 为一个 generator 生成的代码，依次打印 `param-a this is a`、`param-b this is b` 和 `undefined this is c`。
 
 ## 原理
 

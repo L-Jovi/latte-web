@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 复制对象图时保留共享引用和循环引用，再和 `structuredClone` 对比。“对象图”指的是一个对象，连同它指向的所有东西。
 
@@ -13,7 +13,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/mechanisms/utilities/clone/
 ```
 
-打开浏览器控制台。页面构造了一个对象 `source`，里面有嵌套的数组、一个 DOM 元素、一个函数、一个 Symbol 键，还有一个指回 `source` 自己的属性 `circleRef`，然后打印 `cloneDeep(source)`。现在输入 `structuredClone(source)`：它会抛出 `DataCloneError`，因为这个内置函数无法复制 DOM 元素和函数。不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/clone/index.html)。
+打开浏览器控制台。页面构造了一个对象 `source`，里面有嵌套的数组、一个 DOM 元素、一个函数、一个 Symbol 键，还有一个指回 `source` 自己的属性 `circleRef`，然后打印 `cloneDeep(source)`。现在输入 `structuredClone(source)`：它会抛出 `DataCloneError`，因为这个内置函数无法复制 DOM 元素和函数。不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[在线演示](https://latte.jovipro.com/mechanisms/utilities/clone/index.html)。
 
 ## 原理
 

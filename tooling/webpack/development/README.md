@@ -13,7 +13,7 @@ npm run dev
 # open http://127.0.0.1:4173/tooling/webpack/development/dist/
 ```
 
-The page shows **Hello webpack** and a button. Click it: the console prints `I get called from print.js.` and an alert says `trigger from button :)`. Now open the browser's developer tools. The page loaded only `bundle.js`, yet the Sources panel (Debugger in Firefox) has a `webpack://` section with `src/index.js` and `src/print.js`, exactly as you wrote them. You can also open the [live demo](https://l-jovi.github.io/latte-web/tooling/webpack/development/dist/index.html).
+The page shows **Hello webpack** and a button. Click it: the console prints `I get called from print.js.` and an alert says `trigger from button :)`. Now open the browser's developer tools. The page loaded only `bundle.js`, yet the Sources panel (Debugger in Firefox) has a `webpack://` section with `src/index.js` and `src/print.js`, exactly as you wrote them. You can also open the [live demo](https://latte.jovipro.com/tooling/webpack/development/dist/index.html).
 
 ## How it works
 

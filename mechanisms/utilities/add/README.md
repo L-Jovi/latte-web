@@ -11,7 +11,7 @@ npm run dev
 # open http://127.0.0.1:4173/mechanisms/utilities/add/
 ```
 
-Open the browser console. The page logs three chained calls, but the console shows functions, not numbers: Chromium, for example, prints each function's source code. Convert them yourself instead. Type `String(addMutiplyParams(1, 2)(3))` and you get `'6'`; `String(addMutiplyParams(1, 2, 3)(5, 7)())` gives `'18'`. No install or build is needed: `npm run dev` works right after cloning. You can also open the [live demo](https://l-jovi.github.io/latte-web/mechanisms/utilities/add/index.html).
+Open the browser console. The page logs three chained calls, but the console shows functions, not numbers: Chromium, for example, prints each function's source code. Convert them yourself instead. Type `String(addMutiplyParams(1, 2)(3))` and you get `'6'`; `String(addMutiplyParams(1, 2, 3)(5, 7)())` gives `'18'`. No install or build is needed: `npm run dev` works right after cloning. You can also open the [live demo](https://latte.jovipro.com/mechanisms/utilities/add/index.html).
 
 ## How it works
 

@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 看共享原型和借用构造函数会出什么问题，以及 `Object.create` 怎样解决。
 
@@ -13,7 +13,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/mechanisms/design-patterns/inherit/
 ```
 
-克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。打开浏览器控制台，先看到 prototype.js 打印的 `animal`，再看到 combination.js 打印的 `1` 和 `true`。页面把每个文件都作为模块加载，所以两个文件都可以使用 `Parent`、`Child` 这样的名字而互不冲突。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/design-patterns/inherit/index.html)。
+克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。打开浏览器控制台，先看到 prototype.js 打印的 `animal`，再看到 combination.js 打印的 `1` 和 `true`。页面把每个文件都作为模块加载，所以两个文件都可以使用 `Parent`、`Child` 这样的名字而互不冲突。也可以直接打开[在线演示](https://latte.jovipro.com/mechanisms/design-patterns/inherit/index.html)。
 
 页面没有加载 prototype-obj.js。用 `node mechanisms/design-patterns/inherit/prototype-obj.js` 运行它，会打印 `animal`。
 

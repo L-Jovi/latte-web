@@ -11,7 +11,7 @@ npm run dev
 # open http://127.0.0.1:4173/fundamentals/javascript/
 ```
 
-No install or build is needed: `npm run dev` works right after cloning. Open the browser console. The page builds an object with `forgeNew`, the hand-written `new` from [instance](instance/README.md), and logs it between two `=== forge new ===` lines; its `name` is `'saber'`. You can also open the [live demo](https://l-jovi.github.io/latte-web/fundamentals/javascript/index.html).
+No install or build is needed: `npm run dev` works right after cloning. Open the browser console. The page builds an object with `forgeNew`, the hand-written `new` from [instance](instance/README.md), and logs it between two `=== forge new ===` lines; its `name` is `'saber'`. You can also open the [live demo](https://latte.jovipro.com/fundamentals/javascript/index.html).
 
 The closure example has no page. Run it with Node from the repository root:
 

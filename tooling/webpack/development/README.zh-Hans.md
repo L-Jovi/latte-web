@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 用开发模式构建，在 DevTools 里看到原始源码。source map（源码映射）把打包产物里的每一行，对应回你自己代码里生成它的那一行。
 
@@ -15,7 +15,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/tooling/webpack/development/dist/
 ```
 
-页面上有 **Hello webpack** 和一个按钮。点击按钮，控制台打印 `I get called from print.js.`，同时弹出提示框 `trigger from button :)`。接着打开浏览器的开发者工具：页面只加载了 `bundle.js`，但 Sources 面板（Firefox 里叫 Debugger）里有一个 `webpack://` 分组，其中的 `src/index.js` 和 `src/print.js` 跟你写的一模一样。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/development/dist/index.html)。
+页面上有 **Hello webpack** 和一个按钮。点击按钮，控制台打印 `I get called from print.js.`，同时弹出提示框 `trigger from button :)`。接着打开浏览器的开发者工具：页面只加载了 `bundle.js`，但 Sources 面板（Firefox 里叫 Debugger）里有一个 `webpack://` 分组，其中的 `src/index.js` 和 `src/print.js` 跟你写的一模一样。也可以直接打开[在线演示](https://latte.jovipro.com/tooling/webpack/development/dist/index.html)。
 
 ## 原理
 

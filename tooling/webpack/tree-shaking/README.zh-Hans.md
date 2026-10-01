@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 只导入一个函数，看没用到的那个从生产包里消失。tree shaking（摇树优化）指的是删掉没人用的代码；对模块来说，就是删掉没有任何地方导入的导出。
 
@@ -15,7 +15,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/tooling/webpack/tree-shaking/dist/
 ```
 
-页面上显示 `Hello webpack!,5 cubed is equal to 125`。再打开 `dist/bundle.js`：整个文件只有一行，169 字节，里面找不到 `square`。连 `cube` 也不见了，因为压缩工具直接把 `cube(5)` 换成了结果 `125`。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/tree-shaking/dist/index.html)。
+页面上显示 `Hello webpack!,5 cubed is equal to 125`。再打开 `dist/bundle.js`：整个文件只有一行，169 字节，里面找不到 `square`。连 `cube` 也不见了，因为压缩工具直接把 `cube(5)` 换成了结果 `125`。也可以直接打开[在线演示](https://latte.jovipro.com/tooling/webpack/tree-shaking/dist/index.html)。
 
 ## 原理
 

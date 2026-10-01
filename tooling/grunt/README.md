@@ -13,7 +13,7 @@ npm run dev
 # open http://127.0.0.1:4173/tooling/grunt/dist/
 ```
 
-Grunt prints `Running "clean:dist" (clean) task`, then `Running "copy:app" (copy) task` with `Created 1 directory, copied 2 files`, and finally `Done.` The page says **Grunt copied this page**. `dist/` is an exact copy of `app/`: nothing was changed, combined or minified. You can also open the [live demo](https://l-jovi.github.io/latte-web/tooling/grunt/dist/index.html).
+Grunt prints `Running "clean:dist" (clean) task`, then `Running "copy:app" (copy) task` with `Created 1 directory, copied 2 files`, and finally `Done.` The page says **Grunt copied this page**. `dist/` is an exact copy of `app/`: nothing was changed, combined or minified. You can also open the [live demo](https://latte.jovipro.com/tooling/grunt/dist/index.html).
 
 ## How it works
 

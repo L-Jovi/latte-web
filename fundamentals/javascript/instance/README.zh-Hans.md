@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 自己实现 new 和 instanceof：创建对象、执行构造函数、沿原型链查找。`forgeNew` 和 `forgeInstanceof` 这两个小函数，手工完成了这两个运算符替你做的事。
 
@@ -13,7 +13,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/fundamentals/javascript/instance/
 ```
 
-不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。打开浏览器控制台：`forgeNew(Test, 'saber', 12)` 执行构造函数，构造函数打印出 `new init list:  saber 12`；接着新对象调用从 `Test.prototype` 继承来的方法 `foobar`，打印出 `12`。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/fundamentals/javascript/instance/index.html)。
+不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。打开浏览器控制台：`forgeNew(Test, 'saber', 12)` 执行构造函数，构造函数打印出 `new init list:  saber 12`；接着新对象调用从 `Test.prototype` 继承来的方法 `foobar`，打印出 `12`。也可以直接打开[在线演示](https://latte.jovipro.com/fundamentals/javascript/instance/index.html)。
 
 这个页面没有加载 `forgeInstanceof`，不过 `/fundamentals/javascript/` 那个页面加载了。在那个页面的控制台里，`forgeInstanceof([], Array)` 返回 `true`，`forgeInstanceof(1, Number)` 返回 `false`。
 

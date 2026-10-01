@@ -11,7 +11,7 @@ npm run dev
 # open http://127.0.0.1:4173/mechanisms/mini-react/
 ```
 
-Two buttons appear, **First: 0** and **Second: 0**. Click **First** a few times: only its own count goes up. The browser console shows `mounted after insertion First true` and `mounted after insertion Second true`, logged when each counter is first added to the page. No install or build is needed: `npm run dev` works right after cloning. You can also open the [live demo](https://l-jovi.github.io/latte-web/mechanisms/mini-react/index.html).
+Two buttons appear, **First: 0** and **Second: 0**. Click **First** a few times: only its own count goes up. The browser console shows `mounted after insertion First true` and `mounted after insertion Second true`, logged when each counter is first added to the page. No install or build is needed: `npm run dev` works right after cloning. You can also open the [live demo](https://latte.jovipro.com/mechanisms/mini-react/index.html).
 
 ## How it works
 

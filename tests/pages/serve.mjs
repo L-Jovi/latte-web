@@ -2,9 +2,9 @@ import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import { resolve, extname, sep } from 'node:path';
 
-// Serves _site/ under /latte-web/ the way GitHub Pages does: no SPA fallback.
+// Serves _site/ from the root the way GitHub Pages does: no SPA fallback.
 const root = resolve(process.argv[2] ?? '_site');
-const prefix = '/latte-web/';
+const prefix = '/';
 const types = {
   '.html': 'text/html; charset=utf-8',
   '.js': 'text/javascript',

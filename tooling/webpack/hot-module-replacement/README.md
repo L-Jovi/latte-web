@@ -14,7 +14,7 @@ npm exec -w @latte/webpack -- webpack serve --config hot-module-replacement/webp
 
 The page shows **Hello webpack** and a button on a grey background. Click the button, and the console prints `content change :)`. Now change that text in [src/print.js](src/print.js) and save. The console prints `Accepting the updated printMe module!`, and the earlier messages stay, because the page did not reload. Click again: the button prints your new text.
 
-This needs webpack's dev server, so it works only on your machine. The [live demo](https://l-jovi.github.io/latte-web/tooling/webpack/hot-module-replacement/dist/index.html), like the page you get from `npm run build -w @latte/webpack` and `npm run dev`, is a finished build: it looks the same, but nothing updates it.
+This needs webpack's dev server, so it works only on your machine. The [live demo](https://latte.jovipro.com/tooling/webpack/hot-module-replacement/dist/index.html), like the page you get from `npm run build -w @latte/webpack` and `npm run dev`, is a finished build: it looks the same, but nothing updates it.
 
 ## How it works
 

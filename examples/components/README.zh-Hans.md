@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 同一组 `Card` 和 `Button`，分别用 Vite、webpack 和 Babel 构建，并实际加载每种产物。把三种结果放在一起，就能看出每个构建工具对同一份源码做了什么。
 
@@ -15,7 +15,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/examples/components/dist/demo/
 ```
 
-页面上会出现一张卡片，里面有一个 **Count: 0** 按钮，每点一次加一。`dist/consumer/consumer.html` 这个页面改为加载 Babel 的产物，在同样的卡片里显示一个 **Babel package loaded** 按钮。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/components/dist/demo/index.html)和 [Babel 产物的在线页面](https://l-jovi.github.io/latte-web/examples/components/dist/consumer/consumer.html)。
+页面上会出现一张卡片，里面有一个 **Count: 0** 按钮，每点一次加一。`dist/consumer/consumer.html` 这个页面改为加载 Babel 的产物，在同样的卡片里显示一个 **Babel package loaded** 按钮。也可以直接打开[在线演示](https://latte.jovipro.com/examples/components/dist/demo/index.html)和 [Babel 产物的在线页面](https://latte.jovipro.com/examples/components/dist/consumer/consumer.html)。
 
 想浏览那两条 Storybook 故事，运行 `npm run storybook -w @latte/components`，然后打开 http://127.0.0.1:6006。
 

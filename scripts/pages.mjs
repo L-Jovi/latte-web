@@ -1,7 +1,7 @@
 import { cpSync, rmSync, mkdirSync } from 'node:fs';
 
 // Copies the public learning pages into a static site for GitHub Pages.
-// Run `npm run build` with LATTE_PAGES_BASE=/latte-web/ first.
+// Run `npm run build` first, with LATTE_PAGES_BASE set to the site's path (`/` on latte.jovipro.com).
 const out = process.argv[2] ?? '_site';
 const publish = [
   'index.html',
