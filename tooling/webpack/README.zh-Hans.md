@@ -29,7 +29,7 @@ npm run dev
 
 [build.cjs](build.cjs) 通过 webpack 的 Node API 逐个构建这些专题，遇到第一个错误就停下。
 
-如果想用 webpack 的开发服务器代替构建好的文件，运行 `npm run dev -w @latte/webpack` 可以打开第一个专题；其他专题要指定它的配置，例如 `npm exec -w @latte/webpack -- webpack serve --config lazy-loading/webpack.config.cjs`。然后打开 http://127.0.0.1:4180/。开发服务器把构建结果放在内存里，不会改动 `dist/`；你保存文件后，它会更新页面。
+如果想用 webpack 的开发服务器代替构建好的文件，运行 `npm run dev -w @latte/webpack` 可以打开第一个专题；其他专题要指定它的配置，例如 `npm exec -w @latte/webpack -- webpack serve --config lazy-loading/webpack.config.cjs`。然后打开 <http://127.0.0.1:4180/>。开发服务器把构建结果放在内存里，不会改动 `dist/`；你保存文件后，它会更新页面。
 
 | 专题                                                             | 改了什么                             |
 | ---------------------------------------------------------------- | ------------------------------------ |
