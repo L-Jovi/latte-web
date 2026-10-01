@@ -12,10 +12,10 @@
 npm ci
 npm run build -w @latte/webpack
 npm run dev
-# 打开 http://127.0.0.1:4173/tooling/webpack/shimming/dist/
+# 打开 http://127.0.0.1:4173/tooling/webpack/shimming/dist/?lang=zh
 ```
 
-页面上显示 **Hello webpack**。写出这行字的 [src/index.js](src/index.js) 调用了 `join(...)`，却既没有导入它，也没有定义它；如果没有下面的插件，这一行会报错 `join is not defined`。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/shimming/dist/index.html)。
+页面上显示 **Hello webpack**。写出这行字的 [src/index.js](src/index.js) 调用了 `join(...)`，却既没有导入它，也没有定义它；如果没有下面的插件，这一行会报错 `join is not defined`。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/shimming/dist/index.html?lang=zh)。
 
 ## 原理
 

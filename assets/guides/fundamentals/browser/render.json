@@ -28,7 +28,7 @@
         "click": "#layout"
       },
       "actionLabel": "Click Move with top",
-      "actionLabelZh": "点击 Move with top",
+      "actionLabelZh": "点击「用 top 移动」",
       "watch": [
         {
           "label": "box.offsetTop",
@@ -52,7 +52,7 @@
         "click": "#transform"
       },
       "actionLabel": "Click Move with transform",
-      "actionLabelZh": "点击 Move with transform",
+      "actionLabelZh": "点击「用 transform 移动」",
       "watch": [
         {
           "label": "box.offsetTop",
@@ -71,7 +71,7 @@
       "title": "See the difference in DevTools",
       "titleZh": "在 DevTools 里看差别",
       "text": "Open the **Performance** panel, start recording, click each button a few times, then stop. Clicks on **Move with top** include a **Layout** step; clicks on **Move with transform** should not. This page measures nothing itself: on a page this small, both are fast.",
-      "textZh": "打开 **Performance** 面板，开始录制，把两个按钮各点几次，再停止。点 **Move with top** 的记录里有一步 **Layout**；点 **Move with transform** 的应该没有。这个页面本身什么也不测量：页面这么小，两种方式都很快。"
+      "textZh": "打开 **Performance** 面板，开始录制，把两个按钮各点几次，再停止。点**用 top 移动**的记录里有一步 **Layout**；点**用 transform 移动**的应该没有。这个页面本身什么也不测量：页面这么小，两种方式都很快。"
     }
   ]
 }

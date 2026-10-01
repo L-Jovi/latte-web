@@ -4,7 +4,7 @@
       "title": "The heading changed",
       "titleZh": "标题变了",
       "text": "`dist/index.html` says `Loading greeting`. When the page ran `main.js`, compiled from `src/main.ts`, it replaced that text with **Hello from TypeScript modules via Gulp**. The page has one `<script type=\"module\">` tag, for `main.js`.",
-      "textZh": "`dist/index.html` 里写的是 `Loading greeting`。页面运行由 `src/main.ts` 编译出的 `main.js` 时，把这段文字换成了 **Hello from TypeScript modules via Gulp**。页面上只有一个 `<script type=\"module\">` 标签，引用的是 `main.js`。",
+      "textZh": "`dist/index.html` 里写的是「正在加载问候」。页面运行由 `src/main.ts` 编译出的 `main.js` 时，把这段文字换成了**经 Gulp 构建的 TypeScript 模块向你问好**。页面上只有一个 `<script type=\"module\">` 标签，引用的是 `main.js`。",
       "watch": [
         {
           "label": "Heading",
@@ -15,7 +15,7 @@
         {
           "label": "Page scripts (not counting the guide)",
           "labelZh": "页面脚本（不含说明面板）",
-          "value": "[...document.scripts].filter((s) => !s.src.endsWith('/guide.js')).map((s) => s.getAttribute('src') + ' (' + (s.type || 'classic') + ')').join(', ')",
+          "value": "[...document.scripts].filter((s) => !/\\/(guide|language)\\.js$/.test(s.src)).map((s) => s.getAttribute('src') + ' (' + (s.type || 'classic') + ')').join(', ')",
           "expect": "./main.js (module)"
         }
       ],

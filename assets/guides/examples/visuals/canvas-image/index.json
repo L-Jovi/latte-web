@@ -31,12 +31,12 @@
       "title": "Grayscale mixes the three colours",
       "titleZh": "灰度：把三种颜色混成一个值",
       "text": "**Grayscale** gives red, green and blue the same value, `0.3 × red + 0.59 × green + 0.11 × blue`, because green looks brightest to the eye and blue darkest. The readouts show the pixel at (20, 20), in the pale sky.",
-      "textZh": "**Grayscale**（灰度）让红、绿、蓝取同一个值：`0.3 × 红 + 0.59 × 绿 + 0.11 × 蓝`，因为人眼觉得绿色最亮、蓝色最暗。读数显示的是 (20, 20) 处、浅色天空里的那个像素。",
+      "textZh": "**灰度**让红、绿、蓝取同一个值：`0.3 × 红 + 0.59 × 绿 + 0.11 × 蓝`，因为人眼觉得绿色最亮、蓝色最暗。读数显示的是 (20, 20) 处、浅色天空里的那个像素。",
       "action": {
         "clickText": "Grayscale"
       },
       "actionLabel": "Click Grayscale",
-      "actionLabelZh": "点击 Grayscale",
+      "actionLabelZh": "点击「灰度」",
       "watch": [
         {
           "label": "text under the canvas",
@@ -62,12 +62,12 @@
       "title": "Threshold: only black or white",
       "titleZh": "二值化：只剩黑和白",
       "text": "**Threshold** takes the same grey value and turns it into pure black or pure white: above 125 becomes white. The readout counts the different colours on the whole canvas. The original picture has many more: five flat colours, plus blended pixels along the edges of its shapes.",
-      "textZh": "**Threshold**（二值化）用同一个灰度值，把像素变成纯黑或纯白：大于 125 的变白。读数统计整个画布上有几种不同的颜色。原图的颜色要多得多：五种纯色，再加上各个形状边缘上混合过渡的像素。",
+      "textZh": "**二值化**用同一个灰度值，把像素变成纯黑或纯白：大于 125 的变白。读数统计整个画布上有几种不同的颜色。原图的颜色要多得多：五种纯色，再加上各个形状边缘上混合过渡的像素。",
       "action": {
         "clickText": "Threshold"
       },
       "actionLabel": "Click Threshold",
-      "actionLabelZh": "点击 Threshold",
+      "actionLabelZh": "点击「二值化」",
       "watch": [
         {
           "label": "text under the canvas",
@@ -88,12 +88,12 @@
       "title": "Invert: 255 minus each value",
       "titleZh": "反色：255 减去每个值",
       "text": "**Invert** replaces each colour value with 255 minus the value. This button clicks **Reset**, reads the pixel at (20, 20), clicks **Invert** and reads it again. In the console, before plus after is 255 for red, green and blue, and alpha stays the same: the filters never change alpha.",
-      "textZh": "**Invert**（反色）把每个颜色值换成 255 减去它。这个按钮先点 **Reset**，读取 (20, 20) 处的像素，再点 **Invert**，重新读一次。控制台里，红、绿、蓝各自前后相加都是 255，alpha 保持不变：滤镜从不改动 alpha。",
+      "textZh": "**反色**把每个颜色值换成 255 减去它。这个按钮先点**重置**，读取 (20, 20) 处的像素，再点**反色**，重新读一次。控制台里，红、绿、蓝各自前后相加都是 255，alpha 保持不变：滤镜从不改动 alpha。",
       "action": {
         "run": "const context = document.querySelector('canvas').getContext('2d'); const read = () => [...context.getImageData(20, 20, 1, 1).data]; document.querySelector('[data-mode=none]').click(); const before = read(); document.querySelector('[data-mode=invert]').click(); const after = read(); console.log('before: ' + before.join(', ')); console.log('after: ' + after.join(', ')); console.log('red, green and blue added: ' + before.slice(0, 3).map((value, i) => value + after[i]).join(', '));"
       },
       "actionLabel": "Compare one pixel before and after Invert",
-      "actionLabelZh": "比较 Invert 前后的同一个像素",
+      "actionLabelZh": "比较「反色」前后的同一个像素",
       "watch": [
         {
           "label": "text under the canvas",
@@ -110,12 +110,12 @@
       "title": "Mosaic: one average colour per block",
       "titleZh": "马赛克：每块一个平均色",
       "text": "**Mosaic** splits the picture into 12 × 12 blocks and fills each block with its average colour. The readout counts the colours in the block that starts at (36, 36), where the corner of the red square sits: after **Mosaic** there is exactly one. **Blur** works the same way on the 3 × 3 square around every pixel. Both write into a copy, so they always average the original pixels, never ones they have already changed.",
-      "textZh": "**Mosaic**（马赛克）把图片分成 12 × 12 的方块，每块填上这一块的平均颜色。读数统计从 (36, 36) 开始的那个方块里有几种颜色，红色方块的一角就在这里：点了 **Mosaic** 之后正好只剩一种。**Blur**（模糊）也是这样，只是针对每个像素周围 3 × 3 的方格。两者都写到一份副本里，所以求平均时用的总是原始像素，而不是已经改过的像素。",
+      "textZh": "**马赛克**把图片分成 12 × 12 的方块，每块填上这一块的平均颜色。读数统计从 (36, 36) 开始的那个方块里有几种颜色，红色方块的一角就在这里：点了**马赛克**之后正好只剩一种。**模糊**也是这样，只是针对每个像素周围 3 × 3 的方格。两者都写到一份副本里，所以求平均时用的总是原始像素，而不是已经改过的像素。",
       "action": {
         "clickText": "Mosaic"
       },
       "actionLabel": "Click Mosaic",
-      "actionLabelZh": "点击 Mosaic",
+      "actionLabelZh": "点击「马赛克」",
       "watch": [
         {
           "label": "text under the canvas",
@@ -136,7 +136,7 @@
       "title": "Scale, then try the lens",
       "titleZh": "缩放，再试试放大镜",
       "text": "This button clicks **Reset** and sets **Scale** to 0.5. The picture is drawn at half size around the centre and the corners stay empty: the pixel at (20, 20) now has alpha 0, fully transparent. Try the rest by hand. Tick **Watermark** to write `latte-web` near the bottom-right corner. Tick **Magnifier** and move the pointer over the canvas: the lens shows the original, unfiltered picture at twice the current scale. You can also focus the canvas with the Tab key and move the lens with the arrow keys.",
-      "textZh": "这个按钮先点 **Reset**，再把 **Scale** 设为 0.5。图片以中心为基准缩小一半，四角空了出来：(20, 20) 处像素的 alpha 变成 0，完全透明。其余的请亲手试试：勾选 **Watermark**，右下角附近会写上 `latte-web`；勾选 **Magnifier**，把指针移到画布上，镜片会以当前比例的两倍显示未经滤镜处理的原图。也可以用 Tab 键让画布获得焦点，再用方向键移动镜片。",
+      "textZh": "这个按钮先点**重置**，再把**缩放**设为 0.5。图片以中心为基准缩小一半，四角空了出来：(20, 20) 处像素的 alpha 变成 0，完全透明。其余的请亲手试试：勾选**水印**，右下角附近会写上 `latte-web`；勾选**放大镜**，把指针移到画布上，镜片会以当前比例的两倍显示未经滤镜处理的原图。也可以用 Tab 键让画布获得焦点，再用方向键移动镜片。",
       "action": {
         "fill": {
           "target": "#scale",
@@ -145,7 +145,7 @@
         "clickText": "Reset"
       },
       "actionLabel": "Reset and set Scale to 0.5",
-      "actionLabelZh": "点 Reset 并把 Scale 设为 0.5",
+      "actionLabelZh": "点「重置」并把「缩放」设为 0.5",
       "watch": [
         {
           "label": "text under the canvas",

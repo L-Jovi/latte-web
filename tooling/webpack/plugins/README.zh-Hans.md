@@ -12,7 +12,7 @@
 npm ci
 npm run build -w @latte/webpack
 npm run dev
-# 打开 http://127.0.0.1:4173/tooling/webpack/plugins/dist/
+# 打开 http://127.0.0.1:4173/tooling/webpack/plugins/dist/?lang=zh
 ```
 
 页面上显示 **Hello Webpack**。插件还在旁边的 `dist/` 里写了一个 `FILELIST.md`，也可以通过 http://127.0.0.1:4173/tooling/webpack/plugins/dist/FILELIST.md 打开：
@@ -25,7 +25,7 @@ npm run dev
 - index.html
 ```
 
-也可以直接打开这个页面的[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/plugins/dist/index.html)。
+也可以直接打开这个页面的[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/plugins/dist/index.html?lang=zh)。
 
 ## 原理
 

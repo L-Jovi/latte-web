@@ -1,8 +1,8 @@
-# 3D 轮播与 CSS Scroll Snap
+# 3D 轮播与 CSS 滚动吸附
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 用几何计算排布层叠的轮播图，再让 CSS Scroll Snap 原生完成类似的事。
 
@@ -10,19 +10,19 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/examples/visuals/carousel/
+# 打开 http://127.0.0.1:4173/examples/visuals/carousel/?lang=zh
 ```
 
 克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。页面上有两个轮播，各有五张卡片：
 
-- **Handwritten slot geometry**（手写位置计算）：最前面的卡片是原始大小，其余卡片排在两侧，越往外越小、越淡、越靠后，看起来就有了纵深。点击 **Next layered card**，或者让轮播获得焦点后按右方向键：所有卡片都挪动一个位置，下方文字显示 `Card 2`。它会循环，Card 5 之后又回到 Card 1。
-- **Native Scroll Snap**（原生滚动吸附）：一条由浏览器负责滚动的长条。用手指滑、横向滚动、按方向键或点击 **Next snap card**，它总会停在一整张卡片上，文字也随之更新。滚到两端就停下，对应的按钮会被禁用。
+- **手写位置计算**：最前面的卡片是原始大小，其余卡片排在两侧，越往外越小、越淡、越靠后，看起来就有了纵深。点击**下一张层叠卡片**，或者让轮播获得焦点后按右方向键：所有卡片都挪动一个位置，下方文字显示 `卡片 2`。它会循环，卡片 5 之后又回到卡片 1。
+- **原生滚动吸附**：一条由浏览器负责滚动的长条。用手指滑、横向滚动、按方向键或点击**下一张吸附卡片**，它总会停在一整张卡片上，文字也随之更新。滚到两端就停下，对应的按钮会被禁用。
 
-也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/visuals/carousel/index.html)。
+也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/visuals/carousel/index.html?lang=zh)。
 
 ## 原理
 
-先读 [geometry.js](geometry.js)（13 行），再读 [app.js](app.js)（61 行）。
+先读 [geometry.js](geometry.js)（13 行），再读 [app.js](app.js)（71 行）。
 
 `slots(count, current)` 只凭一个数字，也就是最前面那张卡片的序号 `current`，算出每张卡片的位置。它先求出每张卡片与最前面卡片的距离，并让这个距离绕回来，最多只差半圈（五张卡片时是 −2 到 2）。然后：
 

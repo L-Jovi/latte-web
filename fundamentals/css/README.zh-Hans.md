@@ -10,7 +10,7 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/fundamentals/css/bfc/bfc.html
+# 打开 http://127.0.0.1:4173/fundamentals/css/bfc/bfc.html?lang=zh
 ```
 
 不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。这些页面不运行任何脚本，控制台里什么也看不到，请改用开发者工具的 Elements（元素）面板检查这些方块。
@@ -20,7 +20,7 @@ npm run dev
 - [grid/index.html](grid/index.html) 把九个带编号的格子排成三行三列。
 - [basic/index.html](basic/index.html) 显示一个灰色盒子，它的宽度来自另一个样式表。
 
-也可以直接打开在线演示：[BFC](https://l-jovi.github.io/latte-web/fundamentals/css/bfc/bfc.html)、[basic](https://l-jovi.github.io/latte-web/fundamentals/css/basic/index.html)、[居中](https://l-jovi.github.io/latte-web/fundamentals/css/vertical-center/index.html)和 [Grid](https://l-jovi.github.io/latte-web/fundamentals/css/grid/index.html)。
+也可以直接打开在线演示：[BFC](https://l-jovi.github.io/latte-web/fundamentals/css/bfc/bfc.html?lang=zh)、[basic](https://l-jovi.github.io/latte-web/fundamentals/css/basic/index.html?lang=zh)、[居中](https://l-jovi.github.io/latte-web/fundamentals/css/vertical-center/index.html?lang=zh)和 [Grid](https://l-jovi.github.io/latte-web/fundamentals/css/grid/index.html?lang=zh)。
 
 ## 原理
 

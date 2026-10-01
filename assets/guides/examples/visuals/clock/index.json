@@ -31,7 +31,7 @@
         "run": "console.log('right after the click: ' + document.querySelector('output').textContent);"
       },
       "actionLabel": "Click Start 10-second countdown",
-      "actionLabelZh": "点击 Start 10-second countdown",
+      "actionLabelZh": "点击「开始 10 秒倒计时」",
       "watch": [
         {
           "label": "text under the canvas",
@@ -60,14 +60,14 @@
       "title": "Start over at any time",
       "titleZh": "随时从头开始",
       "text": "Click the button again: it cancels the running loop with `cancelAnimationFrame` before it starts a new one, so two loops never run at once. The particles are cleared, and the console shows that the text goes straight back to `10 seconds remaining`.",
-      "textZh": "再点一次按钮：它先用 `cancelAnimationFrame` 取消正在运行的循环，再开始新的，所以不会有两个循环同时运行。粒子被清空；控制台显示，文字立刻回到了 `10 seconds remaining`。",
+      "textZh": "再点一次按钮：它先用 `cancelAnimationFrame` 取消正在运行的循环，再开始新的，所以不会有两个循环同时运行。粒子被清空；控制台显示，文字立刻回到了「还剩 10 秒」。",
       "action": {
         "clear": true,
         "clickText": "Start 10-second countdown",
         "run": "console.log('right after the click: ' + document.querySelector('output').textContent);"
       },
       "actionLabel": "Click Start 10-second countdown again",
-      "actionLabelZh": "再点一次 Start 10-second countdown",
+      "actionLabelZh": "再点一次「开始 10 秒倒计时」",
       "watch": [
         {
           "label": "text under the canvas",

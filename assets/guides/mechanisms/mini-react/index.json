@@ -19,14 +19,14 @@
     },
     {
       "title": "Click First",
-      "titleZh": "点击 First",
+      "titleZh": "点击「第一个」",
       "text": "The click calls `setState` on the first instance only. `setState` merges the new count into that instance's state and calls the update function the instance got when it was mounted. **First** goes up; **Second** stays at 0.",
-      "textZh": "这次点击只调用了第一个实例的 `setState`。`setState` 把新的计数合并进这个实例的状态，再调用它在挂载时拿到的更新函数。于是 **First** 加一，**Second** 仍是 0。",
+      "textZh": "这次点击只调用了第一个实例的 `setState`。`setState` 把新的计数合并进这个实例的状态，再调用它在挂载时拿到的更新函数。于是**第一个**加一，**第二个**仍是 0。",
       "action": {
         "click": "#root button"
       },
       "actionLabel": "Click the First counter",
-      "actionLabelZh": "点击 First 计数器",
+      "actionLabelZh": "点击「第一个」计数器",
       "watch": [
         {
           "label": "buttons",
@@ -41,13 +41,13 @@
       "title": "The clicked button is a new element",
       "titleZh": "被点的按钮已经换成新元素",
       "text": "An update does not compare the old result with the new one, as React does. It renders again, builds new DOM nodes and swaps them in. This button keeps a reference to the **First** button, clicks it, and compares: the page now holds a different element, and the old one has left the page.",
-      "textZh": "更新时不会像 React 那样比较新旧结果，而是重新渲染、创建新的 DOM 节点，再把它们换上去。这个按钮先记住 **First** 按钮，点击它，再做比较：页面里已经是另一个元素了，旧的那个已经离开了页面。",
+      "textZh": "更新时不会像 React 那样比较新旧结果，而是重新渲染、创建新的 DOM 节点，再把它们换上去。这个按钮先记住**第一个**按钮，点击它，再做比较：页面里已经是另一个元素了，旧的那个已经离开了页面。",
       "action": {
         "clear": true,
         "run": "const before = document.querySelector('#root button'); before.click(); const after = document.querySelector('#root button'); console.log('same element after the click:', before === after); console.log('old element still in the page:', before.isConnected)"
       },
       "actionLabel": "Click First and compare the elements",
-      "actionLabelZh": "点击 First 并比较前后的元素",
+      "actionLabelZh": "点击「第一个」并比较前后的元素",
       "watch": [
         {
           "label": "buttons",
@@ -64,14 +64,14 @@
     },
     {
       "title": "Second keeps its own state",
-      "titleZh": "Second 有自己的状态",
+      "titleZh": "「第二个」有自己的状态",
       "text": "Each instance gets its own update function when it is mounted, so the two counters never mix up their state. A click on **Second** changes only **Second**.",
-      "textZh": "每个实例在挂载时都会拿到自己的更新函数，所以两个计数器的状态从不混在一起。点击 **Second** 只会改变 **Second**。",
+      "textZh": "每个实例在挂载时都会拿到自己的更新函数，所以两个计数器的状态从不混在一起。点击**第二个**只会改变**第二个**。",
       "action": {
         "click": "#root button + button"
       },
       "actionLabel": "Click the Second counter",
-      "actionLabelZh": "点击 Second 计数器",
+      "actionLabelZh": "点击「第二个」计数器",
       "watch": [
         {
           "label": "buttons",

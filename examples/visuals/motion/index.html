@@ -1,36 +1,40 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-title-en="Menu, step bar and progress ring · Latte Web" data-title-zh="导航、步骤条与环形进度 · Latte Web">
   <meta charset="utf-8" /><meta
     name="viewport"
     content="width=device-width,initial-scale=1"
   /><title>Menu, step bar and progress ring · Latte Web</title
-  ><!-- latte-site:css --><link rel="stylesheet" href="../../../assets/site.css"><!-- /latte-site:css --><!-- latte-site:guide --><script src="../../../assets/guide.js" data-guide="../../../assets/guides/examples/visuals/motion/index.json"></script><!-- /latte-site:guide --><link rel="stylesheet" href="../style.css" />
-  <!-- latte-site:bar --><nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="../../../index.html">Latte Web</a><span class="latte-crumb">Applications and experiments</span><span class="latte-links"><a href="https://github.com/L-Jovi/latte-web/tree/main/examples/visuals/motion">README</a><a href="https://github.com/L-Jovi/latte-web/blob/main/examples/visuals/motion/README.zh-Hans.md" lang="zh-Hans">中文</a></span></nav><!-- /latte-site:bar --><h1>Menu, step bar and progress ring</h1>
+  ><!-- latte-site:css --><link rel="stylesheet" href="../../../assets/site.css"><script src="../../../assets/language.js"></script><!-- /latte-site:css --><!-- latte-site:guide --><script src="../../../assets/guide.js" data-guide="../../../assets/guides/examples/visuals/motion/index.json"></script><!-- /latte-site:guide --><link rel="stylesheet" href="../style.css" />
+  <!-- latte-site:bar --><nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="../../../index.html">Latte Web</a><span class="latte-crumb"><span data-l="en">Applications and experiments</span><span data-l="zh">应用与实验</span></span><span class="latte-links"><a data-l="en" href="https://github.com/L-Jovi/latte-web/tree/main/examples/visuals/motion">README</a><a data-l="zh" href="https://github.com/L-Jovi/latte-web/blob/main/examples/visuals/motion/README.zh-Hans.md">README</a><button type="button" class="latte-language" data-language-switch hidden>中文</button></span></nav><!-- /latte-site:bar --><h1><span data-l="en">Menu, step bar and progress ring</span><span data-l="zh">导航、步骤条与环形进度</span></h1>
   <section>
-    <h2>Navigation: a tween and a CSS transition</h2>
-    <nav class="legacy"><a href="#lesson">JavaScript tween</a></nav>
-    <nav class="modern"><a href="#lesson">CSS transition</a></nav>
-    <p id="lesson">Both respond to hover and keyboard focus.</p>
+    <h2><span data-l="en">Navigation: a tween and a CSS transition</span><span data-l="zh">导航：JS 补间与 CSS 过渡</span></h2>
+    <nav class="legacy"><a href="#lesson"><span data-l="en">JavaScript tween</span><span data-l="zh">JavaScript 补间</span></a></nav>
+    <nav class="modern"><a href="#lesson"><span data-l="en">CSS transition</span><span data-l="zh">CSS 过渡</span></a></nav>
+    <p id="lesson"><span data-l="en">Both respond to hover and keyboard focus.</span><span data-l="zh">两者都响应鼠标悬停和键盘焦点。</span></p>
   </section>
   <section>
-    <h2>A step bar</h2>
+    <h2><span data-l="en">A step bar</span><span data-l="zh">步骤条</span></h2>
     <ol id="steps">
-      <li>Read</li>
-      <li>Run</li>
-      <li>Compare</li>
+      <li data-text-en="Read" data-text-zh="阅读">Read</li>
+      <li data-text-en="Run" data-text-zh="运行">Run</li>
+      <li data-text-en="Compare" data-text-zh="对比">Compare</li>
     </ol>
-    <button id="back">Back</button><button id="next">Next</button
+    <button id="back" data-text-en="Back" data-text-zh="上一步">Back</button
+    ><button id="next" data-text-en="Next" data-text-zh="下一步">Next</button
     ><output></output>
   </section>
   <section>
-    <h2>Circular progress</h2>
+    <h2><span data-l="en">Circular progress</span><span data-l="zh">环形进度</span></h2>
     <label
-      >Progress <input id="progress" type="range" min="0" max="100" value="35"
+      ><span data-text-en="Progress" data-text-zh="进度">Progress</span>
+      <input id="progress" type="range" min="0" max="100" value="35"
     /></label>
     <div
       class="ring"
       role="progressbar"
       aria-label="Progress"
+      data-label-en="Progress"
+      data-label-zh="进度"
       aria-valuemin="0"
       aria-valuemax="100"
       aria-valuenow="35"

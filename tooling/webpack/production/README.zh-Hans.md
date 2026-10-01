@@ -12,10 +12,10 @@
 npm ci
 npm run build -w @latte/webpack
 npm run dev
-# 打开 http://127.0.0.1:4173/tooling/webpack/production/dist/
+# 打开 http://127.0.0.1:4173/tooling/webpack/production/dist/?lang=zh
 ```
 
-页面上显示 `Hello webpack!,5 cubed is equal to 125`，控制台打印 `Looks like we are in production mode!`。`dist/bundle.js` 只有 257 字节：先是一行代码，webpack 已经在里面把 `cube(5)` 算成了 `125`，开发模式的提示和没用到的 `square` 函数都去掉了；后面跟着 `//# sourceMappingURL=bundle.js.map`，指向旁边的 source map 文件。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/production/dist/index.html)。
+页面上显示 `Hello webpack!,5 cubed is equal to 125`，控制台打印 `Looks like we are in production mode!`。`dist/bundle.js` 只有 257 字节：先是一行代码，webpack 已经在里面把 `cube(5)` 算成了 `125`，开发模式的提示和没用到的 `square` 函数都去掉了；后面跟着 `//# sourceMappingURL=bundle.js.map`，指向旁边的 source map 文件。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/production/dist/index.html?lang=zh)。
 
 ## 原理
 

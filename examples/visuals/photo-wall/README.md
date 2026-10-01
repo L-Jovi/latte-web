@@ -15,7 +15,7 @@ It works right after cloning; no `npm ci` or build step is needed. Six cards, ea
 
 ## How it works
 
-Everything is in [index.html](index.html) (56 lines); there is no JavaScript.
+Everything is in [index.html](index.html) (57 lines); there is no JavaScript.
 
 - Each card is a `<button>`, so it can take keyboard focus. Its `style` attribute sets two custom properties (CSS variables): `--angle`, its tilt, and `--hue`, the colour of its hill.
 - `.photo` rotates every card by `var(--angle)`. On `:hover` or `:focus-visible` the transform becomes `rotate(0deg) scale(1.08)`, `z-index: 2` lifts the card above the others, and `transition: transform 0.3s` animates the change.

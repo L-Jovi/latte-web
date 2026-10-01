@@ -12,20 +12,20 @@
 npm ci
 npm run build -w @latte/webpack
 npm run dev
-# 打开 http://127.0.0.1:4173/tooling/webpack/asset-management/dist/
+# 打开 http://127.0.0.1:4173/tooling/webpack/asset-management/dist/?lang=zh
 ```
 
-页面上是红色的 **Hello webpack**，背景铺满了重复的图标，后面还跟着同一个图标的图片。浏览器控制台打印出 `note`，这是 XML 文件根元素的名字。`dist/` 里还多了那个 SVG，只存了一份，文件名是一串哈希，比如 `427e6e23fcca9a23d75f.svg`。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/asset-management/dist/index.html)。
+页面上是红色的 **Hello webpack**，背景铺满了重复的图标，后面还跟着同一个图标的图片。浏览器控制台打印出 `note`，这是 XML 文件根元素的名字。`dist/` 里还多了那个 SVG，只存了一份，文件名是一串哈希，比如 `427e6e23fcca9a23d75f.svg`。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/asset-management/dist/index.html?lang=zh)。
 
 ## 原理
 
 [webpack.config.cjs](webpack.config.cjs) 加了三条规则。每条规则用 `test` 匹配文件名，并指定由谁来处理：
 
-| 文件        | 由谁处理                            | 导入后你的代码拿到什么                     |
-| ----------- | ----------------------------------- | ------------------------------------------ |
-| `style.css` | 先 `css-loader`，再 `style-loader`  | 没有可用的值；CSS 会被加到页面上           |
-| `icon.svg`  | `type: 'asset/resource'`            | 文件的 URL；文件本身被复制到 `dist/`       |
-| `data.xml`  | `type: 'asset/source'`              | 文件的文本内容，是一个字符串               |
+| 文件        | 由谁处理                           | 导入后你的代码拿到什么               |
+| ----------- | ---------------------------------- | ------------------------------------ |
+| `style.css` | 先 `css-loader`，再 `style-loader` | 没有可用的值；CSS 会被加到页面上     |
+| `icon.svg`  | `type: 'asset/resource'`           | 文件的 URL；文件本身被复制到 `dist/` |
+| `data.xml`  | `type: 'asset/source'`             | 文件的文本内容，是一个字符串         |
 
 loader 是把一个文件转换成 JavaScript 的函数。`use` 里的 loader 从右往左执行：`css-loader` 读取 CSS，并跟进其中的 `url('./icon.svg')`；接着 `style-loader` 加入一段代码，把 CSS 放进 `<style>` 标签。CSS 和 JavaScript 指向的是同一个图标，所以它只输出一次。`asset/resource` 和 `asset/source` 属于资源模块（asset modules）：它们是 webpack 内置的，不需要额外安装包。
 

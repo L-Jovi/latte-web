@@ -17,7 +17,7 @@ Open the Network tab of the browser's developer tools, then load the page. It sh
 
 ## How it works
 
-[src/index.js](src/index.js) (24 lines) does not import `print.js` at the top. The click handler calls `import()` instead:
+[src/index.js](src/index.js) (34 lines) does not import `print.js` at the top. The click handler calls `import()` instead:
 
 ```js
 button.onclick = (e) =>

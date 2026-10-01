@@ -10,10 +10,10 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/mechanisms/utilities/clone/
+# 打开 http://127.0.0.1:4173/mechanisms/utilities/clone/?lang=zh
 ```
 
-打开浏览器控制台。页面构造了一个对象 `source`，里面有嵌套的数组、一个 DOM 元素、一个函数、一个 Symbol 键，还有一个指回 `source` 自己的属性 `circleRef`，然后打印 `cloneDeep(source)`。现在输入 `structuredClone(source)`：它会抛出 `DataCloneError`，因为这个内置函数无法复制 DOM 元素和函数。不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/clone/index.html)。
+打开浏览器控制台。页面构造了一个对象 `source`，里面有嵌套的数组、一个 DOM 元素、一个函数、一个 Symbol 键，还有一个指回 `source` 自己的属性 `circleRef`，然后打印 `cloneDeep(source)`。现在输入 `structuredClone(source)`：它会抛出 `DataCloneError`，因为这个内置函数无法复制 DOM 元素和函数。不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/clone/index.html?lang=zh)。
 
 ## 原理
 

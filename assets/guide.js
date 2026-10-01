@@ -30,11 +30,8 @@
       other: 'English',
     },
   };
-  // English by default; a reader's choice is kept for the next page.
-  let lang = 'en';
-  try {
-    if (localStorage.getItem('latte-guide-lang') === 'zh') lang = 'zh';
-  } catch {}
+  // The panel speaks the page's language (assets/language.js): English by default.
+  let lang = document.documentElement.dataset.language === 'zh' ? 'zh' : 'en';
 
   // Roughly what DevTools shows, without calling getters or following cycles forever.
   const format = (value, seen = new WeakSet(), depth = 0) => {
@@ -92,7 +89,9 @@
   const show = (line) => {
     const item = document.createElement('div');
     item.className = 'latte-guide-line ' + line.kind;
-    item.textContent = line.text;
+    // What the demo printed is sample output, not the panel's own words.
+    item.append(document.createElement('samp'));
+    item.firstChild.textContent = line.text;
     item.classList.toggle(
       'match',
       Boolean(highlight) && line.text.includes(highlight),
@@ -138,6 +137,18 @@
     if (text) node.textContent = text;
     return node;
   };
+  // In Chinese text, three or more English words in a row (Core Web Vitals,
+  // Largest Contentful Paint) are an English name: marked lang="en", so a
+  // screen reader says them in English and the page's language check knows.
+  const englishRun = /([A-Za-z][\w.+#'’/-]*(?:[ ,]+[A-Za-z][\w.+#'’/-]*){2,})/;
+  const marked = (tag, text) => {
+    const node = el(tag);
+    text.split(lang === 'zh' ? englishRun : /$^/).forEach((piece, i) => {
+      if (i % 2 === 0) node.append(piece);
+      else node.append(Object.assign(el('span', '', piece), { lang: 'en' }));
+    });
+    return node;
+  };
   // Guide text uses `code` and **bold**, like the READMEs.
   const rich = (text) => {
     const span = el('span');
@@ -146,11 +157,9 @@
       const code = part.startsWith('`'),
         bold = part.startsWith('**');
       span.append(
-        el(
-          code ? 'code' : bold ? 'strong' : 'span',
-          '',
-          code ? part.slice(1, -1) : bold ? part.slice(2, -2) : part,
-        ),
+        code
+          ? el('code', '', part.slice(1, -1))
+          : marked(bold ? 'strong' : 'span', bold ? part.slice(2, -2) : part),
       );
     }
     return span;
@@ -165,6 +174,15 @@
     Function(`"use strict"; return (${expression})`)();
   const exec = (statements) => Function(`"use strict"; ${statements}`)();
   const inPage = (node) => !node.closest('.latte-guide');
+  // clickText names a button by its English text. A page in Chinese shows the
+  // other half of each pair (assets/language.js), so the English half is read:
+  // data-text-en, or the text without its [data-l="zh"] parts.
+  const englishText = (node) => {
+    if (node.dataset.textEn) return node.dataset.textEn;
+    const copy = node.cloneNode(true);
+    for (const zh of copy.querySelectorAll('[data-l="zh"]')) zh.remove();
+    return copy.textContent.trim();
+  };
   // Styles a step toggles, with their original inline values, so that every step
   // starts from the page as it was written.
   const toggled = new Map();
@@ -182,11 +200,12 @@
     }
     if (action.fill) {
       // Set the value the way typing does, so frameworks such as React see it.
+      // A reader of the Chinese page types Chinese (valueZh) where text is free.
       const field = document.querySelector(action.fill.target);
       const prototype = Object.getPrototypeOf(field);
       Object.getOwnPropertyDescriptor(prototype, 'value').set.call(
         field,
-        action.fill.value,
+        pick(action.fill, 'value'),
       );
       field.dispatchEvent(new Event('input', { bubbles: true }));
       field.dispatchEvent(new Event('change', { bubbles: true }));
@@ -194,10 +213,7 @@
     if (action.click) document.querySelector(action.click).click();
     if (action.clickText)
       [...document.querySelectorAll('button, a, summary, [role="button"]')]
-        .find(
-          (node) =>
-            inPage(node) && node.textContent.trim() === action.clickText,
-        )
+        .find((node) => inPage(node) && englishText(node) === action.clickText)
         .click();
     if (action.run) exec(action.run);
     if (action.toggle) {
@@ -251,8 +267,10 @@
     let index = 0;
     const top = el('div', 'latte-guide-top');
     const head = el('p', 'latte-guide-head');
+    // The page's language switch: assets/language.js handles every such button.
     const switcher = el('button', 'latte-guide-lang');
     switcher.type = 'button';
+    switcher.dataset.languageSwitch = '';
     top.append(head, switcher);
     const body = el('div', 'latte-guide-step');
     body.setAttribute('aria-live', 'polite');
@@ -292,6 +310,10 @@
       outLabel.textContent = t.console;
       switcher.textContent = t.other;
       switcher.lang = lang === 'zh' ? 'en' : 'zh-Hans';
+      switcher.setAttribute(
+        'aria-label',
+        lang === 'zh' ? 'Switch the page to English' : '把页面切换为中文',
+      );
       back.textContent = t.back;
       next.textContent = t.next;
       if (!steps.length) return;
@@ -300,7 +322,9 @@
       if (moved) restore();
       focusOn(step.focus || action.click || action.toggle?.target, moved);
       head.textContent = t.step(index + 1, steps.length);
-      body.replaceChildren(el('p', 'latte-guide-title', pick(step, 'title')));
+      const title = marked('p', pick(step, 'title'));
+      title.className = 'latte-guide-title';
+      body.replaceChildren(title);
       const text = el('p', 'latte-guide-text');
       text.append(rich(pick(step, 'text')));
       body.append(text);
@@ -308,8 +332,11 @@
       // Readouts can change many times a second, so screen readers are not told each time.
       watch.setAttribute('aria-live', 'off');
       const readouts = (step.watch || []).map((item) => {
-        const shown = el('dd');
-        watch.append(el('dt', '', pick(item, 'label')), shown);
+        // A readout is what the page computed, like a console line: a <samp>.
+        const shown = el('samp');
+        const value = el('dd');
+        value.append(shown);
+        watch.append(el('dt', '', pick(item, 'label')), value);
         return [item, shown];
       });
       const update = () => {
@@ -358,13 +385,10 @@
     back.onclick = () => (index--, render(true));
     next.onclick = () => (index++, render(true));
     // Switching the language keeps the page as it is: toggled styles stay switched.
-    switcher.onclick = () => {
-      lang = lang === 'zh' ? 'en' : 'zh';
-      try {
-        localStorage.setItem('latte-guide-lang', lang);
-      } catch {}
+    document.addEventListener('languagechange', (event) => {
+      lang = event.detail === 'zh' ? 'zh' : 'en';
       render();
-    };
+    });
     panel.append(top);
     // The buttons sit above the step, so a step's length, or a readout that grows
     // after an action, never moves them: Next stays under the pointer.

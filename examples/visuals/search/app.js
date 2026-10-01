@@ -4,12 +4,37 @@ const input = document.querySelector('input'),
 let topics = [],
   matches = [],
   selected = -1;
+// The page shows one language at a time (assets/language.js). The text below
+// is kept as a message and its value, so a language switch can write it again.
+// Topics are data, so they stay as they are, like the reason a load failed.
+const messages = {
+  en: {
+    failed: (reason) => 'Could not load topics: ' + reason,
+    selected: (topic) => 'Selected: ' + topic,
+    count: (n) => n + (n === 1 ? ' suggestion' : ' suggestions'),
+  },
+  zh: {
+    failed: (reason) => '无法加载主题：' + reason,
+    selected: (topic) => '已选择：' + topic,
+    count: (n) => `${n} 条建议`,
+  },
+};
+let said = null;
+function say(key, value) {
+  said = [key, value];
+  const language =
+    document.documentElement.dataset.language === 'zh' ? 'zh' : 'en';
+  output.textContent = messages[language][key](value);
+}
+document.addEventListener('languagechange', () => {
+  if (said) say(...said);
+});
 try {
   const response = await fetch('./topics.json');
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   topics = await response.json();
 } catch (error) {
-  output.textContent = 'Could not load topics: ' + error.message;
+  say('failed', error.message);
 }
 function close() {
   list.hidden = true;
@@ -18,7 +43,7 @@ function close() {
 }
 function choose(i) {
   input.value = matches[i];
-  output.textContent = 'Selected: ' + matches[i];
+  say('selected', matches[i]);
   close();
 }
 function highlight() {
@@ -50,8 +75,7 @@ input.oninput = () => {
   list.hidden = matches.length === 0;
   input.setAttribute('aria-expanded', String(matches.length > 0));
   highlight();
-  output.textContent =
-    matches.length + (matches.length === 1 ? ' suggestion' : ' suggestions');
+  say('count', matches.length);
 };
 input.onkeydown = (event) => {
   if (event.key === 'Escape') {

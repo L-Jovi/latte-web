@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 原来的架构，修好后运行在 React 19 上。它和[今天风格的版本](../react-modern/README.zh-Hans.md)功能完全相同，可以逐个文件对照着读。
 
@@ -12,17 +12,17 @@
 npm ci
 npm run build -w @latte/react-classic
 npm run dev
-# 打开 http://127.0.0.1:4173/examples/react-classic/dist/
+# 打开 http://127.0.0.1:4173/examples/react-classic/dist/?lang=zh
 ```
 
-列表一开始只有一条待办：**Use Redux**。可以试试这些：
+列表一开始只有一条待办：**使用 Redux**。可以试试这些：
 
 - 新增、编辑、勾选和删除待办。编辑时把文字清空再保存，这一条就会被删掉。
-- 用 **All**、**Active**、**Completed** 筛选，或者点 **Toggle all**（全部切换）和 **Clear completed**（清除已完成）。
-- **Import examples** 从本地的 `todos.json` 读入两条虚构的标题，并显示 `Imported 2 todos`。如果读取失败，页面会显示 `Import failed. Try again.`，再点一次即可重试。
-- **About** 打开第二个页面，浏览器的后退、前进按钮可以在两个页面之间切换。
+- 用**全部**、**未完成**、**已完成**筛选，或者点**全部切换**和**清除已完成**。
+- **导入示例**从本地的 `todos.json` 读入两条虚构的标题，并显示 `已导入 2 条待办`。如果读取失败，页面会显示 `导入失败，请重试。`，再点一次即可重试。
+- **关于**打开第二个页面，浏览器的后退、前进按钮可以在两个页面之间切换。
 
-什么都不会保存：刷新页面就从头开始。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/react-classic/dist/index.html)。
+什么都不会保存：刷新页面就从头开始。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/react-classic/dist/index.html?lang=zh)。
 
 ## 原理
 
@@ -32,7 +32,7 @@ npm run dev
 2. [src/reducer.js](src/reducer.js)（97 行）在一个 `switch` 里处理各种 action。状态是一个 Immutable.js 的 `Map`，里面装着待办组成的 `List`，所以每次更新都返回一个新对象，而不是修改旧对象。
 3. [src/sagas.js](src/sagas.js)（21 行）负责导入。_saga_ 是一个 generator 函数，一步一步地描述副作用：先宣布开始，再用 `call` 调用读取文件的函数，最后用 `put` 把标题或错误送进 store。导入进行期间，`takeLeading` 会忽略新的导入请求。文件内容必须是字符串列表，否则导入失败。
 4. [src/store.js](src/store.js)（10 行）创建 store，并挂上 saga 中间件。
-5. [src/App.jsx](src/App.jsx)（101 行）和 [src/TodoItem.jsx](src/TodoItem.jsx)（46 行）是 class 组件。`connect` 把当前可见的待办、筛选条件、状态和错误信息，以及各个 action creator 作为 props 交给页面组件，页面组件再把每条待办和 action creator 交给 `TodoItem`。还在输入中的文字放在组件自己的 `state` 里，不进 store。
+5. [src/App.jsx](src/App.jsx)（123 行）和 [src/TodoItem.jsx](src/TodoItem.jsx)（49 行）是 class 组件。`connect` 把当前可见的待办、筛选条件、状态和错误信息，以及各个 action creator 作为 props 交给页面组件，页面组件再把每条待办和 action creator 交给 `TodoItem`。还在输入中的文字放在组件自己的 `state` 里，不进 store。
 
 导入的标题会分配新的 ID，不会和你自己添加的待办冲突。路由用的是 `HashRouter`：页面名放在 `#` 后面，比如 `#/about`，所以任何普通的静态服务器都能提供这两个页面。
 
@@ -44,15 +44,15 @@ npm run dev
 
 两个版本对照：
 
-| 工作         | 2018 年风格（本目录）                                        | 今天的风格（[react-modern](../react-modern/README.zh-Hans.md)）          |
-| ------------ | ------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| 组件         | class，通过 `connect` 连接 store                             | 函数，使用 `useAppSelector` 和 `useAppDispatch` 这两个 Hook              |
-| action       | 在 `actions.js` 里用 `createAction` 手写                     | 由 `store.ts` 里的 `createSlice` 自动生成                                |
-| 更新状态     | `reducer.js` 里的 `switch`，返回新的 Immutable.js `Map` 和 `List` | slice 里的 reducer 直接修改草稿，由 Immer 生成新对象                   |
-| 导入示例     | `sagas.js` 里的 saga（`call`、`put`、`takeLeading`）         | `store.ts` 里的 RTK Query 接口，用 `useLazyExamplesQuery` 触发           |
-| 加载与出错   | reducer 里分别处理开始、结果和失败                           | 由 RTK Query 记录（`isFetching`、`isError`）                             |
-| 创建 store   | `store.js` 里的 `legacy_createStore` 加 saga 中间件          | `store.ts` 里的 `configureStore`                                         |
-| 语言         | JavaScript                                                   | TypeScript，开启 `strict` 模式                                           |
+| 工作       | 2018 年风格（本目录）                                             | 今天的风格（[react-modern](../react-modern/README.zh-Hans.md)） |
+| ---------- | ----------------------------------------------------------------- | --------------------------------------------------------------- |
+| 组件       | class，通过 `connect` 连接 store                                  | 函数，使用 `useAppSelector` 和 `useAppDispatch` 这两个 Hook     |
+| action     | 在 `actions.js` 里用 `createAction` 手写                          | 由 `store.ts` 里的 `createSlice` 自动生成                       |
+| 更新状态   | `reducer.js` 里的 `switch`，返回新的 Immutable.js `Map` 和 `List` | slice 里的 reducer 直接修改草稿，由 Immer 生成新对象            |
+| 导入示例   | `sagas.js` 里的 saga（`call`、`put`、`takeLeading`）              | `store.ts` 里的 RTK Query 接口，用 `useLazyExamplesQuery` 触发  |
+| 加载与出错 | reducer 里分别处理开始、结果和失败                                | 由 RTK Query 记录（`isFetching`、`isError`）                    |
+| 创建 store | `store.js` 里的 `legacy_createStore` 加 saga 中间件               | `store.ts` 里的 `configureStore`                                |
+| 语言       | JavaScript                                                        | TypeScript，开启 `strict` 模式                                  |
 
 更完整的经过见[生态是怎样变过来的](../../docs/ecosystem.zh-Hans.md)。
 

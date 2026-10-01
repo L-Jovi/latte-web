@@ -10,10 +10,10 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/mechanisms/utilities/add/
+# 打开 http://127.0.0.1:4173/mechanisms/utilities/add/?lang=zh
 ```
 
-打开浏览器控制台。页面打印了三个链式调用的结果，可控制台里显示的是函数而不是数字：比如 Chromium 会打印出每个函数的源代码。所以请自己动手转换：输入 `String(addMutiplyParams(1, 2)(3))`，得到 `'6'`；`String(addMutiplyParams(1, 2, 3)(5, 7)())` 得到 `'18'`。不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/add/index.html)。
+打开浏览器控制台。页面打印了三个链式调用的结果，可控制台里显示的是函数而不是数字：比如 Chromium 会打印出每个函数的源代码。所以请自己动手转换：输入 `String(addMutiplyParams(1, 2)(3))`，得到 `'6'`；`String(addMutiplyParams(1, 2, 3)(5, 7)())` 得到 `'18'`。不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/add/index.html?lang=zh)。
 
 ## 原理
 

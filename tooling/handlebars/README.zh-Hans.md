@@ -12,10 +12,10 @@
 npm ci
 npm run build -w @latte/handlebars
 npm run dev
-# 打开 http://127.0.0.1:4173/tooling/handlebars/dist/
+# 打开 http://127.0.0.1:4173/tooling/handlebars/dist/?lang=zh
 ```
 
-在标题 **What `{{info}}` printed** 下面，页面显示文字 `<img src=x onerror=alert(1)>`。它只是文字：既没有生成图片，也没有弹出提示框。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/handlebars/dist/index.html)。
+在标题 **`{{info}}` 输出了什么**下面，页面显示文字 `<img src=x onerror=alert(1)>`。它只是文字：既没有生成图片，也没有弹出提示框。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/handlebars/dist/index.html?lang=zh)。
 
 ## 原理
 

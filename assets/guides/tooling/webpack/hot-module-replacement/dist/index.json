@@ -22,7 +22,7 @@
       "textZh": "点击处理函数是 `src/print.js` 里的 `printMe`，它在下面的控制台打印 `content change :)`。",
       "action": {
         "clear": true,
-        "clickText": "Click me and check the console!"
+        "click": "body > div button"
       },
       "actionLabel": "Click the page's button",
       "actionLabelZh": "点击页面上的按钮",

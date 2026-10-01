@@ -1,7 +1,21 @@
+// The site bar above the wheel has a button of its own: the language switch.
 const wheel = document.querySelector('.wheel'),
-  button = document.querySelector('button'),
+  button = document.querySelector('.wheel ~ button'),
   output = document.querySelector('output');
-let angle = 0;
+let angle = 0,
+  selected = null;
+// The page shows one language at a time (assets/language.js), so the result
+// is kept and written again when the reader switches language.
+function say(letter) {
+  selected = letter;
+  output.textContent =
+    document.documentElement.dataset.language === 'zh'
+      ? '选中：' + letter
+      : 'Selected: ' + letter;
+}
+document.addEventListener('languagechange', () => {
+  if (selected) say(selected);
+});
 button.onclick = async () => {
   button.disabled = true;
   const index = Math.floor(Math.random() * 4);
@@ -23,7 +37,7 @@ button.onclick = async () => {
     angle = next;
     wheel.style.transform = `rotate(${angle}deg)`;
     animation.cancel();
-    output.textContent = 'Selected: ' + ['A', 'B', 'C', 'D'][index];
+    say(['A', 'B', 'C', 'D'][index]);
   } finally {
     button.disabled = false;
   }

@@ -10,10 +10,10 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/fundamentals/javascript/
+# 打开 http://127.0.0.1:4173/fundamentals/javascript/?lang=zh
 ```
 
-不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。打开浏览器控制台：页面用 `forgeNew`（[instance](instance/README.zh-Hans.md) 里手写的 `new`）创建一个对象，并把它打印在两行 `=== forge new ===` 之间，它的 `name` 是 `'saber'`。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/fundamentals/javascript/index.html)。
+不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。打开浏览器控制台：页面用 `forgeNew`（[instance](instance/README.zh-Hans.md) 里手写的 `new`）创建一个对象，并把它打印在两行 `=== forge new ===` 之间，它的 `name` 是 `'saber'`。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/fundamentals/javascript/index.html?lang=zh)。
 
 闭包示例没有页面，在仓库根目录用 Node 运行：
 

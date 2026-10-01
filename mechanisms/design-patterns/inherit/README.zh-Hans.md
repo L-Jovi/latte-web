@@ -10,10 +10,10 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/mechanisms/design-patterns/inherit/
+# 打开 http://127.0.0.1:4173/mechanisms/design-patterns/inherit/?lang=zh
 ```
 
-克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。打开浏览器控制台，先看到 prototype.js 打印的 `animal`，再看到 combination.js 打印的 `1` 和 `true`。页面把每个文件都作为模块加载，所以两个文件都可以使用 `Parent`、`Child` 这样的名字而互不冲突。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/design-patterns/inherit/index.html)。
+克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。打开浏览器控制台，先看到 prototype.js 打印的 `animal`，再看到 combination.js 打印的 `1` 和 `true`。页面把每个文件都作为模块加载，所以两个文件都可以使用 `Parent`、`Child` 这样的名字而互不冲突。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/design-patterns/inherit/index.html?lang=zh)。
 
 页面没有加载 prototype-obj.js。用 `node mechanisms/design-patterns/inherit/prototype-obj.js` 运行它，会打印 `animal`。
 

@@ -12,10 +12,10 @@
 npm ci
 npm run build -w @latte/gulp-typescript
 npm run dev
-# 打开 http://127.0.0.1:4173/tooling/gulp-typescript/dist/
+# 打开 http://127.0.0.1:4173/tooling/gulp-typescript/dist/?lang=zh
 ```
 
-Gulp 依次为 `clean`、`compile` 和 `html` 打印 `Starting` 和 `Finished`。页面标题从 `Loading greeting` 变成 **Hello from TypeScript modules via Gulp**。`dist/` 里有 `index.html`，每个 `.ts` 文件也各对应一个 `.js` 文件：`main.js` 和 `greet.js`。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/gulp-typescript/dist/index.html)。
+Gulp 依次为 `clean`、`compile` 和 `html` 打印 `Starting` 和 `Finished`。页面标题从「正在加载问候」变成**经 Gulp 构建的 TypeScript 模块向你问好**。`dist/` 里有 `index.html`，每个 `.ts` 文件也各对应一个 `.js` 文件：`main.js` 和 `greet.js`。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/gulp-typescript/dist/index.html?lang=zh)。
 
 ## 原理
 

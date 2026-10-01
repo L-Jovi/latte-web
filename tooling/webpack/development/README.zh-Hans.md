@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 用开发模式构建，在 DevTools 里看到原始源码。source map（源码映射）把打包产物里的每一行，对应回你自己代码里生成它的那一行。
 
@@ -12,10 +12,10 @@
 npm ci
 npm run build -w @latte/webpack
 npm run dev
-# 打开 http://127.0.0.1:4173/tooling/webpack/development/dist/
+# 打开 http://127.0.0.1:4173/tooling/webpack/development/dist/?lang=zh
 ```
 
-页面上有 **Hello webpack** 和一个按钮。点击按钮，控制台打印 `I get called from print.js.`，同时弹出提示框 `trigger from button :)`。接着打开浏览器的开发者工具：页面只加载了 `bundle.js`，但 Sources 面板（Firefox 里叫 Debugger）里有一个 `webpack://` 分组，其中的 `src/index.js` 和 `src/print.js` 跟你写的一模一样。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/development/dist/index.html)。
+页面上有 **Hello webpack** 和一个按钮。点击按钮，控制台打印 `I get called from print.js.`，同时弹出提示框 `trigger from button :)`。接着打开浏览器的开发者工具：页面只加载了 `bundle.js`，但 Sources 面板（Firefox 里叫 Debugger）里有一个 `webpack://` 分组，其中的 `src/index.js` 和 `src/print.js` 跟你写的一模一样。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/development/dist/index.html?lang=zh)。
 
 ## 原理
 
@@ -24,7 +24,7 @@ npm run dev
 - `mode: 'development'` 关掉压缩，所以 `dist/bundle.js` 保持可读，每个模块前面还有一行注释，写明它来自哪个文件。
 - `devtool: 'inline-source-map'` 把 source map 直接放进 `bundle.js`：它以 `data:` URL 的形式写在最后一行的注释里。开发者工具读到这行注释，展示给你的就是原来的文件，而不是打包产物。
 
-[src/index.js](src/index.js)（18 行）负责搭建页面，点击按钮时运行 [src/print.js](src/print.js)（4 行）里的 `printMe`。
+[src/index.js](src/index.js)（28 行）负责搭建页面，点击按钮时运行 [src/print.js](src/print.js)（4 行）里的 `printMe`。
 
 想看 source map 怎样帮你定位错误，可以把 `src/print.js` 里的 `console.log` 改成 `cosnole.log`，重新构建，刷新页面后再点击。报错指向 `print.js:2`，正是要修改的那一行，而不是 `bundle.js` 深处的某一行。
 

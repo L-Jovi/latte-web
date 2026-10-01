@@ -9,12 +9,12 @@
         {
           "label": "Page scripts (not counting the guide)",
           "labelZh": "页面脚本（不含说明面板）",
-          "value": "[...document.scripts].filter((s) => !s.src.endsWith('/guide.js')).map((s) => s.getAttribute('src')).join(', ')"
+          "value": "[...document.scripts].filter((s) => !/\\/(guide|language)\\.js$/.test(s.src)).map((s) => s.getAttribute('src')).join(', ')"
         },
         {
           "label": "Every name ends in a 20-character hash",
           "labelZh": "每个文件名都以 20 位哈希结尾",
-          "value": "[...document.scripts].filter((s) => !s.src.endsWith('/guide.js')).every((s) => /\\.[0-9a-f]{20}\\.js$/.test(s.getAttribute('src')))",
+          "value": "[...document.scripts].filter((s) => !/\\/(guide|language)\\.js$/.test(s.src)).every((s) => /\\.[0-9a-f]{20}\\.js$/.test(s.getAttribute('src')))",
           "expect": "true"
         }
       ]
@@ -41,7 +41,7 @@
         {
           "label": "Names in this build",
           "labelZh": "这次构建的文件名",
-          "value": "[...document.scripts].filter((s) => !s.src.endsWith('/guide.js')).map((s) => s.getAttribute('src')).join(', ')"
+          "value": "[...document.scripts].filter((s) => !/\\/(guide|language)\\.js$/.test(s.src)).map((s) => s.getAttribute('src')).join(', ')"
         }
       ],
       "action": {

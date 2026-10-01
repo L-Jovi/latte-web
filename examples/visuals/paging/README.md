@@ -20,7 +20,7 @@ When a swipe goes far enough, the next page slides in and the text below changes
 
 ## How it works
 
-Everything is in [app.js](app.js) (95 lines). One `pager` function drives both tracks; only the direction and the events differ.
+Everything is in [app.js](app.js) (101 lines). One `pager` function drives both tracks; only the direction and the events differ.
 
 1. When a gesture starts, it records the position and the time, and turns off the CSS transition so the pages follow the finger directly.
 2. While the finger moves, the track moves by the same distance.

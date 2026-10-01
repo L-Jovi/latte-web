@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 用点阵画出数字；数字变化时，点会化作粒子落下。
 
@@ -10,14 +10,14 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/examples/visuals/clock/
+# 打开 http://127.0.0.1:4173/examples/visuals/clock/?lang=zh
 ```
 
-克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。画布上用蓝色圆点显示 `00:00:10`。点击 **Start 10-second countdown**：画布下方的文字变成 `10 seconds remaining`，之后每秒减一。每当某一位数字变化，旧数字的圆点就会变成彩色粒子，先跳起，再落下，在底部弹跳。任何时候再点一次按钮，都会从头开始。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/visuals/clock/index.html)。
+克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。画布上用蓝色圆点显示 `00:00:10`。点击**开始 10 秒倒计时**：画布下方的文字变成 `还剩 10 秒`，之后每秒减一。每当某一位数字变化，旧数字的圆点就会变成彩色粒子，先跳起，再落下，在底部弹跳。任何时候再点一次按钮，都会从头开始。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/visuals/clock/index.html?lang=zh)。
 
 ## 原理
 
-先读 [digit.js](digit.js)（134 行），再读 [app.js](app.js)（80 行）。
+先读 [digit.js](digit.js)（134 行），再读 [app.js](app.js)（94 行）。
 
 1. `digit.js` 把每个数字存成由 0 和 1 组成的网格，10 行 7 列（冒号宽 4 列）。`app.js` 在每个 1 的位置画一个圆。
 2. 剩余时间根据截止时间计算。点击时把 `end` 设为 10 秒之后，每一帧都算一次 `Math.ceil((end - now) / 1000)`，所以即使丢了几帧，倒计时也不会走偏。

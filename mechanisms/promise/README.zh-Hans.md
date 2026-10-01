@@ -10,10 +10,10 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/mechanisms/promise/
+# 打开 http://127.0.0.1:4173/mechanisms/promise/?lang=zh
 ```
 
-页面串联了两次 `then`，显示 `1,2`。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/promise/index.html)。
+页面串联了两次 `then`，显示 `1,2`。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/promise/index.html?lang=zh)。
 
 用官方测试集检验完整版：
 

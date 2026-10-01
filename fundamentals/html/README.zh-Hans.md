@@ -10,10 +10,10 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/fundamentals/html/semantic.html
+# 打开 http://127.0.0.1:4173/fundamentals/html/semantic.html?lang=zh
 ```
 
-不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。页面没有自己的样式，只用了全站共用的样式表来设定字体、颜色和间距：一个大标题、两个链接、一篇文章，以及一段关于这本笔记的简短说明。两个链接分别跳到文章和那段说明，地址随之以 `#entry` 或 `#author` 结尾。打开开发者工具的 Elements（元素）面板，就能看到背后的结构。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/fundamentals/html/semantic.html)。
+不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。页面没有自己的样式，只用了全站共用的样式表来设定字体、颜色和间距：一个大标题、两个链接、一篇文章，以及一段关于这本笔记的简短说明。两个链接分别跳到文章和那段说明，地址随之以 `#entry` 或 `#author` 结尾。打开开发者工具的 Elements（元素）面板，就能看到背后的结构。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/fundamentals/html/semantic.html?lang=zh)。
 
 ## 原理
 
@@ -23,7 +23,7 @@ npm run dev
 - `<nav>` 放在页面内跳转的链接。它的 `aria-label="Notebook"` 给这组导航起了一个名字，供屏幕阅读器使用。
 - `<main>` 放页面的主要内容。
 - `<article>` 是一段可以独立成立的内容，比如一篇博客文章。它里面用 `<section>` 归拢一个主题，用 `<footer>` 给出发布日期。
-- `<time datetime="2026-09-28">` 给人看的是“28 September 2026”，同时用固定的格式把同一个日期提供给程序。
+- `<time datetime="2026-09-28">` 给人看的是“2026 年 9 月 28 日”，同时用固定的格式把同一个日期提供给程序。
 - `<aside>` 放相关内容，这里是那段关于笔记的说明。
 - 最后一个 `<footer>` 作为整个页面的结尾。
 

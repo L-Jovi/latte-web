@@ -12,10 +12,10 @@
 npm ci
 npm run build -w @latte/webpack
 npm run dev
-# 打开 http://127.0.0.1:4173/tooling/webpack/getting-started/dist/
+# 打开 http://127.0.0.1:4173/tooling/webpack/getting-started/dist/?lang=zh
 ```
 
-页面上显示 **Hello Webpack**。`dist/` 里有三个文件：`index.html`；`bundle.js`，Lodash 和你的代码被压缩在这一个文件里；还有 `bundle.js.LICENSE.txt`，压缩工具把 Lodash 的许可注释挪到了这里。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/getting-started/dist/index.html)。
+页面上显示 **Hello Webpack**。`dist/` 里有三个文件：`index.html`；`bundle.js`，Lodash 和你的代码被压缩在这一个文件里；还有 `bundle.js.LICENSE.txt`，压缩工具把 Lodash 的许可注释挪到了这里。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/getting-started/dist/index.html?lang=zh)。
 
 ## 原理
 

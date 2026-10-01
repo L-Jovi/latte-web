@@ -1,6 +1,3 @@
-<!doctype html>
-<html lang="en" data-title-en="Offline pages with a service worker · Latte Web" data-title-zh="用 Service Worker 实现离线访问 · Latte Web">
-  <meta charset="utf-8" /><title>Offline pages with a service worker · Latte Web</title><!-- latte-site:language --><script>
 // The site's language switch. Every page carries its text in English and in
 // Chinese, and shows one language at a time: English, unless ?lang=zh or an
 // earlier choice asks for Chinese. Static text sits in pairs of elements
@@ -95,34 +92,3 @@
       window.latteLanguage.toggle();
   });
 })();
-</script><!-- /latte-site:language -->
-  <!-- The service worker caches only this page's own three files, so the page
-       loads no shared ones: the language switch (assets/language.js) is written
-       in after the title, and this rule hides the language not shown. -->
-  <style>
-    :root:not([data-language='zh']) [data-l='zh'],
-    :root[data-language='zh'] [data-l='en'] {
-      display: none !important;
-    }
-  </style>
-  <button type="button" data-language-switch hidden>中文</button>
-  <h1><span data-l="en">Offline notebook</span><span data-l="zh">离线笔记本</span></h1>
-  <p data-l="en">
-    This page and its script can load while the network is offline after
-    registration.
-  </p>
-  <p data-l="zh">注册之后，即使网络离线，这个页面和它的脚本也能加载。</p>
-  <button
-    id="register"
-    data-text-en="Enable offline cache"
-    data-text-zh="启用离线缓存"
-  >Enable offline cache</button
-  ><button
-    id="clear"
-    data-text-en="Clear this experiment"
-    data-text-zh="清理这个实验"
-  >Clear this experiment</button>
-  <p id="connection"></p>
-  <output aria-live="polite"><span data-l="en">Not registered</span><span data-l="zh">未注册</span></output>
-  <script type="module" src="app.js"></script>
-</html>
