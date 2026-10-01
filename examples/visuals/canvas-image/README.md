@@ -18,7 +18,7 @@ It works right after cloning; no `npm ci` or build step is needed. The canvas sh
 - Tick **Watermark** to write `latte-web` near the bottom-right corner.
 - Tick **Magnifier** and move the pointer over the canvas. A round lens shows the original, unfiltered picture at twice the current scale. You can also focus the canvas with the Tab key and move the lens with the arrow keys.
 
-You can also open the [live demo](https://latte.jovipro.com/examples/visuals/canvas-image/index.html).
+You can also open the [live demo](https://l-jovi.github.io/latte-web/examples/visuals/canvas-image/index.html).
 
 ## How it works
 

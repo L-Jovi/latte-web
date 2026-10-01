@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 用闭包累加，再看一个函数是怎么变成数字的。“柯里化”是指把参数拆开，通过一连串调用逐次传入，而不是一次传完；“类型转换”是指 JavaScript 自动把一个值转换成另一种类型。
 
@@ -13,7 +13,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/mechanisms/utilities/add/
 ```
 
-打开浏览器控制台。页面打印了三个链式调用的结果，可控制台里显示的是函数而不是数字：比如 Chromium 会打印出每个函数的源代码。所以请自己动手转换：输入 `String(addMutiplyParams(1, 2)(3))`，得到 `'6'`；`String(addMutiplyParams(1, 2, 3)(5, 7)())` 得到 `'18'`。不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[在线演示](https://latte.jovipro.com/mechanisms/utilities/add/index.html)。
+打开浏览器控制台。页面打印了三个链式调用的结果，可控制台里显示的是函数而不是数字：比如 Chromium 会打印出每个函数的源代码。所以请自己动手转换：输入 `String(addMutiplyParams(1, 2)(3))`，得到 `'6'`；`String(addMutiplyParams(1, 2, 3)(5, 7)())` 得到 `'18'`。不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/add/index.html)。
 
 ## 原理
 

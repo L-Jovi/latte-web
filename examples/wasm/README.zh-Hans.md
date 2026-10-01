@@ -2,13 +2,13 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 把一个 Rust 函数编译成 .wasm，再通过按钮调用它。WebAssembly（Wasm）是一种紧凑的二进制格式，浏览器可以把它和 JavaScript 放在一起运行；这里跟着一个函数走完全程：Rust 的 `add(i32, i32)` → `.wasm` 文件 → `WebAssembly.instantiate` → 一次点击。
 
 ## 试一试
 
-只有这个示例需要 Rust。[在线演示](https://latte.jovipro.com/examples/wasm/dist/index.html)不装 Rust 也能用，因为网站构建时已经编译好了模块。想自己构建，请先用 [rustup](https://rust-lang.org/tools/install/) 安装 Rust。本目录的 `rust-toolchain.toml` 要求使用 Rust 1.98.1 和 `wasm32-unknown-unknown` 目标（也就是编译的目标平台：纯 WebAssembly），运行 `rustup toolchain install 1.98.1 --profile minimal --target wasm32-unknown-unknown` 就能把两者都装好。然后：
+只有这个示例需要 Rust。[在线演示](https://l-jovi.github.io/latte-web/examples/wasm/dist/index.html)不装 Rust 也能用，因为网站构建时已经编译好了模块。想自己构建，请先用 [rustup](https://rust-lang.org/tools/install/) 安装 Rust。本目录的 `rust-toolchain.toml` 要求使用 Rust 1.98.1 和 `wasm32-unknown-unknown` 目标（也就是编译的目标平台：纯 WebAssembly），运行 `rustup toolchain install 1.98.1 --profile minimal --target wasm32-unknown-unknown` 就能把两者都装好。然后：
 
 ```sh
 npm ci

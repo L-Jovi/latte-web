@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 Less 的变量、混入和条件守卫；以及为什么原生 CSS 变量能在运行时改变，而 Less 变量不能。Less 是一种 CSS 预处理器：你写的是 `.less` 文件，在浏览器看到之前，由编译器把它们转换成普通的 CSS。
 
@@ -15,7 +15,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/tooling/less/modern.html
 ```
 
-页面上有一张钢蓝色的卡片。点击 **Change theme**，卡片立刻变成铁锈般的棕色，不需要重新构建：页面在运行时改了一个原生 CSS 变量。也可以直接打开[在线演示](https://latte.jovipro.com/tooling/less/modern.html)。
+页面上有一张钢蓝色的卡片。点击 **Change theme**，卡片立刻变成铁锈般的棕色，不需要重新构建：页面在运行时改了一个原生 CSS 变量。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/less/modern.html)。
 
 构建会为每个 `.less` 文件在 `dist/` 里写出一个 CSS 文件，放在同名目录下：比如 [mix/mix.less](mix/mix.less) 会变成 `dist/mix/mix.css`。把两个文件并排打开，就能看出编译器做了什么。
 

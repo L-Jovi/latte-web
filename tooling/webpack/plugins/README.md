@@ -23,7 +23,7 @@ The page shows **Hello Webpack**. Next to it in `dist/`, the plugin has written 
 - index.html
 ```
 
-You can also open the [live demo](https://latte.jovipro.com/tooling/webpack/plugins/dist/index.html) of the page.
+You can also open the [live demo](https://l-jovi.github.io/latte-web/tooling/webpack/plugins/dist/index.html) of the page.
 
 ## How it works
 

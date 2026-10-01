@@ -11,7 +11,7 @@ npm run dev
 # open http://127.0.0.1:4173/fundamentals/javascript/instance/
 ```
 
-No install or build is needed: `npm run dev` works right after cloning. Open the browser console. `forgeNew(Test, 'saber', 12)` runs the constructor, which logs `new init list:  saber 12`; then the new object calls `foobar`, a method it inherits from `Test.prototype`, which logs `12`. You can also open the [live demo](https://latte.jovipro.com/fundamentals/javascript/instance/index.html).
+No install or build is needed: `npm run dev` works right after cloning. Open the browser console. `forgeNew(Test, 'saber', 12)` runs the constructor, which logs `new init list:  saber 12`; then the new object calls `foobar`, a method it inherits from `Test.prototype`, which logs `12`. You can also open the [live demo](https://l-jovi.github.io/latte-web/fundamentals/javascript/instance/index.html).
 
 This page does not load `forgeInstanceof`, but the page at `/fundamentals/javascript/` does. In that page's console, `forgeInstanceof([], Array)` returns `true` and `forgeInstanceof(1, Number)` returns `false`.
 

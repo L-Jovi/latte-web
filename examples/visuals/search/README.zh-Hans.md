@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 边输入边筛选建议，用方向键选择；使用无障碍的 combobox 标记。combobox（组合框）是一个带建议列表的输入框；这些标记告诉屏幕阅读器，输入框和列表是怎样配合的。
 
@@ -13,7 +13,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/examples/visuals/search/
 ```
 
-克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。在 **Topic** 输入框里输入 `graph`：出现一条建议 **GraphQL**。按下方向键，再按 Enter：输入框被填好，下方文字显示 `Selected: GraphQL`。直接点击建议也能选中。按 Escape，或者让焦点离开输入框，列表就会关闭。也可以直接打开[在线演示](https://latte.jovipro.com/examples/visuals/search/index.html)。
+克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。在 **Topic** 输入框里输入 `graph`：出现一条建议 **GraphQL**。按下方向键，再按 Enter：输入框被填好，下方文字显示 `Selected: GraphQL`。直接点击建议也能选中。按 Escape，或者让焦点离开输入框，列表就会关闭。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/visuals/search/index.html)。
 
 ## 原理
 

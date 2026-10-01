@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 区分真正的循环引用，和只是被引用了两次的对象。
 
@@ -13,7 +13,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/mechanisms/utilities/circle-ref/
 ```
 
-打开浏览器控制台。页面构造了一个对象，它的 `circleRef` 属性指回对象自己，两种检查都打印 `true`。不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[在线演示](https://latte.jovipro.com/mechanisms/utilities/circle-ref/index.html)。
+打开浏览器控制台。页面构造了一个对象，它的 `circleRef` 属性指回对象自己，两种检查都打印 `true`。不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/circle-ref/index.html)。
 
 ## 原理
 

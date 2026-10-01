@@ -11,7 +11,7 @@ npm run dev
 # open http://127.0.0.1:4173/mechanisms/design-patterns/inherit/
 ```
 
-It works right after cloning; no `npm ci` or build step is needed. Open the browser console. It shows `animal` from prototype.js, then `1` and `true` from combination.js. The page loads each file as a module, so both files can use names such as `Parent` and `Child` without clashing. You can also open the [live demo](https://latte.jovipro.com/mechanisms/design-patterns/inherit/index.html).
+It works right after cloning; no `npm ci` or build step is needed. Open the browser console. It shows `animal` from prototype.js, then `1` and `true` from combination.js. The page loads each file as a module, so both files can use names such as `Parent` and `Child` without clashing. You can also open the [live demo](https://l-jovi.github.io/latte-web/mechanisms/design-patterns/inherit/index.html).
 
 The page doesn't load prototype-obj.js. Run it with `node mechanisms/design-patterns/inherit/prototype-obj.js`; it prints `animal`.
 

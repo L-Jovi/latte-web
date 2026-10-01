@@ -11,7 +11,7 @@ npm run dev
 # open http://127.0.0.1:4173/examples/visuals/clock/
 ```
 
-It works right after cloning; no `npm ci` or build step is needed. The canvas shows `00:00:10` in blue dots. Click **Start 10-second countdown**: the text under the canvas says `10 seconds remaining` and counts down once a second. Each time a digit changes, the dots of the old digit become coloured particles that jump, fall and bounce along the bottom. Click the button again at any time to start over. You can also open the [live demo](https://latte.jovipro.com/examples/visuals/clock/index.html).
+It works right after cloning; no `npm ci` or build step is needed. The canvas shows `00:00:10` in blue dots. Click **Start 10-second countdown**: the text under the canvas says `10 seconds remaining` and counts down once a second. Each time a digit changes, the dots of the old digit become coloured particles that jump, fall and bounce along the bottom. Click the button again at any time to start over. You can also open the [live demo](https://l-jovi.github.io/latte-web/examples/visuals/clock/index.html).
 
 ## How it works
 

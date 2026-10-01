@@ -6,7 +6,7 @@ Compile a Rust function to `.wasm` and call it from a button. _WebAssembly_ (Was
 
 ## Try it
 
-This is the only example that needs Rust. The [live demo](https://latte.jovipro.com/examples/wasm/dist/index.html) works without it, because the site's build compiles the module. To build it yourself, install Rust with [rustup](https://rust-lang.org/tools/install/). This folder's `rust-toolchain.toml` asks for Rust 1.98.1 with the `wasm32-unknown-unknown` target (the platform to compile for: plain WebAssembly), and `rustup toolchain install 1.98.1 --profile minimal --target wasm32-unknown-unknown` installs both. Then:
+This is the only example that needs Rust. The [live demo](https://l-jovi.github.io/latte-web/examples/wasm/dist/index.html) works without it, because the site's build compiles the module. To build it yourself, install Rust with [rustup](https://rust-lang.org/tools/install/). This folder's `rust-toolchain.toml` asks for Rust 1.98.1 with the `wasm32-unknown-unknown` target (the platform to compile for: plain WebAssembly), and `rustup toolchain install 1.98.1 --profile minimal --target wasm32-unknown-unknown` installs both. Then:
 
 ```sh
 npm ci

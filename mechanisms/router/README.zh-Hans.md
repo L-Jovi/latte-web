@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 基于 History API 的小路由：点击链接、前进后退，都不刷新页面。路由本身是 72 行 React 类组件。
 
@@ -15,7 +15,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/mechanisms/router/dist/
 ```
 
-页面上显示 **Home view**。点击 **About**：地址变成以 `/about` 结尾，页面显示 **About view**，整个过程不刷新页面。浏览器的后退、前进按钮可以在两个视图之间切换。在本地，停在 `/about` 时刷新也没问题，因为本地服务器会用应用的 `index.html` 响应这个地址。也可以直接打开[在线演示](https://latte.jovipro.com/mechanisms/router/dist/index.html)；不过在那里刷新的表现不同（见“刻意省略”）。
+页面上显示 **Home view**。点击 **About**：地址变成以 `/about` 结尾，页面显示 **About view**，整个过程不刷新页面。浏览器的后退、前进按钮可以在两个视图之间切换。在本地，停在 `/about` 时刷新也没问题，因为本地服务器会用应用的 `index.html` 响应这个地址。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/router/dist/index.html)；不过在那里刷新的表现不同（见“刻意省略”）。
 
 ## 原理
 
@@ -31,7 +31,7 @@ npm run dev
 
 有些点击 `Link` 会交给浏览器按原样处理：按住 Ctrl、Cmd、Shift 或 Alt 的点击，用左键以外的按键点击，`target` 不是 `_self` 或带有 `download` 属性的链接，以及指向其他源（origin）的链接。
 
-所有路径都以应用所在的目录开头。这个目录来自 [vite.config.js](vite.config.js) 里 Vite 的 `base` 选项。如果要把站点发布在某个子路径下（例如 `/latte-web/`），构建时把 `LATTE_PAGES_BASE` 设为这个路径；在线演示放在自己域名的根目录下，不需要前缀。
+所有路径都以应用所在的目录开头。这个目录来自 [vite.config.js](vite.config.js) 里 Vite 的 `base` 选项；为 GitHub Pages 构建时，还会加上 `/latte-web/` 前缀。
 
 ## 过去与现在
 
@@ -45,6 +45,6 @@ npm run dev
 ## 验证与来源
 
 - `npm run test:browser` 在 Chromium、Firefox、WebKit 中点击 **About**、后退、前进，然后刷新，检查刷新后仍然显示 **About view**。这次刷新依靠的正是本地服务器的那条特殊规则。
-- `npm run test:pages` 像 GitHub Pages 一样提供构建好的站点，没有那条规则。它在 Chromium 中检查：点击 **About** 后地址变成 `/mechanisms/router/dist/about`，后退后显示 **Home view**。它不测试刷新。
+- `npm run test:pages` 像 GitHub Pages 一样在 `/latte-web/` 下提供构建好的站点，没有那条规则。它在 Chromium 中检查：点击 **About** 后地址变成 `/latte-web/mechanisms/router/dist/about`，后退后显示 **Home view**。它不测试刷新。
 - 第一个版本传给 `removeEventListener` 的是一个新 `bind` 出来的函数，而且是在挂载之前、而不是卸载时调用的，所以它的 `popstate` 监听从来没有被移除过。[迁移清单](../../docs/migration.zh-Hans.md)链接到这个版本，也就是 `router-scratch` 目录。
 - 原创代码使用 MIT 许可；见 [NOTICE.md](../../NOTICE.md)。

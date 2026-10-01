@@ -11,7 +11,7 @@ npm run dev
 # open http://127.0.0.1:4173/mechanisms/design-patterns/proxy/
 ```
 
-It works right after cloning; no `npm ci` or build step is needed. Open the browser console. Reading `proxy.name` runs the `get` trap, which logs the target object, the key (`name string`) and the proxy, and then `king saber` appears. After `proxy.name = 'foobar'`, the next read gives `king archer`. Now click a number in the list: the console logs that number, although only the list itself has a click listener. You can also open the [live demo](https://latte.jovipro.com/mechanisms/design-patterns/proxy/index.html).
+It works right after cloning; no `npm ci` or build step is needed. Open the browser console. Reading `proxy.name` runs the `get` trap, which logs the target object, the key (`name string`) and the proxy, and then `king saber` appears. After `proxy.name = 'foobar'`, the next read gives `king archer`. Now click a number in the list: the console logs that number, although only the list itself has a click listener. You can also open the [live demo](https://l-jovi.github.io/latte-web/mechanisms/design-patterns/proxy/index.html).
 
 ## How it works
 

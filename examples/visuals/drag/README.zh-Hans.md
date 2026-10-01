@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 同一个拖拽写两遍；Pointer Events 同时支持触屏和手写笔。
 
@@ -13,7 +13,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/examples/visuals/drag/
 ```
 
-克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。分别拖动 **Mouse** 方块和 **Pointer** 方块：它们都会跟着指针移动，并停在浅色区域的边缘。然后用 Tab 键把焦点移到 **Pointer** 方块上，按方向键：每按一次移动 10 像素。在手机或平板上，应该只有 **Pointer** 方块会跟着手指走，因为用手指拖动不会产生鼠标事件。也可以直接打开[在线演示](https://latte.jovipro.com/examples/visuals/drag/index.html)。
+克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。分别拖动 **Mouse** 方块和 **Pointer** 方块：它们都会跟着指针移动，并停在浅色区域的边缘。然后用 Tab 键把焦点移到 **Pointer** 方块上，按方向键：每按一次移动 10 像素。在手机或平板上，应该只有 **Pointer** 方块会跟着手指走，因为用手指拖动不会产生鼠标事件。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/visuals/drag/index.html)。
 
 ## 原理
 

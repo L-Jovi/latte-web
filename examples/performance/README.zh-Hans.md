@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 用 Navigation Timing、PerformanceObserver 和 Core Web Vitals 测量你自己的这次访问。浏览器给出的原始记录，和由它们算出来的指标，分开展示。
 
@@ -22,7 +22,7 @@ npm run dev
 - 点击 **Run 120 ms of work**。页面会卡住 120 毫秒，接着文字显示 `Measured work:` 和大约 120 毫秒的耗时，列表里出现一条 `measure: controlled-work`，INP 也有了值。
 - 点击 **Insert late content**。700 毫秒后，顶部出现一块绿色区域，把下面的内容全部往下推，CLS 的数值随之变大。
 
-还没点任何按钮时，CLS 可能就已经有一个很小的值：页面自己的输出在加载后改变了尺寸，把下面的内容挤动了。数据不会离开这个页面。也可以直接打开[在线演示](https://latte.jovipro.com/examples/performance/dist/index.html)。
+还没点任何按钮时，CLS 可能就已经有一个很小的值：页面自己的输出在加载后改变了尺寸，把下面的内容挤动了。数据不会离开这个页面。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/performance/dist/index.html)。
 
 ## 原理
 

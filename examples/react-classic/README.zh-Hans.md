@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
 
 原来的架构，修好后运行在 React 19 上。它和[今天风格的版本](../react-modern/README.zh-Hans.md)功能完全相同，可以逐个文件对照着读。
 
@@ -22,7 +22,7 @@ npm run dev
 - **Import examples** 从本地的 `todos.json` 读入两条虚构的标题，并显示 `Imported 2 todos`。如果读取失败，页面会显示 `Import failed. Try again.`，再点一次即可重试。
 - **About** 打开第二个页面，浏览器的后退、前进按钮可以在两个页面之间切换。
 
-什么都不会保存：刷新页面就从头开始。也可以直接打开[在线演示](https://latte.jovipro.com/examples/react-classic/dist/index.html)。
+什么都不会保存：刷新页面就从头开始。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/react-classic/dist/index.html)。
 
 ## 原理
 
