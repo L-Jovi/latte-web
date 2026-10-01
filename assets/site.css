@@ -333,6 +333,12 @@ body {
   color: #8a4b2a;
 }
 
+.latte-guide .latte-guide-buttons {
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid #e7dccf;
+}
+
 .latte-guide button:disabled {
   opacity: 0.45;
   cursor: default;

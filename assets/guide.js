@@ -366,7 +366,9 @@
       render();
     };
     panel.append(top);
-    if (steps.length) panel.append(body, nav);
+    // The buttons sit above the step, so a step's length, or a readout that grows
+    // after an action, never moves them: Next stays under the pointer.
+    if (steps.length) panel.append(nav, body);
     panel.append(out, outline);
     draw();
     render();
