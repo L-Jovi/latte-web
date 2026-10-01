@@ -72,6 +72,20 @@ const NEW_VOTE = gql`
     }
   }
 `;
+// The page shows one language at a time (assets/language.js): English by
+// default, Chinese after the switch. say() picks the words for the one shown;
+// links, names and the server's own messages are data and stay as they are.
+const say = (en, zh) =>
+  document.documentElement.dataset.language === 'zh' ? zh : en;
+// The app keeps its own status lines and notices in English, as it writes
+// them. These are the words the Chinese page shows for them.
+const chinese = new Map([
+  ['Published', '已发布'],
+  ['Voted', '已投票'],
+]);
+const toChinese = (english) =>
+  chinese.get(english) ??
+  english.replace(/^New link: /, '新链接：').replace(/^New vote: /, '新投票：');
 export function App({ session, onSession }) {
   const [filter, setFilter] = useState('');
   const [skip, setSkip] = useState(0);
@@ -114,16 +128,26 @@ export function App({ session, onSession }) {
   }
   return (
     <main>
-      <h1>Local GraphQL feed</h1>
-      <p>Fictional account: reader@example.test / Learning-only-123!</p>
+      <h1>{say('Local GraphQL feed', '本地 GraphQL 信息流')}</h1>
+      <p>
+        {say(
+          'Fictional account: reader@example.test / Learning-only-123!',
+          '虚构账号：reader@example.test / Learning-only-123!',
+        )}
+      </p>
       {session ? (
         <p>
-          Signed in as {session.user.name}{' '}
-          <button onClick={() => onSession(null)}>Log out</button>
+          {say(
+            `Signed in as ${session.user.name}`,
+            `已登录：${session.user.name}`,
+          )}{' '}
+          <button onClick={() => onSession(null)}>
+            {say('Log out', '退出登录')}
+          </button>
         </p>
       ) : (
         <form
-          aria-label="Account"
+          aria-label={say('Account', '账号')}
           onSubmit={(event) => {
             event.preventDefault();
             const form = new FormData(event.currentTarget);
@@ -137,10 +161,11 @@ export function App({ session, onSession }) {
           }}
         >
           <label>
-            Name <input name="name" defaultValue="Demo Reader" />
+            {say('Name', '名字')}{' '}
+            <input name="name" defaultValue="Demo Reader" />
           </label>
           <label>
-            Email{' '}
+            {say('Email', '邮箱')}{' '}
             <input
               name="email"
               type="email"
@@ -149,7 +174,7 @@ export function App({ session, onSession }) {
             />
           </label>
           <label>
-            Password{' '}
+            {say('Password', '密码')}{' '}
             <input
               name="password"
               type="password"
@@ -157,12 +182,12 @@ export function App({ session, onSession }) {
               required
             />
           </label>
-          <button value="login">Log in</button>
-          <button value="signup">Sign up</button>
+          <button value="login">{say('Log in', '登录')}</button>
+          <button value="signup">{say('Sign up', '注册')}</button>
         </form>
       )}
       <label>
-        Search{' '}
+        {say('Search', '搜索')}{' '}
         <input
           value={filter}
           onChange={(event) => {
@@ -173,7 +198,7 @@ export function App({ session, onSession }) {
       </label>
       {session && (
         <form
-          aria-label="Publish link"
+          aria-label={say('Publish link', '发布链接')}
           onSubmit={(event) => {
             event.preventDefault();
             const form = event.currentTarget;
@@ -187,25 +212,30 @@ export function App({ session, onSession }) {
           }}
         >
           <label>
-            URL <input name="url" type="url" required />
+            {say('URL', '网址')} <input name="url" type="url" required />
           </label>
           <label>
-            Description <input name="description" required maxLength={200} />
+            {say('Description', '描述')}{' '}
+            <input name="description" required maxLength={200} />
           </label>
-          <button>Publish</button>
+          <button>{say('Publish', '发布')}</button>
         </form>
       )}
-      {loading && <p>Loading…</p>}
+      {loading && <p>{say('Loading…', '加载中…')}</p>}
       {error && (
         <p role="alert">
-          {error.message} <button onClick={() => refetch()}>Retry</button>
+          <samp>{error.message}</samp>{' '}
+          <button onClick={() => refetch()}>{say('Retry', '重试')}</button>
         </p>
       )}
       <ol>
         {data?.feed.links.map((link) => (
           <li key={link.id}>
-            <a href={link.url}>{link.description}</a> by {link.postedBy.name} ·{' '}
-            <span>{link.votes.length} votes</span>{' '}
+            <a href={link.url}>{link.description}</a>{' '}
+            {say(`by ${link.postedBy.name}`, `由 ${link.postedBy.name} 发布`)} ·{' '}
+            <span>
+              {say(`${link.votes.length} votes`, `${link.votes.length} 票`)}
+            </span>{' '}
             <button
               disabled={!session}
               onClick={() =>
@@ -216,26 +246,39 @@ export function App({ session, onSession }) {
                 })
               }
             >
-              Vote
+              {say('Vote', '投票')}
             </button>
           </li>
         ))}
       </ol>
-      <p>{data?.feed.count ?? 0} links</p>
+      <p>
+        {say(
+          `${data?.feed.count ?? 0} links`,
+          `共 ${data?.feed.count ?? 0} 个链接`,
+        )}
+      </p>
       <button
         disabled={skip === 0}
         onClick={() => setSkip(Math.max(0, skip - 3))}
       >
-        Previous
+        {say('Previous', '上一页')}
       </button>
       <button
         disabled={!data || skip + 3 >= data.feed.count}
         onClick={() => setSkip(skip + 3)}
       >
-        Next
+        {say('Next', '下一页')}
       </button>
-      <p role="status">{message}</p>
-      <p aria-label="Live updates">{notice}</p>
+      {/* Apart from its own two words, a status is the server's message,
+          quoted as it was sent. */}
+      <p role="status">
+        {chinese.has(message)
+          ? say(message, chinese.get(message))
+          : message && <samp>{message}</samp>}
+      </p>
+      <p aria-label={say('Live updates', '实时更新')}>
+        {say(notice, toChinese(notice))}
+      </p>
     </main>
   );
 }

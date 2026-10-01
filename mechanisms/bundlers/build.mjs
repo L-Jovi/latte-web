@@ -11,6 +11,11 @@ writeFileSync(
   'dist/index.html',
   site.page(
     'mechanisms/bundlers/dist/index.html',
-    '<p>The procedural bundle logs <code>my lord saber</code> to the browser console. The layered bundle writes its greeting below. Both files sit next to this page in <code>dist/</code>.</p><script src="procedural.js"></script><script src="layered.js"></script>',
+    site.pair(
+      'The procedural bundle logs <code>my lord saber</code> to the browser console. The layered bundle writes its greeting below. Both files sit next to this page in <code>dist/</code>.',
+      '过程式版本打出的包在浏览器控制台里打印 <code>my lord saber</code>。分层版打出的包把问候语写在下面。两个文件都和这个页面一起放在 <code>dist/</code> 里。',
+      'p',
+    ) +
+      '<script src="procedural.js"></script><script src="layered.js"></script>',
   ),
 );

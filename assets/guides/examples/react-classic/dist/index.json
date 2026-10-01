@@ -4,7 +4,7 @@
       "title": "The 2018 Todo app",
       "titleZh": "2018 年风格的 Todo",
       "text": "This Todo app is built the way many React apps were in 2018: class components, Redux with hand-written actions, Redux-Saga for the import, and an Immutable.js `Map` as the state. It starts with one todo, **Use Redux**. The next steps add, tick, filter, import, open **About** and go back. The guide for today's version takes the same steps, so you can compare what happens underneath.",
-      "textZh": "这个 Todo 应用按 2018 年许多 React 应用的方式搭建：class 组件，手写 action 的 Redux，负责导入的 Redux-Saga，再用一个 Immutable.js 的 `Map` 作为状态。列表一开始只有一条待办：**Use Redux**。接下来的几步依次新增、勾选、筛选、导入、打开 **About**，再后退。今天风格版本的说明走的是同样的步骤，方便对照两边底下发生了什么。",
+      "textZh": "这个 Todo 应用按 2018 年许多 React 应用的方式搭建：class 组件，手写 action 的 Redux，负责导入的 Redux-Saga，再用一个 Immutable.js 的 `Map` 作为状态。列表一开始只有一条待办：**使用 Redux**。接下来的几步依次新增、勾选、筛选、导入、打开**关于**，再后退。今天风格版本的说明走的是同样的步骤，方便对照两边底下发生了什么。",
       "watch": [
         {
           "label": "todos on screen",
@@ -25,16 +25,17 @@
       "title": "Add a todo",
       "titleZh": "新增一条待办",
       "text": "What you type stays in the component's own `state`, not in the store. **Add** calls `this.props.actions.addTodo(text)`. `bindActionCreators` wrapped each action creator made by `createAction`, so calling one dispatches an action, here `{ type: 'TODO/ADD', payload: { text } }`. The reducer's `TODO/ADD` case returns a new Immutable `Map` with one more todo, and `connect` renders the page again. The field is empty again because `submit` calls `setState({ text: '' })`.",
-      "textZh": "输入的文字保存在组件自己的 `state` 里，不进 store。**Add** 调用 `this.props.actions.addTodo(text)`。`bindActionCreators` 把 `createAction` 生成的每个 action creator 包了一层，调用它就会派发一个 action，这里是 `{ type: 'TODO/ADD', payload: { text } }`。reducer 的 `TODO/ADD` 分支返回一个多了一条待办的新 Immutable `Map`，`connect` 随之重新渲染页面。输入框又空了，因为 `submit` 调用了 `setState({ text: '' })`。",
+      "textZh": "输入的文字保存在组件自己的 `state` 里，不进 store。**新增**调用 `this.props.actions.addTodo(text)`。`bindActionCreators` 把 `createAction` 生成的每个 action creator 包了一层，调用它就会派发一个 action，这里是 `{ type: 'TODO/ADD', payload: { text } }`。reducer 的 `TODO/ADD` 分支返回一个多了一条待办的新 Immutable `Map`，`connect` 随之重新渲染页面。输入框又空了，因为 `submit` 调用了 `setState({ text: '' })`。",
       "action": {
         "fill": {
           "target": "main > form input",
-          "value": "Read the source"
+          "value": "Read the source",
+          "valueZh": "读一读源码"
         },
-        "clickText": "Add"
+        "click": "main > form button"
       },
       "actionLabel": "Type “Read the source” and click Add",
-      "actionLabelZh": "输入“Read the source”，再点 Add",
+      "actionLabelZh": "输入“读一读源码”，再点「新增」",
       "watch": [
         {
           "label": "todos on screen",
@@ -55,13 +56,13 @@
       "title": "Tick it, then filter",
       "titleZh": "勾选它，再筛选",
       "text": "Ticking dispatches `TODO/COMPLETE`, and its reducer case flips `completed` in a new `List`. **Active** dispatches `TODO/FILTER`, which only stores the filter's name next to the todos. Each time the store changes, `connect` calls `visibleTodos` from `reducer.js`, and it picks the todos for that filter. **Read the source** leaves the screen, but it is still in the store.",
-      "textZh": "勾选会派发 `TODO/COMPLETE`，reducer 的这个分支在一个新的 `List` 里把 `completed` 取反。**Active** 派发 `TODO/FILTER`，它只是把筛选条件的名字存在待办旁边。store 每次变化，`connect` 都会调用 `reducer.js` 里的 `visibleTodos`，由它挑出符合条件的待办。**Read the source** 从屏幕上消失了，但它仍在 store 里。",
+      "textZh": "勾选会派发 `TODO/COMPLETE`，reducer 的这个分支在一个新的 `List` 里把 `completed` 取反。**未完成**派发 `TODO/FILTER`，它只是把筛选条件的名字存在待办旁边。store 每次变化，`connect` 都会调用 `reducer.js` 里的 `visibleTodos`，由它挑出符合条件的待办。**读一读源码**从屏幕上消失了，但它仍在 store 里。",
       "action": {
         "click": "#root li:last-child input[type=checkbox]",
-        "clickText": "Active"
+        "run": "document.querySelectorAll('#root button[aria-pressed]')[1].click()"
       },
       "actionLabel": "Tick “Read the source”, then click Active",
-      "actionLabelZh": "勾选“Read the source”，再点 Active",
+      "actionLabelZh": "勾选“读一读源码”，再点「未完成」",
       "watch": [
         {
           "label": "todos on screen",
@@ -82,13 +83,13 @@
       "title": "Import two examples",
       "titleZh": "导入两条示例",
       "text": "This step shows **All** again, then clicks **Import examples**, which dispatches `TODO/IMPORT`. The saga in `sagas.js` answers it one step at a time. With `put` it sends `TODO/IMPORT_START`, which sets the status to `Loading`. With `call` it runs `fetchTodos`, which reads `todos.json`. Then it sends `TODO/BATCH_ADD` with the two titles, or `TODO/IMPORT_ERROR` if reading failed. `takeLeading` ignores more clicks while an import is running. Loading, success and failure are three reducer cases written by hand.",
-      "textZh": "这一步先切回 **All**，再点击 **Import examples**，它会派发 `TODO/IMPORT`。`sagas.js` 里的 saga 一步一步地响应：先用 `put` 发出 `TODO/IMPORT_START`，把状态设为 `Loading`；再用 `call` 调用 `fetchTodos`，读取 `todos.json`；最后用 `put` 发出带着两条标题的 `TODO/BATCH_ADD`，读取失败时则是 `TODO/IMPORT_ERROR`。导入进行期间，`takeLeading` 会忽略新的点击。加载中、成功和失败，是 reducer 里手写的三个分支。",
+      "textZh": "这一步先切回**全部**，再点击**导入示例**，它会派发 `TODO/IMPORT`。`sagas.js` 里的 saga 一步一步地响应：先用 `put` 发出 `TODO/IMPORT_START`，把状态设为 `Loading`；再用 `call` 调用 `fetchTodos`，读取 `todos.json`；最后用 `put` 发出带着两条标题的 `TODO/BATCH_ADD`，读取失败时则是 `TODO/IMPORT_ERROR`。导入进行期间，`takeLeading` 会忽略新的点击。加载中、成功和失败，是 reducer 里手写的三个分支。",
       "action": {
         "click": "#root button[aria-pressed]",
-        "clickText": "Import examples"
+        "run": "document.querySelector('main > button:last-of-type').click()"
       },
       "actionLabel": "Show All, then click Import examples",
-      "actionLabelZh": "切回 All，再点 Import examples",
+      "actionLabelZh": "切回「全部」，再点「导入示例」",
       "watch": [
         {
           "label": "todos on screen",
@@ -107,14 +108,14 @@
     },
     {
       "title": "Open About",
-      "titleZh": "打开 About",
+      "titleZh": "打开「关于」",
       "text": "The router is react-router-dom's `HashRouter`. Its `Link` changes the address with `history.pushState`, as the handwritten router in this repository does, and keeps the page name after `#`, so the address now ends in `#/about`. Any static server can serve that, because the part after `#` is never sent to the server. The Todo page is gone from the screen, but the store still holds the todos.",
       "textZh": "路由是 react-router-dom 的 `HashRouter`。它的 `Link` 和本仓库里手写的路由一样，用 `history.pushState` 修改地址，并把页面名放在 `#` 后面，所以地址现在以 `#/about` 结尾。任何静态服务器都能提供这样的地址，因为 `#` 后面的部分从来不会发给服务器。Todo 页面从屏幕上消失了，但 store 里仍然保存着这些待办。",
       "action": {
-        "clickText": "About"
+        "click": "#root nav a[href='#/about']"
       },
       "actionLabel": "Open the About page",
-      "actionLabelZh": "打开 About 页面",
+      "actionLabelZh": "打开「关于」页面",
       "watch": [
         {
           "label": "heading",
@@ -135,7 +136,7 @@
       "title": "Go back",
       "titleZh": "后退",
       "text": "The browser fires `popstate`, and the router shows the Todo page again. All four todos are there, because they live in the store. `Imported 2 todos` is still there too: in this version the status is part of the store, written by the `TODO/BATCH_ADD` case. The browser's own Back and Forward buttons work the same way.",
-      "textZh": "浏览器触发 `popstate`，路由重新显示 Todo 页面。四条待办都还在，因为它们保存在 store 里。`Imported 2 todos` 也还在：在这个版本里，状态消息同样是 store 的一部分，由 `TODO/BATCH_ADD` 分支写入。浏览器自己的后退、前进按钮也是同样的效果。",
+      "textZh": "浏览器触发 `popstate`，路由重新显示 Todo 页面。四条待办都还在，因为它们保存在 store 里。「已导入 2 条待办」也还在：在这个版本里，状态消息同样是 store 的一部分，由 `TODO/BATCH_ADD` 分支写入。浏览器自己的后退、前进按钮也是同样的效果。",
       "action": {
         "run": "if (location.hash === '#/about') history.back()"
       },

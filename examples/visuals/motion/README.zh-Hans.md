@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 展开的导航（JS 补间与 CSS 过渡对比）、步骤条，以及用 conic-gradient 画的环形进度。补间（tween）是在代码里一步步算出来的动画，从起始值过渡到结束值。
 
@@ -10,24 +10,24 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/examples/visuals/motion/
+# 打开 http://127.0.0.1:4173/examples/visuals/motion/?lang=zh
 ```
 
 克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。页面分成三个小部分：
 
-- 导航：把鼠标移到 **JavaScript tween** 或 **CSS transition** 上，或者用 Tab 键移过去。两者都会从 180 像素展开到 260 像素，离开后再缩回去。第一个由脚本驱动动画，第二个由 CSS 驱动。
-- 步骤条：点击 **Next**，高亮会从 **Read** 移到 **Run**，再到 **Compare**；**Back** 则往回走。按钮下方的文字依次显示 `Step 2 of 3` 等。
-- 环形进度：拖动 **Progress** 滑块，圆环上着色的部分和中间的百分比都会跟着变。
+- 导航：把鼠标移到 **JavaScript 补间**或 **CSS 过渡**上，或者用 Tab 键移过去。两者都会从 180 像素展开到 260 像素，离开后再缩回去。第一个由脚本驱动动画，第二个由 CSS 驱动。
+- 步骤条：点击**下一步**，高亮会从**阅读**移到**运行**，再到**对比**；**上一步**则往回走。按钮下方的文字依次显示 `第 2 步，共 3 步` 等。
+- 环形进度：拖动**进度**滑块，圆环上着色的部分和中间的百分比都会跟着变。
 
-也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/visuals/motion/index.html)。
+也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/visuals/motion/index.html?lang=zh)。
 
 ## 原理
 
-先读 [index.html](index.html)（91 行）里的结构和 CSS，再读 [app.js](app.js)（47 行）。
+先读 [index.html](index.html)（95 行）里的结构和 CSS，再读 [app.js](app.js)（53 行）。
 
 - **CSS 过渡**：`transition: width 0.25s`，再在 `:hover` 和 `:focus-visible` 时设置更大的 `width`。浏览器负责播放这段变化，离开时再倒放回去。
 - **JavaScript 补间**：在 `mouseenter`、`mouseleave`、`focus` 和 `blur` 时，`tween()` 读取当前宽度，用 250 毫秒把它变到 260 或 180 像素。每次 `requestAnimationFrame` 回调都根据已经过去的时间算出进度 `t`，再用 `1 - (1 - t) ** 3` 做缓动：开头快，结尾慢。新的补间会取消旧的，并从当前宽度开始，所以中途改变方向也很平滑。开启“减少动态效果”时，它会直接跳到终点。
-- **步骤条**：三个 `<li>` 排成一行 flex 布局。当前这一步带有 `aria-current="step"`，告诉辅助技术你正处在哪一步，CSS 也根据这个属性设置样式。在第一步时 **Back** 被禁用，在最后一步时 **Next** 被禁用。
+- **步骤条**：三个 `<li>` 排成一行 flex 布局。当前这一步带有 `aria-current="step"`，告诉辅助技术你正处在哪一步，CSS 也根据这个属性设置样式。在第一步时**上一步**被禁用，在最后一步时**下一步**被禁用。
 - **环形进度**：滑块把数值写到圆环的自定义属性（CSS 变量）`--value` 上。圆环的背景是 `conic-gradient(#087b77 calc(var(--value) * 1%), #ddd 0)`：圆周上这个百分比以内着色，之后是灰色。上面再叠一个白色圆，圆盘就变成了圆环。这个元素带有 `role="progressbar"`，`aria-valuenow` 也会随数值更新。
 
 ## 过去与现在

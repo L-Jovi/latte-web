@@ -10,10 +10,10 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/fundamentals/javascript/instance/
+# 打开 http://127.0.0.1:4173/fundamentals/javascript/instance/?lang=zh
 ```
 
-不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。打开浏览器控制台：`forgeNew(Test, 'saber', 12)` 执行构造函数，构造函数打印出 `new init list:  saber 12`；接着新对象调用从 `Test.prototype` 继承来的方法 `foobar`，打印出 `12`。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/fundamentals/javascript/instance/index.html)。
+不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。打开浏览器控制台：`forgeNew(Test, 'saber', 12)` 执行构造函数，构造函数打印出 `new init list:  saber 12`；接着新对象调用从 `Test.prototype` 继承来的方法 `foobar`，打印出 `12`。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/fundamentals/javascript/instance/index.html?lang=zh)。
 
 这个页面没有加载 `forgeInstanceof`，不过 `/fundamentals/javascript/` 那个页面加载了。在那个页面的控制台里，`forgeInstanceof([], Array)` 返回 `true`，`forgeInstanceof(1, Number)` 返回 `false`。
 

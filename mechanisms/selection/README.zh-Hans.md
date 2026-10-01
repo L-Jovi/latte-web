@@ -10,14 +10,14 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/mechanisms/selection/
+# 打开 http://127.0.0.1:4173/mechanisms/selection/?lang=zh
 ```
 
-在 **Hello world** 里点一下，比如点在 `Hello` 后面，然后点击 **Insert at saved cursor**。文本框里的 ✨ 会出现在刚才光标所在的位置，光标则停在它后面，可以接着打字。如果先选中一段文字，这段文字会被替换。如果从来没有把光标放进编辑区，文字会加在末尾。
+在 **Hello world** 里点一下，比如点在 `Hello` 后面，然后点击**在保存的光标处插入**。文本框里的 ✨ 会出现在刚才光标所在的位置，光标则停在它后面，可以接着打字。如果先选中一段文字，这段文字会被替换。如果从来没有把光标放进编辑区，文字会加在末尾。
 
-接着打开 `http://127.0.0.1:4173/mechanisms/selection/ec-richtext.html`，输入 `A #tag# B`。一边输入，`#tag#` 就会被高亮，光标也始终停在原来的位置。
+接着打开 `http://127.0.0.1:4173/mechanisms/selection/ec-richtext.html?lang=zh`，输入 `A #tag# B`。一边输入，`#tag#` 就会被高亮，光标也始终停在原来的位置。
 
-不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[光标页面](https://l-jovi.github.io/latte-web/mechanisms/selection/index.html)和[高亮页面](https://l-jovi.github.io/latte-web/mechanisms/selection/ec-richtext.html)的在线演示。
+不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[光标页面](https://l-jovi.github.io/latte-web/mechanisms/selection/index.html?lang=zh)和[高亮页面](https://l-jovi.github.io/latte-web/mechanisms/selection/ec-richtext.html?lang=zh)的在线演示。
 
 ## 原理
 

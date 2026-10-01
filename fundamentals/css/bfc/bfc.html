@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-title-en="CSS layout: BFC, Grid and centering · Latte Web" data-title-zh="CSS 布局：BFC、Grid 与居中 · Latte Web">
 <head>
   <meta charset="UTF-8">
-  <title>CSS layout: BFC, Grid and centering · Latte Web</title><!-- latte-site:css --><link rel="stylesheet" href="../../../assets/site.css"><!-- /latte-site:css --><!-- latte-site:guide --><script src="../../../assets/guide.js" data-guide="../../../assets/guides/fundamentals/css/bfc/bfc.json"></script><!-- /latte-site:guide -->
+  <title>CSS layout: BFC, Grid and centering · Latte Web</title><!-- latte-site:css --><link rel="stylesheet" href="../../../assets/site.css"><script src="../../../assets/language.js"></script><!-- /latte-site:css --><!-- latte-site:guide --><script src="../../../assets/guide.js" data-guide="../../../assets/guides/fundamentals/css/bfc/bfc.json"></script><!-- /latte-site:guide -->
   <style>
     .case-body1 {
         width: 100px;
@@ -32,13 +32,14 @@
 </head>
 
 <body>
-    <!-- latte-site:bar --><nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="../../../index.html">Latte Web</a><span class="latte-crumb">Fundamentals</span><span class="latte-links"><a href="https://github.com/L-Jovi/latte-web/tree/main/fundamentals/css">README</a><a href="https://github.com/L-Jovi/latte-web/blob/main/fundamentals/css/README.zh-Hans.md" lang="zh-Hans">中文</a></span></nav><!-- /latte-site:bar --><h1>CSS layout: BFC, Grid and centering</h1>
-    <p>The guide measures the boxes for you and switches their rules on and off. You can also inspect a box in your browser’s developer tools.</p>
-  <h2 lang="zh-Hans">同一个 BFC 里，上下外边距会重叠</h2>
+    <!-- latte-site:bar --><nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="../../../index.html">Latte Web</a><span class="latte-crumb"><span data-l="en">Fundamentals</span><span data-l="zh">基础</span></span><span class="latte-links"><a data-l="en" href="https://github.com/L-Jovi/latte-web/tree/main/fundamentals/css">README</a><a data-l="zh" href="https://github.com/L-Jovi/latte-web/blob/main/fundamentals/css/README.zh-Hans.md">README</a><button type="button" class="latte-language" data-language-switch hidden>中文</button></span></nav><!-- /latte-site:bar --><h1><span data-l="en">CSS layout: BFC, Grid and centering</span><span data-l="zh">CSS 布局：BFC、Grid 与居中</span></h1>
+    <p data-l="en">The guide measures the boxes for you and switches their rules on and off. You can also inspect a box in your browser’s developer tools.</p>
+    <p data-l="zh">说明面板会替你测量这些盒子，并把它们的规则关掉或打开。你也可以用浏览器的开发者工具检查任意一个盒子。</p>
+  <h2><span data-l="en">Inside one BFC, top and bottom margins overlap</span><span data-l="zh">同一个 BFC 里，上下外边距会重叠</span></h2>
   <div class="case-body1"></div>
   <div class="case-body1"></div>
 
-  <h2 lang="zh-Hans">overflow: hidden 让每个盒子自成一个 BFC，外边距不再重叠</h2>
+  <h2><span data-l="en">overflow: hidden makes each box a BFC of its own, so the margins no longer overlap</span><span data-l="zh">overflow: hidden 让每个盒子自成一个 BFC，外边距不再重叠</span></h2>
   <div class="case-body2">
     <p></p>
   </div>
@@ -46,21 +47,22 @@
     <p></p>
   </div>
 
-  <h2 lang="zh-Hans">盒模型：没有内边距和边框时，border-box 和默认的 content-box 一样大</h2>
+  <h2><span data-l="en">Box model: with no padding or border, border-box is the same size as the default content-box</span><span data-l="zh">盒模型：没有内边距和边框时，border-box 和默认的 content-box 一样大</span></h2>
   <div class="case-body3"></div>
   <div class="case-body3"></div>
 
-  <h2 lang="zh-Hans">BFC 会包住里面的浮动元素</h2>
+  <h2><span data-l="en">A BFC wraps around the floats inside it</span><span data-l="zh">BFC 会包住里面的浮动元素</span></h2>
   <div style="border: 1px solid #000; overflow: hidden">
     <div style="width: 100px;height: 100px;background: #eee;float: left;">
     </div>
   </div>
 
-  <h2 lang="zh-Hans">BFC 不和旁边的浮动元素重叠</h2>
-  <div lang="zh-Hans" style="height: 100px;width: 100px;float: left;background: lightblue">我是一个左浮动的元素</div>
-  <div lang="zh-Hans" style="width: 200px; height: 200px;background: #eee; overflow: hidden">我没有浮动，但 overflow: hidden 让我自成一个 BFC，所以排在浮动元素旁边。
-  去掉 overflow: hidden，我就会从浮动元素下面开始排，文字绕着它走。</div>
+  <h2><span data-l="en">A BFC does not overlap a float beside it</span><span data-l="zh">BFC 不和旁边的浮动元素重叠</span></h2>
+  <div style="height: 100px;width: 100px;float: left;background: lightblue"><span data-l="en">I am a left-floated element</span><span data-l="zh">我是一个左浮动的元素</span></div>
+  <div style="width: 200px; height: 200px;background: #eee; overflow: hidden"><span data-l="en">I don’t float, but overflow: hidden makes me a BFC, so I sit beside the float.
+  Without it, I start under the float, and my text wraps around it.</span><span data-l="zh">我没有浮动，但 overflow: hidden 让我自成一个 BFC，所以排在浮动元素旁边。
+  去掉 overflow: hidden，我就会从浮动元素下面开始排，文字绕着它走。</span></div>
 
-<h2>Explicit formatting context: flow-root</h2><div style="display:flow-root;border:1px solid"><div style="float:left;width:60px;height:60px;background:teal"></div>Contains the float without clipping.</div>
+<h2><span data-l="en">Explicit formatting context: flow-root</span><span data-l="zh">显式创建格式化上下文：flow-root</span></h2><div style="display:flow-root;border:1px solid"><div style="float:left;width:60px;height:60px;background:teal"></div><span data-l="en">Contains the float without clipping.</span><span data-l="zh">包住浮动元素，而不裁剪任何内容。</span></div>
 </body>
 </html>

@@ -18,7 +18,7 @@ This needs webpack's dev server, so it works only on your machine. The [live dem
 
 ## How it works
 
-[src/index.js](src/index.js) (27 lines) builds a `<div>` with a button whose click handler is `printMe` from `src/print.js`. Then it asks to hear about new versions of `print.js`:
+[src/index.js](src/index.js) (38 lines) builds a `<div>` with a button whose click handler is `printMe` from `src/print.js`. Then it asks to hear about new versions of `print.js`:
 
 ```js
 if (import.meta.webpackHot) {

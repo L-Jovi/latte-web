@@ -1,17 +1,20 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-title-en="Image effects with canvas pixels · Latte Web" data-title-zh="用 Canvas 像素做图像处理 · Latte Web">
   <meta charset="utf-8" /><meta
     name="viewport"
     content="width=device-width,initial-scale=1"
   /><title>Image effects with canvas pixels · Latte Web</title
-  ><!-- latte-site:css --><link rel="stylesheet" href="../../../assets/site.css"><!-- /latte-site:css --><!-- latte-site:guide --><script src="../../../assets/guide.js" data-guide="../../../assets/guides/examples/visuals/canvas-image/index.json"></script><!-- /latte-site:guide --><link rel="stylesheet" href="../style.css" />
-  <!-- latte-site:bar --><nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="../../../index.html">Latte Web</a><span class="latte-crumb">Applications and experiments</span><span class="latte-links"><a href="https://github.com/L-Jovi/latte-web/tree/main/examples/visuals/canvas-image">README</a><a href="https://github.com/L-Jovi/latte-web/blob/main/examples/visuals/canvas-image/README.zh-Hans.md" lang="zh-Hans">中文</a></span></nav><!-- /latte-site:bar --><h1>Image effects with canvas pixels</h1>
-  <p>
+  ><!-- latte-site:css --><link rel="stylesheet" href="../../../assets/site.css"><script src="../../../assets/language.js"></script><!-- /latte-site:css --><!-- latte-site:guide --><script src="../../../assets/guide.js" data-guide="../../../assets/guides/examples/visuals/canvas-image/index.json"></script><!-- /latte-site:guide --><link rel="stylesheet" href="../style.css" />
+  <!-- latte-site:bar --><nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="../../../index.html">Latte Web</a><span class="latte-crumb"><span data-l="en">Applications and experiments</span><span data-l="zh">应用与实验</span></span><span class="latte-links"><a data-l="en" href="https://github.com/L-Jovi/latte-web/tree/main/examples/visuals/canvas-image">README</a><a data-l="zh" href="https://github.com/L-Jovi/latte-web/blob/main/examples/visuals/canvas-image/README.zh-Hans.md">README</a><button type="button" class="latte-language" data-language-switch hidden>中文</button></span></nav><!-- /latte-site:bar --><h1><span data-l="en">Image effects with canvas pixels</span><span data-l="zh">用 Canvas 像素做图像处理</span></h1>
+  <p data-l="en">
     A self-authored SVG replaces the old photographs. Pointer coordinates are
     converted from CSS pixels to canvas pixels.
   </p>
+  <p data-l="zh">一张自己画的 SVG 取代了原来的照片。指针坐标会从 CSS 像素换算成画布像素。</p>
+  <!-- Label texts are swapped (data-text), not paired: a test finds each control
+       by its label's whole text, hidden parts included. -->
   <label
-    >Scale
+    ><span data-text-en="Scale" data-text-zh="缩放">Scale</span>
     <input
       id="scale"
       type="range"
@@ -19,23 +22,40 @@
       max="2"
       step=".1"
       value="1" /></label
-  ><label><input id="watermark" type="checkbox" />Watermark</label
-  ><label><input id="magnify" type="checkbox" />Magnifier</label>
+  ><label
+    ><input id="watermark" type="checkbox" /><span
+      data-text-en="Watermark"
+      data-text-zh="水印"
+      >Watermark</span
+    ></label
+  ><label
+    ><input id="magnify" type="checkbox" /><span
+      data-text-en="Magnifier"
+      data-text-zh="放大镜"
+      >Magnifier</span
+    ></label
+  >
   <div id="filters">
-    <button data-mode="none">Reset</button
-    ><button data-mode="grey">Grayscale</button
-    ><button data-mode="threshold">Threshold</button
-    ><button data-mode="invert">Invert</button
-    ><button data-mode="blur">Blur</button
-    ><button data-mode="mosaic">Mosaic</button
-    ><button data-mode="procedural">Procedural colors</button>
+    <button data-mode="none" data-text-en="Reset" data-text-zh="重置">Reset</button
+    ><button data-mode="grey" data-text-en="Grayscale" data-text-zh="灰度">Grayscale</button
+    ><button data-mode="threshold" data-text-en="Threshold" data-text-zh="二值化">Threshold</button
+    ><button data-mode="invert" data-text-en="Invert" data-text-zh="反色">Invert</button
+    ><button data-mode="blur" data-text-en="Blur" data-text-zh="模糊">Blur</button
+    ><button data-mode="mosaic" data-text-en="Mosaic" data-text-zh="马赛克">Mosaic</button
+    ><button
+      data-mode="procedural"
+      data-text-en="Procedural colors"
+      data-text-zh="程序化颜色"
+    >Procedural colors</button>
   </div>
   <canvas
     width="480"
     height="300"
     tabindex="0"
     aria-label="Image canvas"
+    data-label-en="Image canvas"
+    data-label-zh="图像画布"
   ></canvas
-  ><output>Loading</output>
+  ><output><span data-l="en">Loading</span><span data-l="zh">加载中</span></output>
   <script type="module" src="app.js"></script>
 </html>

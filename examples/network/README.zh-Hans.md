@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 用两种方式读取同一份跨域数据，并用 `AbortController` 取消请求。JSONP 把回答当作脚本执行；`fetch` 只是读取它，而且之所以能读，是因为服务器通过 CORS 允许了。
 
@@ -16,10 +16,10 @@ node examples/network/server.js
 npm run dev
 ```
 
-打开 http://127.0.0.1:4173/examples/network/。页面来自 4173 端口，数据来自 4002 端口，所以两者的“源”（origin，即协议、主机和端口三者合在一起）不同，浏览器会把它们隔开。
+打开 http://127.0.0.1:4173/examples/network/?lang=zh。页面来自 4173 端口，数据来自 4002 端口，所以两者的“源”（origin，即协议、主机和端口三者合在一起）不同，浏览器会把它们隔开。
 
-- **Request with JSONP** 和 **Request with Fetch** 都会显示同一条消息 `Hello from the second origin`。`transport` 字段说明它是通过哪种方式来的：`jsonp` 或 `data`。
-- **Start slow Fetch** 会显示 `Waiting`，服务器要过 2 秒才回答。在此之前点击 **Cancel request**，输出就变成 `Request cancelled`。如果等它完成，就会显示那条消息，`transport` 为 `slow`。
+- **用 JSONP 请求**和**用 Fetch 请求**都会显示同一条消息 `Hello from the second origin`。`transport` 字段说明它是通过哪种方式来的：`jsonp` 或 `data`。
+- **发起慢速 Fetch** 会显示 `等待中`，服务器要过 2 秒才回答。在此之前点击**取消请求**，输出就变成 `请求已取消`。如果等它完成，就会显示那条消息，`transport` 为 `slow`。
 
 ## 原理
 
@@ -27,7 +27,7 @@ npm run dev
 
 - **JSONP** 利用的是前一条规则。[jsonp.js](jsonp.js)（22 行）先起一个独一无二的函数名，以 `?callback=…` 的形式加到 URL 上，再插入一个 `<script>` 标签。服务器返回一段 JavaScript，用数据去调用这个函数，形如 `latte_…({…});`。无论是调用到达、3 秒超时，还是脚本加载失败，代码都会移除这个标签，并删掉这个函数。
 - **CORS** 处理的是后一条。[server.js](server.js)（51 行）只对页面的两个确切地址 `http://127.0.0.1:4173` 和 `http://localhost:4173` 添加 `Access-Control-Allow-Origin` 响应头，于是浏览器允许 `fetch` 读取 JSON。对于 JSONP，它只接受普通标识符形式的回调名，绝不接受其他代码。
-- **取消。** [app.js](app.js)（37 行）给每个慢请求配一个自己的 `AbortController`。调用 `abort()` 会让对应的 `fetch` 以 `AbortError` 失败，页面把它显示为 `Request cancelled`。发起新的慢请求时会取消前一个，而且旧请求永远不会覆盖新请求的输出。
+- **取消。** [app.js](app.js)（60 行）给每个慢请求配一个自己的 `AbortController`。调用 `abort()` 会让对应的 `fetch` 以 `AbortError` 失败，页面把它显示为 `请求已取消`。发起新的慢请求时会取消前一个，而且旧请求永远不会覆盖新请求的输出。
 
 ## 过去与现在
 

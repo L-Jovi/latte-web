@@ -23,7 +23,7 @@ Read the three files in the order the data travels:
 
 1. [rust/src/lib.rs](rust/src/lib.rs) (13 lines) defines `add(a: i32, b: i32) -> i32`. `extern "C"` and `#[unsafe(no_mangle)]` export it under its plain name, so JavaScript can find it. It uses `wrapping_add`, so an overflow always wraps around, on purpose and in every build. Two Rust unit tests check `2 + 3`, `-8 + 3`, `0 + 0` and the overflow.
 2. [build.mjs](build.mjs) (29 lines) runs `cargo test`, then `cargo build --release --target wasm32-unknown-unknown`, and copies the result to `public/add.wasm`, where the page build picks it up. `npm run build:wasm` runs this script and then builds the page.
-3. [main.js](main.js) (25 lines) checks that both boxes hold signed 32-bit integers, fetches `add.wasm` on the first click and turns it into a module with `WebAssembly.instantiate`. Then it calls `module.instance.exports.add(a, b)` like any other function.
+3. [main.js](main.js) (47 lines) checks that both boxes hold signed 32-bit integers, fetches `add.wasm` on the first click and turns it into a module with `WebAssembly.instantiate`. Then it calls `module.instance.exports.add(a, b)` like any other function.
 
 Only plain numbers cross between JavaScript and Wasm here, so no generated "glue" code is needed. That is why the original's wasm-bindgen dependency is gone. Strings, objects or callbacks would need such generated bindings again.
 

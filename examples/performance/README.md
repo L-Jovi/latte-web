@@ -24,7 +24,7 @@ CLS may already show a small value before you click anything: the page's own out
 
 ## How it works
 
-Everything is in [main.js](main.js) (87 lines).
+Everything is in [main.js](main.js) (122 lines).
 
 1. **Feature detection first.** `PerformanceObserver.supportedEntryTypes` lists what this browser can report. Each metric row starts as `Waiting for an eligible event` if the browser supports it, or `Unavailable in this browser` if not, so "not supported" and "nothing has happened yet" never look the same, and a missing value is never shown as zero.
 2. **Core Web Vitals.** The official web-vitals library turns raw entries into the three metrics and applies their rules for when an event counts and when a value is final. `onLCP` reports _Largest Contentful Paint_, when the main content appeared; `onINP` reports _Interaction to Next Paint_, how quickly the page responded to input; `onCLS` reports _Cumulative Layout Shift_, how much the layout jumped unexpectedly. With `reportAllChanges: true`, the table updates whenever a value changes, so the numbers can keep moving while you use the page. LCP and INP are in milliseconds; CLS has no unit.

@@ -22,7 +22,7 @@ The page shows the heading **Render component from TypeScript and React 19**. Yo
 - `@babel/preset-typescript` deletes everything that only describes types, such as the `HelloProps` interface, without checking any of it.
 - `@babel/preset-react` turns JSX into function calls; `runtime: 'automatic'` means a file does not need to import React for that.
 
-[src/components/Hello.tsx](src/components/Hello.tsx) (18 lines) is a class component whose props must be two strings, `compiler` and `framework`. [src/index.tsx](src/index.tsx) (5 lines) mounts it with `createRoot`, and HtmlWebpackPlugin adds the script to [index.html](index.html), which provides the `#root` element.
+[src/components/Hello.tsx](src/components/Hello.tsx) (29 lines) is a class component whose props must be two strings, `compiler` and `framework`. [src/index.tsx](src/index.tsx) (5 lines) mounts it with `createRoot`, and HtmlWebpackPlugin adds the script to [index.html](index.html), which provides the `#root` element.
 
 Babel works on one file at a time and never looks at types, so it cannot notice a missing prop. That job belongs to `tsc`: [tsconfig.json](tsconfig.json) sets `noEmit: true`, so `tsc` only checks and writes no files. To see the split, delete `framework="React 19"` from `src/index.tsx` and build again: the build still succeeds, and the heading now ends in "and". Then run `npm run typecheck -w @latte/webpack-typescript`: `tsc` reports that the required `framework` prop is missing.
 

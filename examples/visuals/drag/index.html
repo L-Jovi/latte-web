@@ -1,22 +1,23 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-title-en="Dragging with mouse events and Pointer Events · Latte Web" data-title-zh="用鼠标事件和 Pointer Events 实现拖拽 · Latte Web">
   <meta charset="utf-8" /><meta
     name="viewport"
     content="width=device-width,initial-scale=1"
   /><title>Dragging with mouse events and Pointer Events · Latte Web</title
-  ><!-- latte-site:css --><link rel="stylesheet" href="../../../assets/site.css"><!-- /latte-site:css --><!-- latte-site:guide --><script src="../../../assets/guide.js" data-guide="../../../assets/guides/examples/visuals/drag/index.json"></script><!-- /latte-site:guide --><link rel="stylesheet" href="../style.css" />
-  <!-- latte-site:bar --><nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="../../../index.html">Latte Web</a><span class="latte-crumb">Applications and experiments</span><span class="latte-links"><a href="https://github.com/L-Jovi/latte-web/tree/main/examples/visuals/drag">README</a><a href="https://github.com/L-Jovi/latte-web/blob/main/examples/visuals/drag/README.zh-Hans.md" lang="zh-Hans">中文</a></span></nav><!-- /latte-site:bar --><h1>Dragging with mouse events and Pointer Events</h1>
-  <p>
+  ><!-- latte-site:css --><link rel="stylesheet" href="../../../assets/site.css"><script src="../../../assets/language.js"></script><!-- /latte-site:css --><!-- latte-site:guide --><script src="../../../assets/guide.js" data-guide="../../../assets/guides/examples/visuals/drag/index.json"></script><!-- /latte-site:guide --><link rel="stylesheet" href="../style.css" />
+  <!-- latte-site:bar --><nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="../../../index.html">Latte Web</a><span class="latte-crumb"><span data-l="en">Applications and experiments</span><span data-l="zh">应用与实验</span></span><span class="latte-links"><a data-l="en" href="https://github.com/L-Jovi/latte-web/tree/main/examples/visuals/drag">README</a><a data-l="zh" href="https://github.com/L-Jovi/latte-web/blob/main/examples/visuals/drag/README.zh-Hans.md">README</a><button type="button" class="latte-language" data-language-switch hidden>中文</button></span></nav><!-- /latte-site:bar --><h1><span data-l="en">Dragging with mouse events and Pointer Events</span><span data-l="zh">用鼠标事件和 Pointer Events 实现拖拽</span></h1>
+  <p data-l="en">
     Move both blocks inside their bounds. The Pointer Events version also
     accepts touch, pen and arrow keys.
   </p>
+  <p data-l="zh">在各自的区域里拖动两个方块。Pointer Events 版本还支持触屏、手写笔和方向键。</p>
   <section>
-    <h2>Classic mouse listeners</h2>
-    <div class="field" id="classic"><button class="block">Mouse</button></div>
+    <h2><span data-l="en">Classic mouse listeners</span><span data-l="zh">传统的鼠标事件监听</span></h2>
+    <div class="field" id="classic"><button class="block" data-text-en="Mouse" data-text-zh="鼠标">Mouse</button></div>
   </section>
   <section>
-    <h2>Pointer capture</h2>
-    <div class="field" id="modern"><button class="block">Pointer</button></div>
+    <h2><span data-l="en">Pointer capture</span><span data-l="zh">指针捕获</span></h2>
+    <div class="field" id="modern"><button class="block" data-text-en="Pointer" data-text-zh="指针">Pointer</button></div>
   </section>
   <style>
     .field {

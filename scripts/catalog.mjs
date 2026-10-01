@@ -9,7 +9,7 @@ const catalog = read('docs/catalog.json');
 const migration = read('docs/migration.json');
 const base = `https://github.com/L-Jovi/latte-web/tree/${migration.baseline}/`;
 const live = 'https://l-jovi.github.io/latte-web/';
-const { source, blob, groups, chrome, escape, inline, rootFrom } = site;
+const { source, blob, groups, chrome, escape, inline, rootFrom, pair } = site;
 // Markdown table cells cannot contain a raw pipe.
 const cell = (s) => s.replaceAll('|', '\\|');
 const outputs = new Map();
@@ -21,8 +21,12 @@ const table = (entries, zh, prefix) => {
   const rows = entries.map((e) => {
     const title = `[${cell(zh ? e.titleZh : e.title)}](${prefix}${e.path}/${readme})`;
     const summary = cell(zh ? e.summaryZh : e.summary);
+    // A Chinese reader lands on the Chinese page (assets/language.js reads ?lang).
+    // The service worker answers only its files' exact addresses, so a query would
+    // break its offline reload; that page keeps the reader's remembered choice.
+    const query = zh && !chrome.skipAll.has(e.pages[0]) ? '?lang=zh' : '';
     const tryIt = demo(e)
-      ? `[${zh ? '在线演示' : 'Live demo'}](${live}${e.pages[0]})`
+      ? `[${zh ? '在线演示' : 'Live demo'}](${live}${e.pages[0]}${query})`
       : e.pages?.length
         ? zh
           ? '本地运行'
@@ -122,7 +126,25 @@ const dress = (file, page, css, vite = false) => {
 for (const entry of catalog)
   for (const page of entry.pages || [])
     if (!page.includes('/dist/') && !chrome.skipAll.has(page))
-      dress(page, page, site.stylesheet(rootFrom(page)));
+      dress(
+        page,
+        page,
+        site.stylesheet(rootFrom(page)) + site.languageScript(rootFrom(page)),
+      );
+// A page that loads no shared file still switches language: the switch script
+// is written into it, so it keeps working offline.
+for (const page of chrome.skipAll)
+  emit(
+    page,
+    upsert(
+      page,
+      readFileSync(page, 'utf8'),
+      'language',
+      `<script>\n${readFileSync('assets/language.js', 'utf8')}</script>`,
+      /<\/title\s*>/i,
+      true,
+    ),
+  );
 
 // Built pages get the chrome through their source templates; the bar links are
 // relative to the built page. Vite bundles the stylesheet: a module import relative
@@ -161,7 +183,8 @@ for (const [file, page] of vite)
   dress(
     file,
     page,
-    `<script type="module">import '${rootFrom(file)}assets/site.css';</script>`,
+    `<script type="module">import '${rootFrom(file)}assets/site.css';</script>` +
+      site.languageScript(rootFrom(page), true),
     true,
   );
 // These templates are copied into dist as they are, so every link is relative to the built page.
@@ -177,7 +200,11 @@ const copied = [
   ],
 ];
 for (const [file, page] of copied)
-  dress(file, page, site.stylesheet(rootFrom(page)));
+  dress(
+    file,
+    page,
+    site.stylesheet(rootFrom(page)) + site.languageScript(rootFrom(page)),
+  );
 
 // The learning index is served locally by `npm run dev` and on GitHub Pages, so links stay relative.
 const about = read('package.json').description;
@@ -185,30 +212,33 @@ const aboutZh =
   '一组动手实践的 Web 练习与实验。就像一杯拿铁——一份浓缩、两份牛奶、一份奶泡——熟悉、易入口，适合日常学习。';
 const anchor = (g) => g.dir.split('/').pop();
 const card = (e) => {
-  const title = escape(e.title);
+  const title = pair(escape(e.title), escape(e.titleZh));
   const heading = e.pages?.length
     ? `<a href="${e.pages[0]}">${title}</a>`
     : title;
   const tag = demo(e)
-    ? '<a class="chip live" href="' + e.pages[0] + '">Live demo</a>'
+    ? `<a class="chip live" href="${e.pages[0]}">${pair('Live demo', '在线演示')}</a>`
     : e.pages?.length
-      ? '<span class="chip">Runs locally · 需本地运行</span>'
-      : '<span class="chip">Read · 阅读</span>';
-  return `<li class="card"><h3>${heading}</h3><p class="zh" lang="zh-Hans">${escape(e.titleZh)}</p><p class="summary">${inline(e.summary)}</p><p class="card-foot">${tag}<a class="read" href="${source}${e.path}">README</a></p></li>`;
+      ? `<span class="chip">${pair('Runs locally', '需本地运行')}</span>`
+      : `<span class="chip">${pair('Read', '阅读')}</span>`;
+  return `<li class="card"><h3>${heading}</h3><p class="summary">${pair(inline(e.summary), site.inlineZh(e.summaryZh))}</p><p class="card-foot">${tag}<a class="read" data-l="en" href="${source}${e.path}">README</a><a class="read" data-l="zh" href="${blob}${e.path}/README.zh-Hans.md">README</a></p></li>`;
 };
 // A latte by the repository's recipe: one part foam, two parts milk, one part espresso.
-const cup = `<svg class="cup" viewBox="0 0 320 360" role="img" aria-label="A latte: one part foam, two parts milk, one part espresso"><defs><clipPath id="glass"><path d="M40 70 L260 70 L234 318 Q230 336 212 336 L88 336 Q70 336 66 318 Z"/></clipPath></defs><g clip-path="url(#glass)"><rect x="0" y="70" width="320" height="67" fill="#fffaf2"/><rect x="0" y="137" width="320" height="133" fill="#e3c7a4"/><rect x="0" y="270" width="320" height="70" fill="#6b4226"/></g><path d="M40 70 L260 70 L234 318 Q230 336 212 336 L88 336 Q70 336 66 318 Z" fill="none" stroke="#2b1d14" stroke-width="7" stroke-linejoin="round"/><path d="M255 118 Q312 122 304 186 Q297 232 244 236" fill="none" stroke="#2b1d14" stroke-width="7" stroke-linecap="round"/><text x="150" y="112" text-anchor="middle">1 foam</text><text x="150" y="210" text-anchor="middle">2 milk</text><text class="light" x="150" y="310" text-anchor="middle">1 espresso</text><text class="steam" x="150" y="46" text-anchor="middle">&lt;/&gt;</text></svg>`;
+const cup = `<svg class="cup" viewBox="0 0 320 360" role="img" aria-label="A latte: one part foam, two parts milk, one part espresso" data-label-en="A latte: one part foam, two parts milk, one part espresso" data-label-zh="一杯拿铁：一份奶泡、两份牛奶、一份浓缩"><defs><clipPath id="glass"><path d="M40 70 L260 70 L234 318 Q230 336 212 336 L88 336 Q70 336 66 318 Z"/></clipPath></defs><g clip-path="url(#glass)"><rect x="0" y="70" width="320" height="67" fill="#fffaf2"/><rect x="0" y="137" width="320" height="133" fill="#e3c7a4"/><rect x="0" y="270" width="320" height="70" fill="#6b4226"/></g><path d="M40 70 L260 70 L234 318 Q230 336 212 336 L88 336 Q70 336 66 318 Z" fill="none" stroke="#2b1d14" stroke-width="7" stroke-linejoin="round"/><path d="M255 118 Q312 122 304 186 Q297 232 244 236" fill="none" stroke="#2b1d14" stroke-width="7" stroke-linecap="round"/><text x="150" y="112" text-anchor="middle" data-l="en">1 foam</text><text x="150" y="112" text-anchor="middle" data-l="zh">1 份奶泡</text><text x="150" y="210" text-anchor="middle" data-l="en">2 milk</text><text x="150" y="210" text-anchor="middle" data-l="zh">2 份牛奶</text><text class="light" x="150" y="310" text-anchor="middle" data-l="en">1 espresso</text><text class="light" x="150" y="310" text-anchor="middle" data-l="zh">1 份浓缩</text><text class="steam" x="150" y="46" text-anchor="middle">&lt;/&gt;</text></svg>`;
 const siblings = [
-  ['espresso-algorithm', 'algorithms'],
-  ['roaster-linux', 'Linux tools'],
-  ['barista-services', 'services'],
+  ['espresso-algorithm', 'algorithms', '算法'],
+  ['roaster-linux', 'Linux tools', 'Linux 工具'],
+  ['barista-services', 'services', '服务'],
   // Retired on 2026-10-01: the repository is now private, so a link would only show a 404.
-  ['cappuccino-ios', 'iOS apps, retired', false],
+  ['cappuccino-ios', 'iOS apps, retired', 'iOS 应用，已退役', false],
 ];
+const sibling = ([name, , , linked = true]) =>
+  linked ? `<a href="https://github.com/L-Jovi/${name}">${name}</a>` : name;
+const repository = source.replace('/tree/main/', '');
 emit(
   'index.html',
   `<!doctype html>
-<html lang="en">
+<html lang="en" data-title-en="Latte Web · learning index" data-title-zh="Latte Web · 学习路线">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -216,12 +246,12 @@ emit(
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='3' y='2' width='10' height='3' fill='%23fffaf2'/%3E%3Crect x='3' y='5' width='10' height='6' fill='%23e3c7a4'/%3E%3Crect x='3' y='11' width='10' height='3' fill='%236b4226'/%3E%3Crect x='3' y='2' width='10' height='12' rx='2' fill='none' stroke='%232b1d14'/%3E%3C/svg%3E">
 <title>Latte Web · learning index</title>
 <link rel="stylesheet" href="assets/site.css">
+<script src="assets/language.js"></script>
 <style>
 body{max-width:76rem}
 .hero{display:grid;grid-template-columns:minmax(0,1fr) 15rem;gap:2.5rem;align-items:center;padding:1.5rem 0 1rem}
 .hero h1{margin:0 0 .75rem;font-size:3rem;letter-spacing:-.02em}
 .hero .lead{margin:0 0 .5rem;font-size:1.15rem}
-.hero .zh{color:var(--latte-muted)}
 .hero .hook{margin:1rem 0 1.25rem}
 .actions{display:flex;flex-wrap:wrap;gap:.75rem}
 .button{display:inline-block;padding:.55rem 1.1rem;border-radius:.6rem;background:var(--latte-accent);color:var(--latte-accent-fg);font-weight:600;text-decoration:none}
@@ -233,10 +263,9 @@ body{max-width:76rem}
 .cup .light{fill:#fffaf2}
 .jump{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.5rem 0 .5rem;padding:0;list-style:none}
 .jump a{display:inline-block;padding:.3rem .8rem;border-radius:999px;background:var(--latte-code);color:var(--latte-fg);text-decoration:none;font-size:.95rem}
-.jump a span{color:var(--latte-muted)}
+.jump a .count{color:var(--latte-muted)}
 section{margin-top:2.5rem}
 section h2{margin:0;font-size:1.5rem}
-section h2 .zh{margin-left:.5rem;color:var(--latte-muted);font-weight:500;font-size:1.1rem}
 .intro{margin:.25rem 0 1rem;color:var(--latte-muted)}
 .cards{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(18rem,1fr));margin:0;padding:0;list-style:none}
 .card{display:flex;flex-direction:column;padding:1rem 1.1rem;border:1px solid var(--latte-line);border-radius:.8rem;background:var(--latte-card);transition:transform .15s ease,box-shadow .15s ease}
@@ -244,8 +273,7 @@ section h2 .zh{margin-left:.5rem;color:var(--latte-muted);font-weight:500;font-s
 .card h3{margin:0;font-size:1.05rem;line-height:1.35}
 .card h3 a{color:var(--latte-fg);text-decoration:none}
 .card h3 a:hover{color:var(--latte-accent)}
-.card .zh{margin:.2rem 0 .5rem;color:var(--latte-muted);font-size:.9rem}
-.card .summary{margin:0 0 .9rem;font-size:.95rem}
+.card .summary{margin:.5rem 0 .9rem;font-size:.95rem}
 .card-foot{display:flex;gap:.75rem;align-items:center;margin:auto 0 0;font-size:.85rem}
 .chip{padding:.15rem .6rem;border-radius:999px;background:var(--latte-code);color:var(--latte-muted)}
 .chip.live{background:var(--latte-accent);color:var(--latte-accent-fg);text-decoration:none;font-weight:600}
@@ -256,37 +284,37 @@ footer{margin-top:3.5rem;padding-top:1.25rem;border-top:1px solid var(--latte-li
 </style>
 </head>
 <body>
-<nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="index.html">Latte Web</a><span class="latte-crumb">Learning index</span><span class="latte-links"><a href="${source.replace('/tree/main/', '')}">GitHub</a><a href="${blob}README.zh-Hans.md" lang="zh-Hans">中文</a></span></nav>
+<nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="index.html">Latte Web</a><span class="latte-crumb">${pair('Learning index', '学习路线')}</span><span class="latte-links"><a href="${repository}">GitHub</a>${site.languageSwitch}</span></nav>
 <header class="hero">
 <div>
 <h1>Latte Web</h1>
-<p class="lead">${escape(about)}</p>
-<p class="lead zh" lang="zh-Hans">${escape(aboutZh)}</p>
-<p class="hook">Learn how the web works by building small versions of it: Promise/A+, mini React, a router, a bundler and more. Run a page, follow the guide beside it, then read the code.</p>
-<p class="actions"><a class="button" href="#mechanisms">Start building</a><a class="button ghost" href="${source.replace('/tree/main/', '')}">View on GitHub</a></p>
-<p class="stats">${catalog.length} examples · 872/872 Promises/A+ tests · every page tested in Chromium, Firefox and WebKit</p>
+<p class="lead">${pair(escape(about), escape(aboutZh))}</p>
+<p class="hook">${pair('Learn how the web works by building small versions of it: Promise/A+, mini React, a router, a bundler and more. Run a page, follow the guide beside it, then read the code.', '从零实现一些小版本，看懂 Web 是怎样工作的：Promise/A+、mini React、前端路由、打包器，等等。打开一个页面，跟着旁边的说明一步步看，再去读代码。')}</p>
+<p class="actions"><a class="button" href="#mechanisms">${pair('Start building', '开始动手')}</a><a class="button ghost" href="${repository}">${pair('View on GitHub', '在 GitHub 上查看')}</a></p>
+<p class="stats">${pair(`${catalog.length} examples · 872/872 Promises/A+ tests · every page tested in Chromium, Firefox and WebKit`, `${catalog.length} 个示例 · Promises/A+ 测试 872/872 · 每个页面都在 Chromium、Firefox 和 WebKit 中测试`)}</p>
 </div>
 ${cup}
 </header>
 <ul class="jump">${groups
     .map((g) => {
       const n = catalog.filter((e) => e.kind === g.kind).length;
-      return `<li><a href="#${anchor(g)}">${g.title} <span>${n}</span></a></li>`;
+      return `<li><a href="#${anchor(g)}">${pair(g.title, g.titleZh)} <span class="count">${n}</span></a></li>`;
     })
     .join('')}</ul>
 ${groups
   .map((g) => {
     const entries = catalog.filter((e) => e.kind === g.kind);
     return `<section id="${anchor(g)}">
-<h2>${g.title}<span class="zh" lang="zh-Hans">${g.titleZh}</span></h2>
-<p class="intro">${escape(g.intro)}</p>
+<h2>${pair(g.title, g.titleZh)}</h2>
+<p class="intro">${pair(escape(g.intro), escape(g.introZh))}</p>
 <ul class="cards">${entries.map(card).join('')}</ul>
 </section>`;
   })
   .join('\n')}
 <footer>
-<p>Part of a coffee-named series: ${siblings.map(([name, what, linked = true]) => `${linked ? `<a href="https://github.com/L-Jovi/${name}">${name}</a>` : name} (${what})`).join(', ')}.</p>
-<p>Original code and documentation are MIT licensed. <a href="${source.replace('/tree/main/', '')}">github.com/L-Jovi/latte-web</a></p>
+<p data-l="en">Part of a coffee-named series: ${siblings.map((s) => `${sibling(s)} (${s[1]})`).join(', ')}.</p>
+<p data-l="zh">同一个咖啡系列里的其他仓库：${siblings.map((s) => `${sibling(s)}（${s[2]}）`).join('、')}。</p>
+<p>${pair('Original code and documentation are MIT licensed.', '原创代码与文档使用 MIT 许可。')} <a href="${repository}">github.com/L-Jovi/latte-web</a></p>
 </footer>
 </body>
 </html>

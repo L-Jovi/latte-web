@@ -10,10 +10,10 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/mechanisms/utilities/timer/
+# 打开 http://127.0.0.1:4173/mechanisms/utilities/timer/?lang=zh
 ```
 
-点击 **Start ten ticks**。页面上每 100 毫秒出现一行，一共十行，每行写着这一次晚了多少，例如 `3: 1.20 ms late`。每次运行的数字都不一样，但不会越来越大。**Stop** 会取消下一次触发。不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/timer/index.html)。
+点击**开始十次计时**。页面上每 100 毫秒出现一行，一共十行，每行写着这一次晚了多少，例如 `3: 1.20 ms late`。每次运行的数字都不一样，但不会越来越大。**停止**会取消下一次触发。不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/timer/index.html?lang=zh)。
 
 ## 原理
 

@@ -4,9 +4,19 @@ import { bindActionCreators } from 'redux';
 import { HashRouter, Routes, Route, Link } from 'react-router-dom';
 import * as actionCreators from './actions.js';
 import { visibleTodos } from './reducer.js';
+import { say, toChinese } from './say.js';
 import TodoItem from './TodoItem.jsx';
 export class TodoPage extends React.Component {
   state = { text: '' };
+  // connect renders the page again only when the store or the props change,
+  // so the page redraws itself when the language does.
+  componentDidMount() {
+    document.addEventListener('languagechange', this.redraw);
+  }
+  componentWillUnmount() {
+    document.removeEventListener('languagechange', this.redraw);
+  }
+  redraw = () => this.forceUpdate();
   submit = (event) => {
     event.preventDefault();
     this.props.actions.addTodo(this.state.text);
@@ -16,17 +26,22 @@ export class TodoPage extends React.Component {
     const { todos, filter, status, error, actions } = this.props;
     return (
       <main>
-        <h1>Todos</h1>
-        <p>Classic: class, connect, Immutable and Saga.</p>
+        <h1>{say('Todos', '待办')}</h1>
+        <p>
+          {say(
+            'Classic: class, connect, Immutable and Saga.',
+            '经典写法：class、connect、Immutable 和 Saga。',
+          )}
+        </p>
         <form onSubmit={this.submit}>
           <label>
-            New todo{' '}
+            {say('New todo', '新待办')}{' '}
             <input
               value={this.state.text}
               onChange={(event) => this.setState({ text: event.target.value })}
             />
           </label>
-          <button>Add</button>
+          <button>{say('Add', '新增')}</button>
         </form>
         <div>
           {['All', 'Active', 'Completed'].map((value) => (
@@ -35,27 +50,29 @@ export class TodoPage extends React.Component {
               aria-pressed={filter === value}
               onClick={() => actions.setVisibilityFilter(value)}
             >
-              {value}
+              {say(value, toChinese(value))}
             </button>
           ))}
         </div>
-        <ul aria-label="Todo list">
+        <ul aria-label={say('Todo list', '待办列表')}>
           {todos.map((todo) => (
             <TodoItem key={todo.id} todo={todo} actions={actions} />
           ))}
         </ul>
-        <button onClick={() => actions.completeAllTodos()}>Toggle all</button>
+        <button onClick={() => actions.completeAllTodos()}>
+          {say('Toggle all', '全部切换')}
+        </button>
         <button onClick={() => actions.clearCompleted()}>
-          Clear completed
+          {say('Clear completed', '清除已完成')}
         </button>
         <button
           disabled={status === 'Loading'}
           onClick={() => actions.importTodos()}
         >
-          Import examples
+          {say('Import examples', '导入示例')}
         </button>
-        <p role="status">{status}</p>
-        {error && <p role="alert">{error}</p>}
+        <p role="status">{say(status, toChinese(status))}</p>
+        {error && <p role="alert">{say(error, toChinese(error))}</p>}
       </main>
     );
   }
@@ -75,8 +92,8 @@ export default class App extends React.Component {
       <Provider store={this.props.store}>
         <HashRouter>
           <nav>
-            <Link to="/">Todos</Link>
-            <Link to="/about">About</Link>
+            <Link to="/">{say('Todos', '待办')}</Link>
+            <Link to="/about">{say('About', '关于')}</Link>
           </nav>
           <Routes>
             <Route path="/" element={<ConnectedTodo />} />
@@ -84,15 +101,20 @@ export default class App extends React.Component {
               path="/about"
               element={
                 <main>
-                  <h1>About this comparison</h1>
+                  <h1>{say('About this comparison', '关于这组对照')}</h1>
                   <p>
-                    The same Todo scenarios use an explicit action/reducer and
-                    Saga pipeline.
+                    {say(
+                      'The same Todo scenarios use an explicit action/reducer and Saga pipeline.',
+                      '同样的 Todo 场景，这一版用显式的 action/reducer 和 Saga 流水线实现。',
+                    )}
                   </p>
                 </main>
               }
             />
-            <Route path="*" element={<h1>Page not found</h1>} />
+            <Route
+              path="*"
+              element={<h1>{say('Page not found', '找不到这个页面')}</h1>}
+            />
           </Routes>
         </HashRouter>
       </Provider>

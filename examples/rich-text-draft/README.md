@@ -17,7 +17,7 @@ Type a sentence, select part of it and click **Bold**: the selection turns bold.
 
 ## How it works
 
-Everything is in [src/index.jsx](src/index.jsx) (54 lines). Draft.js is a _controlled_ editor, like a React `<input>` with `value` and `onChange`:
+Everything is in [src/index.jsx](src/index.jsx) (70 lines). Draft.js is a _controlled_ editor, like a React `<input>` with `value` and `onChange`:
 
 1. A class component keeps an `EditorState` in its `state`. It is an immutable object with the text, the selection and the undo history.
 2. `<Editor>` receives that state. On every change it calls `onChange` with a new `EditorState`, and the component stores it with `setState`.

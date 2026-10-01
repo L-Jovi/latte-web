@@ -19,12 +19,12 @@
       "title": "Spin, and the button locks",
       "titleZh": "开始旋转，按钮随即锁住",
       "text": "A click first picks a sector with `Math.random()`, then works out the angle that puts that sector's centre over the pointer, three full turns (1080°) further on, and animates the wheel with `element.animate()`. The button stays disabled until the animation's `finished` promise resolves. This button clicks **Spin** twice: the second click hits a disabled button and cannot start another spin. The console shows the state right after both clicks; the readouts follow the spin until it ends.",
-      "textZh": "点击后先用 `Math.random()` 选定一个扇区，再算出让这个扇区的中心对准指针的角度，并在此基础上多转三整圈（1080°），然后用 `element.animate()` 播放动画。在动画的 `finished` Promise 完成之前，按钮一直处于禁用状态。这个按钮连点两次 **Spin**：第二次点到的是被禁用的按钮，无法再开始一次旋转。控制台显示两次点击之后那一刻的状态；读数会一直跟到旋转结束。",
+      "textZh": "点击后先用 `Math.random()` 选定一个扇区，再算出让这个扇区的中心对准指针的角度，并在此基础上多转三整圈（1080°），然后用 `element.animate()` 播放动画。在动画的 `finished` Promise 完成之前，按钮一直处于禁用状态。这个按钮连点两次**旋转**：第二次点到的是被禁用的按钮，无法再开始一次旋转。控制台显示两次点击之后那一刻的状态；读数会一直跟到旋转结束。",
       "action": {
         "run": "const spin = document.querySelector('.wheel ~ button'); spin.click(); spin.click(); console.log('after two clicks: ' + document.querySelector('.wheel').getAnimations().length + ' animation, button disabled: ' + spin.disabled);"
       },
       "actionLabel": "Click Spin twice",
-      "actionLabelZh": "连点两次 Spin",
+      "actionLabelZh": "连点两次「旋转」",
       "watch": [
         {
           "label": "button disabled",
@@ -65,7 +65,7 @@
         {
           "label": "the text names that sector",
           "labelZh": "文字说的正是这个扇区",
-          "value": "(matrix => document.querySelector('output').textContent === 'Selected: ' + 'ABCD'[Math.floor((((180 - Math.atan2(matrix.b, matrix.a) * 180 / Math.PI) % 360) + 360) % 360 / 90)])(new DOMMatrix(getComputedStyle(document.querySelector('.wheel')).transform))",
+          "value": "(matrix => document.querySelector('output').textContent.endsWith('ABCD'[Math.floor((((180 - Math.atan2(matrix.b, matrix.a) * 180 / Math.PI) % 360) + 360) % 360 / 90)]))(new DOMMatrix(getComputedStyle(document.querySelector('.wheel')).transform))",
           "expect": "true"
         },
         {
@@ -99,7 +99,7 @@
         {
           "label": "the text names that sector",
           "labelZh": "文字说的正是这个扇区",
-          "value": "(matrix => document.querySelector('output').textContent === 'Selected: ' + 'ABCD'[Math.floor((((180 - Math.atan2(matrix.b, matrix.a) * 180 / Math.PI) % 360) + 360) % 360 / 90)])(new DOMMatrix(getComputedStyle(document.querySelector('.wheel')).transform))",
+          "value": "(matrix => document.querySelector('output').textContent.endsWith('ABCD'[Math.floor((((180 - Math.atan2(matrix.b, matrix.a) * 180 / Math.PI) % 360) + 360) % 360 / 90)]))(new DOMMatrix(getComputedStyle(document.querySelector('.wheel')).transform))",
           "expect": "true"
         }
       ],
@@ -111,7 +111,7 @@
       "title": "Try it by hand",
       "titleZh": "亲手试试",
       "text": "Click **Spin** yourself and watch the wheel slow down on the letter the text names. The result comes from `Math.random()` in the browser; a real prize draw must be decided on a server, where users cannot change it. When your system's reduce-motion setting is on, the spin finishes almost at once.",
-      "textZh": "亲手点击 **Spin**，看转盘慢慢停在文字所说的那个字母上。结果来自浏览器里的 `Math.random()`；真正的抽奖必须在服务器上决定，用户才改不了结果。如果系统开启了“减少动态效果”，旋转几乎会瞬间完成。",
+      "textZh": "亲手点击**旋转**，看转盘慢慢停在文字所说的那个字母上。结果来自浏览器里的 `Math.random()`；真正的抽奖必须在服务器上决定，用户才改不了结果。如果系统开启了“减少动态效果”，旋转几乎会瞬间完成。",
       "focus": ".wheel"
     }
   ]

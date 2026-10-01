@@ -26,7 +26,11 @@ function show() {
     if (i === step) node.setAttribute('aria-current', 'step');
     else node.removeAttribute('aria-current');
   });
-  document.querySelector('output').textContent = `Step ${step + 1} of 3`;
+  // The page shows one language at a time (assets/language.js).
+  document.querySelector('output').textContent =
+    document.documentElement.dataset.language === 'zh'
+      ? `第 ${step + 1} 步，共 3 步`
+      : `Step ${step + 1} of 3`;
   document.querySelector('#back').disabled = step === 0;
   document.querySelector('#next').disabled = step === 2;
 }
@@ -39,6 +43,8 @@ document.querySelector('#next').onclick = () => {
   show();
 };
 show();
+// A language switch writes the step text again, in the other language.
+document.addEventListener('languagechange', show);
 document.querySelector('#progress').oninput = (event) => {
   const ring = document.querySelector('.ring');
   ring.style.setProperty('--value', event.target.value);

@@ -216,8 +216,38 @@ body {
 
 .latte-bar .latte-links {
   display: flex;
+  align-items: center;
   gap: 1rem;
   margin-left: auto;
+}
+
+/* The language switch (assets/language.js). Pages may style `button`, so the
+ * bar's switch keeps its own look, like the bar's links. */
+.latte-bar .latte-language {
+  margin: 0;
+  padding: 0.1rem 0.55rem;
+  border: 1px solid #e7dccf;
+  border-radius: 999px;
+  background: transparent;
+  color: #8a4b2a;
+  font: inherit;
+  cursor: pointer;
+}
+
+.latte-bar .latte-language:hover {
+  border-color: #8a4b2a;
+}
+
+.latte-bar .latte-language[hidden] {
+  display: none;
+}
+
+/* One language at a time: language.js sets data-language on <html>, and the
+ * other language's elements disappear. Only hiding is needed, so every
+ * element keeps the display its page gives it. */
+:root:not([data-language='zh']) [data-l='zh'],
+:root[data-language='zh'] [data-l='en'] {
+  display: none !important;
 }
 
 /* The guide panel beside a demo (assets/guide.js). Unlayered with its own class
@@ -392,6 +422,13 @@ body {
   border-left: 3px solid #e7dccf;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+}
+
+/* A printed line or a readout is a <samp>; it keeps the panel's font instead
+ * of the browser's default monospace size. */
+.latte-guide .latte-guide-line samp,
+.latte-guide .latte-guide-watch samp {
+  font: inherit;
 }
 
 .latte-guide .latte-guide-line.warn {

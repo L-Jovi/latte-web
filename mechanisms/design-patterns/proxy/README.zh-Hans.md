@@ -10,10 +10,10 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/mechanisms/design-patterns/proxy/
+# 打开 http://127.0.0.1:4173/mechanisms/design-patterns/proxy/?lang=zh
 ```
 
-克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。打开浏览器控制台。读取 `proxy.name` 会触发 `get` 拦截器，它依次打印目标对象、属性名（`name string`）和代理对象本身，随后出现 `king saber`。执行 `proxy.name = 'foobar'` 之后，再读一次得到的是 `king archer`。再点击列表里的任意一个数字：控制台会打印这个数字，尽管只有列表本身绑定了点击监听器。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/design-patterns/proxy/index.html)。
+克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。打开浏览器控制台。读取 `proxy.name` 会触发 `get` 拦截器，它依次打印目标对象、属性名（`name string`）和代理对象本身，随后出现 `king saber`。执行 `proxy.name = 'foobar'` 之后，再读一次得到的是 `king archer`。再点击列表里的任意一个数字：控制台会打印这个数字，尽管只有列表本身绑定了点击监听器。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/design-patterns/proxy/index.html?lang=zh)。
 
 ## 原理
 

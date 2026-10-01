@@ -2,6 +2,11 @@ import { slots } from './geometry.js';
 const layered = document.querySelector('#layers'),
   cards = [...layered.querySelectorAll('article')];
 let current = 0;
+// The page shows one language at a time (assets/language.js).
+const cardName = (number) =>
+  document.documentElement.dataset.language === 'zh'
+    ? `卡片 ${number}`
+    : `Card ${number}`;
 function render() {
   slots(cards.length, current).forEach((slot, i) => {
     Object.assign(cards[i].style, {
@@ -11,7 +16,7 @@ function render() {
     });
     cards[i].setAttribute('aria-current', String(i === current));
   });
-  layered.querySelector('output').textContent = `Card ${current + 1}`;
+  layered.querySelector('output').textContent = cardName(current + 1);
 }
 function rotate(step) {
   current = (current + step + cards.length) % cards.length;
@@ -43,7 +48,7 @@ function select(step) {
 }
 strip.onscroll = () => {
   selected = Math.round(strip.scrollLeft / strip.clientWidth);
-  snap.querySelector('output').textContent = `Card ${selected + 1}`;
+  snap.querySelector('output').textContent = cardName(selected + 1);
   snap.querySelector('[data-step="-1"]').disabled = selected === 0;
   snap.querySelector('[data-step="1"]').disabled = selected === 4;
 };
@@ -59,3 +64,8 @@ strip.onkeydown = (event) => {
     select(event.key === 'ArrowRight' ? 1 : -1);
   }
 };
+// A language switch writes both readouts again, in the other language.
+document.addEventListener('languagechange', () => {
+  render();
+  strip.onscroll();
+});

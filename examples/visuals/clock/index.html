@@ -1,17 +1,27 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-title-en="Dot-matrix countdown on canvas · Latte Web" data-title-zh="Canvas 点阵倒计时 · Latte Web">
   <meta charset="utf-8" /><meta
     name="viewport"
     content="width=device-width,initial-scale=1"
   /><title>Dot-matrix countdown on canvas · Latte Web</title
-  ><!-- latte-site:css --><link rel="stylesheet" href="../../../assets/site.css"><!-- /latte-site:css --><!-- latte-site:guide --><script src="../../../assets/guide.js" data-guide="../../../assets/guides/examples/visuals/clock/index.json"></script><!-- /latte-site:guide --><link rel="stylesheet" href="../style.css" />
-  <!-- latte-site:bar --><nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="../../../index.html">Latte Web</a><span class="latte-crumb">Applications and experiments</span><span class="latte-links"><a href="https://github.com/L-Jovi/latte-web/tree/main/examples/visuals/clock">README</a><a href="https://github.com/L-Jovi/latte-web/blob/main/examples/visuals/clock/README.zh-Hans.md" lang="zh-Hans">中文</a></span></nav><!-- /latte-site:bar --><h1>Dot-matrix countdown on canvas</h1>
-  <p>
+  ><!-- latte-site:css --><link rel="stylesheet" href="../../../assets/site.css"><script src="../../../assets/language.js"></script><!-- /latte-site:css --><!-- latte-site:guide --><script src="../../../assets/guide.js" data-guide="../../../assets/guides/examples/visuals/clock/index.json"></script><!-- /latte-site:guide --><link rel="stylesheet" href="../style.css" />
+  <!-- latte-site:bar --><nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="../../../index.html">Latte Web</a><span class="latte-crumb"><span data-l="en">Applications and experiments</span><span data-l="zh">应用与实验</span></span><span class="latte-links"><a data-l="en" href="https://github.com/L-Jovi/latte-web/tree/main/examples/visuals/clock">README</a><a data-l="zh" href="https://github.com/L-Jovi/latte-web/blob/main/examples/visuals/clock/README.zh-Hans.md">README</a><button type="button" class="latte-language" data-language-switch hidden>中文</button></span></nav><!-- /latte-site:bar --><h1><span data-l="en">Dot-matrix countdown on canvas</span><span data-l="zh">Canvas 点阵倒计时</span></h1>
+  <p data-l="en">
     Digit matrices become circles; changing digits release particles with
     velocity and gravity.
   </p>
-  <button>Start 10-second countdown</button
-  ><canvas width="1024" height="420" aria-label="Dot matrix countdown"></canvas
-  ><output>Ready</output>
+  <p data-l="zh">数字的点阵画成一个个圆点；数字变化时，会放出带着速度、受重力作用的粒子。</p>
+  <button
+    data-text-en="Start 10-second countdown"
+    data-text-zh="开始 10 秒倒计时"
+  >Start 10-second countdown</button
+  ><canvas
+    width="1024"
+    height="420"
+    aria-label="Dot matrix countdown"
+    data-label-en="Dot matrix countdown"
+    data-label-zh="点阵倒计时"
+  ></canvas
+  ><output data-text-en="Ready" data-text-zh="准备就绪">Ready</output>
   <script type="module" src="app.js"></script>
 </html>

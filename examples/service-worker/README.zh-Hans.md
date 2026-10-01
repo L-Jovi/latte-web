@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 不依赖框架，完成注册、缓存、离线访问和清理。Service Worker 是浏览器与页面并行运行的一段脚本，它可以自己响应页面发出的请求，即使没有网络也行。
 
@@ -13,23 +13,23 @@ npm run dev
 # 打开 http://127.0.0.1:4173/examples/service-worker/
 ```
 
-克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。页面上显示 `Online` 和 `Not registered`。
+克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。页面上显示 `在线` 和 `未注册`。
 
-1. 点击 **Enable offline cache**，等到出现 `Offline cache ready`。
-2. 在浏览器的开发者工具里把网络切换成离线，然后刷新。页面仍然能打开，标题 **Offline notebook** 和 `Offline` 字样都在。
-3. 恢复网络，点击 **Clear this experiment**，再刷新。页面重新显示 `Not registered`：这个 worker 已经不再控制它了。
+1. 点击**启用离线缓存**，等到出现 `离线缓存已就绪`。
+2. 在浏览器的开发者工具里把网络切换成离线，然后刷新。页面仍然能打开，标题**离线笔记本**和 `离线` 字样都在。
+3. 恢复网络，点击**清理这个实验**，再刷新。页面重新显示 `未注册`：这个 worker 已经不再控制它了。
 
 也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/service-worker/index.html)。
 
 ## 原理
 
-先读页面这一侧的 [app.js](app.js)（40 行），再读 worker 本身 [service-worker.js](service-worker.js)（42 行）。
+先读页面这一侧的 [app.js](app.js)（80 行），再读 worker 本身 [service-worker.js](service-worker.js)（42 行）。
 
-1. **注册。** `navigator.serviceWorker.register('./service-worker.js', { scope: './' })` 只为当前这个目录安装 worker。worker 接管页面后会触发 `controllerchange` 事件，页面随即显示 `Offline cache ready`。
+1. **注册。** `navigator.serviceWorker.register('./service-worker.js', { scope: './' })` 只为当前这个目录安装 worker。worker 接管页面后会触发 `controllerchange` 事件，页面随即显示 `离线缓存已就绪`。
 2. **安装。** worker 的 `install` 处理函数把三个文件存进名为 `latte-offline-v1` 的缓存：目录地址本身、`index.html` 和 `app.js`。`skipWaiting()` 让新的 worker 立即接手，不必等旧的标签页全部关闭。
 3. **激活。** `activate` 处理函数删除名字以 `latte-offline-` 开头的旧缓存，然后用 `clients.claim()` 接管已经打开的页面，不需要刷新。
 4. **拦截请求。** 对这三个文件，并且只对 `GET` 请求，`event.respondWith` 按“网络优先”作答：先尝试网络，响应正常就顺手存一份新副本；网络失败时，改用缓存里的副本。如果两边都没有，worker 就返回一个错误（状态码 `503`）。其他请求照常走网络。
-5. **清理。** **Clear this experiment** 注销这个目录的 worker，并删除本实验的缓存。在你刷新之前，页面仍由旧的 worker 控制。
+5. **清理。** **清理这个实验**注销这个目录的 worker，并删除本实验的缓存。在你刷新之前，页面仍由旧的 worker 控制。
 
 想观察更新过程，可以把 `service-worker.js` 里的 `CACHE` 改成 `latte-offline-v2` 再刷新。浏览器会安装改过的 worker，它的 `activate` 步骤会删除旧缓存。
 

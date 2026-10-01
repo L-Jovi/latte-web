@@ -1,34 +1,62 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-title-en="3D carousel and CSS Scroll Snap · Latte Web" data-title-zh="3D 轮播与 CSS 滚动吸附 · Latte Web">
   <meta charset="utf-8" /><meta
     name="viewport"
     content="width=device-width,initial-scale=1"
   /><title>3D carousel and CSS Scroll Snap · Latte Web</title
-  ><!-- latte-site:css --><link rel="stylesheet" href="../../../assets/site.css"><!-- /latte-site:css --><!-- latte-site:guide --><script src="../../../assets/guide.js" data-guide="../../../assets/guides/examples/visuals/carousel/index.json"></script><!-- /latte-site:guide --><link rel="stylesheet" href="../style.css" />
-  <!-- latte-site:bar --><nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="../../../index.html">Latte Web</a><span class="latte-crumb">Applications and experiments</span><span class="latte-links"><a href="https://github.com/L-Jovi/latte-web/tree/main/examples/visuals/carousel">README</a><a href="https://github.com/L-Jovi/latte-web/blob/main/examples/visuals/carousel/README.zh-Hans.md" lang="zh-Hans">中文</a></span></nav><!-- /latte-site:bar --><h1>3D carousel and CSS Scroll Snap</h1>
+  ><!-- latte-site:css --><link rel="stylesheet" href="../../../assets/site.css"><script src="../../../assets/language.js"></script><!-- /latte-site:css --><!-- latte-site:guide --><script src="../../../assets/guide.js" data-guide="../../../assets/guides/examples/visuals/carousel/index.json"></script><!-- /latte-site:guide --><link rel="stylesheet" href="../style.css" />
+  <!-- latte-site:bar --><nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="../../../index.html">Latte Web</a><span class="latte-crumb"><span data-l="en">Applications and experiments</span><span data-l="zh">应用与实验</span></span><span class="latte-links"><a data-l="en" href="https://github.com/L-Jovi/latte-web/tree/main/examples/visuals/carousel">README</a><a data-l="zh" href="https://github.com/L-Jovi/latte-web/blob/main/examples/visuals/carousel/README.zh-Hans.md">README</a><button type="button" class="latte-language" data-language-switch hidden>中文</button></span></nav><!-- /latte-site:bar --><h1><span data-l="en">3D carousel and CSS Scroll Snap</span><span data-l="zh">3D 轮播与 CSS 滚动吸附</span></h1>
   <section id="layers">
-    <h2>Handwritten slot geometry</h2>
-    <div class="stage" tabindex="0" aria-label="Layered carousel">
-      <article>Card 1</article>
-      <article>Card 2</article>
-      <article>Card 3</article>
-      <article>Card 4</article>
-      <article>Card 5</article>
+    <h2><span data-l="en">Handwritten slot geometry</span><span data-l="zh">手写位置计算</span></h2>
+    <div
+      class="stage"
+      tabindex="0"
+      aria-label="Layered carousel"
+      data-label-en="Layered carousel"
+      data-label-zh="层叠轮播"
+    >
+      <article data-text-en="Card 1" data-text-zh="卡片 1">Card 1</article>
+      <article data-text-en="Card 2" data-text-zh="卡片 2">Card 2</article>
+      <article data-text-en="Card 3" data-text-zh="卡片 3">Card 3</article>
+      <article data-text-en="Card 4" data-text-zh="卡片 4">Card 4</article>
+      <article data-text-en="Card 5" data-text-zh="卡片 5">Card 5</article>
     </div>
-    <button data-step="-1">Previous layered card</button
-    ><button data-step="1">Next layered card</button><output>Card 1</output>
+    <button
+      data-step="-1"
+      data-text-en="Previous layered card"
+      data-text-zh="上一张层叠卡片"
+    >Previous layered card</button
+    ><button
+      data-step="1"
+      data-text-en="Next layered card"
+      data-text-zh="下一张层叠卡片"
+    >Next layered card</button><output><span data-l="en">Card 1</span><span data-l="zh">卡片 1</span></output>
   </section>
   <section id="snap">
-    <h2>Native Scroll Snap</h2>
-    <div class="strip" tabindex="0" aria-label="Scroll Snap carousel">
-      <article>Card 1</article>
-      <article>Card 2</article>
-      <article>Card 3</article>
-      <article>Card 4</article>
-      <article>Card 5</article>
+    <h2><span data-l="en">Native Scroll Snap</span><span data-l="zh">原生滚动吸附</span></h2>
+    <div
+      class="strip"
+      tabindex="0"
+      aria-label="Scroll Snap carousel"
+      data-label-en="Scroll Snap carousel"
+      data-label-zh="滚动吸附轮播"
+    >
+      <article data-text-en="Card 1" data-text-zh="卡片 1">Card 1</article>
+      <article data-text-en="Card 2" data-text-zh="卡片 2">Card 2</article>
+      <article data-text-en="Card 3" data-text-zh="卡片 3">Card 3</article>
+      <article data-text-en="Card 4" data-text-zh="卡片 4">Card 4</article>
+      <article data-text-en="Card 5" data-text-zh="卡片 5">Card 5</article>
     </div>
-    <button data-step="-1">Previous snap card</button
-    ><button data-step="1">Next snap card</button><output>Card 1</output>
+    <button
+      data-step="-1"
+      data-text-en="Previous snap card"
+      data-text-zh="上一张吸附卡片"
+    >Previous snap card</button
+    ><button
+      data-step="1"
+      data-text-en="Next snap card"
+      data-text-zh="下一张吸附卡片"
+    >Next snap card</button><output><span data-l="en">Card 1</span><span data-l="zh">卡片 1</span></output>
   </section>
   <style>
     .stage {

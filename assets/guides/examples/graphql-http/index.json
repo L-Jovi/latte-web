@@ -25,14 +25,14 @@
       "title": "The answer has the query's shape",
       "titleZh": "回答和查询的结构一样",
       "text": "Click **Run query**. The answer has the shape of the query: `hello` with `foo` and `bar`, then `getDie` with three rolls of a six-sided die. In `server.js`, `buildSchema` lists the types, and `rootValue` has one function per top-level query, a resolver, which produces the data. The console shows each answer on one line.",
-      "textZh": "点击 **Run query**。回答的结构和查询一样：`hello` 里有 `foo` 和 `bar`，然后是 `getDie`，里面是一个六面骰子掷三次的结果。在 `server.js` 里，`buildSchema` 列出各种类型，`rootValue` 为每个顶层查询提供一个函数，也就是 resolver，负责产出数据。控制台把每个回答显示成一行。",
+      "textZh": "点击**运行查询**。回答的结构和查询一样：`hello` 里有 `foo` 和 `bar`，然后是 `getDie`，里面是一个六面骰子掷三次的结果。在 `server.js` 里，`buildSchema` 列出各种类型，`rootValue` 为每个顶层查询提供一个函数，也就是 resolver，负责产出数据。控制台把每个回答显示成一行。",
       "action": {
         "clear": true,
         "clickText": "Run query",
         "run": "const answer = document.querySelector('pre'); answer.guideLog?.disconnect(); answer.guideLog = new MutationObserver(() => { let json; try { json = JSON.parse(answer.textContent); } catch { console.log('text: ' + answer.textContent); return; } console.log(json.errors ? 'errors: ' + json.errors.map((error) => error.message).join(' | ') : 'data: ' + JSON.stringify(json.data)); }); answer.guideLog.observe(answer, { childList: true });"
       },
       "actionLabel": "Click Run query",
-      "actionLabelZh": "点击 Run query",
+      "actionLabelZh": "点击「运行查询」",
       "expectConsole": "data: {\"hello\":{\"foo\":\"Hello world!\",\"bar\":[\"bar\",\"baz\"]},\"getDie\":{\"roll\":[",
       "focus": "pre"
     },
@@ -101,7 +101,7 @@
       "title": "Write your own query",
       "titleZh": "自己写一条查询",
       "text": "Edit the box and click **Run query**: try `{ quoteOfTheDay }` or `{ getDie(numSides: 20) { rollOnce } }`. The README also shows a mutation, an operation that changes data, with `createMessage`; restarting the server clears every message. This button puts the original query back.",
-      "textZh": "修改输入框里的内容，再点击 **Run query**：试试 `{ quoteOfTheDay }` 或 `{ getDie(numSides: 20) { rollOnce } }`。README 里还演示了 mutation（变更，也就是会修改数据的操作）`createMessage`；重启服务会清空所有留言。这个按钮把原来的查询放回去。",
+      "textZh": "修改输入框里的内容，再点击**运行查询**：试试 `{ quoteOfTheDay }` 或 `{ getDie(numSides: 20) { rollOnce } }`。README 里还演示了 mutation（变更，也就是会修改数据的操作）`createMessage`；重启服务会清空所有留言。这个按钮把原来的查询放回去。",
       "action": {
         "fill": {
           "target": "#query",

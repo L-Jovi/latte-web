@@ -1,11 +1,21 @@
 import _ from 'lodash';
 
+// The page shows one language at a time (assets/language.js).
+const label = () =>
+  document.documentElement.dataset.language === 'zh'
+    ? '点我，然后看看控制台！'
+    : 'Click me and look at the console!';
+
 function component() {
   const element = document.createElement('div');
   const button = document.createElement('button');
   const br = document.createElement('br');
 
-  button.innerHTML = 'Click me and look at the console!';
+  button.innerHTML = label();
+  // Write the label again when the reader switches the language.
+  document.addEventListener('languagechange', () => {
+    button.innerHTML = label();
+  });
   element.innerHTML = _.join(['Hello', 'webpack'], ' ');
   element.appendChild(br);
   element.appendChild(button);

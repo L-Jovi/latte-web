@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 用距离和速度阈值把滑动变成翻页，分别用 touch 事件和 Pointer Events 实现。
 
@@ -10,19 +10,19 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/examples/visuals/paging/
+# 打开 http://127.0.0.1:4173/examples/visuals/paging/?lang=zh
 ```
 
 克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。页面上有两条“轨道”，每条都是由三页连成的长条，在一个框里滑动：
 
-- **Touch Events** 这条轨道左右翻页，只响应手指。在电脑上请点 **Next touch page**，或者让轨道获得焦点后按方向键。
+- **Touch Events** 这条轨道左右翻页，只响应手指。在电脑上请点 **Touch 版下一页**，或者让轨道获得焦点后按方向键。
 - **Pointer Events** 这条轨道上下翻页，也能用鼠标拖：往上拖就翻到下一页。
 
-滑动距离够了，下一页就会滑进来，下方文字变成 `Page 2 of 3`。快速一划需要的距离比慢慢拖要短；距离不够，轨道就会弹回原位。到第三页时，这条轨道的 **Next** 按钮会被禁用。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/visuals/paging/index.html)。
+滑动距离够了，下一页就会滑进来，下方文字变成 `第 2 页，共 3 页`。快速一划需要的距离比慢慢拖要短；距离不够，轨道就会弹回原位。到第三页时，这条轨道的**下一页**按钮会被禁用。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/visuals/paging/index.html?lang=zh)。
 
 ## 原理
 
-全部代码都在 [app.js](app.js)（95 行）里。同一个 `pager` 函数驱动两条轨道，区别只在方向和事件。
+全部代码都在 [app.js](app.js)（101 行）里。同一个 `pager` 函数驱动两条轨道，区别只在方向和事件。
 
 1. 手势开始时，记下位置和时间，并关掉 CSS 过渡，让页面直接跟着手指走。
 2. 手指移动多少，轨道就移动多少。
@@ -37,7 +37,7 @@ touch 版监听 `touchstart`、`touchmove` 和 `touchend`，只跟踪一根手�
 
 原版示例有三个：一个滑动切换整屏的手机页面、一个手写的左右滑块，以及一个用 jQuery 做的上下滑块。前两个用的是 touch 事件；上下滑块则靠点击按钮和定时器翻页。它们还一起带上了照片、字体和辅助库。
 
-如今可以用 [CSS Scroll Snap](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Scroll_snap) 让浏览器负责滚动，并停在每一页上，[3D 轮播与 CSS Scroll Snap](../carousel/README.zh-Hans.md) 就演示了这种做法。如果需要精确地决定什么才算一次滑动，自己写手势仍然有用。
+如今可以用 [CSS Scroll Snap](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Scroll_snap) 让浏览器负责滚动，并停在每一页上，[3D 轮播与 CSS 滚动吸附](../carousel/README.zh-Hans.md)就演示了这种做法。如果需要精确地决定什么才算一次滑动，自己写手势仍然有用。
 
 ## 刻意省略
 

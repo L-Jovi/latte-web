@@ -10,13 +10,13 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/fundamentals/events/dom-event/
+# 打开 http://127.0.0.1:4173/fundamentals/events/dom-event/?lang=zh
 ```
 
 不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。请一直开着浏览器控制台。
 
-- **冒泡**，就是上面这个页面（[在线演示](https://l-jovi.github.io/latte-web/fundamentals/events/dom-event/index.html)）。点击里面的小方块（child）：只出现 `fire child`。点击外框（parent）里的其他地方：出现 `fire parent`。点击列表里的某个数字：控制台先显示你点中的 `<li>`，再显示负责监听的 `<ul>`。
-- **调度**，页面地址是 `/fundamentals/events/web-task/`（[在线演示](https://l-jovi.github.io/latte-web/fundamentals/events/web-task/index.html)）。页面加载时，一个脚本依次打印 `script start`、`async2 end`、`Promise`、`script end`、`async3 end`、`promise1`、`async4 end`、`promise2`、`async1 end`，最后是 `setTimeout`；另一个脚本打印 `Promise.resolve:  2`。然后点击里面的方块：`click`、`promise`、`observer` 会出现两遍，先是里面的方块，再是外面的方块，之后是两行 `animationFrame` 和两行 `timeout`。
+- **冒泡**，就是上面这个页面（[在线演示](https://l-jovi.github.io/latte-web/fundamentals/events/dom-event/index.html?lang=zh)）。点击里面的小方块（child）：只出现 `fire child`。点击外框（parent）里的其他地方：出现 `fire parent`。点击列表里的某个数字：控制台先显示你点中的 `<li>`，再显示负责监听的 `<ul>`。
+- **调度**，页面地址是 `/fundamentals/events/web-task/`（[在线演示](https://l-jovi.github.io/latte-web/fundamentals/events/web-task/index.html?lang=zh)）。页面加载时，一个脚本依次打印 `script start`、`async2 end`、`Promise`、`script end`、`async3 end`、`promise1`、`async4 end`、`promise2`、`async1 end`，最后是 `setTimeout`；另一个脚本打印 `Promise.resolve:  2`。然后点击里面的方块：`click`、`promise`、`observer` 会出现两遍，先是里面的方块，再是外面的方块，之后是两行 `animationFrame` 和两行 `timeout`。
 
 Node 脚本不需要服务器。另开一个终端，在仓库根目录运行：
 

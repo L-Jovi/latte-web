@@ -23,12 +23,12 @@ npm run dev -w @latte/graphql-server
 npm run dev
 ```
 
-打开 http://127.0.0.1:4173/examples/graphql/client/dist/。信息流显示种子数据四个链接中的三个，最新的在前，下面有 **Previous** 和 **Next** 两个按钮。接着可以：
+打开 http://127.0.0.1:4173/examples/graphql/client/dist/?lang=zh。信息流显示种子数据四个链接中的三个，最新的在前，下面有**上一页**和**下一页**两个按钮。接着可以：
 
-- 点击 **Log in**。表单里已经填好了虚构的账号 `reader@example.test` / `Learning-only-123!`。你也可以用另一个虚构账号注册。
-- 在 **Search** 里输入文字，按描述或 URL 筛选链接。
+- 点击**登录**。表单里已经填好了虚构的账号 `reader@example.test` / `Learning-only-123!`。你也可以用另一个虚构账号注册。
+- 在**搜索**里输入文字，按描述或 URL 筛选链接。
 - 发布一个 `http` 或 `https` 链接，再投票。给同一个链接投第二次票，会显示 `Already voted`。
-- 在第二个标签页里打开同一个页面，也登录。一个标签页发布或投票时，另一个会立即更新，并显示 `New link: …` 或 `New vote: …`。
+- 在第二个标签页里打开同一个页面，也登录。一个标签页发布或投票时，另一个会立即更新，并显示 `新链接：…` 或 `新投票：…`。
 
 ## 原理
 

@@ -20,7 +20,7 @@ You can also open the [live demo](https://l-jovi.github.io/latte-web/examples/vi
 
 ## How it works
 
-Read [geometry.js](geometry.js) (13 lines), then [app.js](app.js) (61 lines).
+Read [geometry.js](geometry.js) (13 lines), then [app.js](app.js) (71 lines).
 
 `slots(count, current)` works out every card's place from a single number: `current`, the index of the front card. For each card it takes the distance from the front card, wrapped so that it is never more than half the ring away (with five cards, from −2 to 2). Then:
 

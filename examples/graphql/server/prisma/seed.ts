@@ -16,10 +16,11 @@ export async function seed(databaseUrl: string) {
       },
     });
     const links = [
-      ['https://developer.mozilla.org/', 'Read browser APIs'],
-      ['https://graphql.org/learn/', 'Learn GraphQL'],
-      ['https://react.dev/', 'Explore React'],
-      ['https://www.prisma.io/docs/', 'Learn data modelling'],
+      // Site names read the same on the English and the Chinese page.
+      ['https://developer.mozilla.org/', 'MDN'],
+      ['https://graphql.org/learn/', 'GraphQL'],
+      ['https://react.dev/', 'React'],
+      ['https://www.prisma.io/docs/', 'Prisma'],
     ];
     for (const [index, [url, description]] of links.entries())
       await db.link.upsert({

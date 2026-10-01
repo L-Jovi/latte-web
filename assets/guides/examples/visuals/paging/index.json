@@ -70,12 +70,12 @@
       "title": "The ends are fixed",
       "titleZh": "两端到头就停",
       "text": "The page number stays between 1 and 3, with no wrapping, and the button at an end is disabled. This button clicks **Next touch page** twice: the first click goes to page 3, the second does nothing because the button is now disabled.",
-      "textZh": "页码始终在 1 到 3 之间，不会绕回去；到了一端，对应的按钮会被禁用。这个按钮连点两次 **Next touch page**：第一次翻到第 3 页，第二次什么也不做，因为按钮已经被禁用了。",
+      "textZh": "页码始终在 1 到 3 之间，不会绕回去；到了一端，对应的按钮会被禁用。这个按钮连点两次 **Touch 版下一页**：第一次翻到第 3 页，第二次什么也不做，因为按钮已经被禁用了。",
       "action": {
         "run": "const next = document.querySelector(\"#touch [data-step='1']\"); next.click(); next.click();"
       },
       "actionLabel": "Click Next touch page twice",
-      "actionLabelZh": "连点两次 Next touch page",
+      "actionLabelZh": "连点两次「Touch 版下一页」",
       "watch": [
         {
           "label": "sideways track",
@@ -85,7 +85,7 @@
         },
         {
           "label": "Next touch page disabled",
-          "labelZh": "Next touch page 已禁用",
+          "labelZh": "「Touch 版下一页」已禁用",
           "value": "document.querySelector(\"#touch [data-step='1']\").disabled",
           "expect": "true"
         }

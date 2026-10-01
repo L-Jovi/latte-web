@@ -12,10 +12,10 @@
 npm ci
 npm run build -w @latte/bundlers
 npm run dev
-# 打开 http://127.0.0.1:4173/mechanisms/bundlers/dist/
+# 打开 http://127.0.0.1:4173/mechanisms/bundlers/dist/?lang=zh
 ```
 
-页面上显示 **welcome Jovi**，这是分层版打出的包写进页面的；浏览器控制台里显示 `my lord saber`，这是过程式版本打出的包打印的。用编辑器打开 `dist/procedural.js`：文件开头是加载器，文件末尾是依赖图，每个模块的代码都以它的文件路径为键存放。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/bundlers/dist/index.html)。
+页面上显示**欢迎 Jovi**，这是分层版打出的包写进页面的；浏览器控制台里显示 `my lord saber`，这是过程式版本打出的包打印的。用编辑器打开 `dist/procedural.js`：文件开头是加载器，文件末尾是依赖图，每个模块的代码都以它的文件路径为键存放。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/bundlers/dist/index.html?lang=zh)。
 
 ## 原理
 

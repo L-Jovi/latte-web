@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 散落倾斜的卡片，鼠标悬停时摆正并放大。
 
@@ -10,14 +10,14 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/examples/visuals/photo-wall/
+# 打开 http://127.0.0.1:4173/examples/visuals/photo-wall/?lang=zh
 ```
 
-克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。六张卡片以不同的角度摆放，每张都是用 CSS 画的一小幅风景。把鼠标移到某张卡片上，或者用 Tab 键移过去：它会摆正、稍稍放大，并浮到相邻卡片的上面。把窗口调窄，照片墙的列数就会变少。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/visuals/photo-wall/index.html)。
+克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。六张卡片以不同的角度摆放，每张都是用 CSS 画的一小幅风景。把鼠标移到某张卡片上，或者用 Tab 键移过去：它会摆正、稍稍放大，并浮到相邻卡片的上面。把窗口调窄，照片墙的列数就会变少。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/visuals/photo-wall/index.html?lang=zh)。
 
 ## 原理
 
-全部代码都在 [index.html](index.html)（56 行）里，没有 JavaScript。
+全部代码都在 [index.html](index.html)（57 行）里，没有 JavaScript。
 
 - 每张卡片都是一个 `<button>`，所以能获得键盘焦点。它的 `style` 属性设置了两个自定义属性（CSS 变量）：`--angle` 是倾斜角度，`--hue` 是小山的颜色。
 - `.photo` 把每张卡片旋转 `var(--angle)`。在 `:hover` 或 `:focus-visible` 时，transform 变成 `rotate(0deg) scale(1.08)`，`z-index: 2` 让卡片浮到其他卡片上面，`transition: transform 0.3s` 负责动画。

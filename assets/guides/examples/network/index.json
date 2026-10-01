@@ -14,7 +14,7 @@
         {
           "label": "text under the buttons",
           "labelZh": "按钮下方的文字",
-          "value": "document.querySelector('output').textContent",
+          "value": "document.querySelector('output').innerText",
           "expect": "Ready"
         }
       ],
@@ -30,7 +30,7 @@
         "run": "const output = document.querySelector('output'); output.guideLog?.disconnect(); output.guideLog = new MutationObserver((records) => { for (const record of records) for (const node of record.addedNodes) console.log('output: ' + node.textContent); }); output.guideLog.observe(output, { childList: true }); const head = new MutationObserver((records) => { for (const record of records) { for (const node of record.addedNodes) if (node.localName === 'script') console.log('added <script src=\"' + node.src.replace(/latte_\\w+/, 'latte_…') + '\">'); for (const node of record.removedNodes) if (node.localName === 'script') { console.log('removed <script>; latte_ functions left on window: ' + Object.keys(window).filter((key) => key.startsWith('latte_')).length); head.disconnect(); } } }); head.observe(document.head, { childList: true }); document.querySelector('#jsonp').click();"
       },
       "actionLabel": "Click Request with JSONP",
-      "actionLabelZh": "点击 Request with JSONP",
+      "actionLabelZh": "点击「用 JSONP 请求」",
       "highlight": "latte_",
       "expectConsole": [
         "added <script src=\"http://127.0.0.1:4002/jsonp?callback=latte_…\">",
@@ -49,7 +49,7 @@
         "run": "const output = document.querySelector('output'); output.guideLog?.disconnect(); output.guideLog = new MutationObserver((records) => { for (const record of records) for (const node of record.addedNodes) console.log('output: ' + node.textContent); }); output.guideLog.observe(output, { childList: true }); document.querySelector('#fetch').click();"
       },
       "actionLabel": "Click Request with Fetch",
-      "actionLabelZh": "点击 Request with Fetch",
+      "actionLabelZh": "点击「用 Fetch 请求」",
       "expectConsole": [
         "output: {\"message\":\"Hello from the second origin\",\"transport\":\"data\"}"
       ],
@@ -59,13 +59,13 @@
       "title": "A slow request",
       "titleZh": "一个慢请求",
       "text": "**Start slow Fetch** shows `Waiting`, and the server takes 2 seconds to answer. Wait, and the answer arrives with `transport` set to `slow`.",
-      "textZh": "**Start slow Fetch** 会先显示 `Waiting`，服务器要过 2 秒才回答。等一等，回答就会到来，`transport` 为 `slow`。",
+      "textZh": "**发起慢速 Fetch** 会先显示“等待中”，服务器要过 2 秒才回答。等一等，回答就会到来，`transport` 为 `slow`。",
       "action": {
         "clear": true,
         "run": "const output = document.querySelector('output'); output.guideLog?.disconnect(); output.guideLog = new MutationObserver((records) => { for (const record of records) for (const node of record.addedNodes) console.log('output: ' + node.textContent); }); output.guideLog.observe(output, { childList: true }); document.querySelector('#slow').click();"
       },
       "actionLabel": "Click Start slow Fetch",
-      "actionLabelZh": "点击 Start slow Fetch",
+      "actionLabelZh": "点击「发起慢速 Fetch」",
       "expectConsole": ["output: Waiting"],
       "focus": "output"
     },
@@ -73,7 +73,7 @@
       "title": "Cancel it with AbortController",
       "titleZh": "用 AbortController 取消",
       "text": "Each slow request gets its own `AbortController`. This button starts a slow request and cancels it at once with `abort()`: that `fetch` fails with an `AbortError`, which the page shows as `Request cancelled`, and its answer never arrives. Starting a new slow request also cancels the one before, and an older request can never overwrite the text of a newer one.",
-      "textZh": "每个慢请求都有自己的 `AbortController`。这个按钮发起一个慢请求，并立刻用 `abort()` 取消：这个 `fetch` 以 `AbortError` 失败，页面显示 `Request cancelled`，它的回答永远不会到来。发起新的慢请求时也会取消前一个，而且旧请求永远不会覆盖新请求的文字。",
+      "textZh": "每个慢请求都有自己的 `AbortController`。这个按钮发起一个慢请求，并立刻用 `abort()` 取消：这个 `fetch` 以 `AbortError` 失败，页面显示“请求已取消”，它的回答永远不会到来。发起新的慢请求时也会取消前一个，而且旧请求永远不会覆盖新请求的文字。",
       "action": {
         "clear": true,
         "run": "const output = document.querySelector('output'); output.guideLog?.disconnect(); output.guideLog = new MutationObserver((records) => { for (const record of records) for (const node of record.addedNodes) console.log('output: ' + node.textContent); }); output.guideLog.observe(output, { childList: true }); document.querySelector('#slow').click(); document.querySelector('#cancel').click();"

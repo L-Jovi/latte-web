@@ -10,10 +10,10 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/examples/visuals/clock/
+# 打开 http://127.0.0.1:4173/examples/visuals/clock/?lang=zh
 ```
 
-每个实验都是普通的 HTML 页面，所以克隆仓库后就能直接运行，也不需要 `npm ci`。把 `clock` 换成下表里任意一个目录名即可。所有实验也都可以在[在线站点](https://l-jovi.github.io/latte-web/)上打开。
+每个实验都是普通的 HTML 页面，所以克隆仓库后就能直接运行，也不需要 `npm ci`。把 `clock` 换成下表里任意一个目录名即可。所有实验也都可以在[在线站点](https://l-jovi.github.io/latte-web/?lang=zh)上打开。
 
 ## 原理
 
@@ -25,7 +25,7 @@ npm run dev
 | `canvas-image` | [用 Canvas 像素做图像处理](canvas-image/README.zh-Hans.md)     | 通过读写像素，实现缩放、水印、放大镜和滤镜。                                       |
 | `drag`         | [用鼠标事件和 Pointer Events 实现拖拽](drag/README.zh-Hans.md) | 同一个拖拽写两遍；Pointer Events 同时支持触屏和手写笔。                            |
 | `paging`       | [滑动翻页](paging/README.zh-Hans.md)                           | 用距离和速度阈值把滑动变成翻页，分别用 touch 事件和 Pointer Events 实现。          |
-| `carousel`     | [3D 轮播与 CSS Scroll Snap](carousel/README.zh-Hans.md)        | 用几何计算排布层叠的轮播图，再让 CSS Scroll Snap 原生完成类似的事。                |
+| `carousel`     | [3D 轮播与 CSS 滚动吸附](carousel/README.zh-Hans.md)           | 用几何计算排布层叠的轮播图，再让 CSS Scroll Snap 原生完成类似的事。                |
 | `photo-wall`   | [CSS transform 照片墙](photo-wall/README.zh-Hans.md)           | 散落倾斜的卡片，鼠标悬停时摆正并放大。                                             |
 | `search`       | [可以用键盘操作的搜索建议](search/README.zh-Hans.md)           | 边输入边筛选建议，用方向键选择；使用无障碍的 combobox 标记。                       |
 | `motion`       | [导航、步骤条与环形进度](motion/README.zh-Hans.md)             | 展开的导航（JS 补间与 CSS 过渡对比）、步骤条，以及用 conic-gradient 画的环形进度。 |

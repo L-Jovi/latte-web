@@ -8,11 +8,13 @@
       "watch": [
         {
           "label": "JavaScript tween",
+          "labelZh": "JavaScript 补间",
           "value": "Math.round(document.querySelector('.legacy a').getBoundingClientRect().width) + ' px'",
           "expect": "180 px"
         },
         {
           "label": "CSS transition",
+          "labelZh": "CSS 过渡",
           "value": "Math.round(document.querySelector('.modern a').getBoundingClientRect().width) + ' px'",
           "expect": "180 px"
         },
@@ -49,6 +51,7 @@
       "watch": [
         {
           "label": "CSS transition",
+          "labelZh": "CSS 过渡",
           "value": "Math.round(document.querySelector('.modern a').getBoundingClientRect().width) + ' px'"
         }
       ]
@@ -57,12 +60,12 @@
       "title": "The step bar",
       "titleZh": "步骤条",
       "text": "Click **Next**: the highlight moves from **Read** to **Run**. The current step gets `aria-current=\"step\"`, which tells assistive technology which step you are on, and the CSS styles that attribute.",
-      "textZh": "点击 **Next**：高亮从 **Read** 移到 **Run**。当前这一步带有 `aria-current=\"step\"`，告诉辅助技术你正处在哪一步，CSS 也根据这个属性设置样式。",
+      "textZh": "点击**下一步**：高亮从**阅读**移到**运行**。当前这一步带有 `aria-current=\"step\"`，告诉辅助技术你正处在哪一步，CSS 也根据这个属性设置样式。",
       "action": {
         "clickText": "Next"
       },
       "actionLabel": "Click Next",
-      "actionLabelZh": "点击 Next",
+      "actionLabelZh": "点击「下一步」",
       "watch": [
         {
           "label": "current step",
@@ -78,7 +81,7 @@
         },
         {
           "label": "Back disabled",
-          "labelZh": "Back 已禁用",
+          "labelZh": "「上一步」已禁用",
           "value": "document.querySelector('#back').disabled",
           "expect": "false"
         }
@@ -89,12 +92,12 @@
       "title": "It stops at the last step",
       "titleZh": "到最后一步就停",
       "text": "The step stays between 1 and 3. This button clicks **Next** five more times: the bar stops on **Compare** and **Next** becomes disabled, so the extra clicks do nothing.",
-      "textZh": "步骤始终在 1 到 3 之间。这个按钮再点五次 **Next**：步骤条停在 **Compare**，**Next** 被禁用，多出来的点击什么也不做。",
+      "textZh": "步骤始终在 1 到 3 之间。这个按钮再点五次**下一步**：步骤条停在**对比**，**下一步**被禁用，多出来的点击什么也不做。",
       "action": {
         "run": "for (let i = 0; i < 5; i++) document.querySelector('#next').click();"
       },
       "actionLabel": "Click Next five more times",
-      "actionLabelZh": "再点五次 Next",
+      "actionLabelZh": "再点五次「下一步」",
       "watch": [
         {
           "label": "current step",
@@ -110,7 +113,7 @@
         },
         {
           "label": "Next disabled",
-          "labelZh": "Next 已禁用",
+          "labelZh": "「下一步」已禁用",
           "value": "document.querySelector('#next').disabled",
           "expect": "true"
         }
@@ -129,7 +132,7 @@
         }
       },
       "actionLabel": "Set Progress to 70",
-      "actionLabelZh": "把 Progress 设为 70",
+      "actionLabelZh": "把「进度」设为 70",
       "watch": [
         {
           "label": "--value",
@@ -154,7 +157,7 @@
       "title": "Hover the menu by hand",
       "titleZh": "亲手悬停导航",
       "text": "Hover over **JavaScript tween** and **CSS transition**, or move to them with the Tab key: both widen from 180 to 260 px and shrink back when you leave. The tween reads the current width on `mouseenter`, `mouseleave`, `focus` and `blur`, and animates it over 250 ms with `requestAnimationFrame`, eased by `1 - (1 - t) ** 3`: fast at first, slow at the end. Leave half-way and it turns back smoothly from where it is.",
-      "textZh": "把鼠标移到 **JavaScript tween** 和 **CSS transition** 上，或者用 Tab 键移过去：两者都会从 180 px 展开到 260 px，离开后再缩回去。补间在 `mouseenter`、`mouseleave`、`focus` 和 `blur` 时读取当前宽度，用 `requestAnimationFrame` 在 250 毫秒内把它变过去，缓动公式是 `1 - (1 - t) ** 3`：开头快，结尾慢。中途离开，它会从当前的宽度平滑地折返。",
+      "textZh": "把鼠标移到 **JavaScript 补间**和 **CSS 过渡**上，或者用 Tab 键移过去：两者都会从 180 px 展开到 260 px，离开后再缩回去。补间在 `mouseenter`、`mouseleave`、`focus` 和 `blur` 时读取当前宽度，用 `requestAnimationFrame` 在 250 毫秒内把它变过去，缓动公式是 `1 - (1 - t) ** 3`：开头快，结尾慢。中途离开，它会从当前的宽度平滑地折返。",
       "focus": ".legacy a, .modern a"
     }
   ]

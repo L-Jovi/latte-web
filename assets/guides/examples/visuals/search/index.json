@@ -44,7 +44,7 @@
           "label": "suggestions",
           "labelZh": "建议",
           "value": "[...document.querySelectorAll('#suggestions [role=option]')].map((option) => option.textContent).join(', ') || 'none'",
-          "expect": "JavaScript closures, TypeScript"
+          "expect": "JavaScript, TypeScript"
         },
         {
           "label": "text below",
@@ -79,7 +79,7 @@
           "label": "highlighted",
           "labelZh": "高亮的选项",
           "value": "document.querySelector('#suggestions [aria-selected=true]')?.textContent ?? 'none'",
-          "expect": "JavaScript closures"
+          "expect": "JavaScript"
         },
         {
           "label": "aria-activedescendant",
@@ -104,13 +104,13 @@
           "label": "text below",
           "labelZh": "下方的文字",
           "value": "document.querySelector('output').textContent",
-          "expect": "Selected: JavaScript closures"
+          "expect": "Selected: JavaScript"
         },
         {
           "label": "text in the box",
           "labelZh": "输入框里的文字",
           "value": "document.querySelector('#query').value",
-          "expect": "JavaScript closures"
+          "expect": "JavaScript"
         },
         {
           "label": "list hidden",
@@ -124,8 +124,8 @@
     {
       "title": "Escape closes the list",
       "titleZh": "Escape 关闭列表",
-      "text": "Escape, or moving the focus away from the box, closes the list without choosing anything. This button types `css`, which matches **CSS layout**, then presses Escape.",
-      "textZh": "按 Escape，或者让焦点离开输入框，列表就会关闭，什么也不选。这个按钮输入 `css`（它匹配 **CSS layout**），再按 Escape。",
+      "text": "Escape, or moving the focus away from the box, closes the list without choosing anything. This button types `css`, which matches **CSS Grid**, then presses Escape.",
+      "textZh": "按 Escape，或者让焦点离开输入框，列表就会关闭，什么也不选。这个按钮输入 `css`（它匹配 **CSS Grid**），再按 Escape。",
       "action": {
         "fill": {
           "target": "#query",
@@ -160,7 +160,7 @@
       "title": "Try it by hand",
       "titleZh": "亲手试试",
       "text": "Type in the **Topic** box yourself, then use the arrow keys, Enter and Escape. Click a suggestion with the mouse: each suggestion cancels its own `pointerdown`, so the box keeps the focus and the click picks the topic.",
-      "textZh": "亲手在 **Topic** 输入框里输入，再试试方向键、Enter 和 Escape。用鼠标点击一条建议：每条建议都会取消自己的 `pointerdown`，所以输入框保留焦点，这次点击就能选中主题。",
+      "textZh": "亲手在**主题**输入框里输入，再试试方向键、Enter 和 Escape。用鼠标点击一条建议：每条建议都会取消自己的 `pointerdown`，所以输入框保留焦点，这次点击就能选中主题。",
       "focus": "#query"
     }
   ]

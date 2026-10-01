@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 输入、加粗、保存为 JSON；Draft.js 已于 2023 年被 Meta 归档。[Lexical 版](../rich-text-lexical/README.zh-Hans.md)做的是同样的三步，方便两者对照。
 
@@ -12,19 +12,19 @@
 npm ci
 npm run build -w @latte/rich-text-draft
 npm run dev
-# 打开 http://127.0.0.1:4173/examples/rich-text-draft/dist/
+# 打开 http://127.0.0.1:4173/examples/rich-text-draft/dist/?lang=zh
 ```
 
-输入一句话，选中其中一部分，点击 **Bold**：选中的文字变成粗体。点击 **Save JSON**，保存下来的状态会出现在编辑器下方。粗体文字在里面表现为 `inlineStyleRanges` 中的一项，样式为 `BOLD`。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/rich-text-draft/dist/index.html)。
+输入一句话，选中其中一部分，点击**加粗**：选中的文字变成粗体。点击**保存为 JSON**，保存下来的状态会出现在编辑器下方。粗体文字在里面表现为 `inlineStyleRanges` 中的一项，样式为 `BOLD`。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/rich-text-draft/dist/index.html?lang=zh)。
 
 ## 原理
 
-全部代码都在 [src/index.jsx](src/index.jsx)（54 行）里。Draft.js 是一个“受控”编辑器，就像带 `value` 和 `onChange` 的 React `<input>`：
+全部代码都在 [src/index.jsx](src/index.jsx)（70 行）里。Draft.js 是一个“受控”编辑器，就像带 `value` 和 `onChange` 的 React `<input>`：
 
 1. 一个 class 组件在自己的 `state` 里保存一个 `EditorState`。它是一个不可变对象，包含文本、选区和撤销历史。
 2. `<Editor>` 接收这份状态。每次内容变化，它都会用一个新的 `EditorState` 调用 `onChange`，组件再用 `setState` 把它存起来。
-3. **Bold** 调用 `RichUtils.toggleInlineStyle(editorState, 'BOLD')`。格式以“哪一段字符带什么样式”的数据形式保存，而不是 HTML 标签。这个按钮会取消自己的 `mousedown`，所以点击它不会把选区从编辑器里抢走。
-4. **Save JSON** 对当前内容调用 `convertToRaw`，再用 `JSON.stringify` 打印结果。
+3. **加粗**调用 `RichUtils.toggleInlineStyle(editorState, 'BOLD')`。格式以“哪一段字符带什么样式”的数据形式保存，而不是 HTML 标签。这个按钮会取消自己的 `mousedown`，所以点击它不会把选区从编辑器里抢走。
+4. **保存为 JSON** 对当前内容调用 `convertToRaw`，再用 `JSON.stringify` 打印结果。
 
 编辑器状态只属于这一个组件。在原来的 Todo 应用里，它和待办事项一起放在全局的 Redux store 中。
 

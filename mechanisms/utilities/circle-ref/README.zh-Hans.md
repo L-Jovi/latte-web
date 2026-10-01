@@ -10,10 +10,10 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/mechanisms/utilities/circle-ref/
+# 打开 http://127.0.0.1:4173/mechanisms/utilities/circle-ref/?lang=zh
 ```
 
-打开浏览器控制台。页面构造了一个对象，它的 `circleRef` 属性指回对象自己，两种检查都打印 `true`。不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/circle-ref/index.html)。
+打开浏览器控制台。页面构造了一个对象，它的 `circleRef` 属性指回对象自己，两种检查都打印 `true`。不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/circle-ref/index.html?lang=zh)。
 
 ## 原理
 

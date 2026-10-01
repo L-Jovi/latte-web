@@ -1,19 +1,54 @@
 import { onLCP, onINP, onCLS } from 'web-vitals';
+// The page shows one language at a time (assets/language.js): English by
+// default, Chinese after the switch. draw() writes this script's words in the
+// language shown, and runs again after a switch; numbers and entries stay.
+const words = {
+  en: {
+    waiting: 'Waiting for an eligible event',
+    unavailable: 'Unavailable in this browser',
+    ready: 'Ready',
+    measured: (ms) => `Measured work: ${ms} ms`,
+    late: 'Late content changes layout',
+    inserted: 'Inserted after the recent-input window',
+  },
+  zh: {
+    waiting: '等待符合条件的事件',
+    unavailable: '这个浏览器不支持',
+    ready: '就绪',
+    measured: (ms) => `实测耗时：${ms} 毫秒`,
+    late: '迟来的内容改变了布局',
+    inserted: '在最近一次输入的时间窗口之后插入',
+  },
+};
 const supported = PerformanceObserver.supportedEntryTypes;
 const requirements = {
   LCP: 'largest-contentful-paint',
   INP: 'event',
   CLS: 'layout-shift',
 };
+// Until a metric has a value, its row says why: waiting, or not measurable here.
+const pending = {};
 for (const [metric, type] of Object.entries(requirements))
-  document.getElementById(metric).textContent = supported.includes(type)
-    ? 'Waiting for an eligible event'
-    : 'Unavailable in this browser';
+  pending[metric] = supported.includes(type) ? 'waiting' : 'unavailable';
 function metric(value) {
+  delete pending[value.name];
   document.getElementById(value.name).textContent = value.value.toFixed(
     value.name === 'CLS' ? 3 : 1,
   );
 }
+// What the line under the buttons says, given the words of one language.
+let status = (text) => text.ready;
+function draw() {
+  const text =
+    words[document.documentElement.dataset.language === 'zh' ? 'zh' : 'en'];
+  for (const [metric, reason] of Object.entries(pending))
+    document.getElementById(metric).textContent = text[reason];
+  document.querySelector('output').textContent = status(text);
+  const banner = document.querySelector('.late');
+  if (banner) banner.textContent = text.late;
+}
+draw();
+document.addEventListener('languagechange', draw);
 if (supported.includes(requirements.LCP))
   onLCP(metric, { reportAllChanges: true });
 if (supported.includes(requirements.INP))
@@ -69,8 +104,9 @@ document.querySelector('#work').onclick = () => {
     'work-start',
     'work-end',
   );
-  document.querySelector('output').textContent =
-    `Measured work: ${measure.duration.toFixed(1)} ms`;
+  const ms = measure.duration.toFixed(1);
+  status = (text) => text.measured(ms);
+  draw();
   performance.clearMarks();
   performance.clearMeasures();
 };
@@ -79,9 +115,8 @@ document.querySelector('#shift').onclick = (event) => {
   setTimeout(() => {
     const banner = document.createElement('p');
     banner.className = 'late';
-    banner.textContent = 'Late content changes layout';
     document.querySelector('#content').prepend(banner);
-    document.querySelector('output').textContent =
-      'Inserted after the recent-input window';
+    status = (text) => text.inserted;
+    draw();
   }, 700);
 };

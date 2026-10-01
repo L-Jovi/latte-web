@@ -8,7 +8,7 @@ await writeFile(
   'dist/index.html',
   site.page(
     'tooling/handlebars/dist/index.html',
-    '<h2>What <code>{{info}}</code> printed</h2>' +
+    '<h2><span data-l="en">What <code>{{info}}</code> printed</span><span data-l="zh"><code>{{info}}</code> 输出了什么</span></h2>' +
       Handlebars.compile(source)(data),
   ),
 );

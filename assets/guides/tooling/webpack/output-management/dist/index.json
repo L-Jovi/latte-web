@@ -9,7 +9,7 @@
         {
           "label": "Page scripts (not counting the guide)",
           "labelZh": "页面脚本（不含说明面板）",
-          "value": "[...document.scripts].filter((s) => !s.src.endsWith('/guide.js')).map((s) => s.getAttribute('src')).join(', ')",
+          "value": "[...document.scripts].filter((s) => !/\\/(guide|language)\\.js$/.test(s.src)).map((s) => s.getAttribute('src')).join(', ')",
           "expect": "app.js, print.js"
         }
       ],
@@ -22,7 +22,7 @@
       "textZh": "按钮的点击处理函数是 `src/print.js` 里的 `printMe`，它会在下面的控制台打印一行。",
       "action": {
         "clear": true,
-        "clickText": "Click me and check the console!"
+        "click": "body > div button"
       },
       "actionLabel": "Click the page's button",
       "actionLabelZh": "点击页面上的按钮",

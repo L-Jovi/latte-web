@@ -4,11 +4,11 @@
       "title": "A controlled editor",
       "titleZh": "受控编辑器",
       "text": "The box under **Bold** is a Draft.js `<Editor>`, an element with `contenteditable` that you can type in. It is controlled, like a React `<input>` with `value` and `onChange`. The class component keeps an `EditorState` in its `state` and passes it in. On every change the editor calls `onChange` with a new `EditorState`, and the component stores it with `setState`. An `EditorState` is an immutable object with the text, the selection and the undo history.",
-      "textZh": "**Bold** 下面的方框是一个 Draft.js `<Editor>`，也就是一个可以输入文字的 `contenteditable` 元素。它是“受控”的，就像带 `value` 和 `onChange` 的 React `<input>`。class 组件在自己的 `state` 里保存一个 `EditorState`，并把它传给编辑器。每次内容变化，编辑器都用一个新的 `EditorState` 调用 `onChange`，组件再用 `setState` 把它存起来。`EditorState` 是一个不可变对象，包含文本、选区和撤销历史。",
+      "textZh": "**加粗**下面的方框是一个 Draft.js `<Editor>`，也就是一个可以输入文字的 `contenteditable` 元素。它是“受控”的，就像带 `value` 和 `onChange` 的 React `<input>`。class 组件在自己的 `state` 里保存一个 `EditorState`，并把它传给编辑器。每次内容变化，编辑器都用一个新的 `EditorState` 调用 `onChange`，组件再用 `setState` 把它存起来。`EditorState` 是一个不可变对象，包含文本、选区和撤销历史。",
       "watch": [
         {
           "label": "contenteditable",
-          "value": "document.querySelector('[aria-label=Editor]').contentEditable",
+          "value": "document.querySelector('[contenteditable]').contentEditable",
           "expect": "true"
         }
       ],
@@ -16,21 +16,21 @@
     },
     {
       "title": "Type, select and click Bold",
-      "titleZh": "输入、选中，再点 Bold",
+      "titleZh": "输入、选中，再点「加粗」",
       "text": "Click in the box, type a sentence, select a word and click the page's own **Bold** button: the word turns bold. **Bold** calls `RichUtils.toggleInlineStyle(editorState, 'BOLD')`, which stores the formatting as data about a range of characters, not as an HTML tag. The button cancels its own `mousedown`, so clicking it does not take the focus and the selection away from the editor. The buttons in this guide do not, so this step leaves the typing and the click to you.",
-      "textZh": "在方框里点一下，输入一句话，选中其中一个词，再点页面自己的 **Bold** 按钮：这个词就变成了粗体。**Bold** 调用 `RichUtils.toggleInlineStyle(editorState, 'BOLD')`，把格式记成“哪一段字符带什么样式”的数据，而不是 HTML 标签。这个按钮会取消自己的 `mousedown`，所以点击它不会把焦点和选区从编辑器里抢走。这份说明里的按钮做不到这一点，所以这一步的输入和点击都留给你。",
+      "textZh": "在方框里点一下，输入一句话，选中其中一个词，再点页面自己的**加粗**按钮：这个词就变成了粗体。**加粗**调用 `RichUtils.toggleInlineStyle(editorState, 'BOLD')`，把格式记成“哪一段字符带什么样式”的数据，而不是 HTML 标签。这个按钮会取消自己的 `mousedown`，所以点击它不会把焦点和选区从编辑器里抢走。这份说明里的按钮做不到这一点，所以这一步的输入和点击都留给你。",
       "focus": ".editor"
     },
     {
       "title": "Save the state as JSON",
       "titleZh": "把状态保存为 JSON",
       "text": "**Save JSON** calls `convertToRaw` on the current content and prints the result with `JSON.stringify`, below the editor. The document is a list of `blocks`, one per paragraph, each with its plain `text`. A bold word is an entry in the block's `inlineStyleRanges`: an `offset`, a `length` and the style `BOLD`. The readouts below come from the saved JSON.",
-      "textZh": "**Save JSON** 对当前内容调用 `convertToRaw`，再用 `JSON.stringify` 把结果打印在编辑器下方。文档是一组 `blocks`，每个段落一个，各自带着纯文本 `text`。粗体词是这个 block 的 `inlineStyleRanges` 里的一项：一个 `offset`、一个 `length`，以及样式 `BOLD`。下面的读数都取自保存下来的 JSON。",
+      "textZh": "**保存为 JSON** 对当前内容调用 `convertToRaw`，再用 `JSON.stringify` 把结果打印在编辑器下方。文档是一组 `blocks`，每个段落一个，各自带着纯文本 `text`。粗体词是这个 block 的 `inlineStyleRanges` 里的一项：一个 `offset`、一个 `length`，以及样式 `BOLD`。下面的读数都取自保存下来的 JSON。",
       "action": {
-        "clickText": "Save JSON"
+        "click": "main > button:nth-of-type(2)"
       },
       "actionLabel": "Click Save JSON",
-      "actionLabelZh": "点击 Save JSON",
+      "actionLabelZh": "点击「保存为 JSON」",
       "watch": [
         {
           "label": "blocks",
@@ -56,10 +56,10 @@
       "text": "Click in the editor and press Ctrl+Z (Cmd+Z on a Mac). Undo takes back the last change, so if that was the bold, the word is plain again. Draft.js keeps the undo history inside `EditorState`, and undoing hands the component an older state through the same `onChange`. Save again, and that `BOLD` range is gone from the JSON.",
       "textZh": "在编辑器里点一下，按 Ctrl+Z（Mac 上是 Cmd+Z）。撤销会收回最近的一次改动，如果那次改动是加粗，这个词就又变回了普通文字。Draft.js 把撤销历史保存在 `EditorState` 里，撤销时，编辑器通过同一个 `onChange` 把一份更早的状态交给组件。再保存一次，JSON 里那条 `BOLD` 区间就不见了。",
       "action": {
-        "clickText": "Save JSON"
+        "click": "main > button:nth-of-type(2)"
       },
       "actionLabel": "Click Save JSON again",
-      "actionLabelZh": "再点一次 Save JSON",
+      "actionLabelZh": "再点一次「保存为 JSON」",
       "watch": [
         {
           "label": "text of the first block",

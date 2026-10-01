@@ -56,7 +56,8 @@ const groups = [
 
 // Pages that keep their own markup untouched.
 const chrome = {
-  // The service worker caches its own files; an extra stylesheet would change its offline behaviour.
+  // The service worker caches its own files; an extra stylesheet would change its
+  // offline behaviour. Its page gets only assets/language.js, written inline.
   skipAll: new Set(['examples/service-worker/index.html']),
   // This page teaches header/nav landmarks, so an extra <nav> would muddy the lesson.
   skipBar: new Set(['fundamentals/html/semantic.html']),
@@ -66,17 +67,42 @@ const escape = (s) =>
   s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('"', '&quot;');
 // Catalog summaries use Markdown code spans for the READMEs; render them as <code> in HTML.
 const inline = (text) => escape(text).replace(/`([^`]+)`/g, '<code>$1</code>');
+// In Chinese text, three or more English words in a row (Core Web Vitals) are an
+// English name: marked lang="en", like the guide panel does (assets/guide.js).
+const inlineZh = (text) =>
+  inline(text)
+    .split(/(<code>[\s\S]*?<\/code>)/)
+    .map((part, i) =>
+      i % 2
+        ? part
+        : part.replace(
+            /[A-Za-z][\w.+#'’/-]*(?:[ ,]+[A-Za-z][\w.+#'’/-]*){2,}/g,
+            '<span lang="en">$&</span>',
+          ),
+    )
+    .join('');
 
-const kindTitle = Object.fromEntries(groups.map((g) => [g.kind, g.title]));
+const kindTitle = Object.fromEntries(groups.map((g) => [g.kind, g]));
+
+// Text in both languages, one shown at a time (assets/language.js and site.css).
+const pair = (en, zh, tag = 'span') =>
+  `<${tag} data-l="en">${en}</${tag}><${tag} data-l="zh">${zh}</${tag}>`;
 
 // Path from a file inside the repository to the repository root, e.g. '../../'.
 const rootFrom = (file) => '../'.repeat(file.split('/').length - 1);
 
 const stylesheet = (rel) =>
   `<link rel="stylesheet" href="${rel}assets/site.css">`;
+// A classic script in <head>: it sets the language before the page is drawn.
+const languageScript = (rel, vite = false) =>
+  `<script src="${rel}assets/language.js"${vite ? ' vite-ignore' : ''}></script>`;
+// The switch starts hidden; language.js shows it and names the other language.
+const languageSwitch =
+  '<button type="button" class="latte-language" data-language-switch hidden>中文</button>';
 
+// The README link follows the language: the English README, or its Chinese mirror.
 const bar = (entry, rel) =>
-  `<nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="${rel}index.html">Latte Web</a><span class="latte-crumb">${escape(kindTitle[entry.kind])}</span><span class="latte-links"><a href="${source}${entry.path}">README</a><a href="${blob}${entry.path}/README.zh-Hans.md" lang="zh-Hans">中文</a></span></nav>`;
+  `<nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="${rel}index.html">Latte Web</a><span class="latte-crumb">${pair(escape(kindTitle[entry.kind].title), escape(kindTitle[entry.kind].titleZh))}</span><span class="latte-links"><a data-l="en" href="${source}${entry.path}">README</a><a data-l="zh" href="${blob}${entry.path}/README.zh-Hans.md">README</a>${languageSwitch}</span></nav>`;
 
 // The catalog entry that lists `file` (a path from the repository root) as one of its pages.
 const entryFor = (file) => {
@@ -103,17 +129,18 @@ const page = (file, body = '') => {
   const rel = rootFrom(file);
   const guide = guideFor(file);
   return `<!doctype html>
-<html lang="en">
+<html lang="en" data-title-en="${escape(entry.title)} · Latte Web" data-title-zh="${escape(entry.titleZh)} · Latte Web">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escape(entry.title)} · Latte Web</title>
 ${stylesheet(rel)}
+${languageScript(rel)}
 ${guide ? guideScript(rel, guide) + '\n' : ''}</head>
 <body>
 ${bar(entry, rel)}
-<h1>${escape(entry.title)}</h1>
-<p class="latte-lead">${inline(entry.summary)}</p>
+<h1>${pair(escape(entry.title), escape(entry.titleZh))}</h1>
+<p class="latte-lead">${pair(inline(entry.summary), inlineZh(entry.summaryZh))}</p>
 ${body}</body>
 </html>
 `;
@@ -126,8 +153,12 @@ module.exports = {
   chrome,
   escape,
   inline,
+  inlineZh,
   rootFrom,
   stylesheet,
+  languageScript,
+  languageSwitch,
+  pair,
   bar,
   entryFor,
   page,

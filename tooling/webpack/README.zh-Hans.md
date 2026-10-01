@@ -12,7 +12,7 @@
 npm ci
 npm run build -w @latte/webpack
 npm run dev
-# 打开 http://127.0.0.1:4173/tooling/webpack/getting-started/dist/
+# 打开 http://127.0.0.1:4173/tooling/webpack/getting-started/dist/?lang=zh
 ```
 
 构建会先打印 `Built getting-started`，接着其余十二个专题各打印一行，并把每个专题的产物写进它自己的 `dist/` 目录。想看别的专题，把地址里的 `getting-started` 换成对应的目录名。`library` 专题没有页面，它的 README 说明了怎样在 Node 里加载它。每个专题的 README 里也都有在线演示的链接。
@@ -31,21 +31,21 @@ npm run dev
 
 如果想用 webpack 的开发服务器代替构建好的文件，运行 `npm run dev -w @latte/webpack` 可以打开第一个专题；其他专题要指定它的配置，例如 `npm exec -w @latte/webpack -- webpack serve --config lazy-loading/webpack.config.cjs`。然后打开 http://127.0.0.1:4180/。开发服务器把构建结果放在内存里，不会改动 `dist/`；你保存文件后，它会更新页面。
 
-| 专题                                                                        | 改了什么                               |
-| --------------------------------------------------------------------------- | -------------------------------------- |
-| [第一个 webpack 构建](getting-started/README.zh-Hans.md)                    | 什么都没改，原样使用共用配置           |
-| [加载 CSS、图片和数据文件](asset-management/README.zh-Hans.md)              | 处理 CSS、SVG 和 XML 文件的规则        |
-| [多个入口](output-management/README.zh-Hans.md)                             | 两个入口，各输出一个文件               |
-| [用 source map 调试](development/README.zh-Hans.md)                         | 开发模式和内联 source map              |
-| [模块热替换（HMR）](hot-module-replacement/README.zh-Hans.md)               | 在开发服务器运行时接收更新的代码       |
-| [用 import() 按需加载](lazy-loading/README.zh-Hans.md)                      | 第一次点击时才加载的模块               |
-| [多入口共享代码](code-splitting/README.zh-Hans.md)                          | `dependOn` 和一个共用的运行时文件      |
-| [用内容哈希做长期缓存](caching/README.zh-Hans.md)                           | 文件名里的 `[contenthash]`             |
-| [开发构建与生产构建](production/README.zh-Hans.md)                          | 另一份专供开发用的配置文件             |
-| [Tree shaking：去掉没用到的导出](tree-shaking/README.zh-Hans.md)            | `usedExports`                          |
-| [为旧式全局代码做适配（shimming）](shimming/README.zh-Hans.md)              | `ProvidePlugin`                        |
-| [编写 webpack 插件](plugins/README.zh-Hans.md)                              | 一个生成 `FILELIST.md` 的插件          |
-| [用 webpack 打包一个库](library/README.zh-Hans.md)                          | `output.library` 和 `target: 'node'`   |
+| 专题                                                             | 改了什么                             |
+| ---------------------------------------------------------------- | ------------------------------------ |
+| [第一个 webpack 构建](getting-started/README.zh-Hans.md)         | 什么都没改，原样使用共用配置         |
+| [加载 CSS、图片和数据文件](asset-management/README.zh-Hans.md)   | 处理 CSS、SVG 和 XML 文件的规则      |
+| [多个入口](output-management/README.zh-Hans.md)                  | 两个入口，各输出一个文件             |
+| [用 source map 调试](development/README.zh-Hans.md)              | 开发模式和内联 source map            |
+| [模块热替换（HMR）](hot-module-replacement/README.zh-Hans.md)    | 在开发服务器运行时接收更新的代码     |
+| [用 import() 按需加载](lazy-loading/README.zh-Hans.md)           | 第一次点击时才加载的模块             |
+| [多入口共享代码](code-splitting/README.zh-Hans.md)               | `dependOn` 和一个共用的运行时文件    |
+| [用内容哈希做长期缓存](caching/README.zh-Hans.md)                | 文件名里的 `[contenthash]`           |
+| [开发构建与生产构建](production/README.zh-Hans.md)               | 另一份专供开发用的配置文件           |
+| [Tree shaking：去掉没用到的导出](tree-shaking/README.zh-Hans.md) | `usedExports`                        |
+| [为旧式全局代码做适配（shimming）](shimming/README.zh-Hans.md)   | `ProvidePlugin`                      |
+| [编写 webpack 插件](plugins/README.zh-Hans.md)                   | 一个生成 `FILELIST.md` 的插件        |
+| [用 webpack 打包一个库](library/README.zh-Hans.md)               | `output.library` 和 `target: 'node'` |
 
 ## 过去与现在
 

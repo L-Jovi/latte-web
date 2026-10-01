@@ -19,7 +19,7 @@
       "title": "Five clicks at once",
       "titleZh": "一口气点五次",
       "text": "This button clicks **Click repeatedly** five times in a row, far less than 500 ms apart. Only the first click gets through, so the count goes up by one.",
-      "textZh": "这个按钮连着点五次 **Click repeatedly**，每两次之间远不到 500 毫秒。只有第一次点击能通过，所以计数只加一。",
+      "textZh": "这个按钮连着点五次**连续点击**，每两次之间远不到 500 毫秒。只有第一次点击能通过，所以计数只加一。",
       "action": {
         "run": "const button = document.querySelector('h1 + button'); for (let i = 0; i < 5; i++) button.click()"
       },
@@ -73,7 +73,7 @@
       "title": "Click as fast as you can",
       "titleZh": "尽可能快地点",
       "text": "Click **Click repeatedly** on the page as fast as you can: the count goes up at most twice a second, however often you click. When you stop, nothing more happens: the ignored clicks are not run at the end.",
-      "textZh": "在页面上尽可能快地点 **Click repeatedly**：不管点多快，计数每秒最多加两次。你一停下，就不会再有任何变化：被忽略的点击不会在末尾补上。",
+      "textZh": "在页面上尽可能快地点**连续点击**：不管点多快，计数每秒最多加两次。你一停下，就不会再有任何变化：被忽略的点击不会在末尾补上。",
       "focus": "h1 + button, output"
     }
   ]

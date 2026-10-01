@@ -786,7 +786,7 @@
   {
     "path": "examples/visuals/carousel",
     "title": "3D carousel and CSS Scroll Snap",
-    "titleZh": "3D 轮播与 CSS Scroll Snap",
+    "titleZh": "3D 轮播与 CSS 滚动吸附",
     "summary": "Place layered slides with geometry, then let CSS Scroll Snap do similar work natively.",
     "summaryZh": "用几何计算排布层叠的轮播图，再让 CSS Scroll Snap 原生完成类似的事。",
     "kind": "example",

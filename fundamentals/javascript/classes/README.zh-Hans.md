@@ -10,10 +10,10 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/fundamentals/javascript/classes/
+# 打开 http://127.0.0.1:4173/fundamentals/javascript/classes/?lang=zh
 ```
 
-不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。打开浏览器控制台，会看到 `true`、`true`、`false`，分别对应 [extends.js](extends.js) 里的三次比较，下面逐一解释。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/fundamentals/javascript/classes/index.html)。
+不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。打开浏览器控制台，会看到 `true`、`true`、`false`，分别对应 [extends.js](extends.js) 里的三次比较，下面逐一解释。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/fundamentals/javascript/classes/index.html?lang=zh)。
 
 ## 原理
 

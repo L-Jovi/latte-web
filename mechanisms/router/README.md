@@ -17,7 +17,7 @@ The page shows **Home view**. Click **About**: the address changes to end in `/a
 
 ## How it works
 
-[src/router.jsx](src/router.jsx) has three components, and [src/index.jsx](src/index.jsx) (15 lines) puts them on the page:
+[src/router.jsx](src/router.jsx) has three components, and [src/index.jsx](src/index.jsx) (29 lines) puts them on the page:
 
 - `BrowserRouter` keeps the current path in its state and shares it with everything inside it through React _Context_, a way to hand a value to nested components without passing it down by hand.
 - `Route` shows its content only when the current path equals its `path` exactly. A trailing `/` or `/index.html` in the address does not count.

@@ -12,10 +12,10 @@
 npm ci
 npm run build -w @latte/webpack
 npm run dev
-# 打开 http://127.0.0.1:4173/tooling/webpack/tree-shaking/dist/
+# 打开 http://127.0.0.1:4173/tooling/webpack/tree-shaking/dist/?lang=zh
 ```
 
-页面上显示 `Hello webpack!,5 cubed is equal to 125`。再打开 `dist/bundle.js`：整个文件只有一行，169 字节，里面找不到 `square`。连 `cube` 也不见了，因为压缩工具直接把 `cube(5)` 换成了结果 `125`。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/tree-shaking/dist/index.html)。
+页面上显示 `Hello webpack!,5 cubed is equal to 125`。再打开 `dist/bundle.js`：整个文件只有一行，169 字节，里面找不到 `square`。连 `cube` 也不见了，因为压缩工具直接把 `cube(5)` 换成了结果 `125`。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/tree-shaking/dist/index.html?lang=zh)。
 
 ## 原理
 

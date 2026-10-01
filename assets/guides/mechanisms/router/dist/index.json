@@ -2,9 +2,9 @@
   "steps": [
     {
       "title": "Home view, and a listener",
-      "titleZh": "Home view，再加一个监听",
+      "titleZh": "「首页视图」，再加一个监听",
       "text": "The page shows **Home view**. `BrowserRouter` keeps the current path in its state and hands it to everything inside it through React Context. Each `Route` shows its content only when that path equals its own `path`. The browser fires a `popstate` event only when you go back or forward. This step adds a listener that prints every `popstate` in the console below, so you can see when one happens.",
-      "textZh": "页面上显示 **Home view**。`BrowserRouter` 把当前路径保存在自己的 state 里，再通过 React 的 Context 交给它里面的所有组件。每个 `Route` 只在这个路径和自己的 `path` 完全相同时才显示内容。浏览器只在你后退或前进时触发 `popstate` 事件。这一步添加一个监听函数，把每次 `popstate` 打印到下面的控制台，让你看清它什么时候发生。",
+      "textZh": "页面上显示**首页视图**。`BrowserRouter` 把当前路径保存在自己的 state 里，再通过 React 的 Context 交给它里面的所有组件。每个 `Route` 只在这个路径和自己的 `path` 完全相同时才显示内容。浏览器只在你后退或前进时触发 `popstate` 事件。这一步添加一个监听函数，把每次 `popstate` 打印到下面的控制台，让你看清它什么时候发生。",
       "action": {
         "run": "window.logPopstate ??= () => console.log('popstate →', location.pathname); addEventListener('popstate', window.logPopstate); console.log('Listening for popstate')"
       },
@@ -27,14 +27,14 @@
     },
     {
       "title": "Click About",
-      "titleZh": "点击 About",
+      "titleZh": "点击「关于」",
       "text": "`Link` renders an ordinary `<a>`. On a plain left click it stops the browser from loading a new page, changes the address with `history.pushState`, and calls the router's `onChangeView` to read the path again. The address now ends in `/about`, **About view** appears and `history.length` has grown by one. `pushState` fires no `popstate`, so the console prints nothing new. This guide is still on step 2, too: a page reload would have started it again.",
-      "textZh": "`Link` 渲染的是一个普通的 `<a>`。遇到普通的左键点击，它会阻止浏览器加载新页面，用 `history.pushState` 修改地址，再调用路由的 `onChangeView` 重新读取路径。地址现在以 `/about` 结尾，页面显示 **About view**，`history.length` 也多了一。`pushState` 不会触发 `popstate`，所以控制台没有打印新内容。这份说明也还停在第 2 步：如果页面刷新过，它会从头开始。",
+      "textZh": "`Link` 渲染的是一个普通的 `<a>`。遇到普通的左键点击，它会阻止浏览器加载新页面，用 `history.pushState` 修改地址，再调用路由的 `onChangeView` 重新读取路径。地址现在以 `/about` 结尾，页面显示**关于页视图**，`history.length` 也多了一。`pushState` 不会触发 `popstate`，所以控制台没有打印新内容。这份说明也还停在第 2 步：如果页面刷新过，它会从头开始。",
       "action": {
-        "clickText": "About"
+        "click": "#root a[href$='/about']"
       },
       "actionLabel": "Click the About link",
-      "actionLabelZh": "点击 About 链接",
+      "actionLabelZh": "点击「关于」链接",
       "watch": [
         {
           "label": "the page shows",
@@ -60,7 +60,7 @@
       "title": "Go back",
       "titleZh": "后退",
       "text": "Going back is what `popstate` is for. The browser fires it, the console prints it, and `BrowserRouter`, which listens for it, calls `onChangeView` to show **Home view** again. `onChangeView` is created once, as a class field, so when the router unmounts, `removeEventListener` removes exactly the function that `addEventListener` added.",
-      "textZh": "后退正是 `popstate` 的用武之地。浏览器触发它，控制台把它打印出来，一直监听着它的 `BrowserRouter` 调用 `onChangeView`，重新显示 **Home view**。`onChangeView` 作为类字段只创建一次，所以路由卸载时，`removeEventListener` 移除的正是当初 `addEventListener` 添加的那个函数。",
+      "textZh": "后退正是 `popstate` 的用武之地。浏览器触发它，控制台把它打印出来，一直监听着它的 `BrowserRouter` 调用 `onChangeView`，重新显示**首页视图**。`onChangeView` 作为类字段只创建一次，所以路由卸载时，`removeEventListener` 移除的正是当初 `addEventListener` 添加的那个函数。",
       "action": {
         "run": "if (location.pathname.endsWith('/about')) history.back()"
       },
@@ -88,7 +88,7 @@
       "title": "Forward, then reload",
       "titleZh": "前进，再刷新",
       "text": "Going forward fires `popstate` too, and **About view** is back. Now reload the page yourself. The local server started by `npm run dev` answers `/about` with the app's `index.html`, so after the reload **About view** appears again, and this guide starts over. GitHub Pages has no such rule: on the live demo, the reload shows its 404 page. Clicking links and going back and forward work there all the same.",
-      "textZh": "前进同样会触发 `popstate`，**About view** 又回来了。现在自己刷新一下页面。`npm run dev` 启动的本地服务器会用应用的 `index.html` 响应 `/about`，所以刷新后仍然显示 **About view**，这份说明也会从头开始。GitHub Pages 没有这样的规则：在线演示里刷新，会看到它的 404 页面。不过点击链接、后退和前进在那里照样能用。",
+      "textZh": "前进同样会触发 `popstate`，**关于页视图**又回来了。现在自己刷新一下页面。`npm run dev` 启动的本地服务器会用应用的 `index.html` 响应 `/about`，所以刷新后仍然显示**关于页视图**，这份说明也会从头开始。GitHub Pages 没有这样的规则：在线演示里刷新，会看到它的 404 页面。不过点击链接、后退和前进在那里照样能用。",
       "action": {
         "run": "history.forward()"
       },

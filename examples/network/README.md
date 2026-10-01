@@ -25,7 +25,7 @@ A page may load a script from any origin, but its code may not read a response f
 
 - **JSONP** uses the first rule. [jsonp.js](jsonp.js) (22 lines) makes up a unique function name, adds it to the URL as `?callback=…`, and inserts a `<script>` tag. The server answers with JavaScript that calls that function with the data, such as `latte_…({…});`. When the call arrives, after a 3-second timeout, or if the script fails to load, the code removes the tag and deletes the function.
 - **CORS** handles the second. [server.js](server.js) (51 lines) adds an `Access-Control-Allow-Origin` header only for the page's two exact addresses, `http://127.0.0.1:4173` and `http://localhost:4173`, so the browser lets `fetch` read the JSON. For JSONP, it accepts only a callback name that is a plain identifier, never other code.
-- **Cancelling.** [app.js](app.js) (37 lines) gives each slow request its own `AbortController`. Calling `abort()` makes that `fetch` fail with an `AbortError`, which the page shows as `Request cancelled`. Starting a new slow request cancels the one before, and an older request can never overwrite the output of a newer one.
+- **Cancelling.** [app.js](app.js) (60 lines) gives each slow request its own `AbortController`. Calling `abort()` makes that `fetch` fail with an `AbortError`, which the page shows as `Request cancelled`. Starting a new slow request cancels the one before, and an older request can never overwrite the output of a newer one.
 
 ## Then and now
 

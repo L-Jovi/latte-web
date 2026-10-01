@@ -1,4 +1,5 @@
 import React from 'react';
+import { say, toChinese } from './say.js';
 export default class TodoItem extends React.Component {
   state = { editing: false, text: this.props.todo.text };
   save = (event) => {
@@ -16,11 +17,11 @@ export default class TodoItem extends React.Component {
         {this.state.editing ? (
           <form onSubmit={this.save}>
             <input
-              aria-label="Edit todo"
+              aria-label={say('Edit todo', '编辑待办')}
               value={this.state.text}
               onChange={(event) => this.setState({ text: event.target.value })}
             />
-            <button>Save</button>
+            <button>{say('Save', '保存')}</button>
           </form>
         ) : (
           <>
@@ -30,14 +31,16 @@ export default class TodoItem extends React.Component {
                 checked={todo.completed}
                 onChange={() => actions.completeTodo(todo.id)}
               />
-              {todo.text}
+              {say(todo.text, toChinese(todo.text))}
             </label>
             <button
               onClick={() => this.setState({ editing: true, text: todo.text })}
             >
-              Edit
+              {say('Edit', '编辑')}
             </button>
-            <button onClick={() => actions.deleteTodo(todo.id)}>Delete</button>
+            <button onClick={() => actions.deleteTodo(todo.id)}>
+              {say('Delete', '删除')}
+            </button>
           </>
         )}
       </li>

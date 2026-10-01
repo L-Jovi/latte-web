@@ -9,7 +9,7 @@
         {
           "label": "Page scripts (not counting the guide)",
           "labelZh": "页面脚本（不含说明面板）",
-          "value": "[...document.scripts].filter((s) => !s.src.endsWith('/guide.js')).map((s) => s.getAttribute('src')).join(', ')",
+          "value": "[...document.scripts].filter((s) => !/\\/(guide|language)\\.js$/.test(s.src)).map((s) => s.getAttribute('src')).join(', ')",
           "expect": "bundle.js"
         },
         {
@@ -28,7 +28,7 @@
       "textZh": "点击开始下载。注释 `webpackChunkName: \"print\"` 给文件起了名字，`output.chunkFilename: '[name].[contenthash].js'` 加上了哈希。文件一到，它最外层的 `console.log` 先运行，接着点击处理函数调用它的默认导出：控制台里出现两行。",
       "action": {
         "clear": true,
-        "clickText": "Click me and look at the console!"
+        "click": "body > div button"
       },
       "actionLabel": "Click the page's button",
       "actionLabelZh": "点击页面上的按钮",
@@ -52,7 +52,7 @@
       "textZh": "模块已经加载过了，所以 `import()` 直接交回同一个模块，不再下载任何东西。只出现第二行：模块最外层的代码只运行一次。下面的计数显示，点了两次，chunk 只请求过一次。",
       "action": {
         "clear": true,
-        "clickText": "Click me and look at the console!"
+        "click": "body > div button"
       },
       "actionLabel": "Click the page's button again",
       "actionLabelZh": "再点一次页面上的按钮",

@@ -17,7 +17,7 @@ Type a sentence, select part of it and click **Bold**: the selection turns bold.
 
 ## How it works
 
-Everything is in [src/index.jsx](src/index.jsx) (62 lines). Lexical keeps the document inside the editor. React draws the page around it but does not hold the text, unlike the controlled Draft.js editor, which hands a new state back to React on every change.
+Everything is in [src/index.jsx](src/index.jsx) (77 lines). Lexical keeps the document inside the editor. React draws the page around it but does not hold the text, unlike the controlled Draft.js editor, which hands a new state back to React on every change.
 
 1. `LexicalComposer` creates the editor from `initialConfig`: a `namespace`, a `theme` that gives bold text the CSS class `bold`, and an `onError` that rethrows errors instead of hiding them.
 2. `RichTextPlugin` renders the editable area (`ContentEditable`) and adds rich-text editing, including the formatting commands. `HistoryPlugin` adds undo and redo, so Ctrl+Z or Cmd+Z works.

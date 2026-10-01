@@ -12,10 +12,10 @@
 npm ci
 npm run build -w @latte/webpack
 npm run dev
-# 打开 http://127.0.0.1:4173/tooling/webpack/code-splitting/dist/
+# 打开 http://127.0.0.1:4173/tooling/webpack/code-splitting/dist/?lang=zh
 ```
 
-页面上显示 `index+module+loaded!`，控制台打印 `Another module loaded!`。`dist/` 里有四个脚本，`index.html` 全都加载了：`index.js` 和 `another.js` 只有你自己的代码，各几百字节；`shared.js` 是 Lodash，约 70 KB；`runtime.js` 是 webpack 的小型模块加载器。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/code-splitting/dist/index.html)。
+页面上显示 `index+module+loaded!`，控制台打印 `Another module loaded!`。`dist/` 里有四个脚本，`index.html` 全都加载了：`index.js` 和 `another.js` 只有你自己的代码，各几百字节；`shared.js` 是 Lodash，约 70 KB；`runtime.js` 是 webpack 的小型模块加载器。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/code-splitting/dist/index.html?lang=zh)。
 
 ## 原理
 

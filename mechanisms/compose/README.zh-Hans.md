@@ -10,10 +10,10 @@ Redux 中间件背后的 `compose`，自己写一遍。“组合”函数，就�
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/mechanisms/compose/
+# 打开 http://127.0.0.1:4173/mechanisms/compose/?lang=zh
 ```
 
-页面上显示 `108`。它运行的是 `forgeCompose((x) => x - 2, (x) => x + 10, (x) => x * 10)(10)`，函数从右往左依次执行：10 × 10 = 100，接着 100 + 10 = 110，最后 110 − 2 = 108。不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/compose/index.html)。
+页面上显示 `108`。它运行的是 `forgeCompose((x) => x - 2, (x) => x + 10, (x) => x * 10)(10)`，函数从右往左依次执行：10 × 10 = 100，接着 100 + 10 = 110，最后 110 − 2 = 108。不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/compose/index.html?lang=zh)。
 
 ## 原理
 

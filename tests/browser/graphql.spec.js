@@ -4,7 +4,9 @@ test('Apollo login, pagination, search, publish, vote and subscription', async (
   browser,
 }, testInfo) => {
   const other = await browser.newPage();
-  const name = 'Browser link ' + testInfo.project.name + ' ' + Date.now();
+  // Other tests read the shared feed on the Chinese page, where an English
+  // phrase would count as untranslated text; a name and a number read the same.
+  const name = testInfo.project.name + '-' + Date.now();
   try {
     await page.goto('/examples/graphql/client/dist/');
     await expect(page.locator('li')).toHaveCount(3);

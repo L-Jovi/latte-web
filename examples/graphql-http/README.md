@@ -38,7 +38,7 @@ GraphQL is a query language for APIs: the client sends one request that names ex
 3. `rootValue` has one function for each top-level query and mutation. These functions are the _resolvers_: they produce the data. Messages are kept in a `Map` in memory.
 4. `createHandler` from graphql-http turns the schema and the resolvers into an HTTP handler: it reads the JSON request, runs it and writes the JSON response.
 
-The page (port 4173) and the API (port 4001) are different origins, so the server sends CORS headers that let the page's address, and no other, read its answers. [client.js](client.js) (13 lines) sends the text of the box as `{ "query": … }` in a `POST` request with `fetch`, and prints the answer.
+The page (port 4173) and the API (port 4001) are different origins, so the server sends CORS headers that let the page's address, and no other, read its answers. [client.js](client.js) (25 lines) sends the text of the box as `{ "query": … }` in a `POST` request with `fetch`, and prints the answer.
 
 Inputs are checked. A die has 1 to 1000 sides, you can roll it 1 to 100 times, a message has at most 1000 characters and an author at most 100, and the server keeps at most 100 messages. A bad value comes back as a GraphQL error, such as `Expected an integer from 1 to 100`. Asking for a message that does not exist returns `null`; trying to update one is an error.
 

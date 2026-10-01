@@ -15,7 +15,7 @@ Click **Spin**. The wheel turns three full times and stops with one sector over 
 
 ## How it works
 
-Everything is in [app.js](app.js) (30 lines):
+Everything is in [app.js](app.js) (44 lines):
 
 1. Pick a sector at random, then work out the angle that puts its centre over the pointer.
 2. Add three full turns (1080°) on top of the current angle, so the wheel always spins forward.

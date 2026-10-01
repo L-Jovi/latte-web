@@ -12,10 +12,10 @@
 npm ci
 npm run build -w @latte/webpack
 npm run dev
-# 打开 http://127.0.0.1:4173/tooling/webpack/output-management/dist/
+# 打开 http://127.0.0.1:4173/tooling/webpack/output-management/dist/?lang=zh
 ```
 
-页面上有 **Hello webpack** 和一个按钮。点击按钮，控制台会打印 `I get called from print.js!`。打开 `dist/index.html`，里面有两个 script 标签，分别引用 `app.js` 和 `print.js`，都是构建时写进去的。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/output-management/dist/index.html)。
+页面上有 **Hello webpack** 和一个按钮。点击按钮，控制台会打印 `I get called from print.js!`。打开 `dist/index.html`，里面有两个 script 标签，分别引用 `app.js` 和 `print.js`，都是构建时写进去的。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/output-management/dist/index.html?lang=zh)。
 
 ## 原理
 

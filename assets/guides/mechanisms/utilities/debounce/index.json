@@ -32,7 +32,7 @@
       "title": "Try the real button",
       "titleZh": "试试页面上的真按钮",
       "text": "Click **Test Debounce** on the page several times quickly: nothing prints while you keep clicking, then `1 2` appears once.",
-      "textZh": "快速连点页面上的 **Test Debounce** 几次：一直点的时候什么也不打印，停下来之后 `1 2` 出现一次。",
+      "textZh": "快速连点页面上的**测试防抖**几次：一直点的时候什么也不打印，停下来之后 `1 2` 出现一次。",
       "focus": "button[onclick]"
     }
   ]

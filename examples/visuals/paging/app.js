@@ -8,7 +8,11 @@ function pager(section, vertical) {
     vertical ? viewport.clientHeight : viewport.clientWidth;
   function show() {
     track.style.transform = `translate${vertical ? 'Y' : 'X'}(${-index * extent()}px)`;
-    output.textContent = `Page ${index + 1} of 3`;
+    // The page shows one language at a time (assets/language.js).
+    output.textContent =
+      document.documentElement.dataset.language === 'zh'
+        ? `第 ${index + 1} 页，共 3 页`
+        : `Page ${index + 1} of 3`;
     section.querySelector('[data-step="-1"]').disabled = index === 0;
     section.querySelector('[data-step="1"]').disabled = index === 2;
   }
@@ -46,6 +50,8 @@ function pager(section, vertical) {
     }
   };
   new ResizeObserver(show).observe(viewport);
+  // A language switch writes the page number again, in the other language.
+  document.addEventListener('languagechange', show);
   show();
   return { begin, move, end, viewport };
 }

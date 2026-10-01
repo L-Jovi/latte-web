@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 开发服务器运行时修改模块，页面不刷新就能更新。模块热替换（hot module replacement，HMR）把改过的模块换进正在运行的页面，页面不必从头再来。
 
@@ -11,16 +11,16 @@
 ```sh
 npm ci
 npm exec -w @latte/webpack -- webpack serve --config hot-module-replacement/webpack.config.cjs
-# 打开 http://127.0.0.1:4180/
+# 打开 http://127.0.0.1:4180/?lang=zh
 ```
 
 灰色背景的页面上有 **Hello webpack** 和一个按钮。点击按钮，控制台打印 `content change :)`。现在把 [src/print.js](src/print.js) 里这段文字改掉并保存：控制台打印 `Accepting the updated printMe module!`，之前的输出都还在，说明页面没有刷新。再点一次按钮，打印出来的就是你改过的文字。
 
-这需要 webpack 的开发服务器，所以只能在你自己的电脑上看到。[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/hot-module-replacement/dist/index.html)，以及用 `npm run build -w @latte/webpack` 和 `npm run dev` 看到的页面，都是构建好的结果：看起来一样，但不会有任何更新。
+这需要 webpack 的开发服务器，所以只能在你自己的电脑上看到。[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/hot-module-replacement/dist/index.html?lang=zh)，以及用 `npm run build -w @latte/webpack` 和 `npm run dev` 看到的页面，都是构建好的结果：看起来一样，但不会有任何更新。
 
 ## 原理
 
-[src/index.js](src/index.js)（27 行）生成一个 `<div>`，里面按钮的点击处理函数是 `src/print.js` 导出的 `printMe`。接着它登记：`print.js` 有新版本时请通知我。
+[src/index.js](src/index.js)（38 行）生成一个 `<div>`，里面按钮的点击处理函数是 `src/print.js` 导出的 `printMe`。接着它登记：`print.js` 有新版本时请通知我。
 
 ```js
 if (import.meta.webpackHot) {

@@ -10,10 +10,10 @@
 
 ```sh
 npm run dev
-# 打开 http://127.0.0.1:4173/fundamentals/javascript/async-await/
+# 打开 http://127.0.0.1:4173/fundamentals/javascript/async-await/?lang=zh
 ```
 
-不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。页面显示 `6 = 6`，也就是两个版本的结果并排放在一起。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/fundamentals/javascript/async-await/index.html)。
+不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。页面显示 `6 = 6`，也就是两个版本的结果并排放在一起。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/fundamentals/javascript/async-await/index.html?lang=zh)。
 
 ## 原理
 

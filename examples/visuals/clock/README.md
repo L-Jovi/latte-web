@@ -15,7 +15,7 @@ It works right after cloning; no `npm ci` or build step is needed. The canvas sh
 
 ## How it works
 
-Read [digit.js](digit.js) (134 lines), then [app.js](app.js) (80 lines).
+Read [digit.js](digit.js) (134 lines), then [app.js](app.js) (94 lines).
 
 1. `digit.js` stores each digit as a grid of 0s and 1s, 10 rows by 7 columns (the colon is 4 columns wide). `app.js` draws a circle for every 1.
 2. The time left comes from a deadline. The click sets `end` to 10 seconds from now, and every frame works out `Math.ceil((end - now) / 1000)`, so the count stays on time even when frames are skipped.

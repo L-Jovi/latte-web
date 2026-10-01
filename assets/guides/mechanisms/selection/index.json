@@ -39,12 +39,12 @@
       "title": "Insert at the saved cursor",
       "titleZh": "在保存的光标处插入",
       "text": "Clicking **Insert at saved cursor** takes focus away from the editor, but the saved Range still points after `Hello`. The click handler puts focus back, inserts a text node with the ✨ from the text field there, and moves the cursor right after it, so you can keep typing.",
-      "textZh": "点击 **Insert at saved cursor** 会让焦点离开编辑区，但保存的 Range 仍然指向 `Hello` 后面。点击处理函数先把焦点放回编辑区，在那里插入一个文本节点，内容是文本框里的 ✨，再把光标移到它后面，这样就可以接着打字。",
+      "textZh": "点击**在保存的光标处插入**会让焦点离开编辑区，但保存的 Range 仍然指向 `Hello` 后面。点击处理函数先把焦点放回编辑区，在那里插入一个文本节点，内容是文本框里的 ✨，再把光标移到它后面，这样就可以接着打字。",
       "action": {
         "click": "#sendEmoji"
       },
       "actionLabel": "Click Insert at saved cursor",
-      "actionLabelZh": "点击 Insert at saved cursor",
+      "actionLabelZh": "点击「在保存的光标处插入」",
       "watch": [
         {
           "label": "editor text",
@@ -65,7 +65,7 @@
       "title": "Replace a selection",
       "titleZh": "替换选中的文字",
       "text": "When text is selected, the saved Range covers it, and `range.deleteContents()` removes it before the insert. This button selects `world`, puts 🌍 in the text field and clicks **Insert at saved cursor**.",
-      "textZh": "选中了文字时，保存的 Range 覆盖的就是这段文字，插入之前 `range.deleteContents()` 会先把它删掉。这个按钮选中 `world`，把文本框改成 🌍，再点击 **Insert at saved cursor**。",
+      "textZh": "选中了文字时，保存的 Range 覆盖的就是这段文字，插入之前 `range.deleteContents()` 会先把它删掉。这个按钮选中 `world`，把文本框改成 🌍，再点击**在保存的光标处插入**。",
       "action": {
         "fill": {
           "target": "#emojiInput",
@@ -101,7 +101,7 @@
       "title": "Try it with the mouse",
       "titleZh": "用鼠标试一试",
       "text": "Click somewhere inside the text, then click into the text field and type something else. The editor has lost focus, but the saved Range has not: **Insert at saved cursor** puts your text where the cursor was. On a freshly loaded page, before you touch the editor, nothing is saved yet, so the text goes at the end.",
-      "textZh": "在文字中间随便点一下，然后点进文本框，输入别的内容。编辑区已经失去了焦点，但保存的 Range 还在：点击 **Insert at saved cursor**，你的文字就会出现在刚才光标所在的位置。在刚加载的页面上，如果还没碰过编辑区，就什么都没保存，文字会加在末尾。",
+      "textZh": "在文字中间随便点一下，然后点进文本框，输入别的内容。编辑区已经失去了焦点，但保存的 Range 还在：点击**在保存的光标处插入**，你的文字就会出现在刚才光标所在的位置。在刚加载的页面上，如果还没碰过编辑区，就什么都没保存，文字会加在末尾。",
       "focus": "#edit"
     }
   ]

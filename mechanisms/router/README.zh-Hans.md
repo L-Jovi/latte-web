@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 基于 History API 的小路由：点击链接、前进后退，都不刷新页面。路由本身是 72 行 React 类组件。
 
@@ -12,14 +12,14 @@
 npm ci
 npm run build -w @latte/router
 npm run dev
-# 打开 http://127.0.0.1:4173/mechanisms/router/dist/
+# 打开 http://127.0.0.1:4173/mechanisms/router/dist/?lang=zh
 ```
 
-页面上显示 **Home view**。点击 **About**：地址变成以 `/about` 结尾，页面显示 **About view**，整个过程不刷新页面。浏览器的后退、前进按钮可以在两个视图之间切换。在本地，停在 `/about` 时刷新也没问题，因为本地服务器会用应用的 `index.html` 响应这个地址。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/router/dist/index.html)；不过在那里刷新的表现不同（见“刻意省略”）。
+页面上显示**首页视图**。点击**关于**：地址变成以 `/about` 结尾，页面显示**关于页视图**，整个过程不刷新页面。浏览器的后退、前进按钮可以在两个视图之间切换。在本地，停在 `/about` 时刷新也没问题，因为本地服务器会用应用的 `index.html` 响应这个地址。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/router/dist/index.html?lang=zh)；不过在那里刷新的表现不同（见“刻意省略”）。
 
 ## 原理
 
-[src/router.jsx](src/router.jsx) 里有三个组件，[src/index.jsx](src/index.jsx)（15 行）用它们搭出页面：
+[src/router.jsx](src/router.jsx) 里有三个组件，[src/index.jsx](src/index.jsx)（29 行）用它们搭出页面：
 
 - `BrowserRouter` 把当前路径保存在自己的 state 里，并通过 React 的 Context 共享给它里面的所有组件。Context 能把一个值交给层层嵌套的组件，而不用一层层手动往下传。
 - `Route` 只有在当前路径和自己的 `path` 完全相同时，才显示它的内容。地址末尾多一个 `/` 或 `/index.html` 不影响匹配。
@@ -39,7 +39,7 @@ npm run dev
 
 ## 刻意省略
 
-- 在线演示中，停在 About 视图时刷新页面，会看到 GitHub 的 404 页面。GitHub Pages 无法像本地服务器那样用 `index.html` 响应这个地址；点击链接、后退和前进仍然正常。本地开发服务器（[scripts/serve.mjs](../../scripts/serve.mjs)）专门有一条规则，用 `index.html` 响应 `/about`，所以在本地刷新没有问题。
+- 在线演示中，停在关于页视图时刷新页面，会看到 GitHub 的 404 页面。GitHub Pages 无法像本地服务器那样用 `index.html` 响应这个地址；点击链接、后退和前进仍然正常。本地开发服务器（[scripts/serve.mjs](../../scripts/serve.mjs)）专门有一条规则，用 `index.html` 响应 `/about`，所以在本地刷新没有问题。
 - 只匹配完全相同的路径。没有嵌套路由，没有路由参数（例如 `/users/:id`），没有数据加载器，也无法拦截导航（例如提醒用户还有未保存的修改）。
 
 ## 验证与来源

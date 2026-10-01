@@ -1,39 +1,68 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-title-en="Swipe to change pages · Latte Web" data-title-zh="滑动翻页 · Latte Web">
   <meta charset="utf-8" /><meta
     name="viewport"
     content="width=device-width,initial-scale=1"
   /><title>Swipe to change pages · Latte Web</title
-  ><!-- latte-site:css --><link rel="stylesheet" href="../../../assets/site.css"><!-- /latte-site:css --><!-- latte-site:guide --><script src="../../../assets/guide.js" data-guide="../../../assets/guides/examples/visuals/paging/index.json"></script><!-- /latte-site:guide --><link rel="stylesheet" href="../style.css" />
-  <!-- latte-site:bar --><nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="../../../index.html">Latte Web</a><span class="latte-crumb">Applications and experiments</span><span class="latte-links"><a href="https://github.com/L-Jovi/latte-web/tree/main/examples/visuals/paging">README</a><a href="https://github.com/L-Jovi/latte-web/blob/main/examples/visuals/paging/README.zh-Hans.md" lang="zh-Hans">中文</a></span></nav><!-- /latte-site:bar --><h1>Swipe to change pages</h1>
-  <p>
+  ><!-- latte-site:css --><link rel="stylesheet" href="../../../assets/site.css"><script src="../../../assets/language.js"></script><!-- /latte-site:css --><!-- latte-site:guide --><script src="../../../assets/guide.js" data-guide="../../../assets/guides/examples/visuals/paging/index.json"></script><!-- /latte-site:guide --><link rel="stylesheet" href="../style.css" />
+  <!-- latte-site:bar --><nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="../../../index.html">Latte Web</a><span class="latte-crumb"><span data-l="en">Applications and experiments</span><span data-l="zh">应用与实验</span></span><span class="latte-links"><a data-l="en" href="https://github.com/L-Jovi/latte-web/tree/main/examples/visuals/paging">README</a><a data-l="zh" href="https://github.com/L-Jovi/latte-web/blob/main/examples/visuals/paging/README.zh-Hans.md">README</a><button type="button" class="latte-language" data-language-switch hidden>中文</button></span></nav><!-- /latte-site:bar --><h1><span data-l="en">Swipe to change pages</span><span data-l="zh">滑动翻页</span></h1>
+  <p data-l="en">
     Horizontal: classic Touch Events with distance/time thresholds. Vertical:
     Pointer Events with capture. Both include buttons and arrow keys.
   </p>
+  <p data-l="zh">左右翻页：传统的 Touch Events，按距离和时间阈值判断。上下翻页：Pointer Events 加上指针捕获。两条轨道都能用按钮和方向键翻页。</p>
   <section id="touch">
     <h2>Touch Events</h2>
-    <div class="viewport" tabindex="0" aria-label="Touch pages">
+    <div
+      class="viewport"
+      tabindex="0"
+      aria-label="Touch pages"
+      data-label-en="Touch pages"
+      data-label-zh="Touch 版的页面"
+    >
       <div class="track">
-        <article>Page 1 · Observe</article>
-        <article>Page 2 · Read</article>
-        <article>Page 3 · Compare</article>
+        <article><span data-l="en">Page 1 · Observe</span><span data-l="zh">第 1 页 · 观察</span></article>
+        <article><span data-l="en">Page 2 · Read</span><span data-l="zh">第 2 页 · 阅读</span></article>
+        <article><span data-l="en">Page 3 · Compare</span><span data-l="zh">第 3 页 · 对比</span></article>
       </div>
     </div>
-    <button data-step="-1">Previous touch page</button
-    ><button data-step="1">Next touch page</button><output>Page 1 of 3</output>
+    <button
+      data-step="-1"
+      data-text-en="Previous touch page"
+      data-text-zh="Touch 版上一页"
+    >Previous touch page</button
+    ><button
+      data-step="1"
+      data-text-en="Next touch page"
+      data-text-zh="Touch 版下一页"
+    >Next touch page</button><output><span data-l="en">Page 1 of 3</span><span data-l="zh">第 1 页，共 3 页</span></output>
   </section>
   <section id="pointer">
     <h2>Pointer Events</h2>
-    <div class="viewport vertical" tabindex="0" aria-label="Pointer pages">
+    <div
+      class="viewport vertical"
+      tabindex="0"
+      aria-label="Pointer pages"
+      data-label-en="Pointer pages"
+      data-label-zh="Pointer 版的页面"
+    >
       <div class="track">
-        <article>Page 1 · Observe</article>
-        <article>Page 2 · Read</article>
-        <article>Page 3 · Compare</article>
+        <article><span data-l="en">Page 1 · Observe</span><span data-l="zh">第 1 页 · 观察</span></article>
+        <article><span data-l="en">Page 2 · Read</span><span data-l="zh">第 2 页 · 阅读</span></article>
+        <article><span data-l="en">Page 3 · Compare</span><span data-l="zh">第 3 页 · 对比</span></article>
       </div>
     </div>
-    <button data-step="-1">Previous pointer page</button
-    ><button data-step="1">Next pointer page</button
-    ><output>Page 1 of 3</output>
+    <button
+      data-step="-1"
+      data-text-en="Previous pointer page"
+      data-text-zh="Pointer 版上一页"
+    >Previous pointer page</button
+    ><button
+      data-step="1"
+      data-text-en="Next pointer page"
+      data-text-zh="Pointer 版下一页"
+    >Next pointer page</button
+    ><output><span data-l="en">Page 1 of 3</span><span data-l="zh">第 1 页，共 3 页</span></output>
   </section>
   <style>
     .viewport {

@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-title-en="Less, and what native CSS can do today · Latte Web" data-title-zh="Less，以及今天原生 CSS 能做到的 · Latte Web">
   <meta charset="utf-8" /><title>Less, and what native CSS can do today · Latte Web</title
-  ><!-- latte-site:css --><link rel="stylesheet" href="../../assets/site.css"><!-- /latte-site:css --><!-- latte-site:guide --><script src="../../assets/guide.js" data-guide="../../assets/guides/tooling/less/modern.json"></script><!-- /latte-site:guide --><style>
+  ><!-- latte-site:css --><link rel="stylesheet" href="../../assets/site.css"><script src="../../assets/language.js"></script><!-- /latte-site:css --><!-- latte-site:guide --><script src="../../assets/guide.js" data-guide="../../assets/guides/tooling/less/modern.json"></script><!-- /latte-site:guide --><style>
     :root {
       --accent: #547a91;
     }
@@ -11,13 +11,13 @@
       color: white;
     }
   </style>
-  <!-- latte-site:bar --><nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="../../index.html">Latte Web</a><span class="latte-crumb">Build tools</span><span class="latte-links"><a href="https://github.com/L-Jovi/latte-web/tree/main/tooling/less">README</a><a href="https://github.com/L-Jovi/latte-web/blob/main/tooling/less/README.zh-Hans.md" lang="zh-Hans">中文</a></span></nav><!-- /latte-site:bar --><h1>Runtime CSS variables</h1>
+  <!-- latte-site:bar --><nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="../../index.html">Latte Web</a><span class="latte-crumb"><span data-l="en">Build tools</span><span data-l="zh">构建工具</span></span><span class="latte-links"><a data-l="en" href="https://github.com/L-Jovi/latte-web/tree/main/tooling/less">README</a><a data-l="zh" href="https://github.com/L-Jovi/latte-web/blob/main/tooling/less/README.zh-Hans.md">README</a><button type="button" class="latte-language" data-language-switch hidden>中文</button></span></nav><!-- /latte-site:bar --><h1><span data-l="en">Runtime CSS variables</span><span data-l="zh">运行时的 CSS 变量</span></h1>
   <div class="card">
-    Unlike a Less variable, this custom property can change after compilation.
+    <span data-l="en">Unlike a Less variable, this custom property can change after compilation.</span><span data-l="zh">和 Less 变量不同，这个自定义属性在编译之后仍然可以改变。</span>
   </div>
-  <button>Change theme</button>
+  <button data-text-en="Change theme" data-text-zh="切换主题">Change theme</button>
   <script>
-    document.querySelector('button').onclick = () =>
+    document.querySelector('.card + button').onclick = () =>
       document.documentElement.style.setProperty('--accent', '#98542d');
   </script>
 </html>

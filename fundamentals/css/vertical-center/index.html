@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-title-en="vertical center" data-title-zh="垂直居中">
 <head>
   <meta charset="UTF-8">
-  <title>vertical center</title><!-- latte-site:css --><link rel="stylesheet" href="../../../assets/site.css"><!-- /latte-site:css --><!-- latte-site:guide --><script src="../../../assets/guide.js" data-guide="../../../assets/guides/fundamentals/css/vertical-center/index.json"></script><!-- /latte-site:guide -->
+  <title>vertical center</title><!-- latte-site:css --><link rel="stylesheet" href="../../../assets/site.css"><script src="../../../assets/language.js"></script><!-- /latte-site:css --><!-- latte-site:guide --><script src="../../../assets/guide.js" data-guide="../../../assets/guides/fundamentals/css/vertical-center/index.json"></script><!-- /latte-site:guide -->
 
   <style>
     html, body {
@@ -92,29 +92,30 @@
 </head>
 
 <body>
-    <!-- latte-site:bar --><nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="../../../index.html">Latte Web</a><span class="latte-crumb">Fundamentals</span><span class="latte-links"><a href="https://github.com/L-Jovi/latte-web/tree/main/fundamentals/css">README</a><a href="https://github.com/L-Jovi/latte-web/blob/main/fundamentals/css/README.zh-Hans.md" lang="zh-Hans">中文</a></span></nav><!-- /latte-site:bar --><h1>CSS layout</h1>
-    <p>The guide measures the boxes for you and switches their rules on and off. You can also inspect a box in your browser’s developer tools.</p>
-  <h2>方法 1: 子元素 transform</h2>
+    <!-- latte-site:bar --><nav class="latte-bar" aria-label="Latte Web"><a class="latte-home" href="../../../index.html">Latte Web</a><span class="latte-crumb"><span data-l="en">Fundamentals</span><span data-l="zh">基础</span></span><span class="latte-links"><a data-l="en" href="https://github.com/L-Jovi/latte-web/tree/main/fundamentals/css">README</a><a data-l="zh" href="https://github.com/L-Jovi/latte-web/blob/main/fundamentals/css/README.zh-Hans.md">README</a><button type="button" class="latte-language" data-language-switch hidden>中文</button></span></nav><!-- /latte-site:bar --><h1><span data-l="en">CSS layout</span><span data-l="zh">CSS 布局</span></h1>
+    <p data-l="en">The guide measures the boxes for you and switches their rules on and off. You can also inspect a box in your browser’s developer tools.</p>
+    <p data-l="zh">说明面板会替你测量这些盒子，并把它们的规则关掉或打开。你也可以用浏览器的开发者工具检查任意一个盒子。</p>
+  <h2><span data-l="en">Method 1: transform on the child</span><span data-l="zh">方法 1：子元素 transform</span></h2>
   <div class="container1">
-    <div class="content1">Content here</div>
+    <div class="content1"><span data-l="en">Content here</span><span data-l="zh">这里是内容</span></div>
   </div>
 
-  <h2>方法 2: flexbox</h2>
+  <h2><span data-l="en">Method 2: flexbox</span><span data-l="zh">方法 2：flexbox</span></h2>
   <div class="container2">
     <div class="content2"></div>
   </div>
 
-  <h2>方法 3: grid</h2>
+  <h2><span data-l="en">Method 3: grid</span><span data-l="zh">方法 3：grid</span></h2>
   <div class="container3">
     <div class="content3"></div>
   </div>
 
-  <h2>方法 4: 子元素 vertical-align: middle</h2>
+  <h2><span data-l="en">Method 4: vertical-align: middle on the child</span><span data-l="zh">方法 4：子元素 vertical-align: middle</span></h2>
   <div class="container4">
     <div class="content4"></div>
   </div>
 
-  <h2>方法 5: table-cell</h2>
+  <h2><span data-l="en">Method 5: table-cell</span><span data-l="zh">方法 5：table-cell</span></h2>
   <div class="container5">
     <div class="content5"></div>
   </div>
