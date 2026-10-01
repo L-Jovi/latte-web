@@ -1,0 +1,129 @@
+{
+  "steps": [
+    {
+      "title": "Two tracks of three pages",
+      "titleZh": "两条各有三页的轨道",
+      "text": "Each track is a strip of three pages that slides inside a frame. The **Touch Events** track moves sideways and reacts only to a finger; the **Pointer Events** track moves up and down and also follows a mouse. One `pager` function drives both. When a gesture ends, it decides: a gesture shorter than 300 ms has to travel more than 50 px, a slower one more than a sixth of the track.",
+      "textZh": "每条轨道都是由三页连成的长条，在一个框里滑动。**Touch Events** 轨道左右翻页，只响应手指；**Pointer Events** 轨道上下翻页，也能用鼠标拖。两条轨道由同一个 `pager` 函数驱动。手势结束时做判断：不到 300 毫秒的手势要移动超过 50 px，慢一些的手势要超过轨道长度的六分之一。",
+      "watch": [
+        {
+          "label": "sideways track",
+          "labelZh": "左右翻页的轨道",
+          "value": "document.querySelector('#touch output').textContent",
+          "expect": "Page 1 of 3"
+        },
+        {
+          "label": "vertical track",
+          "labelZh": "上下翻页的轨道",
+          "value": "document.querySelector('#pointer output').textContent",
+          "expect": "Page 1 of 3"
+        },
+        {
+          "label": "a sixth of the sideways track",
+          "labelZh": "左右轨道长度的六分之一",
+          "value": "Math.round(document.querySelector('#touch .viewport').clientWidth / 6) + ' px'"
+        }
+      ],
+      "focus": ".viewport"
+    },
+    {
+      "title": "A quick swipe to the left",
+      "titleZh": "向左快速一划",
+      "text": "This button sends made-up touch events to the sideways track: `touchstart` at x = 250, then `touchmove` and `touchend` at x = 100. That is 150 px in far less than 300 ms, more than the 50 px a quick swipe needs, so the next page slides in. While the finger moves, the CSS transition is off so the pages follow it directly; at the end it is turned back on, so the change is animated.",
+      "textZh": "这个按钮向左右翻页的轨道发出模拟的 touch 事件：在 x = 250 处 `touchstart`，然后在 x = 100 处 `touchmove` 和 `touchend`。这是在远不到 300 毫秒内移动了 150 px，超过快速一划所需的 50 px，于是下一页滑了进来。手指移动期间 CSS 过渡是关掉的，页面直接跟着手指走；结束时再打开过渡，所以翻页有动画。",
+      "action": {
+        "run": "const track = document.querySelector('#touch .viewport'); for (const [type, x] of [['touchstart', 250], ['touchmove', 100], ['touchend', 100]]) { const event = new Event(type, { bubbles: true, cancelable: true }); Object.defineProperty(event, type === 'touchend' ? 'changedTouches' : 'touches', { value: [{ clientX: x, clientY: 40 }] }); track.dispatchEvent(event); }"
+      },
+      "actionLabel": "Swipe 150 px to the left",
+      "actionLabelZh": "向左滑 150 px",
+      "watch": [
+        {
+          "label": "sideways track",
+          "labelZh": "左右翻页的轨道",
+          "value": "document.querySelector('#touch output').textContent",
+          "expect": "Page 2 of 3"
+        }
+      ],
+      "focus": "#touch .viewport"
+    },
+    {
+      "title": "Too short, or cancelled: it slides back",
+      "titleZh": "太短或被取消：滑回原位",
+      "text": "Two more made-up gestures: a 30 px swipe, shorter than 50 px, and a 150 px swipe that ends with `touchcancel`, as when the browser or the system interrupts a gesture. Neither changes the page; the track slides back.",
+      "textZh": "再来两个模拟手势：一次 30 px 的滑动，短于 50 px；一次 150 px 的滑动，但以 `touchcancel` 结束，就像浏览器或系统打断了手势那样。两次都不会翻页，轨道会滑回原位。",
+      "action": {
+        "run": "const track = document.querySelector('#touch .viewport'); for (const [type, x] of [['touchstart', 250], ['touchmove', 220], ['touchend', 220], ['touchstart', 250], ['touchmove', 100], ['touchcancel', 100]]) { const event = new Event(type, { bubbles: true, cancelable: true }); Object.defineProperty(event, type === 'touchend' ? 'changedTouches' : 'touches', { value: [{ clientX: x, clientY: 40 }] }); track.dispatchEvent(event); }"
+      },
+      "actionLabel": "Swipe 30 px, then a cancelled swipe",
+      "actionLabelZh": "滑 30 px，再来一次被取消的滑动",
+      "watch": [
+        {
+          "label": "sideways track",
+          "labelZh": "左右翻页的轨道",
+          "value": "document.querySelector('#touch output').textContent",
+          "expect": "Page 2 of 3"
+        }
+      ],
+      "focus": "#touch .viewport"
+    },
+    {
+      "title": "The ends are fixed",
+      "titleZh": "两端到头就停",
+      "text": "The page number stays between 1 and 3, with no wrapping, and the button at an end is disabled. This button clicks **Next touch page** twice: the first click goes to page 3, the second does nothing because the button is now disabled.",
+      "textZh": "页码始终在 1 到 3 之间，不会绕回去；到了一端，对应的按钮会被禁用。这个按钮连点两次 **Next touch page**：第一次翻到第 3 页，第二次什么也不做，因为按钮已经被禁用了。",
+      "action": {
+        "run": "const next = document.querySelector(\"#touch [data-step='1']\"); next.click(); next.click();"
+      },
+      "actionLabel": "Click Next touch page twice",
+      "actionLabelZh": "连点两次 Next touch page",
+      "watch": [
+        {
+          "label": "sideways track",
+          "labelZh": "左右翻页的轨道",
+          "value": "document.querySelector('#touch output').textContent",
+          "expect": "Page 3 of 3"
+        },
+        {
+          "label": "Next touch page disabled",
+          "labelZh": "Next touch page 已禁用",
+          "value": "document.querySelector(\"#touch [data-step='1']\").disabled",
+          "expect": "true"
+        }
+      ],
+      "focus": "#touch"
+    },
+    {
+      "title": "The Pointer Events track",
+      "titleZh": "Pointer Events 轨道",
+      "text": "The vertical track uses `pointerdown`, `pointermove` and `pointerup` with `setPointerCapture`, so it follows a mouse, a pen or a finger. It also takes the arrow keys: this button focuses it and presses ↓. Then drag it upwards with the mouse. The track is 200 px tall, so a slow drag only has to pass a sixth of that, about 33 px, while a quick flick still needs more than 50 px.",
+      "textZh": "上下翻页的轨道用 `pointerdown`、`pointermove`、`pointerup` 加上 `setPointerCapture`，所以鼠标、手写笔和手指都能拖动它。它也响应方向键：这个按钮让它获得焦点，再按一次 ↓。接着用鼠标把它往上拖。这条轨道高 200 px，所以慢慢拖只要超过它的六分之一，约 33 px；快速一划却仍然要超过 50 px。",
+      "action": {
+        "run": "const track = document.querySelector('#pointer .viewport'); track.focus(); track.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true, cancelable: true }));"
+      },
+      "actionLabel": "Focus the track and press ↓",
+      "actionLabelZh": "让轨道获得焦点并按 ↓",
+      "watch": [
+        {
+          "label": "vertical track",
+          "labelZh": "上下翻页的轨道",
+          "value": "document.querySelector('#pointer output').textContent",
+          "expect": "Page 2 of 3"
+        },
+        {
+          "label": "a sixth of the vertical track",
+          "labelZh": "上下轨道长度的六分之一",
+          "value": "Math.round(document.querySelector('#pointer .viewport').clientHeight / 6) + ' px'",
+          "expect": "33 px"
+        }
+      ],
+      "focus": "#pointer .viewport"
+    },
+    {
+      "title": "Try it by hand",
+      "titleZh": "亲手试试",
+      "text": "Drag the vertical track upwards a little and let go: if the drag falls short, the track springs back. On a phone or tablet, swipe the sideways track with one finger. CSS `touch-action` tells the browser which direction it may still scroll by itself: `pan-y` (up and down) on the sideways track, `pan-x` (sideways) on the vertical one. Make the window narrower: a `ResizeObserver` recomputes the position, so a track never stops between two pages.",
+      "textZh": "把上下翻页的轨道往上拖一点再松手：距离不够，轨道就会弹回去。在手机或平板上，用一根手指滑动左右翻页的轨道。CSS 的 `touch-action` 声明浏览器还可以自行朝哪个方向滚动：左右翻页的轨道是 `pan-y`（上下），上下翻页的轨道是 `pan-x`（左右）。把窗口调窄：`ResizeObserver` 会重新计算位置，所以轨道不会停在两页中间。",
+      "focus": ".viewport"
+    }
+  ]
+}

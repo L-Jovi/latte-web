@@ -1,0 +1,50 @@
+{
+  "steps": [
+    {
+      "title": "Three ways to choose this",
+      "titleZh": "选择 this 的三种方式",
+      "text": "While the page loaded, it called `test` with `forgeCall`, `forgeApply` and `forgeBind`, each time with `{ name: 'saber' }` as `this`. Every call printed `saber`, which is `this.name` inside `test`, and then `foobar`, its two arguments joined. The lines appear in the console below.",
+      "textZh": "页面加载时，分别用 `forgeCall`、`forgeApply` 和 `forgeBind` 调用了 `test`，每次都把 `{ name: 'saber' }` 当作 `this`。每次调用都先打印 `saber`，也就是 `test` 里的 `this.name`，再打印 `foobar`，即两个参数拼在一起。这些行都在下面的控制台里。",
+      "highlight": "saber"
+    },
+    {
+      "title": "Pick the receiver yourself",
+      "titleZh": "自己挑选接收者",
+      "text": "`forgeCall` puts `test` on the object for a moment, under a new `Symbol` key, and calls it as `object[key]()`. That is why `this` becomes the object. Run it with an object named `archer`: the console shows `archer`, the result `xy`, and that no symbol key is left behind.",
+      "textZh": "`forgeCall` 会用一个新的 `Symbol` 作键，把 `test` 临时放到对象上，再以 `object[key]()` 的方式调用，所以 `this` 就成了这个对象。用一个名叫 `archer` 的对象试试：控制台会显示 `archer`、结果 `xy`，以及对象上没有留下任何 symbol 键。",
+      "action": {
+        "run": "const who = { name: 'archer' }; console.log(test.forgeCall(who, 'x', 'y')); console.log('symbol keys left:', Object.getOwnPropertySymbols(who).length)"
+      },
+      "actionLabel": "Run test.forgeCall({ name: 'archer' }, 'x', 'y')",
+      "actionLabelZh": "运行 test.forgeCall({ name: 'archer' }, 'x', 'y')",
+      "highlight": "archer",
+      "expectConsole": "symbol keys left: 0"
+    },
+    {
+      "title": "apply takes the arguments as a list",
+      "titleZh": "apply 把参数放在一个数组里",
+      "text": "`forgeApply` works the same way, but the arguments arrive as one array. Run it: the console shows `rider`, then `12`.",
+      "textZh": "`forgeApply` 的做法相同，只是参数以一个数组传入。运行一下：控制台先显示 `rider`，再显示 `12`。",
+      "action": {
+        "run": "console.log(test.forgeApply({ name: 'rider' }, ['1', '2']))"
+      },
+      "actionLabel": "Run test.forgeApply({ name: 'rider' }, ['1', '2'])",
+      "actionLabelZh": "运行 test.forgeApply({ name: 'rider' }, ['1', '2'])",
+      "highlight": "rider",
+      "expectConsole": "12"
+    },
+    {
+      "title": "bind waits, and new wins",
+      "titleZh": "bind 先等着，new 说了算",
+      "text": "The last block of the page binds `bar` to `{ value: 1 }` with the built-in `bind`, then calls it with `new`. `new` ignores the bound object, so `this.value` printed `undefined`. Run the same code with `forgeBind`: it prints the same `undefined`, `daisy` and `18`, and the new object still gets `habit` and inherits `friend` from `bar.prototype`.",
+      "textZh": "页面最后一段用内置的 `bind` 把 `bar` 绑定到 `{ value: 1 }`，再用 `new` 调用它。`new` 会忽略绑定的对象，所以 `this.value` 打印的是 `undefined`。用 `forgeBind` 运行同样的代码：它同样打印 `undefined`、`daisy` 和 `18`，新对象也照样拿到 `habit`，并从 `bar.prototype` 继承 `friend`。",
+      "action": {
+        "run": "const Bound = bar.forgeBind(foo, 'daisy'); const made = new Bound('18'); console.log('habit:', made.habit, '| friend:', made.friend, '| instanceof bar:', made instanceof bar)"
+      },
+      "actionLabel": "Run the same code with forgeBind",
+      "actionLabelZh": "用 forgeBind 运行同样的代码",
+      "highlight": "instanceof bar",
+      "expectConsole": "habit: shopping | friend: kevin | instanceof bar: true"
+    }
+  ]
+}

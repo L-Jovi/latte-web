@@ -1,0 +1,41 @@
+{
+  "steps": [
+    {
+      "title": "Commas without converting",
+      "titleZh": "不转换也能加逗号",
+      "text": "`formatNumber` works on the digits as text: a regular expression finds every place that has complete groups of three digits to its right.",
+      "textZh": "`formatNumber` 把数字当作文本处理：用一个正则表达式找出右边正好是若干组三位数字的位置。",
+      "watch": [
+        {
+          "label": "formatNumber('1234567890')",
+          "value": "formatNumber('1234567890')",
+          "expect": "1,234,567,890"
+        }
+      ]
+    },
+    {
+      "title": "Why the input is a string",
+      "titleZh": "为什么输入是字符串",
+      "text": "A `Number` holds whole numbers exactly only up to 9007199254740991. Past that, digits are lost as soon as the value becomes a `Number`, while the string keeps them all.",
+      "textZh": "`Number` 只能精确表示不超过 9007199254740991 的整数。超出之后，值一变成 `Number` 就会丢掉数位，而字符串会把它们全部留住。",
+      "action": {
+        "run": "console.log('Number:', Number('12345678901234567890'), '| formatNumber:', formatNumber('12345678901234567890'))"
+      },
+      "actionLabel": "Compare a 20-digit number",
+      "actionLabelZh": "比较一个 20 位的数字",
+      "expectConsole": "Number: 12345678901234567000 | formatNumber: 12,345,678,901,234,567,890"
+    },
+    {
+      "title": "Intl.NumberFormat is for people",
+      "titleZh": "Intl.NumberFormat 是给人看的",
+      "text": "`Intl.NumberFormat` formats for any locale. By default it keeps at most three decimal places and drops trailing zeros, where `formatNumber` keeps the digits exactly as given.",
+      "textZh": "`Intl.NumberFormat` 能按任何地区的习惯格式化。它默认最多保留三位小数，并去掉末尾的 0；`formatNumber` 则原样保留所有数位。",
+      "action": {
+        "run": "console.log('Intl:', new Intl.NumberFormat('en-US').format('-1234567.890'), '| formatNumber:', formatNumber('-1234567.890'))"
+      },
+      "actionLabel": "Compare with Intl.NumberFormat",
+      "actionLabelZh": "和 Intl.NumberFormat 比较",
+      "expectConsole": "Intl: -1,234,567.89 | formatNumber: -1,234,567.890"
+    }
+  ]
+}

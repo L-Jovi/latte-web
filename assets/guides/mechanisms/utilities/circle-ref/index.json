@@ -1,0 +1,46 @@
+{
+  "steps": [
+    {
+      "title": "A real cycle",
+      "titleZh": "真正的循环引用",
+      "text": "`obj.circleRef = obj` leads from the object back to itself, so both checks print `true`.",
+      "textZh": "`obj.circleRef = obj` 从对象出发又回到它自己，所以两种检查都打印 `true`。",
+      "watch": [
+        {
+          "label": "isCycleByIterator(obj)",
+          "value": "isCycleByIterator(obj)",
+          "expect": "true"
+        },
+        {
+          "label": "isCycleByJSON(obj)",
+          "value": "isCycleByJSON(obj)",
+          "expect": "true"
+        }
+      ]
+    },
+    {
+      "title": "Shared is not circular",
+      "titleZh": "共用不等于循环",
+      "text": "An object used twice is not a cycle: following its properties never leads back to the start. The walk remembers only the objects on the current path, so it answers `false`.",
+      "textZh": "一个对象被用了两次并不是循环：顺着属性走，永远回不到起点。遍历只记住当前路径上的对象，所以答案是 `false`。",
+      "action": {
+        "run": "const child = {}; const shared = { one: child, two: child }; console.log('shared child → isCycleByIterator:', isCycleByIterator(shared), '| isCycleByJSON:', isCycleByJSON(shared))"
+      },
+      "actionLabel": "Check an object that uses one child twice",
+      "actionLabelZh": "检查一个把同一个子对象用了两次的对象",
+      "expectConsole": "shared child → isCycleByIterator: false | isCycleByJSON: false"
+    },
+    {
+      "title": "A failing JSON.stringify proves nothing",
+      "titleZh": "JSON.stringify 失败什么也证明不了",
+      "text": "`JSON.stringify` also throws for a `BigInt`, so the JSON check reports a cycle where there is none.",
+      "textZh": "`JSON.stringify` 遇到 `BigInt` 也会抛错，所以 JSON 检查会在没有循环的地方报告循环。",
+      "action": {
+        "run": "const big = { n: 1n }; console.log('BigInt value → isCycleByIterator:', isCycleByIterator(big), '| isCycleByJSON:', isCycleByJSON(big))"
+      },
+      "actionLabel": "Check an object with a BigInt",
+      "actionLabelZh": "检查一个带 BigInt 的对象",
+      "expectConsole": "BigInt value → isCycleByIterator: false | isCycleByJSON: true"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "steps": [
+    {
+      "title": "extends links two chains",
+      "titleZh": "extends 连起两条链",
+      "text": "`class C__Sub extends C__Super` sets two links: instances fall back to `C__Super.prototype`, and the class itself falls back to `C__Super`. The first console line, `true`, checks the second link.",
+      "textZh": "`class C__Sub extends C__Super` 会建立两条链接：实例回退到 `C__Super.prototype`，类本身回退到 `C__Super`。控制台第一行的 `true` 检查的就是第二条。",
+      "watch": [
+        {
+          "label": "C__Sub.prototype → C__Super.prototype",
+          "value": "Object.getPrototypeOf(C__Sub.prototype) === C__Super.prototype",
+          "expect": "true"
+        },
+        {
+          "label": "C__Sub → C__Super",
+          "value": "Object.getPrototypeOf(C__Sub) === C__Super",
+          "expect": "true"
+        }
+      ]
+    },
+    {
+      "title": "The old pattern links one",
+      "titleZh": "旧写法只连一条",
+      "text": "`Sub.prototype = new Super()` links the instances, but `Sub` itself still falls back to `Function.prototype`, like any function. Those are the second and third console lines: `true`, then `false`.",
+      "textZh": "`Sub.prototype = new Super()` 连起了实例这一条，但 `Sub` 本身仍像普通函数一样回退到 `Function.prototype`。这就是控制台的第二、三行：先是 `true`，再是 `false`。",
+      "watch": [
+        {
+          "label": "Sub.prototype → Super.prototype",
+          "value": "Object.getPrototypeOf(Sub.prototype) === Super.prototype",
+          "expect": "true"
+        },
+        {
+          "label": "Sub → Super",
+          "value": "Object.getPrototypeOf(Sub) === Super",
+          "expect": "false"
+        }
+      ]
+    },
+    {
+      "title": "Why static members are inherited",
+      "titleZh": "静态成员为什么也会被继承",
+      "text": "A static member lives on the class itself. Give both parents a `create` helper: `C__Sub` finds it through the second link, while `Sub` has no such link and gets `undefined`.",
+      "textZh": "静态成员放在类本身上。给两个父类都加一个 `create` 辅助方法：`C__Sub` 通过第二条链接找到它，而 `Sub` 没有这条链接，得到的是 `undefined`。",
+      "action": {
+        "run": "C__Super.create = () => 'made by C__Super.create'; Super.create = () => 'made by Super.create'; console.log('C__Sub.create():', C__Sub.create(), '| Sub.create:', Sub.create)"
+      },
+      "actionLabel": "Give both parents a static create()",
+      "actionLabelZh": "给两个父类都加上静态 create()",
+      "expectConsole": "C__Sub.create(): made by C__Super.create | Sub.create: undefined"
+    }
+  ]
+}

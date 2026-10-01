@@ -1,0 +1,68 @@
+{
+  "steps": [
+    {
+      "title": "The heading changed",
+      "titleZh": "标题变了",
+      "text": "`dist/index.html` says `Loading greeting`. When the page ran `main.js`, compiled from `src/main.ts`, it replaced that text with **Hello from TypeScript modules via Gulp**. The page has one `<script type=\"module\">` tag, for `main.js`.",
+      "textZh": "`dist/index.html` 里写的是 `Loading greeting`。页面运行由 `src/main.ts` 编译出的 `main.js` 时，把这段文字换成了 **Hello from TypeScript modules via Gulp**。页面上只有一个 `<script type=\"module\">` 标签，引用的是 `main.js`。",
+      "watch": [
+        {
+          "label": "Heading",
+          "labelZh": "标题",
+          "value": "document.querySelector('#greeting').textContent",
+          "expect": "Hello from TypeScript modules via Gulp"
+        },
+        {
+          "label": "Page scripts (not counting the guide)",
+          "labelZh": "页面脚本（不含说明面板）",
+          "value": "[...document.scripts].filter((s) => !s.src.endsWith('/guide.js')).map((s) => s.getAttribute('src') + ' (' + (s.type || 'classic') + ')').join(', ')",
+          "expect": "./main.js (module)"
+        }
+      ],
+      "focus": "#greeting"
+    },
+    {
+      "title": "The browser followed the import",
+      "titleZh": "浏览器自己顺着 import 走",
+      "text": "There is no bundler. `main.js` starts with `import { sayHello } from './greet.js'`, and no `<script>` tag names `greet.js`, yet `sayHello` ran: the browser fetched `greet.js` by itself. That is why `src/main.ts` imports `./greet.js`, the name of the compiled file.",
+      "textZh": "这里没有打包器。`main.js` 开头是 `import { sayHello } from './greet.js'`，没有任何 `<script>` 标签引用 `greet.js`，`sayHello` 却运行了：是浏览器自己去获取了 `greet.js`。所以 `src/main.ts` 导入的是 `./greet.js`，也就是编译后的文件名。",
+      "watch": [
+        {
+          "label": "<script> tags that name greet.js",
+          "labelZh": "引用 greet.js 的 <script> 标签",
+          "value": "document.querySelectorAll('script[src*=\"greet\"]').length",
+          "expect": "0"
+        },
+        {
+          "label": "JavaScript files the browser downloaded",
+          "labelZh": "浏览器下载的 JavaScript 文件",
+          "value": "performance.getEntriesByType('resource').filter((e) => e.initiatorType !== 'fetch').map((e) => e.name.split('/').pop()).filter((n) => n.endsWith('.js') && n !== 'guide.js').join(', ')"
+        }
+      ],
+      "focus": "#greeting"
+    },
+    {
+      "title": "What tsc wrote",
+      "titleZh": "tsc 写出了什么",
+      "text": "The TypeScript compiler, `tsc`, checked the types, then wrote one JavaScript file for each TypeScript file. It deleted the type annotation `: string` and kept the `import` as it was. This step fetches `src/greet.ts` and the compiled files and prints their first lines.",
+      "textZh": "TypeScript 编译器 `tsc` 先检查类型，再为每个 TypeScript 文件各写出一个 JavaScript 文件。它删掉了类型标注 `: string`，`import` 则原样保留。这一步会获取 `src/greet.ts` 和编译后的文件，打印它们的第一行。",
+      "action": {
+        "clear": true,
+        "run": "Promise.all(['../src/greet.ts', 'greet.js', 'main.js'].map((f) => fetch(f).then((r) => r.text()))).then(([ts, js, main]) => { console.log('src/greet.ts:', ts.split('\\n')[0]); console.log('dist/greet.js:', js.split('\\n')[0]); console.log('dist/main.js:', main.split('\\n')[0]); })"
+      },
+      "actionLabel": "Compare the source with the output",
+      "actionLabelZh": "对比源文件和输出",
+      "expectConsole": [
+        "src/greet.ts: export function sayHello(name: string) {",
+        "dist/greet.js: export function sayHello(name) {",
+        "dist/main.js: import { sayHello } from './greet.js';"
+      ]
+    },
+    {
+      "title": "Gulp runs the steps in order",
+      "titleZh": "Gulp 按顺序执行这些步骤",
+      "text": "`gulpfile.js` exports three functions, `clean`, `compile` and `html`, and a default task that runs them one after another with `series`. Each function tells Gulp it has finished through what it returns. If `tsc` finds a type error, it exits with an error code, and `series` does not run `html`.",
+      "textZh": "`gulpfile.js` 导出了三个函数 `clean`、`compile` 和 `html`，以及一个用 `series` 依次运行它们的默认任务。每个函数通过返回值告诉 Gulp 自己已经完成。如果 `tsc` 发现类型错误，它会以错误码退出，`series` 也就不会再运行 `html`。"
+    }
+  ]
+}

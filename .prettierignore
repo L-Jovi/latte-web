@@ -1,4 +1,6 @@
 **/dist/
+# A built page's guide mirrors the page's path, but it is a source file.
+!assets/guides/**/dist/
 **/node_modules/
 **/storybook-static/
 **/target/

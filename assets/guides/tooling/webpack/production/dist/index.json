@@ -1,0 +1,60 @@
+{
+  "steps": [
+    {
+      "title": "Production mode",
+      "titleZh": "生产模式",
+      "text": "Production mode minifies the code and sets `process.env.NODE_ENV` to `'production'`. `src/index.js` checks that value, so the console below shows `Looks like we are in production mode!`. The comma on the page comes from assigning an array to `innerHTML`, which joins the items with commas.",
+      "textZh": "生产模式会压缩代码，并把 `process.env.NODE_ENV` 设为 `'production'`。`src/index.js` 会检查这个值，所以下面的控制台显示 `Looks like we are in production mode!`。页面上的逗号，是因为代码把一个数组赋给了 `innerHTML`，数组各项会用逗号连起来。",
+      "watch": [
+        {
+          "label": "Text on the page",
+          "labelZh": "页面上的文字",
+          "value": "document.querySelector('body > pre').textContent",
+          "expect": "Hello webpack!,5 cubed is equal to 125"
+        }
+      ],
+      "focus": "body > pre",
+      "highlight": "production mode",
+      "expectConsole": "Looks like we are in production mode!"
+    },
+    {
+      "title": "What the bundle kept",
+      "titleZh": "打包产物留下了什么",
+      "text": "One branch of the `if` can never run, so the minifier removed it, and it worked out `cube(5)` as `125` before the page ever loaded. The last line points to the source map, `bundle.js.map`, a file of its own that links the minified code back to your files. This step fetches `bundle.js` and searches it.",
+      "textZh": "`if` 有一个分支永远不会执行，所以压缩工具把它删掉了；它还在页面加载之前就把 `cube(5)` 算成了 `125`。最后一行指向 source map，也就是单独的文件 `bundle.js.map`，它把压缩后的代码对应回你自己的文件。这一步会获取 `bundle.js` 并在里面查找。",
+      "action": {
+        "clear": true,
+        "run": "fetch('bundle.js').then((r) => r.text()).then((t) => { console.log('bundle.js mentions development mode:', t.includes('development mode')); console.log('bundle.js calls cube():', t.includes('cube(')); console.log('last line:', t.trim().split('\\n').pop()); console.log('bundle.js size:', new Blob([t]).size, 'bytes'); })"
+      },
+      "actionLabel": "Fetch bundle.js",
+      "actionLabelZh": "获取 bundle.js",
+      "expectConsole": [
+        "bundle.js mentions development mode: false",
+        "bundle.js calls cube(): false",
+        "last line: //# sourceMappingURL=bundle.js.map"
+      ]
+    },
+    {
+      "title": "The map still holds your source",
+      "titleZh": "source map 里还有你的源码",
+      "text": "`devtool: 'source-map'` wrote the map to `bundle.js.map`. It lists your original files and carries their full text, including the development branch that the bundle dropped. The file is published next to the page, so anyone can read your source through it; `hidden-source-map` leaves out the comment that points to it.",
+      "textZh": "`devtool: 'source-map'` 把 source map 写进了 `bundle.js.map`。它列出你的原始文件，并带着它们的全文，连打包产物删掉的开发分支也在里面。这个文件和页面一起发布，所以任何人都能通过它读到你的源码；`hidden-source-map` 则不写那行指向它的注释。",
+      "action": {
+        "clear": true,
+        "run": "fetch('bundle.js.map').then((r) => r.json()).then((map) => { console.log('sources:', map.sources.slice().sort().join(', ')); console.log('the map mentions development mode:', map.sourcesContent.some((s) => s.includes('development mode'))); })"
+      },
+      "actionLabel": "Fetch bundle.js.map",
+      "actionLabelZh": "获取 bundle.js.map",
+      "expectConsole": [
+        "sources: webpack:///./src/index.js, webpack:///./src/math.js",
+        "the map mentions development mode: true"
+      ]
+    },
+    {
+      "title": "The development config",
+      "titleZh": "开发配置",
+      "text": "`webpack.dev.cjs` copies this config with object spread (`...config`) and changes two settings: `mode: 'development'` and `devtool: 'inline-source-map'`. The build script builds only the production config. To try the other one, run `npm exec -w @latte/webpack -- webpack serve --config production/webpack.dev.cjs` and open `http://127.0.0.1:4180/`: the console says `Looks like we are in development mode!`.",
+      "textZh": "`webpack.dev.cjs` 用对象展开（`...config`）复制这份配置，再改两项：`mode: 'development'` 和 `devtool: 'inline-source-map'`。构建脚本只构建生产配置。想试试开发配置，运行 `npm exec -w @latte/webpack -- webpack serve --config production/webpack.dev.cjs`，然后打开 `http://127.0.0.1:4180/`：控制台这次打印 `Looks like we are in development mode!`。"
+    }
+  ]
+}

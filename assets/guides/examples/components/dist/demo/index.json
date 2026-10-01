@@ -1,0 +1,75 @@
+{
+  "steps": [
+    {
+      "title": "One card, one button",
+      "titleZh": "一张卡片，一个按钮",
+      "text": "Both components are tiny on purpose. `Card` wraps its children in a `div` with the class `card`, styled by `card.css`. `Button` shows its `message` and passes every other prop, such as `onClick`, on to a native `<button>`, which it gives `type=\"button\"`.",
+      "textZh": "两个组件都故意写得很小。`Card` 把子元素包进一个类名为 `card` 的 `div`，样式来自 `card.css`。`Button` 显示自己的 `message`，其余属性（比如 `onClick`）原样交给一个原生的 `<button>`，并给它加上 `type=\"button\"`。",
+      "watch": [
+        {
+          "label": "button text",
+          "labelZh": "按钮文字",
+          "value": "document.querySelector('.card button').textContent",
+          "expect": "Count: 0"
+        },
+        {
+          "label": "button type",
+          "labelZh": "按钮的 type",
+          "value": "document.querySelector('.card button').type",
+          "expect": "button"
+        }
+      ],
+      "focus": ".card"
+    },
+    {
+      "title": "Count a click",
+      "titleZh": "点一下计数",
+      "text": "The count lives in the page's own `Demo` component, in `useState`. The click calls `setCount`, and `Demo` renders `Button` again with a new `message`. `Button` keeps no state of its own.",
+      "textZh": "计数保存在页面自己的 `Demo` 组件里，用的是 `useState`。点击会调用 `setCount`，`Demo` 带着新的 `message` 重新渲染 `Button`。`Button` 自己不保存任何状态。",
+      "action": {
+        "click": ".card button"
+      },
+      "actionLabel": "Click the counter",
+      "actionLabelZh": "点击计数按钮",
+      "watch": [
+        {
+          "label": "button text",
+          "labelZh": "按钮文字",
+          "value": "document.querySelector('.card button').textContent",
+          "expect": "Count: 1"
+        }
+      ]
+    },
+    {
+      "title": "React stays out of the library",
+      "titleZh": "React 不进库",
+      "text": "This page is an app, so Vite bundled React into it. The library builds leave React out: it is **external**, and the app that uses the library provides it. This step prints the `import` lines of the Vite library build, `dist/vite/index.js`. It imports `react` and `react/jsx-runtime` instead of containing them.",
+      "textZh": "这个页面是一个应用，所以 Vite 把 React 一起打包了进来。库的构建则不包含 React：React 被设为**外部依赖**（external），由使用这个库的应用自己提供。这一步打印 Vite 库构建产物 `dist/vite/index.js` 里的 `import` 行：它导入 `react` 和 `react/jsx-runtime`，而不是把它们装在自己里面。",
+      "action": {
+        "clear": true,
+        "run": "fetch('../vite/index.js').then((response) => response.text()).then((code) => code.split('\\n').filter((line) => line.startsWith('import')).forEach((line) => console.log(line)))"
+      },
+      "actionLabel": "Print the imports of dist/vite/index.js",
+      "actionLabelZh": "打印 dist/vite/index.js 的 import 行",
+      "expectConsole": "react/jsx-runtime"
+    },
+    {
+      "title": "Where the CSS goes",
+      "titleZh": "CSS 去了哪里",
+      "text": "`card.css` gives the card the border colour `#64748b`, and this step looks for that colour in three build outputs. Vite's library build keeps the styles in their own file, `components.css`, next to a JavaScript file without them. webpack puts the CSS inside `index.cjs` and adds it to the page when the code runs in a browser. Babel's output still says `import './card.css'`; the Babel page, `dist/consumer/consumer.html`, shows how a bundler handles that line.",
+      "textZh": "`card.css` 给卡片设置了边框颜色 `#64748b`，这一步在三个构建产物里查找这个颜色。Vite 的库构建把样式单独放在 `components.css` 里，旁边的 JavaScript 文件里没有样式。webpack 把 CSS 放进 `index.cjs`，代码在浏览器里运行时才把它插入页面。Babel 的产物里仍然写着 `import './card.css'`；Babel 页面 `dist/consumer/consumer.html` 演示了打包工具怎样处理这一行。",
+      "action": {
+        "clear": true,
+        "run": "(async () => { for (const file of ['vite/index.js', 'vite/components.css', 'webpack/index.cjs']) console.log('dist/' + file + ' contains #64748b:', (await (await fetch('../' + file)).text()).includes('#64748b')); })()"
+      },
+      "actionLabel": "Search three builds for #64748b",
+      "actionLabelZh": "在三个构建产物里查找 #64748b",
+      "highlight": "true",
+      "expectConsole": [
+        "dist/vite/index.js contains #64748b: false",
+        "dist/vite/components.css contains #64748b: true",
+        "dist/webpack/index.cjs contains #64748b: true"
+      ]
+    }
+  ]
+}

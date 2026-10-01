@@ -1,0 +1,54 @@
+{
+  "steps": [
+    {
+      "title": "Grunt copied this page",
+      "titleZh": "这个页面是 Grunt 复制的",
+      "text": "The heading says it: this page is `app/index.html`, copied into `dist/` by Grunt. A task runner such as Grunt runs named steps in the order you list them. Here `clean` deletes `dist/`, then `copy` copies everything under `app/` into it.",
+      "textZh": "标题已经说明了：这个页面就是 `app/index.html`，由 Grunt 复制到了 `dist/`。Grunt 这样的任务运行器，会按你列出的顺序执行一个个有名字的步骤。这里先由 `clean` 删除 `dist/`，再由 `copy` 把 `app/` 下的所有文件复制进去。",
+      "watch": [
+        {
+          "label": "Heading",
+          "labelZh": "标题",
+          "value": "document.querySelector('h1').textContent",
+          "expect": "Grunt copied this page"
+        },
+        {
+          "label": "Page scripts (not counting the guide)",
+          "labelZh": "页面脚本（不含说明面板）",
+          "value": "[...document.scripts].filter((s) => !s.src.endsWith('/guide.js')).map((s) => s.getAttribute('src')).join(', ')",
+          "expect": "js/index.js"
+        }
+      ],
+      "focus": "h1"
+    },
+    {
+      "title": "An exact copy",
+      "titleZh": "一模一样的副本",
+      "text": "Nothing was changed, combined or minified on the way. This step fetches each file from `dist/` and from `app/` and compares them.",
+      "textZh": "复制过程中没有任何修改、合并或压缩。这一步会分别从 `dist/` 和 `app/` 获取每个文件，再逐一比较。",
+      "action": {
+        "clear": true,
+        "run": "const files = ['index.html', 'js/index.js']; Promise.all(files.map((f) => Promise.all([fetch(f), fetch('../app/' + f)].map((p) => p.then((r) => r.text()))))).then((pairs) => pairs.forEach(([built, source], i) => console.log('dist/' + files[i], 'is identical to app/' + files[i] + ':', built === source)))"
+      },
+      "actionLabel": "Compare dist/ with app/",
+      "actionLabelZh": "比较 dist/ 和 app/",
+      "expectConsole": [
+        "dist/index.html is identical to app/index.html: true",
+        "dist/js/index.js is identical to app/js/index.js: true"
+      ]
+    },
+    {
+      "title": "No dependency graph",
+      "titleZh": "没有依赖图",
+      "text": "`js/index.js` is an empty file, and nothing here reads `import` statements: Grunt knows only the files and the steps you list, not which file needs which. That is the main difference from a bundler, which builds a dependency graph from the imports.",
+      "textZh": "`js/index.js` 是个空文件，这里也没有任何步骤读取 `import` 语句：Grunt 只知道你列出的文件和步骤，不知道哪个文件依赖哪个文件。这是它和打包器最主要的区别，打包器会根据 import 建立依赖图。",
+      "action": {
+        "clear": true,
+        "run": "fetch('js/index.js').then((r) => r.text()).then((t) => console.log('js/index.js size:', new Blob([t]).size, 'bytes'))"
+      },
+      "actionLabel": "Fetch js/index.js",
+      "actionLabelZh": "获取 js/index.js",
+      "expectConsole": ["js/index.js size: 0 bytes"]
+    }
+  ]
+}

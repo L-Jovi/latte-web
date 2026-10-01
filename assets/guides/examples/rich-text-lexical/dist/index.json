@@ -1,0 +1,69 @@
+{
+  "steps": [
+    {
+      "title": "The document lives in the editor",
+      "titleZh": "文档在编辑器里",
+      "text": "The box under the buttons is a Lexical editor, an element with `contenteditable` that you can type in. `LexicalComposer` creates the editor from `initialConfig`, `RichTextPlugin` renders the editable area and adds rich-text editing, and `HistoryPlugin` adds undo. React draws the page around the editor, but it does not hold the text: nothing is copied into React state while you type. The Draft.js version works the other way and hands a new state back to React on every change.",
+      "textZh": "按钮下面的方框是一个 Lexical 编辑器，也就是一个可以输入文字的 `contenteditable` 元素。`LexicalComposer` 根据 `initialConfig` 创建编辑器，`RichTextPlugin` 渲染可编辑区域并加入富文本编辑功能，`HistoryPlugin` 加入撤销。React 负责画出编辑器周围的页面，但不持有文字：打字时，什么都不会复制进 React state。Draft.js 版本正好相反，每次改动都要把新状态交回给 React。",
+      "watch": [
+        {
+          "label": "contenteditable",
+          "value": "document.querySelector('[aria-label=Editor]').contentEditable",
+          "expect": "true"
+        }
+      ],
+      "focus": ".editor"
+    },
+    {
+      "title": "Type, select and click Bold",
+      "titleZh": "输入、选中，再点 Bold",
+      "text": "Click in the box, type a sentence, select a word and click the page's own **Bold** button: the word turns bold. The toolbar gets the editor from `useLexicalComposerContext`. **Bold** sends it a command, `FORMAT_TEXT_COMMAND` with `'bold'`, and the rich-text plugin applies it to the selection. As in the Draft.js version, the button cancels its own `mousedown`, so the editor keeps the focus and the selection. The buttons in this guide do not, so this step leaves the typing and the click to you.",
+      "textZh": "在方框里点一下，输入一句话，选中其中一个词，再点页面自己的 **Bold** 按钮：这个词就变成了粗体。工具栏通过 `useLexicalComposerContext` 拿到编辑器。**Bold** 向它发送一条命令：带 `'bold'` 参数的 `FORMAT_TEXT_COMMAND`，再由富文本插件把它应用到选区上。和 Draft.js 版本一样，这个按钮会取消自己的 `mousedown`，所以编辑器不会失去焦点和选区。这份说明里的按钮做不到这一点，所以这一步的输入和点击都留给你。",
+      "focus": ".editor"
+    },
+    {
+      "title": "Save the state as JSON",
+      "titleZh": "把状态保存为 JSON",
+      "text": "**Save JSON** reads the state only when you click, with `editor.getEditorState().toJSON()`, and prints it between the buttons and the editor. The document is a tree: a `root` node holds `paragraph` nodes, and they hold `text` nodes. Each text node keeps its styles in one number, `format`, with one bit per style. Bold is the bit worth 1, so a bold word has `\"format\": 1`. The readouts below come from the saved JSON.",
+      "textZh": "**Save JSON** 只在点击时读取状态：`editor.getEditorState().toJSON()`，并把结果打印在按钮和编辑器之间。文档是一棵树：`root` 节点里是 `paragraph` 节点，`paragraph` 里是 `text` 节点。每个文本节点把自己的样式存在一个数字 `format` 里，每种样式占一位。粗体是值为 1 的那一位，所以粗体词带有 `\"format\": 1`。下面的读数都取自保存下来的 JSON。",
+      "action": {
+        "clickText": "Save JSON"
+      },
+      "actionLabel": "Click Save JSON",
+      "actionLabelZh": "点击 Save JSON",
+      "watch": [
+        {
+          "label": "paragraphs",
+          "labelZh": "段落数",
+          "value": "JSON.parse(document.querySelector('#root pre').textContent || 'null')?.root.children.length ?? '—'",
+          "expect": "1"
+        },
+        {
+          "label": "text nodes in the first paragraph, with their format",
+          "labelZh": "第一段里的文本节点及其 format",
+          "value": "JSON.parse(document.querySelector('#root pre').textContent || 'null')?.root.children[0].children.map((node) => JSON.stringify(node.text) + ': ' + node.format).join(', ') ?? '—'"
+        }
+      ],
+      "focus": "#root pre"
+    },
+    {
+      "title": "Undo comes from a plugin",
+      "titleZh": "撤销来自插件",
+      "text": "Click in the editor and press Ctrl+Z (Cmd+Z on a Mac). Undo takes back the last change, so if that was the bold, the word is plain again. Lexical's editor state keeps no undo history; `HistoryPlugin` records earlier states and brings one back. Save again, and the word's `format` is back to 0.",
+      "textZh": "在编辑器里点一下，按 Ctrl+Z（Mac 上是 Cmd+Z）。撤销会收回最近的一次改动，如果那次改动是加粗，这个词就又变回了普通文字。Lexical 的编辑器状态本身不保存撤销历史，由 `HistoryPlugin` 记下之前的状态，再把其中一份恢复回来。再保存一次，这个词的 `format` 又回到了 0。",
+      "action": {
+        "clickText": "Save JSON"
+      },
+      "actionLabel": "Click Save JSON again",
+      "actionLabelZh": "再点一次 Save JSON",
+      "watch": [
+        {
+          "label": "text nodes in the first paragraph, with their format",
+          "labelZh": "第一段里的文本节点及其 format",
+          "value": "JSON.parse(document.querySelector('#root pre').textContent || 'null')?.root.children[0].children.map((node) => JSON.stringify(node.text) + ': ' + node.format).join(', ') ?? '—'"
+        }
+      ],
+      "focus": ".editor"
+    }
+  ]
+}

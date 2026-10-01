@@ -1,0 +1,95 @@
+{
+  "steps": [
+    {
+      "title": "One page, two origins",
+      "titleZh": "一个页面，两个源",
+      "text": "This page comes from port 4173 and the data from port 4002, so they have different origins (the scheme, host and port together), and the browser keeps them apart. Start the data server first with `node examples/network/server.js` in another terminal. The next steps click the page's buttons, and the console lists every new text under them.",
+      "textZh": "页面来自 4173 端口，数据来自 4002 端口，所以两者的源（origin，即协议、主机和端口三者合在一起）不同，浏览器会把它们隔开。请先在另一个终端里运行 `node examples/network/server.js` 启动数据服务。接下来的几步会点击页面上的按钮，控制台会列出按钮下方每一次出现的新文字。",
+      "watch": [
+        {
+          "label": "this page's origin",
+          "labelZh": "这个页面的源",
+          "value": "location.origin"
+        },
+        {
+          "label": "text under the buttons",
+          "labelZh": "按钮下方的文字",
+          "value": "document.querySelector('output').textContent",
+          "expect": "Ready"
+        }
+      ],
+      "focus": "output"
+    },
+    {
+      "title": "JSONP: the answer is a script",
+      "titleZh": "JSONP：回答是一段脚本",
+      "text": "A page may load a script from any origin. `jsonp.js` makes up a unique function name, adds it to the URL as `?callback=…` and inserts a `<script>` tag. The server answers with JavaScript that calls that function with the data. When the call arrives, the code removes the tag and deletes the function, so no `latte_…` function is left on `window`.",
+      "textZh": "页面可以从任何源加载脚本。`jsonp.js` 先起一个独一无二的函数名，以 `?callback=…` 的形式加到 URL 上，再插入一个 `<script>` 标签。服务器返回一段 JavaScript，用数据去调用这个函数。调用到达后，代码移除这个标签，并删掉这个函数，所以 `window` 上不会残留 `latte_…` 函数。",
+      "action": {
+        "clear": true,
+        "run": "const output = document.querySelector('output'); output.guideLog?.disconnect(); output.guideLog = new MutationObserver((records) => { for (const record of records) for (const node of record.addedNodes) console.log('output: ' + node.textContent); }); output.guideLog.observe(output, { childList: true }); const head = new MutationObserver((records) => { for (const record of records) { for (const node of record.addedNodes) if (node.localName === 'script') console.log('added <script src=\"' + node.src.replace(/latte_\\w+/, 'latte_…') + '\">'); for (const node of record.removedNodes) if (node.localName === 'script') { console.log('removed <script>; latte_ functions left on window: ' + Object.keys(window).filter((key) => key.startsWith('latte_')).length); head.disconnect(); } } }); head.observe(document.head, { childList: true }); document.querySelector('#jsonp').click();"
+      },
+      "actionLabel": "Click Request with JSONP",
+      "actionLabelZh": "点击 Request with JSONP",
+      "highlight": "latte_",
+      "expectConsole": [
+        "added <script src=\"http://127.0.0.1:4002/jsonp?callback=latte_…\">",
+        "removed <script>; latte_ functions left on window: 0",
+        "output: {\"message\":\"Hello from the second origin\",\"transport\":\"jsonp\"}"
+      ],
+      "focus": "output"
+    },
+    {
+      "title": "fetch reads it, with CORS",
+      "titleZh": "fetch 读取回答，靠的是 CORS",
+      "text": "A page's code may not read a response from another origin unless that origin allows it. `fetch` asks for `/data`, and `server.js` answers with an `Access-Control-Allow-Origin` header naming this page's exact address, so the browser lets the page read the JSON. Open the **Network** panel in DevTools to see that header on the `/data` response.",
+      "textZh": "页面里的代码不能读取另一个源的响应，除非那个源允许。`fetch` 请求 `/data`，`server.js` 的回答带有 `Access-Control-Allow-Origin` 响应头，写明了这个页面的确切地址，于是浏览器允许页面读取 JSON。在 DevTools 的 **Network** 面板里，可以看到 `/data` 响应上的这个响应头。",
+      "action": {
+        "clear": true,
+        "run": "const output = document.querySelector('output'); output.guideLog?.disconnect(); output.guideLog = new MutationObserver((records) => { for (const record of records) for (const node of record.addedNodes) console.log('output: ' + node.textContent); }); output.guideLog.observe(output, { childList: true }); document.querySelector('#fetch').click();"
+      },
+      "actionLabel": "Click Request with Fetch",
+      "actionLabelZh": "点击 Request with Fetch",
+      "expectConsole": [
+        "output: {\"message\":\"Hello from the second origin\",\"transport\":\"data\"}"
+      ],
+      "focus": "output"
+    },
+    {
+      "title": "A slow request",
+      "titleZh": "一个慢请求",
+      "text": "**Start slow Fetch** shows `Waiting`, and the server takes 2 seconds to answer. Wait, and the answer arrives with `transport` set to `slow`.",
+      "textZh": "**Start slow Fetch** 会先显示 `Waiting`，服务器要过 2 秒才回答。等一等，回答就会到来，`transport` 为 `slow`。",
+      "action": {
+        "clear": true,
+        "run": "const output = document.querySelector('output'); output.guideLog?.disconnect(); output.guideLog = new MutationObserver((records) => { for (const record of records) for (const node of record.addedNodes) console.log('output: ' + node.textContent); }); output.guideLog.observe(output, { childList: true }); document.querySelector('#slow').click();"
+      },
+      "actionLabel": "Click Start slow Fetch",
+      "actionLabelZh": "点击 Start slow Fetch",
+      "expectConsole": ["output: Waiting"],
+      "focus": "output"
+    },
+    {
+      "title": "Cancel it with AbortController",
+      "titleZh": "用 AbortController 取消",
+      "text": "Each slow request gets its own `AbortController`. This button starts a slow request and cancels it at once with `abort()`: that `fetch` fails with an `AbortError`, which the page shows as `Request cancelled`, and its answer never arrives. Starting a new slow request also cancels the one before, and an older request can never overwrite the text of a newer one.",
+      "textZh": "每个慢请求都有自己的 `AbortController`。这个按钮发起一个慢请求，并立刻用 `abort()` 取消：这个 `fetch` 以 `AbortError` 失败，页面显示 `Request cancelled`，它的回答永远不会到来。发起新的慢请求时也会取消前一个，而且旧请求永远不会覆盖新请求的文字。",
+      "action": {
+        "clear": true,
+        "run": "const output = document.querySelector('output'); output.guideLog?.disconnect(); output.guideLog = new MutationObserver((records) => { for (const record of records) for (const node of record.addedNodes) console.log('output: ' + node.textContent); }); output.guideLog.observe(output, { childList: true }); document.querySelector('#slow').click(); document.querySelector('#cancel').click();"
+      },
+      "actionLabel": "Start a slow request and cancel it",
+      "actionLabelZh": "发起慢请求并取消",
+      "expectConsole": ["output: Waiting", "output: Request cancelled"],
+      "absentConsole": "\"transport\":\"slow\"",
+      "focus": "output"
+    },
+    {
+      "title": "What JSONP costs",
+      "titleZh": "JSONP 的代价",
+      "text": "JSONP runs the remote answer as code with the page's full permissions, and works only for GET-style loading, so use it only with a provider you fully trust. CORS decides which web pages may read a response in the browser; it does not check who is asking, and programs such as `curl` can still read the data. Click the page's buttons yourself: the console keeps listing each new text.",
+      "textZh": "JSONP 把远程的回答当作代码执行，拥有页面的全部权限，而且只适用于类似 GET 的加载方式，所以只能用在完全信任的数据提供方上。CORS 决定的是浏览器里哪些网页可以读取响应；它不检查来访者是谁，`curl` 这样的程序照样能读到数据。亲手点击页面上的按钮：控制台会继续列出每一次出现的新文字。",
+      "focus": "output"
+    }
+  ]
+}

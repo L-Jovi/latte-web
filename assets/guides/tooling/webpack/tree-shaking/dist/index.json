@@ -1,0 +1,43 @@
+{
+  "steps": [
+    {
+      "title": "Import one function",
+      "titleZh": "只导入一个函数",
+      "text": "Tree shaking removes code that nothing uses; for modules, that means every export that nothing imports. `src/math.js` exports `square` and `cube`, and `src/index.js` imports only `cube`. It is a static import: it sits at the top of the file and names exactly what it takes, so webpack knows which exports are used without running any code.",
+      "textZh": "tree shaking（摇树优化）指的是删掉没人用的代码；对模块来说，就是删掉没有任何地方导入的导出。`src/math.js` 导出了 `square` 和 `cube`，`src/index.js` 只导入了 `cube`。这是静态导入：它写在文件顶层，并且明确写出要取哪个导出，所以 webpack 不用运行任何代码就知道哪些导出被用到了。",
+      "watch": [
+        {
+          "label": "Text on the page",
+          "labelZh": "页面上的文字",
+          "value": "document.querySelector('body > pre').textContent",
+          "expect": "Hello webpack!,5 cubed is equal to 125"
+        }
+      ],
+      "focus": "body > pre"
+    },
+    {
+      "title": "square is gone",
+      "titleZh": "square 不见了",
+      "text": "`optimization.usedExports: true` marks `square` as unused, and in production mode the minifier then deletes it. `cube` is gone too, because the minifier replaced `cube(5)` with its result. This step fetches `bundle.js`, searches it and prints the whole file.",
+      "textZh": "`optimization.usedExports: true` 把 `square` 标记为未使用，生产模式下压缩工具随后把它删掉。`cube` 也不见了，因为压缩工具直接把 `cube(5)` 换成了结果。这一步会获取 `bundle.js`，在里面查找，并打印整个文件。",
+      "action": {
+        "clear": true,
+        "run": "fetch('bundle.js').then((r) => r.text()).then((t) => { console.log('bundle.js mentions square:', t.includes('square')); console.log('bundle.js calls cube():', t.includes('cube(')); console.log('bundle.js contains 125:', t.includes('125')); console.log('bundle.js size:', new Blob([t]).size, 'bytes'); console.log(t.trim()); })"
+      },
+      "actionLabel": "Fetch bundle.js",
+      "actionLabelZh": "获取 bundle.js",
+      "highlight": "125",
+      "expectConsole": [
+        "bundle.js mentions square: false",
+        "bundle.js calls cube(): false",
+        "bundle.js contains 125: true"
+      ]
+    },
+    {
+      "title": "Only for import and export",
+      "titleZh": "只对 import 和 export 有效",
+      "text": "Tree shaking works only with ES module syntax, `import` and `export`. The `lodash` package is a single CommonJS file, so the topics that import it still ship all of Lodash, about 70 KB. The official guide shows the two steps apart: in development mode, `square` is still in the bundle, marked with the comment `/* unused harmony export square */`.",
+      "textZh": "tree shaking 只对 ES 模块语法（`import` 和 `export`）有效。`lodash` 包是单个 CommonJS 文件，所以导入它的那些专题仍然打包了完整的 Lodash，约 70 KB。官方指南把这两步分开演示：用开发模式构建时，`square` 还在打包产物里，旁边标着注释 `/* unused harmony export square */`。"
+    }
+  ]
+}

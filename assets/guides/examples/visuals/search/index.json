@@ -1,0 +1,167 @@
+{
+  "steps": [
+    {
+      "title": "A text box with a list attached",
+      "titleZh": "带着建议列表的输入框",
+      "text": "This is a combobox: a text box with a list of suggestions attached, marked up so that screen readers know how the two belong together. When the page loaded, one `fetch` read the 11 topics in `topics.json`. The list is still hidden, and the input says so with `aria-expanded=\"false\"`.",
+      "textZh": "这是一个 combobox（组合框）：带建议列表的输入框，它的标记让屏幕阅读器知道两者是怎样配合的。页面加载时，用一次 `fetch` 读取了 `topics.json` 里的 11 个主题。列表现在还是隐藏的，输入框用 `aria-expanded=\"false\"` 表明了这一点。",
+      "watch": [
+        {
+          "label": "text below",
+          "labelZh": "下方的文字",
+          "value": "document.querySelector('output').textContent",
+          "expect": "Ready"
+        },
+        {
+          "label": "aria-expanded",
+          "value": "document.querySelector('#query').getAttribute('aria-expanded')",
+          "expect": "false"
+        },
+        {
+          "label": "list hidden",
+          "labelZh": "列表已隐藏",
+          "value": "document.querySelector('#suggestions').hidden",
+          "expect": "true"
+        }
+      ],
+      "focus": "#query"
+    },
+    {
+      "title": "Type to filter",
+      "titleZh": "边输入边筛选",
+      "text": "On every keystroke the list shows the topics that contain the typed text, ignoring upper and lower case. This button types `SCRIPT` in capitals, and two topics match. Each suggestion is added with `textContent`, so a topic is always shown as text and never read as HTML.",
+      "textZh": "每按一次键，列表就显示包含所输入文字的主题，不区分大小写。这个按钮输入全大写的 `SCRIPT`，有两个主题匹配。每条建议都用 `textContent` 添加，所以主题永远按纯文本显示，不会被当成 HTML 解析。",
+      "action": {
+        "fill": {
+          "target": "#query",
+          "value": "SCRIPT"
+        }
+      },
+      "actionLabel": "Type SCRIPT",
+      "actionLabelZh": "输入 SCRIPT",
+      "watch": [
+        {
+          "label": "suggestions",
+          "labelZh": "建议",
+          "value": "[...document.querySelectorAll('#suggestions [role=option]')].map((option) => option.textContent).join(', ') || 'none'",
+          "expect": "JavaScript closures, TypeScript"
+        },
+        {
+          "label": "text below",
+          "labelZh": "下方的文字",
+          "value": "document.querySelector('output').textContent",
+          "expect": "2 suggestions"
+        },
+        {
+          "label": "aria-expanded",
+          "value": "document.querySelector('#query').getAttribute('aria-expanded')",
+          "expect": "true"
+        }
+      ],
+      "focus": "#query"
+    },
+    {
+      "title": "The arrow keys move a highlight",
+      "titleZh": "方向键移动高亮",
+      "text": "The down arrow moves a highlight through the list and wraps around at the end. This button types `SCRIPT` again and presses ↓ three times: the first topic, the second, then the first again. The highlighted option gets `aria-selected=\"true\"`, and the input points to it with `aria-activedescendant`, so the focus can stay in the box while a screen reader follows the highlight.",
+      "textZh": "下方向键在列表里移动高亮，到末尾会绕回来。这个按钮重新输入 `SCRIPT`，再按三次 ↓：先是第一个主题，然后第二个，接着又回到第一个。高亮的选项带有 `aria-selected=\"true\"`，输入框用 `aria-activedescendant` 指向它，这样焦点可以一直留在输入框里，屏幕阅读器也能跟上高亮的位置。",
+      "action": {
+        "fill": {
+          "target": "#query",
+          "value": "SCRIPT"
+        },
+        "run": "const input = document.querySelector('#query'); for (let i = 0; i < 3; i++) input.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true, cancelable: true }));"
+      },
+      "actionLabel": "Press ↓ three times",
+      "actionLabelZh": "按三次 ↓",
+      "watch": [
+        {
+          "label": "highlighted",
+          "labelZh": "高亮的选项",
+          "value": "document.querySelector('#suggestions [aria-selected=true]')?.textContent ?? 'none'",
+          "expect": "JavaScript closures"
+        },
+        {
+          "label": "aria-activedescendant",
+          "value": "document.querySelector('#query').getAttribute('aria-activedescendant') ?? 'none'",
+          "expect": "topic-0"
+        }
+      ],
+      "focus": "#query"
+    },
+    {
+      "title": "Enter picks the topic",
+      "titleZh": "Enter 选中主题",
+      "text": "Enter picks the highlighted topic: the box fills in, the text below names it, and the list closes. Clicking a suggestion does the same.",
+      "textZh": "Enter 选中当前高亮的主题：输入框被填好，下方文字显示它的名字，列表随之关闭。直接点击建议也是一样。",
+      "action": {
+        "run": "document.querySelector('#query').dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, cancelable: true }));"
+      },
+      "actionLabel": "Press Enter",
+      "actionLabelZh": "按 Enter",
+      "watch": [
+        {
+          "label": "text below",
+          "labelZh": "下方的文字",
+          "value": "document.querySelector('output').textContent",
+          "expect": "Selected: JavaScript closures"
+        },
+        {
+          "label": "text in the box",
+          "labelZh": "输入框里的文字",
+          "value": "document.querySelector('#query').value",
+          "expect": "JavaScript closures"
+        },
+        {
+          "label": "list hidden",
+          "labelZh": "列表已隐藏",
+          "value": "document.querySelector('#suggestions').hidden",
+          "expect": "true"
+        }
+      ],
+      "focus": "#query"
+    },
+    {
+      "title": "Escape closes the list",
+      "titleZh": "Escape 关闭列表",
+      "text": "Escape, or moving the focus away from the box, closes the list without choosing anything. This button types `css`, which matches **CSS layout**, then presses Escape.",
+      "textZh": "按 Escape，或者让焦点离开输入框，列表就会关闭，什么也不选。这个按钮输入 `css`（它匹配 **CSS layout**），再按 Escape。",
+      "action": {
+        "fill": {
+          "target": "#query",
+          "value": "css"
+        },
+        "run": "document.querySelector('#query').dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true }));"
+      },
+      "actionLabel": "Type css, then press Escape",
+      "actionLabelZh": "输入 css，再按 Escape",
+      "watch": [
+        {
+          "label": "list hidden",
+          "labelZh": "列表已隐藏",
+          "value": "document.querySelector('#suggestions').hidden",
+          "expect": "true"
+        },
+        {
+          "label": "aria-expanded",
+          "value": "document.querySelector('#query').getAttribute('aria-expanded')",
+          "expect": "false"
+        },
+        {
+          "label": "text below",
+          "labelZh": "下方的文字",
+          "value": "document.querySelector('output').textContent",
+          "expect": "1 suggestion"
+        }
+      ],
+      "focus": "#query"
+    },
+    {
+      "title": "Try it by hand",
+      "titleZh": "亲手试试",
+      "text": "Type in the **Topic** box yourself, then use the arrow keys, Enter and Escape. Click a suggestion with the mouse: each suggestion cancels its own `pointerdown`, so the box keeps the focus and the click picks the topic.",
+      "textZh": "亲手在 **Topic** 输入框里输入，再试试方向键、Enter 和 Escape。用鼠标点击一条建议：每条建议都会取消自己的 `pointerdown`，所以输入框保留焦点，这次点击就能选中主题。",
+      "focus": "#query"
+    }
+  ]
+}

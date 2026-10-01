@@ -12,7 +12,9 @@ test('dot clock renders pixels and counts down from a fresh deadline', async ({
         .data.some((value, i) => i % 4 === 3 && value > 0),
     ),
   ).toBe(true);
-  await page.getByRole('button').click();
+  await page
+    .getByRole('button', { name: 'Start 10-second countdown', exact: true })
+    .click();
   await expect(page.locator('output')).toHaveText('10 seconds remaining');
   await expect(page.locator('output')).toHaveText('9 seconds remaining');
 });
@@ -32,7 +34,7 @@ test('canvas filters change actual pixels and controls support keyboard', async 
   expect(await pixel()).toEqual(
     original.map((value, i) => (i === 3 ? value : 255 - value)),
   );
-  await page.getByRole('button', { name: 'Grayscale' }).click();
+  await page.getByRole('button', { name: 'Grayscale', exact: true }).click();
   const grey = await pixel();
   expect(grey[0]).toBe(grey[1]);
   expect(grey[1]).toBe(grey[2]);
@@ -107,7 +109,7 @@ test('touch and pointer paging handle gestures, keyboard and end bounds', async 
   await page.keyboard.press('ArrowRight');
   await expect(page.locator('#touch output')).toHaveText('Page 3 of 3');
   await expect(
-    page.getByRole('button', { name: 'Next touch page' }),
+    page.getByRole('button', { name: 'Next touch page', exact: true }),
   ).toBeDisabled();
   const pointer = page.getByLabel('Pointer pages');
   await pointer.scrollIntoViewIfNeeded();
@@ -122,14 +124,20 @@ test('layer geometry and native scroll snap select the next card', async ({
   page,
 }) => {
   await page.goto(root + 'carousel/');
-  await page.getByRole('button', { name: 'Next layered card' }).click();
+  await page
+    .getByRole('button', { name: 'Next layered card', exact: true })
+    .click();
   await expect(page.locator('#layers output')).toHaveText('Card 2');
   await expect(page.locator('#layers [aria-current=true]')).toHaveText(
     'Card 2',
   );
-  await page.getByRole('button', { name: 'Next snap card' }).click();
+  await page
+    .getByRole('button', { name: 'Next snap card', exact: true })
+    .click();
   await expect(page.locator('#snap output')).toHaveText('Card 2');
-  await page.getByRole('button', { name: 'Previous snap card' }).click();
+  await page
+    .getByRole('button', { name: 'Previous snap card', exact: true })
+    .click();
   await expect(page.locator('#snap output')).toHaveText('Card 1');
 });
 test('search suggestions select with keys and dismiss with Escape', async ({
@@ -180,22 +188,28 @@ test('photo focus, motion controls and reduced-motion spinner', async ({
     '70',
   );
   await page.goto(root + 'lottery/');
-  await page.getByRole('button', { name: 'Spin' }).click();
+  await page.getByRole('button', { name: 'Spin', exact: true }).click();
   await expect(page.locator('output')).toHaveText(/Selected: [A-D]/);
-  await expect(page.getByRole('button')).toBeEnabled();
+  await expect(
+    page.getByRole('button', { name: 'Spin', exact: true }),
+  ).toBeEnabled();
 });
 test('performance entries report measured work and feature availability', async ({
   page,
 }) => {
   await page.goto('/examples/performance/dist/');
   await expect(page.locator('#navigation')).toContainText('ttfb');
-  await page.getByRole('button', { name: 'Run 120 ms of work' }).click();
+  await page
+    .getByRole('button', { name: 'Run 120 ms of work', exact: true })
+    .click();
   await expect(page.locator('output')).toContainText('Measured work:');
   await expect(page.locator('#entries')).toContainText(
     'measure: controlled-work',
   );
   for (const id of ['LCP', 'INP', 'CLS'])
     expect(await page.locator('#' + id).textContent()).not.toBe('');
-  await page.getByRole('button', { name: 'Insert late content' }).click();
+  await page
+    .getByRole('button', { name: 'Insert late content', exact: true })
+    .click();
   await expect(page.locator('.late')).toHaveText('Late content changes layout');
 });

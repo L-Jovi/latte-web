@@ -1,0 +1,57 @@
+{
+  "steps": [
+    {
+      "title": "A heading rendered by React",
+      "titleZh": "由 React 渲染的标题",
+      "text": "`dist/index.html` has an empty `<div id=\"root\">`. `bundle.js` mounts the `Hello` class component there with `createRoot`, and the component builds this heading from its two props, `compiler` and `framework`. React is bundled into `bundle.js` as well: the original version loaded React 17 from `<script>` tags as a global, but this page has no global `React`.",
+      "textZh": "`dist/index.html` 里有一个空的 `<div id=\"root\">`。`bundle.js` 用 `createRoot` 把 class 组件 `Hello` 挂载到这里，组件再用它的两个 props `compiler` 和 `framework` 拼出这个标题。React 也打包进了 `bundle.js`：最初的版本通过 `<script>` 标签把 React 17 作为全局变量加载，而这个页面上没有全局变量 `React`。",
+      "watch": [
+        {
+          "label": "Page scripts (not counting the guide)",
+          "labelZh": "页面脚本（不含说明面板）",
+          "value": "[...document.scripts].filter((s) => !s.src.endsWith('/guide.js')).map((s) => s.getAttribute('src')).join(', ')",
+          "expect": "bundle.js"
+        },
+        {
+          "label": "typeof React in the page",
+          "labelZh": "页面里的 typeof React",
+          "value": "typeof React",
+          "expect": "undefined"
+        }
+      ],
+      "focus": "#root"
+    },
+    {
+      "title": "The types are gone",
+      "titleZh": "类型不见了",
+      "text": "`babel-loader` sends each `.tsx` file through two presets, ready-made sets of Babel plugins. `@babel/preset-typescript` deletes everything that only describes types, such as the `HelloProps` interface, without checking any of it, and `@babel/preset-react` turns the JSX into function calls. This step fetches the source and the bundle and searches both for `HelloProps`.",
+      "textZh": "`babel-loader` 把每个 `.tsx` 文件都交给两个预设（preset）处理，预设就是一组现成的 Babel 插件。`@babel/preset-typescript` 删掉所有只用来描述类型的代码，比如 `HelloProps` 接口，但不做任何检查；`@babel/preset-react` 把 JSX 转换成函数调用。这一步会获取源文件和打包产物，在两者里查找 `HelloProps`。",
+      "action": {
+        "clear": true,
+        "run": "Promise.all(['../src/components/Hello.tsx', 'bundle.js'].map((f) => fetch(f).then((r) => r.text()))).then(([tsx, js]) => { console.log('Hello.tsx mentions HelloProps:', tsx.includes('HelloProps')); console.log('bundle.js mentions HelloProps:', js.includes('HelloProps')); console.log('bundle.js contains the heading text:', js.includes('Render component from ')); console.log('bundle.js size:', Math.round(new Blob([js]).size / 1000), 'KB'); })"
+      },
+      "actionLabel": "Search the source and the bundle",
+      "actionLabelZh": "在源文件和打包产物里查找",
+      "expectConsole": [
+        "Hello.tsx mentions HelloProps: true",
+        "bundle.js mentions HelloProps: false",
+        "bundle.js contains the heading text: true"
+      ]
+    },
+    {
+      "title": "Babel does not check types; tsc does",
+      "titleZh": "Babel 不检查类型，tsc 检查",
+      "text": "Babel works on one file at a time and never looks at types, so it cannot notice a missing prop. That job belongs to `tsc`, which here only checks and writes no files. To see the split, delete `framework=\"React 19\"` from `src/index.tsx` and build again: the build still succeeds, and the heading now ends in \"and\". Then run `npm run typecheck -w @latte/webpack-typescript`: `tsc` reports that the required `framework` prop is missing.",
+      "textZh": "Babel 一次只处理一个文件，而且从不看类型，所以它发现不了缺少的 prop。这件事归 `tsc` 管，它在这里只做检查，不写任何文件。想看这种分工，可以把 `src/index.tsx` 里的 `framework=\"React 19\"` 删掉，再构建一次：构建照样成功，标题变成以“and”结尾。然后运行 `npm run typecheck -w @latte/webpack-typescript`：`tsc` 会报告缺少必需的 `framework` 属性。",
+      "watch": [
+        {
+          "label": "Heading in this build",
+          "labelZh": "这次构建的标题",
+          "value": "document.querySelector('#root h1').textContent",
+          "expect": "Render component from TypeScript and React 19"
+        }
+      ],
+      "focus": "#root h1"
+    }
+  ]
+}

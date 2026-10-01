@@ -117,10 +117,40 @@ for (const entry of migration.entries.filter((e) => e.action === 'withdrawn'))
       )
     )
       errors.push(`${ledger}: links withdrawn path ${entry.old}`);
+// Step-by-step guides beside the demos: both languages, a label for every action,
+// and a page that exists in the catalog.
+const guides = [];
+const walkGuides = (dir) => {
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const path = `${dir}/${entry.name}`;
+    if (entry.isDirectory()) walkGuides(path);
+    else if (path.endsWith('.json')) guides.push(path);
+  }
+};
+if (existsSync('assets/guides')) walkGuides('assets/guides');
+const pages = new Set(catalog.flatMap((entry) => entry.pages || []));
+for (const file of guides) {
+  const page = file.slice('assets/guides/'.length).replace(/\.json$/, '.html');
+  if (!pages.has(page)) errors.push(`${file}: ${page} is not a catalog page`);
+  let guide;
+  try {
+    guide = read(file);
+  } catch (error) {
+    errors.push(`${file}: ${error.message}`);
+    continue;
+  }
+  if (!guide.steps?.length) errors.push(`${file}: no steps`);
+  for (const [index, step] of (guide.steps || []).entries()) {
+    const needed = ['title', 'titleZh', 'text', 'textZh'];
+    if (step.action) needed.push('actionLabel', 'actionLabelZh');
+    for (const key of needed)
+      if (!step[key]) errors.push(`${file}: step ${index + 1} has no ${key}`);
+  }
+}
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exit(1);
 }
 console.log(
-  `Checked ${files.size} documents, ${catalog.length} units and all ${baseline.length} baseline files.`,
+  `Checked ${files.size} documents, ${catalog.length} units, ${guides.length} guides and all ${baseline.length} baseline files.`,
 );

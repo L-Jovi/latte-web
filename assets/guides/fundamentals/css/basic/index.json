@@ -1,0 +1,49 @@
+{
+  "steps": [
+    {
+      "title": "A width from another stylesheet",
+      "titleZh": "来自另一个样式表的宽度",
+      "text": "`@import url(global.css)` pulls in a second stylesheet, which makes `.container` 500 px wide. The page's own rules add the grey background and the 300 px height.",
+      "textZh": "`@import url(global.css)` 引入了第二个样式表，它把 `.container` 设为 500 px 宽。页面自己的规则再加上灰色背景和 300 px 的高度。",
+      "focus": ".container",
+      "watch": [
+        {
+          "label": "width",
+          "labelZh": "宽度",
+          "value": "getComputedStyle(document.querySelector('.container')).width",
+          "expect": "500px"
+        },
+        {
+          "label": "height",
+          "labelZh": "高度",
+          "value": "getComputedStyle(document.querySelector('.container')).height",
+          "expect": "300px"
+        }
+      ]
+    },
+    {
+      "title": "Inline blocks sit like words",
+      "titleZh": "行内块像文字一样排列",
+      "text": "The four black bars are `inline-block`, so they sit on one line like words, and the spaces and line breaks between the tags become small gaps. Set the container's `font-size` to 0 and those spaces shrink to nothing.",
+      "textZh": "四个黑色小条都是 `inline-block`，所以像文字一样排在一行，标签之间的空格和换行变成了小小的间隙。把容器的 `font-size` 设为 0，这些空格就缩到没有了。",
+      "action": {
+        "toggle": {
+          "target": ".container",
+          "property": "fontSize",
+          "on": "",
+          "off": "0px"
+        }
+      },
+      "actionLabel": "Switch font-size: 0 on or off",
+      "actionLabelZh": "打开或关闭 font-size: 0",
+      "watch": [
+        {
+          "label": "gap between the first two bars",
+          "labelZh": "前两个小条之间的间隙",
+          "value": "(() => { const [a, b] = document.querySelectorAll('.span'); return Math.round(b.getBoundingClientRect().left - a.getBoundingClientRect().right) + ' px'; })()",
+          "expect": "0 px"
+        }
+      ]
+    }
+  ]
+}

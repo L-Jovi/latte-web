@@ -1,0 +1,54 @@
+{
+  "steps": [
+    {
+      "title": "A finished build, not the dev server",
+      "titleZh": "这是构建好的页面，不是开发服务器",
+      "text": "Hot module replacement (HMR) swaps a changed module into the running page while webpack's dev server runs, so the page does not start over. This page is a finished build: nothing will update it. It looks the same as the dev server's page, with **Hello webpack**, a button and the grey background that style-loader added from `src/styles.css`.",
+      "textZh": "模块热替换（HMR）在 webpack 开发服务器运行时，把改过的模块换进正在运行的页面，页面不必从头再来。这个页面是构建好的结果，没有任何东西会更新它。它看起来和开发服务器上的页面一样：**Hello webpack**、一个按钮，以及 style-loader 根据 `src/styles.css` 加上的灰色背景。",
+      "watch": [
+        {
+          "label": "Background of <body>",
+          "labelZh": "<body> 的背景色",
+          "value": "getComputedStyle(document.body).backgroundColor",
+          "expect": "rgb(128, 128, 128)"
+        }
+      ],
+      "focus": "body > div"
+    },
+    {
+      "title": "Click the button",
+      "titleZh": "点击按钮",
+      "text": "The click handler is `printMe` from `src/print.js`. It prints `content change :)` in the console below.",
+      "textZh": "点击处理函数是 `src/print.js` 里的 `printMe`，它在下面的控制台打印 `content change :)`。",
+      "action": {
+        "clear": true,
+        "clickText": "Click me and check the console!"
+      },
+      "actionLabel": "Click the page's button",
+      "actionLabelZh": "点击页面上的按钮",
+      "focus": "body > div button",
+      "expectConsole": ["content change :)"]
+    },
+    {
+      "title": "The update handler is switched off",
+      "titleZh": "更新处理函数被关掉了",
+      "text": "`src/index.js` ends with `if (import.meta.webpackHot) { … }`, which asks to hear about new versions of `print.js`. `import.meta.webpackHot` exists only while HMR runs. This build had no HMR, so webpack wrote `undefined` in its place, and the block never runs. This step fetches `bundle.js` and prints that `if` as webpack wrote it.",
+      "textZh": "`src/index.js` 末尾有一段 `if (import.meta.webpackHot) { … }`，用来登记“`print.js` 有新版本时请通知我”。`import.meta.webpackHot` 只在 HMR 运行时才存在。这次构建没有 HMR，所以 webpack 在原处写了 `undefined`，这个代码块永远不会执行。这一步会获取 `bundle.js`，打印 webpack 写出的那个 `if`。",
+      "action": {
+        "clear": true,
+        "run": "fetch('bundle.js').then((r) => r.text()).then((t) => console.log(t.match(/if \\([^)]*webpackHot[^)]*\\)/)[0]))"
+      },
+      "actionLabel": "Find the if in bundle.js",
+      "actionLabelZh": "在 bundle.js 里找到这个 if",
+      "expectConsole": [
+        "if (/* unsupported import.meta.webpackHot */ undefined)"
+      ]
+    },
+    {
+      "title": "What webpack serve would do",
+      "titleZh": "webpack serve 会做什么",
+      "text": "On your machine, run `npm exec -w @latte/webpack -- webpack serve --config hot-module-replacement/webpack.config.cjs` and open `http://127.0.0.1:4180/`. The dev server keeps the build in memory and adds a client to the page that waits for changes. Save new text in `src/print.js`: the console prints `Accepting the updated printMe module!`, the earlier lines stay because the page did not reload, and the button prints your new text. A new colour in `src/styles.css` also appears without a reload.",
+      "textZh": "在你自己的电脑上运行 `npm exec -w @latte/webpack -- webpack serve --config hot-module-replacement/webpack.config.cjs`，然后打开 `http://127.0.0.1:4180/`。开发服务器把构建结果放在内存里，并往页面里加一个等待改动的客户端。在 `src/print.js` 里改一段文字并保存：控制台打印 `Accepting the updated printMe module!`，之前的输出都还在，因为页面没有刷新；再点按钮，打印的就是你改过的文字。在 `src/styles.css` 里换一种颜色，同样不刷新就会生效。"
+    }
+  ]
+}

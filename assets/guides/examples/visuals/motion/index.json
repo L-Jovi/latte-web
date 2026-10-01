@@ -1,0 +1,161 @@
+{
+  "steps": [
+    {
+      "title": "Three small parts",
+      "titleZh": "三个小部分",
+      "text": "A menu that widens, a step bar and a progress ring. The menu has two links: a script animates the first with a tween, an animation computed step by step in code, and CSS animates the second with a transition. Both start 180 px wide.",
+      "textZh": "一个会展开的导航、一个步骤条和一个环形进度。导航有两个链接：第一个由脚本用补间驱动动画（补间是在代码里一步步算出来的动画），第二个由 CSS 过渡驱动。两者起初都是 180 px 宽。",
+      "watch": [
+        {
+          "label": "JavaScript tween",
+          "value": "Math.round(document.querySelector('.legacy a').getBoundingClientRect().width) + ' px'",
+          "expect": "180 px"
+        },
+        {
+          "label": "CSS transition",
+          "value": "Math.round(document.querySelector('.modern a').getBoundingClientRect().width) + ' px'",
+          "expect": "180 px"
+        },
+        {
+          "label": "step bar",
+          "labelZh": "步骤条",
+          "value": "document.querySelector('output').textContent",
+          "expect": "Step 1 of 3"
+        },
+        {
+          "label": "ring aria-valuenow",
+          "labelZh": "圆环的 aria-valuenow",
+          "value": "document.querySelector('.ring').getAttribute('aria-valuenow')",
+          "expect": "35"
+        }
+      ],
+      "focus": ".legacy a, .modern a"
+    },
+    {
+      "title": "A transition animates any change",
+      "titleZh": "过渡会为任何变化播放动画",
+      "text": "`.modern a` has `transition: width 0.25s`, and its `:hover` and `:focus-visible` rules set `width: 260px`. This button sets the same 260 px as an inline style instead. The browser animates that change too: a transition reacts to the value changing, whatever changed it. Press it again to shrink the link.",
+      "textZh": "`.modern a` 设置了 `transition: width 0.25s`，它的 `:hover` 和 `:focus-visible` 规则把宽度设为 `width: 260px`。这个按钮改用行内样式设置同样的 260 px，浏览器照样播放动画：过渡响应的是值的变化，不管是什么改变了它。再按一次，链接就缩回去。",
+      "action": {
+        "toggle": {
+          "target": ".modern a",
+          "property": "width",
+          "on": "",
+          "off": "260px"
+        }
+      },
+      "actionLabel": "Switch width: 260px on or off",
+      "actionLabelZh": "打开或关闭 width: 260px",
+      "watch": [
+        {
+          "label": "CSS transition",
+          "value": "Math.round(document.querySelector('.modern a').getBoundingClientRect().width) + ' px'"
+        }
+      ]
+    },
+    {
+      "title": "The step bar",
+      "titleZh": "步骤条",
+      "text": "Click **Next**: the highlight moves from **Read** to **Run**. The current step gets `aria-current=\"step\"`, which tells assistive technology which step you are on, and the CSS styles that attribute.",
+      "textZh": "点击 **Next**：高亮从 **Read** 移到 **Run**。当前这一步带有 `aria-current=\"step\"`，告诉辅助技术你正处在哪一步，CSS 也根据这个属性设置样式。",
+      "action": {
+        "clickText": "Next"
+      },
+      "actionLabel": "Click Next",
+      "actionLabelZh": "点击 Next",
+      "watch": [
+        {
+          "label": "current step",
+          "labelZh": "当前步骤",
+          "value": "document.querySelector('#steps [aria-current=step]').textContent",
+          "expect": "Run"
+        },
+        {
+          "label": "text below",
+          "labelZh": "下方的文字",
+          "value": "document.querySelector('output').textContent",
+          "expect": "Step 2 of 3"
+        },
+        {
+          "label": "Back disabled",
+          "labelZh": "Back 已禁用",
+          "value": "document.querySelector('#back').disabled",
+          "expect": "false"
+        }
+      ],
+      "focus": "#steps"
+    },
+    {
+      "title": "It stops at the last step",
+      "titleZh": "到最后一步就停",
+      "text": "The step stays between 1 and 3. This button clicks **Next** five more times: the bar stops on **Compare** and **Next** becomes disabled, so the extra clicks do nothing.",
+      "textZh": "步骤始终在 1 到 3 之间。这个按钮再点五次 **Next**：步骤条停在 **Compare**，**Next** 被禁用，多出来的点击什么也不做。",
+      "action": {
+        "run": "for (let i = 0; i < 5; i++) document.querySelector('#next').click();"
+      },
+      "actionLabel": "Click Next five more times",
+      "actionLabelZh": "再点五次 Next",
+      "watch": [
+        {
+          "label": "current step",
+          "labelZh": "当前步骤",
+          "value": "document.querySelector('#steps [aria-current=step]').textContent",
+          "expect": "Compare"
+        },
+        {
+          "label": "text below",
+          "labelZh": "下方的文字",
+          "value": "document.querySelector('output').textContent",
+          "expect": "Step 3 of 3"
+        },
+        {
+          "label": "Next disabled",
+          "labelZh": "Next 已禁用",
+          "value": "document.querySelector('#next').disabled",
+          "expect": "true"
+        }
+      ],
+      "focus": "#steps"
+    },
+    {
+      "title": "A ring from one gradient",
+      "titleZh": "一个渐变画出的圆环",
+      "text": "The slider writes its value to `--value`, a custom property (CSS variable) on the ring. The ring's background is `conic-gradient(#087b77 calc(var(--value) * 1%), #ddd 0)`: coloured up to that percentage of the circle and grey after it. A white circle on top turns the disc into a ring, and `aria-valuenow` reports the value. This button sets the slider to 70.",
+      "textZh": "滑块把数值写到圆环的自定义属性（CSS 变量）`--value` 上。圆环的背景是 `conic-gradient(#087b77 calc(var(--value) * 1%), #ddd 0)`：圆周上这个百分比以内着色，之后是灰色。上面再叠一个白色圆，圆盘就变成了圆环；`aria-valuenow` 报告这个数值。这个按钮把滑块设为 70。",
+      "action": {
+        "fill": {
+          "target": "#progress",
+          "value": "70"
+        }
+      },
+      "actionLabel": "Set Progress to 70",
+      "actionLabelZh": "把 Progress 设为 70",
+      "watch": [
+        {
+          "label": "--value",
+          "value": "document.querySelector('.ring').style.getPropertyValue('--value')",
+          "expect": "70"
+        },
+        {
+          "label": "aria-valuenow",
+          "value": "document.querySelector('.ring').getAttribute('aria-valuenow')",
+          "expect": "70"
+        },
+        {
+          "label": "text in the ring",
+          "labelZh": "圆环中间的文字",
+          "value": "document.querySelector('.ring span').textContent",
+          "expect": "70%"
+        }
+      ],
+      "focus": ".ring"
+    },
+    {
+      "title": "Hover the menu by hand",
+      "titleZh": "亲手悬停导航",
+      "text": "Hover over **JavaScript tween** and **CSS transition**, or move to them with the Tab key: both widen from 180 to 260 px and shrink back when you leave. The tween reads the current width on `mouseenter`, `mouseleave`, `focus` and `blur`, and animates it over 250 ms with `requestAnimationFrame`, eased by `1 - (1 - t) ** 3`: fast at first, slow at the end. Leave half-way and it turns back smoothly from where it is.",
+      "textZh": "把鼠标移到 **JavaScript tween** 和 **CSS transition** 上，或者用 Tab 键移过去：两者都会从 180 px 展开到 260 px，离开后再缩回去。补间在 `mouseenter`、`mouseleave`、`focus` 和 `blur` 时读取当前宽度，用 `requestAnimationFrame` 在 250 毫秒内把它变过去，缓动公式是 `1 - (1 - t) ** 3`：开头快，结尾慢。中途离开，它会从当前的宽度平滑地折返。",
+      "focus": ".legacy a, .modern a"
+    }
+  ]
+}

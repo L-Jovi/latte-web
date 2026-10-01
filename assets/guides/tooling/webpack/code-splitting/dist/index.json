@@ -1,0 +1,55 @@
+{
+  "steps": [
+    {
+      "title": "Four scripts on one page",
+      "titleZh": "一个页面，四个脚本",
+      "text": "`index.js` wrote `index+module+loaded!` on the page, and `another.js` printed `Another module loaded!` in the console below. `shared.js` holds Lodash, and `runtime.js` holds the runtime, webpack's code for loading modules and keeping track of them. `index.js` comes before `runtime.js` and `shared.js` and still works: each entry file only registers itself, and the runtime starts it once `shared.js` is there.",
+      "textZh": "`index.js` 在页面上写出了 `index+module+loaded!`，`another.js` 在下面的控制台打印了 `Another module loaded!`。`shared.js` 里是 Lodash，`runtime.js` 里是运行时（runtime），也就是 webpack 用来加载模块、记录哪些模块已经加载的代码。`index.js` 排在 `runtime.js` 和 `shared.js` 前面，照样能运行：每个入口文件只是登记自己，等 `shared.js` 到位后，由运行时启动它。",
+      "watch": [
+        {
+          "label": "Page scripts (not counting the guide)",
+          "labelZh": "页面脚本（不含说明面板）",
+          "value": "[...document.scripts].filter((s) => !s.src.endsWith('/guide.js')).map((s) => s.getAttribute('src')).join(', ')",
+          "expect": "index.js, another.js, runtime.js, shared.js"
+        },
+        {
+          "label": "Text from index.js",
+          "labelZh": "index.js 写出的文字",
+          "value": "document.querySelector('body > div').textContent",
+          "expect": "index+module+loaded!"
+        }
+      ],
+      "focus": "body > div",
+      "highlight": "Another module loaded!",
+      "expectConsole": "Another module loaded!"
+    },
+    {
+      "title": "Lodash is in one file only",
+      "titleZh": "Lodash 只在一个文件里",
+      "text": "`dependOn: 'shared'` tells webpack that the `shared` entry will already be on the page, so it leaves Lodash out of the other two. This step fetches the four files, looks in each for `__lodash_hash_undefined__`, a string that only Lodash's code contains, and prints their sizes.",
+      "textZh": "`dependOn: 'shared'` 告诉 webpack：`shared` 这个入口一定已经在页面上了，所以另外两个入口里不再放 Lodash。这一步会获取这四个文件，在每个文件里查找只有 Lodash 代码才有的字符串 `__lodash_hash_undefined__`，再打印各个文件的大小。",
+      "action": {
+        "clear": true,
+        "run": "const files = ['index.js', 'another.js', 'runtime.js', 'shared.js']; Promise.all(files.map((f) => fetch(f).then((r) => r.text()))).then((texts) => { console.log('Lodash is in:', files.filter((f, i) => texts[i].includes('__lodash_hash_undefined__')).join(', ')); texts.forEach((t, i) => console.log(files[i] + ':', (new Blob([t]).size / 1000).toFixed(1), 'KB')); })"
+      },
+      "actionLabel": "Look for Lodash in each file",
+      "actionLabelZh": "在每个文件里查找 Lodash",
+      "highlight": "Lodash is in",
+      "expectConsole": ["Lodash is in: shared.js"]
+    },
+    {
+      "title": "One runtime, one list of modules",
+      "titleZh": "一个运行时，一份模块清单",
+      "text": "`runtimeChunk: 'single'` puts the runtime in a file of its own, so the page has one list of loaded modules, and both entries use the same Lodash. The chunk files register in `self.webpackChunk`: `index.js`, `another.js` and `shared.js` each added one item. Without the setting, each entry would carry its own runtime and set up its own Lodash.",
+      "textZh": "`runtimeChunk: 'single'` 把运行时单独放进一个文件，所以页面上只有一份“已加载模块”清单，两个入口用的是同一个 Lodash。各个 chunk 文件都在 `self.webpackChunk` 里登记：`index.js`、`another.js` 和 `shared.js` 各加了一项。没有这项设置的话，每个入口各带一份运行时，也各自初始化一份 Lodash。",
+      "watch": [
+        {
+          "label": "Items in self.webpackChunk",
+          "labelZh": "self.webpackChunk 里的项数",
+          "value": "self.webpackChunk.length",
+          "expect": "3"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "steps": [
+    {
+      "title": "Three files, loaded as modules",
+      "titleZh": "三个文件，都以模块方式加载",
+      "text": "The console shows `animal` from prototype.js, then `1` and `true` from combination.js. Each file is a module, so both can declare `Parent` and `Child` without clashing, and the page cannot reach their functions. The next steps rebuild the key moves here.",
+      "textZh": "控制台先显示 prototype.js 的 `animal`，再显示 combination.js 的 `1` 和 `true`。每个文件都是模块，所以两个文件都能声明 `Parent` 和 `Child` 而不冲突，页面也拿不到它们的函数。接下来几步在这里重演关键操作。",
+      "highlight": "animal"
+    },
+    {
+      "title": "A shared prototype leaks",
+      "titleZh": "共享原型会互相影响",
+      "text": "`Child.prototype = Parent.prototype` makes the two constructors share one object. Setting `constructor` for `Child` then changes it for `Parent` too.",
+      "textZh": "`Child.prototype = Parent.prototype` 让两个构造函数共用一个对象。给 `Child` 设置 `constructor` 时，`Parent` 的也跟着变了。",
+      "action": {
+        "run": "function Parent() {} function Child() {} Child.prototype = Parent.prototype; Child.prototype.constructor = Child; console.log('new Parent().constructor === Child:', new Parent().constructor === Child)"
+      },
+      "actionLabel": "Share one prototype",
+      "actionLabelZh": "共用一个原型",
+      "expectConsole": "new Parent().constructor === Child: true"
+    },
+    {
+      "title": "Object.create links without sharing",
+      "titleZh": "Object.create 只链接、不共享",
+      "text": "`Object.create(Parent.prototype)` makes a new object that falls back to the parent's prototype, without running `Parent` and without sharing its prototype.",
+      "textZh": "`Object.create(Parent.prototype)` 创建一个回退到父类原型的新对象，既不运行 `Parent`，也不共享它的原型。",
+      "action": {
+        "run": "function Parent() {} function Child() {} Child.prototype = Object.create(Parent.prototype, { constructor: { value: Child } }); console.log('shared:', Child.prototype === Parent.prototype, '| linked:', new Child() instanceof Parent, '| Parent intact:', new Parent().constructor === Parent)"
+      },
+      "actionLabel": "Link with Object.create",
+      "actionLabelZh": "用 Object.create 链接",
+      "expectConsole": "shared: false | linked: true | Parent intact: true"
+    }
+  ]
+}

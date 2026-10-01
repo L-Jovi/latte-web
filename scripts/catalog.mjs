@@ -79,21 +79,36 @@ for (const g of groups) {
 // that write their own HTML use site.page() instead.
 const marked = (name, html) =>
   `<!-- latte-site:${name} -->${html}<!-- /latte-site:${name} -->`;
-const upsert = (file, text, name, html, anchor) => {
-  const existing = new RegExp(
+const block = (name) =>
+  new RegExp(
     `<!-- latte-site:${name} -->[\\s\\S]*?<!-- /latte-site:${name} -->`,
   );
-  if (existing.test(text)) return text.replace(existing, marked(name, html));
+// `after` puts a new block right after its anchor instead of right before it.
+const upsert = (file, text, name, html, anchor, after = false) => {
+  if (block(name).test(text))
+    return text.replace(block(name), marked(name, html));
   const m = text.match(anchor);
   if (!m) throw new Error(`${file}: no ${anchor} to anchor the ${name} block`);
-  // The stylesheet goes after </title>; the bar goes before the first heading or app root.
-  const at = name === 'css' ? m.index + m[0].length : m.index;
+  const at = after ? m.index + m[0].length : m.index;
   return text.slice(0, at) + marked(name, html) + text.slice(at);
 };
-const dress = (file, page, css) => {
+const dress = (file, page, css, vite = false) => {
   const entry = site.entryFor(page);
   let text = readFileSync(file, 'utf8');
-  text = upsert(file, text, 'css', css, /<\/title\s*>/i);
+  // The stylesheet goes after </title>, then the guide script, before any demo script runs.
+  text = upsert(file, text, 'css', css, /<\/title\s*>/i, true);
+  const guide = site.guideFor(page);
+  text = guide
+    ? upsert(
+        file,
+        text,
+        'guide',
+        site.guideScript(rootFrom(page), guide, vite),
+        /<!-- \/latte-site:css -->/,
+        true,
+      )
+    : text.replace(block('guide'), '');
+  // The bar goes before the first heading or app root.
   if (!chrome.skipBar.has(page))
     text = upsert(
       file,
@@ -147,6 +162,7 @@ for (const [file, page] of vite)
     file,
     page,
     `<script type="module">import '${rootFrom(file)}assets/site.css';</script>`,
+    true,
   );
 // These templates are copied into dist as they are, so every link is relative to the built page.
 const copied = [
@@ -245,7 +261,7 @@ footer{margin-top:3.5rem;padding-top:1.25rem;border-top:1px solid var(--latte-li
 <h1>Latte Web</h1>
 <p class="lead">${escape(about)}</p>
 <p class="lead zh" lang="zh-Hans">${escape(aboutZh)}</p>
-<p class="hook">Learn how the web works by building small versions of it: Promise/A+, mini React, a router, a bundler and more. Run a page, watch what happens, then read the code.</p>
+<p class="hook">Learn how the web works by building small versions of it: Promise/A+, mini React, a router, a bundler and more. Run a page, follow the guide beside it, then read the code.</p>
 <p class="actions"><a class="button" href="#mechanisms">Start building</a><a class="button ghost" href="${source.replace('/tree/main/', '')}">View on GitHub</a></p>
 <p class="stats">${catalog.length} examples · 872/872 Promises/A+ tests · every page tested in Chromium, Firefox and WebKit</p>
 </div>

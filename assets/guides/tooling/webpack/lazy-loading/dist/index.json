@@ -1,0 +1,79 @@
+{
+  "steps": [
+    {
+      "title": "Only bundle.js so far",
+      "titleZh": "目前只有 bundle.js",
+      "text": "`src/index.js` does not import `print.js` at the top. Its click handler calls `import('./print.js')` instead, so webpack put `print.js` into a separate file, a chunk, which the browser downloads only when that call runs. Nothing has asked for it yet.",
+      "textZh": "`src/index.js` 没有在文件开头导入 `print.js`，而是在点击处理函数里调用 `import('./print.js')`。所以 webpack 把 `print.js` 放进了一个单独的文件，也就是 chunk（代码块），浏览器只在这次调用执行时才下载它。现在还没有谁请求过它。",
+      "watch": [
+        {
+          "label": "Page scripts (not counting the guide)",
+          "labelZh": "页面脚本（不含说明面板）",
+          "value": "[...document.scripts].filter((s) => !s.src.endsWith('/guide.js')).map((s) => s.getAttribute('src')).join(', ')",
+          "expect": "bundle.js"
+        },
+        {
+          "label": "print chunk downloaded",
+          "labelZh": "print chunk 已下载",
+          "value": "performance.getEntriesByType('resource').some((e) => e.name.split('/').pop().startsWith('print.'))",
+          "expect": "false"
+        }
+      ],
+      "focus": "body > div button"
+    },
+    {
+      "title": "First click: the chunk arrives",
+      "titleZh": "第一次点击：chunk 到了",
+      "text": "The click starts the download. The comment `webpackChunkName: \"print\"` named the file, and `output.chunkFilename: '[name].[contenthash].js'` added the hash. When the file arrives, its top-level `console.log` runs, then the click handler calls its default export: the console shows both lines.",
+      "textZh": "点击开始下载。注释 `webpackChunkName: \"print\"` 给文件起了名字，`output.chunkFilename: '[name].[contenthash].js'` 加上了哈希。文件一到，它最外层的 `console.log` 先运行，接着点击处理函数调用它的默认导出：控制台里出现两行。",
+      "action": {
+        "clear": true,
+        "clickText": "Click me and look at the console!"
+      },
+      "actionLabel": "Click the page's button",
+      "actionLabelZh": "点击页面上的按钮",
+      "focus": "body > div button",
+      "watch": [
+        {
+          "label": "Downloaded chunk",
+          "labelZh": "已下载的 chunk",
+          "value": "performance.getEntriesByType('resource').map((e) => e.name.split('/').pop()).filter((n) => n.startsWith('print.')).join(', ') || '—'"
+        }
+      ],
+      "expectConsole": [
+        "The print.js module has loaded! See the network tab in dev tools...",
+        "Button Clicked: Here's \"some text\"!"
+      ]
+    },
+    {
+      "title": "Second click: nothing new to download",
+      "titleZh": "第二次点击：不用再下载",
+      "text": "The module has already loaded, so `import()` gives back the same module without downloading anything. Only the second line appears: a module runs its top-level code once. The count below shows one request for the chunk after two clicks.",
+      "textZh": "模块已经加载过了，所以 `import()` 直接交回同一个模块，不再下载任何东西。只出现第二行：模块最外层的代码只运行一次。下面的计数显示，点了两次，chunk 只请求过一次。",
+      "action": {
+        "clear": true,
+        "clickText": "Click me and look at the console!"
+      },
+      "actionLabel": "Click the page's button again",
+      "actionLabelZh": "再点一次页面上的按钮",
+      "focus": "body > div button",
+      "watch": [
+        {
+          "label": "Requests for the print chunk",
+          "labelZh": "print chunk 的请求次数",
+          "value": "performance.getEntriesByType('resource').filter((e) => e.name.split('/').pop().startsWith('print.')).length",
+          "expect": "1"
+        }
+      ],
+      "expectConsole": ["Button Clicked: Here's \"some text\"!"],
+      "absentConsole": "module has loaded"
+    },
+    {
+      "title": "See it in the Network panel",
+      "titleZh": "在 Network 面板里看",
+      "text": "Open the **Network** panel of the developer tools and reload the page: until the first click, the only script from this folder is `bundle.js`. The first load carries less code; in exchange, the first click waits for one more request. There is no loading indicator and no error handling: if the chunk fails to download, the click shows nothing.",
+      "textZh": "打开开发者工具的 **Network**（网络）面板，再刷新页面：第一次点击之前，这个目录里被加载的脚本只有 `bundle.js`。首次加载的代码更少；代价是第一次点击要多等一个请求。这里没有加载提示，也没有错误处理：如果 chunk 下载失败，点击后什么也看不到。",
+      "focus": "body > div button"
+    }
+  ]
+}

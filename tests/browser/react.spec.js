@@ -54,19 +54,27 @@ for (const variant of ['classic', 'modern']) {
       route.fulfill({ status: 503, body: 'Unavailable' }),
     );
     await page.goto(url);
-    await page.getByRole('button', { name: 'Import examples' }).click();
+    await page
+      .getByRole('button', { name: 'Import examples', exact: true })
+      .click();
     await expect(page.getByRole('alert')).toContainText('Import failed');
     await page.unroute('**/todos.json');
-    await page.getByRole('button', { name: 'Import examples' }).click();
+    await page
+      .getByRole('button', { name: 'Import examples', exact: true })
+      .click();
     await expect(page.getByRole('status')).toHaveText('Imported 2 todos');
     await expect(page.getByRole('alert')).toHaveCount(0);
   });
 }
 test('mini renderer updates one instance at a time', async ({ page }) => {
   await page.goto('/mechanisms/mini-react/index.html');
-  await page.getByRole('button', { name: 'First: 0' }).click();
-  await expect(page.getByRole('button', { name: 'First: 1' })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Second: 0' })).toBeVisible();
+  await page.getByRole('button', { name: 'First: 0', exact: true }).click();
+  await expect(
+    page.getByRole('button', { name: 'First: 1', exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole('button', { name: 'Second: 0', exact: true }),
+  ).toBeVisible();
 });
 test('handwritten router handles navigation, back, forward and reload', async ({
   page,

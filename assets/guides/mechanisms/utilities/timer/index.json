@@ -1,0 +1,76 @@
+{
+  "steps": [
+    {
+      "title": "Ticks that measure how late they are",
+      "titleZh": "会测量自己迟到多少的计时",
+      "text": "**Start ten ticks** calls `startDriftTimer(callback, 100)`. Tick number n should run at `start + n × 100` ms. A timer callback cannot run while other code is running, so it often runs a little late, and each tick writes how many milliseconds late it was. The log stays empty until you start.",
+      "textZh": "**Start ten ticks** 会调用 `startDriftTimer(callback, 100)`。第 n 次计时本应在 `start + n × 100` 毫秒时运行。其他代码运行时，计时器回调没法执行，所以它常常会晚一点；每次计时都会写下自己晚了多少毫秒。点开始之前，日志一直是空的。",
+      "watch": [
+        {
+          "label": "lines in the log",
+          "labelZh": "日志行数",
+          "value": "document.querySelector('#log').textContent.split('\\n').filter(Boolean).length",
+          "expect": "0"
+        }
+      ],
+      "focus": "#start, #stop"
+    },
+    {
+      "title": "Start ten ticks",
+      "titleZh": "开始十次计时",
+      "text": "Ten lines appear, one every 100 ms, for example `3: 1.20 ms late`. The numbers change from run to run, but they do not keep growing: each tick sets its timer for the next ideal time, `start + (n + 1) × 100`, instead of a full 100 ms from now, so a late tick is followed by a shorter wait. After tick 10, the callback calls `stop()`.",
+      "textZh": "日志里每 100 毫秒出现一行，一共十行，比如 `3: 1.20 ms late`。每次运行的数字都不一样，但不会越积越大：每次计时都把下一个计时器定在下一次的理想时间 `start + (n + 1) × 100`，而不是从现在起再等整整 100 毫秒，所以迟到的一次之后会等得短一些。第 10 次计时后，回调调用了 `stop()`。",
+      "action": {
+        "click": "#start"
+      },
+      "actionLabel": "Click Start ten ticks",
+      "actionLabelZh": "点击 Start ten ticks",
+      "focus": "#log"
+    },
+    {
+      "title": "Stop cancels the next tick",
+      "titleZh": "Stop 会取消下一次计时",
+      "text": "This button clicks **Start ten ticks** and then **Stop** 250 ms later. About two lines appear, then nothing more: `stop()` clears the timer that was waiting. **Start ten ticks** also calls `stop()` on the old timer before it clears the log.",
+      "textZh": "这个按钮先点击 **Start ten ticks**，250 毫秒后再点击 **Stop**。日志里大约出现两行，之后就不再增加：`stop()` 清掉了正在等待的计时器。**Start ten ticks** 在清空日志之前，也会先对旧的计时器调用 `stop()`。",
+      "action": {
+        "run": "document.querySelector('#start').click(); setTimeout(() => document.querySelector('#stop').click(), 250)"
+      },
+      "actionLabel": "Start, then Stop after 250 ms",
+      "actionLabelZh": "开始，250 毫秒后停止",
+      "watch": [
+        {
+          "label": "lines in the log",
+          "labelZh": "日志行数",
+          "value": "document.querySelector('#log').textContent.split('\\n').filter(Boolean).length"
+        }
+      ],
+      "focus": "#log"
+    },
+    {
+      "title": "A busy page makes ticks late",
+      "titleZh": "页面一忙，计时就会迟到",
+      "text": "This button starts the ticks and then keeps the page busy for 350 ms. By then ticks 1 to 3 are overdue, so they run back to back, roughly 250, 150 and 50 ms late. From tick 4 on, the timer is back on time. The correction cannot undo a blocked page, but the delays do not add up.",
+      "textZh": "这个按钮先开始计时，再让页面忙上 350 毫秒。等页面空下来，第 1 到第 3 次计时都已过期，于是接连运行，分别晚了大约 250、150 和 50 毫秒。从第 4 次开始，计时又回到正轨。这种校正无法挽回被卡住的页面，但延迟不会累加。",
+      "action": {
+        "click": "#start",
+        "run": "const end = performance.now() + 350; while (performance.now() < end);"
+      },
+      "actionLabel": "Start, then keep the page busy for 350 ms",
+      "actionLabelZh": "开始计时，再让页面忙 350 毫秒",
+      "focus": "#log"
+    },
+    {
+      "title": "wait must be positive",
+      "titleZh": "wait 必须是正数",
+      "text": "`startDriftTimer` checks the interval before it starts anything. With `0` or a negative number, it throws a `RangeError` and no timer starts.",
+      "textZh": "`startDriftTimer` 在启动任何东西之前先检查间隔。传入 `0` 或负数，它会抛出 `RangeError`，不会启动任何计时器。",
+      "action": {
+        "clear": true,
+        "run": "try { startDriftTimer(() => {}, 0); } catch (error) { console.log('caught', error); }"
+      },
+      "actionLabel": "Call startDriftTimer with a wait of 0",
+      "actionLabelZh": "用 0 作为 wait 调用 startDriftTimer",
+      "expectConsole": ["caught RangeError: wait must be positive"]
+    }
+  ]
+}

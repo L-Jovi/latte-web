@@ -1,0 +1,118 @@
+{
+  "steps": [
+    {
+      "title": "Method 1: top: 50% and a transform",
+      "titleZh": "方法 1：top: 50% 加上 transform",
+      "text": "`top: 50%` puts the box's top edge at the middle, then `transform: translateY(-50%)` moves it up by half its own height. Switch the transform off: the box hangs from the middle, 120 px too low.",
+      "textZh": "`top: 50%` 把方块的上边缘放在正中，`transform: translateY(-50%)` 再把它往上移动自身高度的一半。关掉 transform：方块就从中线垂下来，低了 120 px。",
+      "focus": ".container1",
+      "watch": [
+        {
+          "label": "box centre, from the middle",
+          "labelZh": "方块中心离中线的距离",
+          "value": "(() => { const box = document.querySelector('.content1').getBoundingClientRect(); const frame = document.querySelector('.container1').getBoundingClientRect(); return Math.round(box.top + box.height / 2 - (frame.top + frame.height / 2)) + ' px'; })()",
+          "expect": "120 px"
+        }
+      ],
+      "action": {
+        "toggle": {
+          "target": ".content1",
+          "property": "transform",
+          "on": "",
+          "off": "none"
+        }
+      },
+      "actionLabel": "Switch the transform off or on",
+      "actionLabelZh": "关掉或打开 transform"
+    },
+    {
+      "title": "Method 2: flexbox",
+      "titleZh": "方法 2：flexbox",
+      "text": "The parent is `display: flex` with `align-items: center`. Switch to `flex-start` and the box goes to the top, 30 px above the middle.",
+      "textZh": "父元素是 `display: flex`，并设置了 `align-items: center`。切换成 `flex-start`，方块就跑到顶部，比中线高 30 px。",
+      "focus": ".container2",
+      "watch": [
+        {
+          "label": "box centre, from the middle",
+          "labelZh": "方块中心离中线的距离",
+          "value": "(() => { const box = document.querySelector('.content2').getBoundingClientRect(); const frame = document.querySelector('.container2').getBoundingClientRect(); return Math.round(box.top + box.height / 2 - (frame.top + frame.height / 2)) + ' px'; })()",
+          "expect": "-30 px"
+        }
+      ],
+      "action": {
+        "toggle": {
+          "target": ".container2",
+          "property": "alignItems",
+          "on": "",
+          "off": "flex-start"
+        }
+      },
+      "actionLabel": "Switch align-items",
+      "actionLabelZh": "切换 align-items"
+    },
+    {
+      "title": "Method 3: grid",
+      "titleZh": "方法 3：grid",
+      "text": "The parent is a grid, and the box has `align-self: center` and `justify-self: center`, so it is centred both ways. Switch `align-self` to `start` and it goes to the top.",
+      "textZh": "父元素是网格，方块设置了 `align-self: center` 和 `justify-self: center`，所以在两个方向上都居中。把 `align-self` 切换成 `start`，它就跑到顶部。",
+      "focus": ".container3",
+      "watch": [
+        {
+          "label": "box centre, from the middle",
+          "labelZh": "方块中心离中线的距离",
+          "value": "(() => { const box = document.querySelector('.content3').getBoundingClientRect(); const frame = document.querySelector('.container3').getBoundingClientRect(); return Math.round(box.top + box.height / 2 - (frame.top + frame.height / 2)) + ' px'; })()",
+          "expect": "-30 px"
+        }
+      ],
+      "action": {
+        "toggle": {
+          "target": ".content3",
+          "property": "alignSelf",
+          "on": "",
+          "off": "start"
+        }
+      },
+      "actionLabel": "Switch align-self",
+      "actionLabelZh": "切换 align-self"
+    },
+    {
+      "title": "Method 4: an invisible second box",
+      "titleZh": "方法 4：一个看不见的辅助盒子",
+      "text": "An empty `::before` as tall as the parent and the box share one line, and both have `vertical-align: middle`, so their middles line up. The parent's `font-size: 0` stops the space between them from taking room. Switch the box to `vertical-align: top` and it moves to the top.",
+      "textZh": "一个和父元素一样高的空 `::before` 与方块排在同一行，两者都设置了 `vertical-align: middle`，所以它们的中线对齐。父元素的 `font-size: 0` 让它们之间的空格不占空间。把方块切换成 `vertical-align: top`，它就移到顶部。",
+      "focus": ".container4",
+      "watch": [
+        {
+          "label": "box centre, from the middle",
+          "labelZh": "方块中心离中线的距离",
+          "value": "(() => { const box = document.querySelector('.content4').getBoundingClientRect(); const frame = document.querySelector('.container4').getBoundingClientRect(); return Math.round(box.top + box.height / 2 - (frame.top + frame.height / 2)) + ' px'; })()",
+          "expect": "-30 px"
+        }
+      ],
+      "action": {
+        "toggle": {
+          "target": ".content4",
+          "property": "verticalAlign",
+          "on": "",
+          "off": "top"
+        }
+      },
+      "actionLabel": "Switch vertical-align",
+      "actionLabelZh": "切换 vertical-align"
+    },
+    {
+      "title": "Method 5: a table cell",
+      "titleZh": "方法 5：表格单元格",
+      "text": "`display: table-cell` with `vertical-align: middle` centres the line the box sits on, not the box itself. The line keeps some room below for letters such as g and p, so the box ends up a few pixels above the middle.",
+      "textZh": "`display: table-cell` 配合 `vertical-align: middle` 居中的是方块所在的那一行，而不是方块本身。这一行在下方为 g、p 这样的字母留了空间，所以方块最后比中线高出几个像素。",
+      "focus": ".container5",
+      "watch": [
+        {
+          "label": "box centre, from the middle",
+          "labelZh": "方块中心离中线的距离",
+          "value": "(() => { const box = document.querySelector('.content5').getBoundingClientRect(); const frame = document.querySelector('.container5').getBoundingClientRect(); return Math.round(box.top + box.height / 2 - (frame.top + frame.height / 2)) + ' px'; })()"
+        }
+      ]
+    }
+  ]
+}

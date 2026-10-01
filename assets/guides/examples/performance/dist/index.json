@@ -1,0 +1,128 @@
+{
+  "steps": [
+    {
+      "title": "Three numbers about this visit",
+      "titleZh": "关于这次访问的三个数字",
+      "text": "The table shows the three Core Web Vitals, measured on your visit. LCP (Largest Contentful Paint) says how soon the main content appeared, INP (Interaction to Next Paint) how quickly the page responds to input, and CLS (Cumulative Layout Shift) how much the layout jumped. LCP and INP are in milliseconds; CLS has no unit. `main.js` first asks `PerformanceObserver.supportedEntryTypes` what this browser can report. A row it can measure starts as `Waiting for an eligible event`, and a row it cannot says `Unavailable in this browser`, so a missing value never looks like zero.",
+      "textZh": "表格显示这次访问测到的三项 Core Web Vitals。LCP（Largest Contentful Paint，最大内容绘制）表示主要内容多快出现，INP（Interaction to Next Paint）表示页面对输入响应得多快，CLS（Cumulative Layout Shift，累积布局偏移）表示布局跳动了多少。LCP 和 INP 以毫秒计，CLS 没有单位。`main.js` 先通过 `PerformanceObserver.supportedEntryTypes` 询问这个浏览器能报告什么。能测量的那一行一开始显示 `Waiting for an eligible event`，测不了的显示 `Unavailable in this browser`，所以缺失的值永远不会被看成零。",
+      "watch": [
+        {
+          "label": "LCP (ms)",
+          "value": "document.getElementById('LCP').textContent"
+        },
+        {
+          "label": "INP (ms)",
+          "value": "document.getElementById('INP').textContent"
+        },
+        {
+          "label": "CLS",
+          "value": "document.getElementById('CLS').textContent"
+        },
+        {
+          "label": "entry types this browser supports",
+          "labelZh": "这个浏览器支持的记录类型",
+          "value": "PerformanceObserver.supportedEntryTypes.join(', ')"
+        }
+      ],
+      "focus": "table"
+    },
+    {
+      "title": "How this page loaded",
+      "titleZh": "这个页面是怎样加载的",
+      "text": "Navigation Timing is the browser's own record of this page load, from `performance.getEntriesByType('navigation')[0]`. The page prints four of its fields: `type`, `ttfb` (time to first byte, from `responseStart`), `domContentLoaded` and `load`, in milliseconds from the start of the navigation. It reads them right after the `load` event, because `loadEventEnd` is final only once the load handler has returned. Reload the page and come back to this step: `type` is then `reload`.",
+      "textZh": "Navigation Timing 是浏览器自己对这次页面加载的记录，取自 `performance.getEntriesByType('navigation')[0]`。页面打印其中四个字段：`type`、`ttfb`（首字节时间，取自 `responseStart`）、`domContentLoaded` 和 `load`，单位都是从导航开始算起的毫秒数。它在 `load` 事件刚结束之后才读取，因为只有 load 处理函数返回后，`loadEventEnd` 才是最终值。刷新页面后再回到这一步：`type` 就变成了 `reload`。",
+      "watch": [
+        {
+          "label": "type",
+          "value": "performance.getEntriesByType('navigation')[0]?.type",
+          "expect": "navigate"
+        },
+        {
+          "label": "ttfb (ms)",
+          "value": "performance.getEntriesByType('navigation')[0]?.responseStart.toFixed(1)"
+        }
+      ],
+      "focus": "#navigation"
+    },
+    {
+      "title": "Block the page for 120 ms",
+      "titleZh": "让页面卡住 120 毫秒",
+      "text": "**Run 120 ms of work** keeps the main thread busy in a loop for 120 ms between two `performance.mark` calls, then measures the gap with `performance.measure`. The page freezes for that long, the text under the buttons says `Measured work:` with about 120 ms, and a `measure: controlled-work` entry joins the list at the bottom. Browsers that report long tasks add a `longtask` entry too. Where INP is measured, it rises to about 120 ms or more: your click on this guide's button is the input, and the page's 120 ms of work ran inside it. Clicks on the guide's other buttons are inputs as well, which is why INP may already have shown a small value.",
+      "textZh": "**Run 120 ms of work** 在两次 `performance.mark` 之间用一个循环让主线程忙上 120 毫秒，再用 `performance.measure` 测出这段间隔。页面会卡住这么久，按钮下面的文字显示 `Measured work:` 和大约 120 毫秒的耗时，底部列表里多出一条 `measure: controlled-work`。能报告长任务的浏览器还会加上一条 `longtask`。在测量 INP 的浏览器里，INP 会升到大约 120 毫秒或更高：你点击这份说明里的按钮就是那次输入，页面的 120 毫秒工作正是在这次点击里运行的。点击说明里的其他按钮同样算作输入，所以 INP 之前可能已经显示了一个很小的值。",
+      "action": {
+        "click": "#work"
+      },
+      "actionLabel": "Click Run 120 ms of work",
+      "actionLabelZh": "点击 Run 120 ms of work",
+      "watch": [
+        {
+          "label": "the page says Measured work:",
+          "labelZh": "页面显示 Measured work:",
+          "value": "document.querySelector('output').textContent.startsWith('Measured work:')",
+          "expect": "true"
+        },
+        {
+          "label": "the list has measure: controlled-work",
+          "labelZh": "列表里有 measure: controlled-work",
+          "value": "document.getElementById('entries').textContent.includes('measure: controlled-work')",
+          "expect": "true"
+        },
+        {
+          "label": "the page shows",
+          "labelZh": "页面显示",
+          "value": "document.querySelector('output').textContent"
+        },
+        {
+          "label": "INP (ms)",
+          "value": "document.getElementById('INP').textContent"
+        }
+      ]
+    },
+    {
+      "title": "Push the layout down",
+      "titleZh": "把布局往下推",
+      "text": "**Insert late content** waits 700 ms, then puts a pale green block above the buttons, which pushes everything below it down. CLS leaves out layout shifts that come right after an input, so the wait makes this shift count: the CLS value goes up, and the text under the buttons says `Inserted after the recent-input window`. The button is disabled after one click, so the block is inserted only once. Move on once the block is there.",
+      "textZh": "**Insert late content** 会等 700 毫秒，再在按钮上方放入一块浅绿色区域，把下面的内容全部往下推。CLS 不计入紧跟在输入之后的布局偏移，所以等上一会儿，这次偏移才会被算进去：CLS 的数值变大，按钮下面的文字显示 `Inserted after the recent-input window`。这个按钮点一次就不能再点，所以绿色区域只会插入一次。等它出现后，再进入下一步。",
+      "action": {
+        "click": "#shift"
+      },
+      "actionLabel": "Click Insert late content",
+      "actionLabelZh": "点击 Insert late content",
+      "watch": [
+        {
+          "label": "the button is disabled",
+          "labelZh": "按钮已不可用",
+          "value": "document.getElementById('shift').disabled",
+          "expect": "true"
+        }
+      ],
+      "focus": "#content"
+    },
+    {
+      "title": "What these numbers can say",
+      "titleZh": "这些数字能说明什么",
+      "text": "Everything here describes your one visit, in one browser. The page's own output moves the layout too, which is why CLS can show a small value before you click anything. What most visitors experience needs many real visits and a percentile such as the 75th, and one visit cannot prove that an optimization worked. No data leaves the page.",
+      "textZh": "这里的一切都只描述你在一个浏览器里的这一次访问。页面自己的输出也会让布局移动，所以还没点任何按钮时，CLS 就可能已经有一个很小的值。想知道大多数访客的体验，需要大量真实访问的数据和一个分位数，比如第 75 百分位；一次访问也无法证明某项优化真的有效。数据不会离开这个页面。",
+      "watch": [
+        {
+          "label": "LCP (ms)",
+          "value": "document.getElementById('LCP').textContent"
+        },
+        {
+          "label": "INP (ms)",
+          "value": "document.getElementById('INP').textContent"
+        },
+        {
+          "label": "CLS",
+          "value": "document.getElementById('CLS').textContent"
+        },
+        {
+          "label": "the green block says",
+          "labelZh": "绿色区域的文字",
+          "value": "document.querySelector('.late')?.textContent ?? '—'"
+        }
+      ],
+      "focus": "table"
+    }
+  ]
+}

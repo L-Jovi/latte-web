@@ -1,0 +1,88 @@
+{
+  "steps": [
+    {
+      "title": "Three columns: 100px, 1fr and 2fr",
+      "titleZh": "三列：100px、1fr 和 2fr",
+      "text": "`grid-template-columns: repeat(1, 100px 1fr 2fr)` makes a 100 px column, then shares the rest of the 500 px, after two 15 px gaps, as one part and two parts.",
+      "textZh": "`grid-template-columns: repeat(1, 100px 1fr 2fr)` 先给出 100 px 的一列，再把 500 px 里剩下的部分（减去两个 15 px 的间隙）按一份和两份分给另外两列。",
+      "focus": ".container",
+      "watch": [
+        {
+          "label": "column widths",
+          "labelZh": "列宽",
+          "value": "[1, 4, 7].map((n) => Math.round(document.querySelector('.item-' + n).getBoundingClientRect().width) + ' px').join(', ')",
+          "expect": "100 px, 123 px, 247 px"
+        }
+      ]
+    },
+    {
+      "title": "grid-auto-flow: column",
+      "titleZh": "grid-auto-flow: column",
+      "text": "The cells fill each column from top to bottom before moving on, so 1, 2 and 3 stand in the first column. Switch to `row` and they fill the first row instead.",
+      "textZh": "格子先从上到下填满一列，再转到下一列，所以 1、2、3 站在第一列。切换成 `row`，它们就改为填满第一行。",
+      "action": {
+        "toggle": {
+          "target": ".container",
+          "property": "gridAutoFlow",
+          "on": "",
+          "off": "row"
+        }
+      },
+      "actionLabel": "Switch between column and row",
+      "actionLabelZh": "在 column 和 row 之间切换",
+      "watch": [
+        {
+          "label": "cells in the first column",
+          "labelZh": "第一列里的格子",
+          "value": "(() => { const left = Math.round(document.querySelector('.item-1').getBoundingClientRect().left); return [...document.querySelectorAll('.item')].filter((cell) => Math.round(cell.getBoundingClientRect().left) === left).map((cell) => cell.textContent).join(', '); })()",
+          "expect": "1, 4, 7"
+        }
+      ]
+    },
+    {
+      "title": "Gaps between rows and columns",
+      "titleZh": "行间距和列间距",
+      "text": "`grid-gap: 20px 15px` leaves 20 px between rows and 15 px between columns. Today the property is called `gap`; browsers still accept the old name.",
+      "textZh": "`grid-gap: 20px 15px` 在行之间留 20 px，在列之间留 15 px。这个属性今天叫 `gap`，浏览器仍然接受旧名字。",
+      "focus": ".container",
+      "watch": [
+        {
+          "label": "row gap",
+          "labelZh": "行间距",
+          "value": "Math.round(document.querySelector('.item-2').getBoundingClientRect().top - document.querySelector('.item-1').getBoundingClientRect().bottom) + ' px'",
+          "expect": "20 px"
+        },
+        {
+          "label": "column gap",
+          "labelZh": "列间距",
+          "value": "Math.round(document.querySelector('.item-4').getBoundingClientRect().left - document.querySelector('.item-1').getBoundingClientRect().right) + ' px'",
+          "expect": "15 px"
+        }
+      ]
+    },
+    {
+      "title": "Named areas, used by nobody",
+      "titleZh": "有名字却没人用的区域",
+      "text": "`grid-template-areas` names six cells `a`, `c`, `d`, `f`, `g` and `i`, but no cell asks for a name, so the names change nothing. Give cell 9 `grid-area: a` and it moves to the top-left corner.",
+      "textZh": "`grid-template-areas` 给六个格子起了名字：`a`、`c`、`d`、`f`、`g`、`i`，但没有哪个格子按名字放置，所以这些名字不起作用。给格子 9 设置 `grid-area: a`，它就会移到左上角。",
+      "action": {
+        "toggle": {
+          "target": ".item-9",
+          "property": "gridArea",
+          "on": "",
+          "off": "a"
+        }
+      },
+      "actionLabel": "Give cell 9 grid-area: a",
+      "actionLabelZh": "给格子 9 设置 grid-area: a",
+      "watch": [
+        {
+          "label": "cell 9 is in the top-left corner",
+          "labelZh": "格子 9 在左上角吗",
+          "value": "Math.round(document.querySelector('.item-9').getBoundingClientRect().left) === Math.round(document.querySelector('.container').getBoundingClientRect().left) && Math.round(document.querySelector('.item-9').getBoundingClientRect().top) === Math.round(document.querySelector('.container').getBoundingClientRect().top)",
+          "expect": "true"
+        }
+      ]
+    }
+  ]
+}

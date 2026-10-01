@@ -15,7 +15,9 @@ test('Range restores the insertion point after focus leaves the editor', async (
     element.dispatchEvent(new KeyboardEvent('keyup'));
   });
   await page.getByRole('textbox', { name: 'Text to insert' }).fill('✨');
-  await page.getByRole('button', { name: 'Insert at saved cursor' }).click();
+  await page
+    .getByRole('button', { name: 'Insert at saved cursor', exact: true })
+    .click();
   await expect(editor).toHaveText('Hello✨ world');
   await page.keyboard.type('!');
   await expect(editor).toHaveText('Hello✨! world');
