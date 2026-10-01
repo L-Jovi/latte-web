@@ -28,7 +28,7 @@ npm run dev
 
 想看 source map 怎样帮你定位错误，可以把 `src/print.js` 里的 `console.log` 改成 `cosnole.log`，重新构建，刷新页面后再点击。报错指向 `print.js:2`，正是要修改的那一行，而不是 `bundle.js` 深处的某一行。
 
-如果想每次保存都自动重新构建，可以为这个专题启动 webpack 的开发服务器：`npm exec -w @latte/webpack -- webpack serve --config development/webpack.config.cjs`，然后打开 http://127.0.0.1:4180/。
+如果想每次保存都自动重新构建，可以为这个专题启动 webpack 的开发服务器：`npm exec -w @latte/webpack -- webpack serve --config development/webpack.config.cjs`，然后打开 <http://127.0.0.1:4180/>。
 
 ## 过去与现在
 

@@ -16,7 +16,7 @@ node examples/network/server.js
 npm run dev
 ```
 
-打开 http://127.0.0.1:4173/examples/network/?lang=zh。页面来自 4173 端口，数据来自 4002 端口，所以两者的“源”（origin，即协议、主机和端口三者合在一起）不同，浏览器会把它们隔开。
+打开 <http://127.0.0.1:4173/examples/network/?lang=zh>。页面来自 4173 端口，数据来自 4002 端口，所以两者的“源”（origin，即协议、主机和端口三者合在一起）不同，浏览器会把它们隔开。
 
 - **用 JSONP 请求**和**用 Fetch 请求**都会显示同一条消息 `Hello from the second origin`。`transport` 字段说明它是通过哪种方式来的：`jsonp` 或 `data`。
 - **发起慢速 Fetch** 会显示 `等待中`，服务器要过 2 秒才回答。在此之前点击**取消请求**，输出就变成 `请求已取消`。如果等它完成，就会显示那条消息，`transport` 为 `slow`。

@@ -17,7 +17,7 @@ npm run dev -w @latte/graphql-http
 npm run dev
 ```
 
-打开 http://127.0.0.1:4173/examples/graphql-http/?lang=zh，点击**运行查询**。按钮下方会出现 JSON 格式的回答：`"foo": "Hello world!"`、`"bar": ["bar", "baz"]`，以及三次 1 到 6 之间的掷骰结果。API 本身的地址是 http://127.0.0.1:4001/graphql。
+打开 <http://127.0.0.1:4173/examples/graphql-http/?lang=zh>，点击**运行查询**。按钮下方会出现 JSON 格式的回答：`"foo": "Hello world!"`、`"bar": ["bar", "baz"]`，以及三次 1 到 6 之间的掷骰结果。API 本身的地址是 <http://127.0.0.1:4001/graphql>。
 
 接着把查询换成一个 mutation（变更，也就是会修改数据的操作）：
 
