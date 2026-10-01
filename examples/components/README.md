@@ -13,7 +13,7 @@ npm run dev
 # open http://127.0.0.1:4173/examples/components/dist/demo/
 ```
 
-A card with a **Count: 0** button appears, and each click adds one. The page `dist/consumer/consumer.html` loads the Babel output instead and shows a **Babel package loaded** button in the same card. You can also open the [live demo](https://l-jovi.github.io/latte-web/examples/components/dist/demo/index.html) and the [live Babel page](https://l-jovi.github.io/latte-web/examples/components/dist/consumer/consumer.html).
+A card with a **Count: 0** button appears, and each click adds one. The page `dist/consumer/consumer.html` loads the Babel output instead and shows a **Babel package loaded** button in the same card. You can also open the [live demo](https://latte.jovipro.com/examples/components/dist/demo/index.html) and the [live Babel page](https://latte.jovipro.com/examples/components/dist/consumer/consumer.html).
 
 To browse the two Storybook stories, run `npm run storybook -w @latte/components` and open http://127.0.0.1:6006.
 

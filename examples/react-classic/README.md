@@ -20,7 +20,7 @@ The list starts with one todo, **Use Redux**. Things to try:
 - **Import examples** loads two made-up titles from a local `todos.json` and says `Imported 2 todos`. If loading fails, the page says `Import failed. Try again.`, and you can click again.
 - **About** opens a second page. The browser's Back and Forward buttons move between the two.
 
-Nothing is saved: reloading starts over. You can also open the [live demo](https://l-jovi.github.io/latte-web/examples/react-classic/dist/index.html).
+Nothing is saved: reloading starts over. You can also open the [live demo](https://latte.jovipro.com/examples/react-classic/dist/index.html).
 
 ## How it works
 

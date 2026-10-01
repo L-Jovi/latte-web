@@ -13,7 +13,7 @@ npm run dev
 # open http://127.0.0.1:4173/examples/rich-text-lexical/dist/
 ```
 
-Type a sentence, select part of it and click **Bold**: the selection turns bold. Click **Save JSON**, and the saved state appears between the buttons and the editor. The bold text shows up there as a text node whose `format` is `1`. You can also open the [live demo](https://l-jovi.github.io/latte-web/examples/rich-text-lexical/dist/index.html).
+Type a sentence, select part of it and click **Bold**: the selection turns bold. Click **Save JSON**, and the saved state appears between the buttons and the editor. The bold text shows up there as a text node whose `format` is `1`. You can also open the [live demo](https://latte.jovipro.com/examples/rich-text-lexical/dist/index.html).
 
 ## How it works
 

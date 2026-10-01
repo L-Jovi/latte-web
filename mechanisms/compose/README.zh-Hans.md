@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 Redux 中间件背后的 `compose`，自己写一遍。“组合”函数，就是把一个函数的结果交给下一个函数：`compose(f, g)(x)` 等于 `f(g(x))`。
 
@@ -13,7 +13,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/mechanisms/compose/
 ```
 
-页面上显示 `108`。它运行的是 `forgeCompose((x) => x - 2, (x) => x + 10, (x) => x * 10)(10)`，函数从右往左依次执行：10 × 10 = 100，接着 100 + 10 = 110，最后 110 − 2 = 108。不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/compose/index.html)。
+页面上显示 `108`。它运行的是 `forgeCompose((x) => x - 2, (x) => x + 10, (x) => x * 10)(10)`，函数从右往左依次执行：10 × 10 = 100，接着 100 + 10 = 110，最后 110 − 2 = 108。不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[在线演示](https://latte.jovipro.com/mechanisms/compose/index.html)。
 
 ## 原理
 

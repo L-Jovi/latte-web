@@ -11,7 +11,7 @@ npm run dev
 # open http://127.0.0.1:4173/examples/visuals/drag/
 ```
 
-It works right after cloning; no `npm ci` or build step is needed. Drag the **Mouse** block and the **Pointer** block: each follows the pointer and stops at the edges of its pale field. Then move the focus to the **Pointer** block with the Tab key and press the arrow keys: it moves 10 pixels per press. On a phone or tablet, only the **Pointer** block should follow your finger, because dragging with a finger does not send mouse events. You can also open the [live demo](https://l-jovi.github.io/latte-web/examples/visuals/drag/index.html).
+It works right after cloning; no `npm ci` or build step is needed. Drag the **Mouse** block and the **Pointer** block: each follows the pointer and stops at the edges of its pale field. Then move the focus to the **Pointer** block with the Tab key and press the arrow keys: it moves 10 pixels per press. On a phone or tablet, only the **Pointer** block should follow your finger, because dragging with a finger does not send mouse events. You can also open the [live demo](https://latte.jovipro.com/examples/visuals/drag/index.html).
 
 ## How it works
 

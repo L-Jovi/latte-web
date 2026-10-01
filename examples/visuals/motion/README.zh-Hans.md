@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 展开的导航（JS 补间与 CSS 过渡对比）、步骤条，以及用 conic-gradient 画的环形进度。补间（tween）是在代码里一步步算出来的动画，从起始值过渡到结束值。
 
@@ -19,7 +19,7 @@ npm run dev
 - 步骤条：点击 **Next**，高亮会从 **Read** 移到 **Run**，再到 **Compare**；**Back** 则往回走。按钮下方的文字依次显示 `Step 2 of 3` 等。
 - 环形进度：拖动 **Progress** 滑块，圆环上着色的部分和中间的百分比都会跟着变。
 
-也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/visuals/motion/index.html)。
+也可以直接打开[在线演示](https://latte.jovipro.com/examples/visuals/motion/index.html)。
 
 ## 原理
 

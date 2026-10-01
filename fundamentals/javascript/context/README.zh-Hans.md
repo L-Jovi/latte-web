@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 自己实现 call、apply 和 bind，看懂函数调用时 this 是怎么确定的。函数是在哪个对象上被调用的，这个对象（称为“接收者”，receiver）就是 `this`；这三个方法让你自己指定这个对象。
 
@@ -13,7 +13,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/fundamentals/javascript/context/
 ```
 
-不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。打开浏览器控制台：`forgeCall`、`forgeApply`、`forgeBind` 都以 `{name: 'saber'}` 作为 `this` 调用函数 `test`，所以每一段都先打印 `saber`，再打印 `foobar`（两个参数拼在一起）。页面最后一部分用 `new` 调用一个绑定过的函数，依次打印 `undefined`、`daisy`、`18`、`shopping`、`kevin`。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/fundamentals/javascript/context/index.html)。
+不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。打开浏览器控制台：`forgeCall`、`forgeApply`、`forgeBind` 都以 `{name: 'saber'}` 作为 `this` 调用函数 `test`，所以每一段都先打印 `saber`，再打印 `foobar`（两个参数拼在一起）。页面最后一部分用 `new` 调用一个绑定过的函数，依次打印 `undefined`、`daisy`、`18`、`shopping`、`kevin`。也可以直接打开[在线演示](https://latte.jovipro.com/fundamentals/javascript/context/index.html)。
 
 ## 原理
 

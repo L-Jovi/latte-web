@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 在失去焦点前保存光标，在光标处插入文字，重新渲染后再恢复光标。两个小页面直接使用浏览器的 Selection 和 Range API，不借助任何编辑器库。
 
@@ -17,7 +17,7 @@ npm run dev
 
 接着打开 `http://127.0.0.1:4173/mechanisms/selection/ec-richtext.html`，输入 `A #tag# B`。一边输入，`#tag#` 就会被高亮，光标也始终停在原来的位置。
 
-不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[光标页面](https://l-jovi.github.io/latte-web/mechanisms/selection/index.html)和[高亮页面](https://l-jovi.github.io/latte-web/mechanisms/selection/ec-richtext.html)的在线演示。
+不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[光标页面](https://latte.jovipro.com/mechanisms/selection/index.html)和[高亮页面](https://latte.jovipro.com/mechanisms/selection/ec-richtext.html)的在线演示。
 
 ## 原理
 
