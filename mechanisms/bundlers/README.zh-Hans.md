@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 解析 import、构建依赖图、输出一个文件；先用几个函数写，再改成一个小型编译器。两个版本都把几个小模块合成一个浏览器能直接运行的脚本。
 
@@ -15,7 +15,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/mechanisms/bundlers/dist/
 ```
 
-页面上显示 **welcome Jovi**，这是分层版打出的包写进页面的；浏览器控制台里显示 `my lord saber`，这是过程式版本打出的包打印的。用编辑器打开 `dist/procedural.js`：文件开头是加载器，文件末尾是依赖图，每个模块的代码都以它的文件路径为键存放。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/bundlers/dist/index.html)。
+页面上显示 **welcome Jovi**，这是分层版打出的包写进页面的；浏览器控制台里显示 `my lord saber`，这是过程式版本打出的包打印的。用编辑器打开 `dist/procedural.js`：文件开头是加载器，文件末尾是依赖图，每个模块的代码都以它的文件路径为键存放。也可以直接打开[在线演示](https://latte.jovipro.com/mechanisms/bundlers/dist/index.html)。
 
 ## 原理
 

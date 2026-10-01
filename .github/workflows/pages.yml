@@ -1,5 +1,5 @@
 name: Pages
-# Publishes the learning index and live demos to https://l-jovi.github.io/latte-web/.
+# Publishes the learning index and live demos to https://latte.jovipro.com/.
 on:
   workflow_run:
     workflows: [CI]
@@ -31,18 +31,23 @@ jobs:
       - run: rustup toolchain install 1.98.1 --profile minimal --target wasm32-unknown-unknown
       - run: npm run build && npm run build:wasm
         env:
-          LATTE_PAGES_BASE: /latte-web/
+          # The custom domain serves the site from its root. A site served
+          # from a sub-path, such as <user>.github.io/latte-web/, sets that path.
+          LATTE_PAGES_BASE: /
       - run: npm run build:pages
       # Render the social preview card, to be uploaded by hand in the repository settings.
       - run: npx playwright install --with-deps chromium
       - run: npx playwright screenshot --viewport-size=1280,640 "file://$PWD/.github/social-preview.svg" _site/social-preview.png
-      # Test the exact files that will be published, under the /latte-web/ prefix.
+      # Test the exact files that will be published, from the site root.
       - run: npm run test:pages
       - uses: actions/upload-pages-artifact@v5.0.0
         with:
           path: _site
   deploy:
     needs: build
+    # Only main publishes. A manual run on another branch builds and tests the
+    # site without deploying it. (A workflow_run event always reports main.)
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
     permissions:
       pages: write

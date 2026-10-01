@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 等一连串调用停下来之后，只执行一次。
 
@@ -13,7 +13,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/mechanisms/utilities/debounce/
 ```
 
-打开浏览器控制台，快速连续点击 **Test Debounce** 几次。只要你还在点，控制台就什么也不打印；最后一次点击过后半秒，控制台只打印一次 `1 2`。不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/debounce/index.html)。
+打开浏览器控制台，快速连续点击 **Test Debounce** 几次。只要你还在点，控制台就什么也不打印；最后一次点击过后半秒，控制台只打印一次 `1 2`。不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[在线演示](https://latte.jovipro.com/mechanisms/utilities/debounce/index.html)。
 
 ## 原理
 

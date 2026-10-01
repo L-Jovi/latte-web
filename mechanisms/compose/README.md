@@ -11,7 +11,7 @@ npm run dev
 # open http://127.0.0.1:4173/mechanisms/compose/
 ```
 
-The page shows `108`. It runs `forgeCompose((x) => x - 2, (x) => x + 10, (x) => x * 10)(10)`, and the functions run from right to left: 10 × 10 = 100, then 100 + 10 = 110, then 110 − 2 = 108. No install or build is needed: `npm run dev` works right after cloning. You can also open the [live demo](https://l-jovi.github.io/latte-web/mechanisms/compose/index.html).
+The page shows `108`. It runs `forgeCompose((x) => x - 2, (x) => x + 10, (x) => x * 10)(10)`, and the functions run from right to left: 10 × 10 = 100, then 100 + 10 = 110, then 110 − 2 = 108. No install or build is needed: `npm run dev` works right after cloning. You can also open the [live demo](https://latte.jovipro.com/mechanisms/compose/index.html).
 
 ## How it works
 

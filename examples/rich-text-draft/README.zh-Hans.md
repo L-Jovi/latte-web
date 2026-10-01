@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 输入、加粗、保存为 JSON；Draft.js 已于 2023 年被 Meta 归档。[Lexical 版](../rich-text-lexical/README.zh-Hans.md)做的是同样的三步，方便两者对照。
 
@@ -15,7 +15,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/examples/rich-text-draft/dist/
 ```
 
-输入一句话，选中其中一部分，点击 **Bold**：选中的文字变成粗体。点击 **Save JSON**，保存下来的状态会出现在编辑器下方。粗体文字在里面表现为 `inlineStyleRanges` 中的一项，样式为 `BOLD`。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/rich-text-draft/dist/index.html)。
+输入一句话，选中其中一部分，点击 **Bold**：选中的文字变成粗体。点击 **Save JSON**，保存下来的状态会出现在编辑器下方。粗体文字在里面表现为 `inlineStyleRanges` 中的一项，样式为 `BOLD`。也可以直接打开[在线演示](https://latte.jovipro.com/examples/rich-text-draft/dist/index.html)。
 
 ## 原理
 

@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 点击按钮时才下载对应的模块。首次打开页面要加载的代码更少；代价是第一次点击时要多等一个请求。
 
@@ -15,7 +15,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/tooling/webpack/lazy-loading/dist/
 ```
 
-先打开浏览器开发者工具的 Network（网络）面板，再加载页面。页面上有 **Hello webpack** 和一个按钮，加载的脚本只有 `bundle.js`。点击按钮：一个名字类似 `print.75b9ede9392a312ac178.js` 的文件被下载下来，控制台先打印 `The print.js module has loaded! See the network tab in dev tools...`，再打印 `Button Clicked: Here's "some text"!`。再点一次，只会出现第二行：模块已经加载过了，不会再运行一遍。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/lazy-loading/dist/index.html)。
+先打开浏览器开发者工具的 Network（网络）面板，再加载页面。页面上有 **Hello webpack** 和一个按钮，加载的脚本只有 `bundle.js`。点击按钮：一个名字类似 `print.75b9ede9392a312ac178.js` 的文件被下载下来，控制台先打印 `The print.js module has loaded! See the network tab in dev tools...`，再打印 `Button Clicked: Here's "some text"!`。再点一次，只会出现第二行：模块已经加载过了，不会再运行一遍。也可以直接打开[在线演示](https://latte.jovipro.com/tooling/webpack/lazy-loading/dist/index.html)。
 
 ## 原理
 

@@ -13,8 +13,8 @@ npm run dev
 
 No install or build is needed: `npm run dev` works right after cloning. Keep the browser console open.
 
-- **Bubbling**, on the page above ([live demo](https://l-jovi.github.io/latte-web/fundamentals/events/dom-event/index.html)). Click the small child box: only `fire child` appears. Click elsewhere in the parent box: `fire parent`. Click a number in the list: the console shows the `<li>` you clicked, then the `<ul>` that is listening.
-- **Scheduling**, at `/fundamentals/events/web-task/` ([live demo](https://l-jovi.github.io/latte-web/fundamentals/events/web-task/index.html)). As the page loads, one script logs `script start`, `async2 end`, `Promise`, `script end`, `async3 end`, `promise1`, `async4 end`, `promise2`, `async1 end` and finally `setTimeout`; another logs `Promise.resolve:  2`. Then click the inner box: `click`, `promise` and `observer` appear twice, first for the inner box and then for the outer one, followed by two `animationFrame` and two `timeout` lines.
+- **Bubbling**, on the page above ([live demo](https://latte.jovipro.com/fundamentals/events/dom-event/index.html)). Click the small child box: only `fire child` appears. Click elsewhere in the parent box: `fire parent`. Click a number in the list: the console shows the `<li>` you clicked, then the `<ul>` that is listening.
+- **Scheduling**, at `/fundamentals/events/web-task/` ([live demo](https://latte.jovipro.com/fundamentals/events/web-task/index.html)). As the page loads, one script logs `script start`, `async2 end`, `Promise`, `script end`, `async3 end`, `promise1`, `async4 end`, `promise2`, `async1 end` and finally `setTimeout`; another logs `Promise.resolve:  2`. Then click the inner box: `click`, `promise` and `observer` appear twice, first for the inner box and then for the outer one, followed by two `animationFrame` and two `timeout` lines.
 
 The Node script needs no server. In a second terminal, from the repository root:
 

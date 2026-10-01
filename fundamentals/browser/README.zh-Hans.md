@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 分别用 top 和 transform 移动同一个方块，看哪种会让浏览器重新计算布局。在屏幕上，两种移动看起来一模一样；区别要在开发者工具里才看得到。
 
@@ -13,7 +13,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/fundamentals/browser/render.html
 ```
 
-不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。点击 **Move with top**：方块向下移动 100 px，再点一次就移回原处。**Move with transform** 的效果相同。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/fundamentals/browser/render.html)。
+不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。点击 **Move with top**：方块向下移动 100 px，再点一次就移回原处。**Move with transform** 的效果相同。也可以直接打开[在线演示](https://latte.jovipro.com/fundamentals/browser/render.html)。
 
 想看出区别，就打开开发者工具：
 

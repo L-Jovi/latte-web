@@ -11,7 +11,7 @@ npm run dev
 # open http://127.0.0.1:4173/mechanisms/design-patterns/
 ```
 
-It works right after cloning; no `npm ci` or build step is needed. Open the browser console. It shows `true` (the singleton), `saber and archer` (the adapter) and `yck false` (the read-only property). You can also open the [live demo](https://l-jovi.github.io/latte-web/mechanisms/design-patterns/index.html).
+It works right after cloning; no `npm ci` or build step is needed. Open the browser console. It shows `true` (the singleton), `saber and archer` (the adapter) and `yck false` (the read-only property). You can also open the [live demo](https://latte.jovipro.com/mechanisms/design-patterns/index.html).
 
 The page doesn't load the two factory examples. Run them with Node from the repository root instead: `node mechanisms/design-patterns/factory/simple-factory.js` prints `yck`.
 

@@ -11,7 +11,7 @@ npm run dev
 # open http://127.0.0.1:4173/fundamentals/html/semantic.html
 ```
 
-No install or build is needed: `npm run dev` works right after cloning. The page has no styles of its own, only the site's shared stylesheet for fonts, colours and spacing: a large title, two links, an article and a short note about the notebook. The two links jump to the article and to the note, and the address then ends in `#entry` or `#author`. Open the Elements panel of DevTools to see the structure behind it. You can also open the [live demo](https://l-jovi.github.io/latte-web/fundamentals/html/semantic.html).
+No install or build is needed: `npm run dev` works right after cloning. The page has no styles of its own, only the site's shared stylesheet for fonts, colours and spacing: a large title, two links, an article and a short note about the notebook. The two links jump to the article and to the note, and the address then ends in `#entry` or `#author`. Open the Elements panel of DevTools to see the structure behind it. You can also open the [live demo](https://latte.jovipro.com/fundamentals/html/semantic.html).
 
 ## How it works
 

@@ -13,7 +13,7 @@ npm run dev
 # open http://127.0.0.1:4173/tooling/gulp-typescript/dist/
 ```
 
-Gulp reports `Starting` and `Finished` for `clean`, `compile` and `html`, in that order. The page heading changes from `Loading greeting` to **Hello from TypeScript modules via Gulp**. `dist/` holds `index.html` and one `.js` file for each `.ts` file: `main.js` and `greet.js`. You can also open the [live demo](https://l-jovi.github.io/latte-web/tooling/gulp-typescript/dist/index.html).
+Gulp reports `Starting` and `Finished` for `clean`, `compile` and `html`, in that order. The page heading changes from `Loading greeting` to **Hello from TypeScript modules via Gulp**. `dist/` holds `index.html` and one `.js` file for each `.ts` file: `main.js` and `greet.js`. You can also open the [live demo](https://latte.jovipro.com/tooling/gulp-typescript/dist/index.html).
 
 ## How it works
 

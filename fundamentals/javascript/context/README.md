@@ -11,7 +11,7 @@ npm run dev
 # open http://127.0.0.1:4173/fundamentals/javascript/context/
 ```
 
-No install or build is needed: `npm run dev` works right after cloning. Open the browser console. `forgeCall`, `forgeApply` and `forgeBind` each call a function `test` with `{name: 'saber'}` as `this`, so every block logs `saber` and then `foobar`, its two arguments joined. The last part of the page calls a bound function with `new` and logs `undefined`, `daisy`, `18`, `shopping` and `kevin`. You can also open the [live demo](https://l-jovi.github.io/latte-web/fundamentals/javascript/context/index.html).
+No install or build is needed: `npm run dev` works right after cloning. Open the browser console. `forgeCall`, `forgeApply` and `forgeBind` each call a function `test` with `{name: 'saber'}` as `this`, so every block logs `saber` and then `foobar`, its two arguments joined. The last part of the page calls a bound function with `new` and logs `undefined`, `daisy`, `18`, `shopping` and `kevin`. You can also open the [live demo](https://latte.jovipro.com/fundamentals/javascript/context/index.html).
 
 ## How it works
 

@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 开发服务器运行时修改模块，页面不刷新就能更新。模块热替换（hot module replacement，HMR）把改过的模块换进正在运行的页面，页面不必从头再来。
 
@@ -16,7 +16,7 @@ npm exec -w @latte/webpack -- webpack serve --config hot-module-replacement/webp
 
 灰色背景的页面上有 **Hello webpack** 和一个按钮。点击按钮，控制台打印 `content change :)`。现在把 [src/print.js](src/print.js) 里这段文字改掉并保存：控制台打印 `Accepting the updated printMe module!`，之前的输出都还在，说明页面没有刷新。再点一次按钮，打印出来的就是你改过的文字。
 
-这需要 webpack 的开发服务器，所以只能在你自己的电脑上看到。[在线演示](https://l-jovi.github.io/latte-web/tooling/webpack/hot-module-replacement/dist/index.html)，以及用 `npm run build -w @latte/webpack` 和 `npm run dev` 看到的页面，都是构建好的结果：看起来一样，但不会有任何更新。
+这需要 webpack 的开发服务器，所以只能在你自己的电脑上看到。[在线演示](https://latte.jovipro.com/tooling/webpack/hot-module-replacement/dist/index.html)，以及用 `npm run build -w @latte/webpack` 和 `npm run dev` 看到的页面，都是构建好的结果：看起来一样，但不会有任何更新。
 
 ## 原理
 

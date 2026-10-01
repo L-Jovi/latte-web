@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 每个时间间隔最多执行一次，第一次调用立即执行。
 
@@ -13,7 +13,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/mechanisms/utilities/throttle/
 ```
 
-尽可能快地连续点击按钮。不管点多少次，计数每 500 毫秒最多增加一次。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/throttle/index.html)。
+尽可能快地连续点击按钮。不管点多少次，计数每 500 毫秒最多增加一次。也可以直接打开[在线演示](https://latte.jovipro.com/mechanisms/utilities/throttle/index.html)。
 
 ## 原理
 
