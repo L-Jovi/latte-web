@@ -23,9 +23,11 @@ test('a link that names the language opens the page in it', async ({
 }) => {
   await page.goto('/fundamentals/javascript/context/index.html?lang=zh');
   await expect(page.locator('html')).toHaveAttribute('lang', 'zh-Hans');
+  // innerText is the text on screen: the heading also holds its hidden English half.
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(
     catalog.find((entry) => entry.path === 'fundamentals/javascript/context')
       .titleZh,
+    { useInnerText: true },
   );
   // The choice is remembered for the next page.
   await page.goto('/');
