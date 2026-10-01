@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-30。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
 
 一组动手实践的 Web 练习与实验。就像一杯拿铁——一份浓缩、两份牛奶、一份奶泡——熟悉、易入口，适合日常学习。
 
@@ -187,7 +187,7 @@ npm run dev
 
 拿铁是一份浓缩、两份牛奶、一份奶泡：最常见的咖啡，也是几乎人人都爱喝的那一杯。在作者这组以咖啡命名的仓库里，Web 就是这样的角色：日常、普及、人人都爱的那一种调配。
 
-系列里的其他仓库：[espresso-algorithm](https://github.com/L-Jovi/espresso-algorithm)（算法，纯粹的浓缩）、[roaster-linux](https://github.com/L-Jovi/roaster-linux)（Linux 工具，烘焙咖啡豆的地方）、[barista-services](https://github.com/L-Jovi/barista-services)（服务，咖啡师）和 [cappuccino-ios](https://github.com/L-Jovi/cappuccino-ios)（iOS 应用，比拿铁更轻）。
+系列里的其他仓库：[espresso-algorithm](https://github.com/L-Jovi/espresso-algorithm)（算法，纯粹的浓缩）、[roaster-linux](https://github.com/L-Jovi/roaster-linux)（Linux 工具，烘焙咖啡豆的地方）、[barista-services](https://github.com/L-Jovi/barista-services)（服务，咖啡师）和 cappuccino-ios（iOS 应用，比拿铁更轻；2026 年已退役）。
 
 ## 维护状态
 
