@@ -1,0 +1,89 @@
+{
+  "steps": [
+    {
+      "title": "Digits made of dots",
+      "titleZh": "用圆点拼成的数字",
+      "text": "The canvas shows `00:00:10` in blue dots. `digit.js` stores each digit as a grid of 0s and 1s, 10 rows by 7 columns (the colon is 4 columns wide), and `app.js` draws a circle wherever the grid has a 1. The readout counts the dots by reading the canvas pixel at the centre of every grid cell.",
+      "textZh": "画布上用蓝色圆点显示 `00:00:10`。`digit.js` 把每个数字存成由 0 和 1 组成的网格，10 行 7 列（冒号宽 4 列），`app.js` 在网格里每个 1 的位置画一个圆。下面的读数读取每个格子中心的像素，数出画了多少个圆点。",
+      "watch": [
+        {
+          "label": "text under the canvas",
+          "labelZh": "画布下方的文字",
+          "value": "document.querySelector('output').textContent",
+          "expect": "Ready"
+        },
+        {
+          "label": "dots on the canvas",
+          "labelZh": "画布上的圆点",
+          "value": "(() => { const pixels = document.querySelector('canvas').getContext('2d').getImageData(0, 0, 1024, 420).data; const lefts = [30, 165, 300, 381, 516, 651, 732, 867], columns = [7, 7, 4, 7, 7, 4, 7, 7]; let dots = 0; lefts.forEach((left, i) => { for (let row = 0; row < 10; row++) for (let column = 0; column < columns[i]; column++) if (pixels[((59 + row * 18) * 1024 + left + 9 + column * 18) * 4 + 3]) dots++; }); return dots; })()",
+          "expect": "233"
+        }
+      ],
+      "focus": "canvas"
+    },
+    {
+      "title": "Start the countdown",
+      "titleZh": "开始倒计时",
+      "text": "The click sets a deadline, `end`, 10 seconds from now, and starts a loop with `requestAnimationFrame`, which calls `tick` once per screen refresh. Every frame works out the seconds left as `Math.ceil((end - now) / 1000)`. When a digit changes, the dots of the old digit become coloured particles that jump, fall and bounce along the bottom. The console shows the text right after the click; the readout follows it as it counts down.",
+      "textZh": "点击时设定截止时间 `end`，也就是 10 秒之后，并用 `requestAnimationFrame` 启动循环：每次屏幕刷新调用一次 `tick`。每一帧都用 `Math.ceil((end - now) / 1000)` 算出剩余秒数。某一位数字变化时，旧数字的圆点会变成彩色粒子，先跳起，再落下，在底部弹跳。控制台显示点击之后那一刻的文字；读数会跟着倒计时变化。",
+      "action": {
+        "clickText": "Start 10-second countdown",
+        "run": "console.log('right after the click: ' + document.querySelector('output').textContent);"
+      },
+      "actionLabel": "Click Start 10-second countdown",
+      "actionLabelZh": "点击 Start 10-second countdown",
+      "watch": [
+        {
+          "label": "text under the canvas",
+          "labelZh": "画布下方的文字",
+          "value": "document.querySelector('output').textContent"
+        }
+      ],
+      "expectConsole": "right after the click: 10 seconds remaining",
+      "focus": "canvas"
+    },
+    {
+      "title": "A late frame still shows the right time",
+      "titleZh": "帧来晚了，时间照样准",
+      "text": "While the countdown runs, this button keeps the page busy for 2 seconds, as a slow script would, so no frame can run. As soon as frames run again, each one works out the time left from the deadline, so the count skips ahead instead of falling behind. The time step for the particles is capped at 0.05 seconds, so they take one small step instead of flying across the canvas. The console shows the text before the pause and a moment after it.",
+      "textZh": "倒计时进行时，这个按钮让页面忙上 2 秒，就像一段很慢的脚本那样，这期间一帧也跑不了。一旦帧恢复运行，每一帧都根据截止时间算出剩余时间，所以数字直接往前跳，而不会落在后面。粒子每帧的时间步长最多按 0.05 秒计算，所以它们只挪一小步，不会一下子飞出画布。控制台里是停顿之前和停顿刚结束后的文字。",
+      "action": {
+        "run": "const output = document.querySelector('output'); console.log('before: ' + output.textContent); const start = performance.now(); while (performance.now() - start < 2000); setTimeout(() => console.log('after: ' + output.textContent), 300);"
+      },
+      "actionLabel": "Keep the page busy for 2 seconds",
+      "actionLabelZh": "让页面忙 2 秒",
+      "highlight": "after:",
+      "expectConsole": "after: ",
+      "focus": "output"
+    },
+    {
+      "title": "Start over at any time",
+      "titleZh": "随时从头开始",
+      "text": "Click the button again: it cancels the running loop with `cancelAnimationFrame` before it starts a new one, so two loops never run at once. The particles are cleared, and the console shows that the text goes straight back to `10 seconds remaining`.",
+      "textZh": "再点一次按钮：它先用 `cancelAnimationFrame` 取消正在运行的循环，再开始新的，所以不会有两个循环同时运行。粒子被清空；控制台显示，文字立刻回到了 `10 seconds remaining`。",
+      "action": {
+        "clear": true,
+        "clickText": "Start 10-second countdown",
+        "run": "console.log('right after the click: ' + document.querySelector('output').textContent);"
+      },
+      "actionLabel": "Click Start 10-second countdown again",
+      "actionLabelZh": "再点一次 Start 10-second countdown",
+      "watch": [
+        {
+          "label": "text under the canvas",
+          "labelZh": "画布下方的文字",
+          "value": "document.querySelector('output').textContent"
+        }
+      ],
+      "expectConsole": ["right after the click: 10 seconds remaining"],
+      "focus": "canvas"
+    },
+    {
+      "title": "Switch tabs and come back",
+      "titleZh": "切到别的标签页再回来",
+      "text": "Try this by hand while the countdown runs: switch to another tab for a few seconds, then come back. Browsers pause `requestAnimationFrame` in a background tab, so nothing is drawn meanwhile. The first frame after you return reads the deadline, so the count is right at once, and the 0.05-second cap keeps the particles from jumping. The loop stops by itself when the count reaches zero and the last particle is gone.",
+      "textZh": "倒计时进行时亲手试一试：切到别的标签页，过几秒再回来。浏览器会在后台标签页里暂停 `requestAnimationFrame`，这期间什么也不画。回来后的第一帧读取截止时间，所以数字马上就是对的；0.05 秒的上限也让粒子不会突然跳走。倒计时归零、最后一个粒子消失后，循环会自己停下。",
+      "focus": "canvas"
+    }
+  ]
+}

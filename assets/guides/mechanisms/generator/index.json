@@ -1,0 +1,83 @@
+{
+  "steps": [
+    {
+      "title": "A native generator and a hand-made one",
+      "titleZh": "原生 generator 和手写的版本",
+      "text": "The page calls `next()` twice on a generator made by `native`, a real `function*`, and twice on `manual`, made with `forgeGenerator`. Both give the same results: first `{ value: 1, done: false }`, where the function stopped at `yield 1`, then `{ value: 5, done: true }`: the `3` sent in with `next(3)` came back out as `3 + 2`.",
+      "textZh": "页面对真正的 `function*` 函数 `native` 生成的 generator，和用 `forgeGenerator` 手写的 `manual`，各调用两次 `next()`。两边结果一致：先是 `{ value: 1, done: false }`，这时函数停在 `yield 1`；然后是 `{ value: 5, done: true }`：用 `next(3)` 传进去的 `3`，以 `3 + 2` 的结果又被送了出来。",
+      "watch": [
+        {
+          "label": "native",
+          "value": "JSON.stringify(JSON.parse(document.querySelector('pre').textContent).native)",
+          "expect": "[{\"value\":1,\"done\":false},{\"value\":5,\"done\":true}]"
+        },
+        {
+          "label": "manual",
+          "value": "JSON.stringify(JSON.parse(document.querySelector('pre').textContent).manual)",
+          "expect": "[{\"value\":1,\"done\":false},{\"value\":5,\"done\":true}]"
+        }
+      ],
+      "focus": "pre"
+    },
+    {
+      "title": "yield pauses, next(value) resumes",
+      "titleZh": "yield 暂停，next(value) 继续",
+      "text": "Take a fresh `native()` generator. The first `next()` runs up to `yield 1` and stops there. `next(10)` continues from the same spot: the `10` becomes the value of `yield 1`, and the function returns `10 + 2`. After that, every `next()` reports `done: true`.",
+      "textZh": "新建一个 `native()` generator。第一次 `next()` 运行到 `yield 1` 就停下。`next(10)` 从原处接着执行：`10` 成为 `yield 1` 的值，函数返回 `10 + 2`。此后每次调用 `next()` 都报告 `done: true`。",
+      "action": {
+        "clear": true,
+        "run": "const run = native(); console.log('next():', run.next()); console.log('next(10):', run.next(10)); console.log('next() again:', run.next())"
+      },
+      "actionLabel": "Run a fresh native() generator",
+      "actionLabelZh": "运行一个新的 native() generator",
+      "expectConsole": [
+        "next(): {value: 1, done: false}",
+        "next(10): {value: 12, done: true}",
+        "next() again: {value: undefined, done: true}"
+      ]
+    },
+    {
+      "title": "The bookmark, made visible",
+      "titleZh": "把书签摆到明处",
+      "text": "`forgeGenerator(step)` keeps a small `context`: `next` says where to continue, and `sent` holds the value passed to `next(value)`. Each `next(value)` stores the value and calls `step(context)`, a `switch` on `context.next`. This button builds the page's `manual` generator again, with one line added that logs the context. The last call does not reach `step`: after `stop()`, `next()` answers `done: true` by itself.",
+      "textZh": "`forgeGenerator(step)` 维护一个小小的 `context`：`next` 记录下次从哪里继续，`sent` 保存传给 `next(value)` 的值。每次调用 `next(value)`，它先存下这个值，再调用 `step(context)`，也就是一个针对 `context.next` 的 `switch`。这个按钮照着页面上的 `manual` 重建一个，只多加了一行打印 context 的代码。最后一次调用不会进入 `step`：调用过 `stop()` 之后，`next()` 自己就会回答 `done: true`。",
+      "action": {
+        "clear": true,
+        "run": "const run = forgeGenerator((c) => { console.log('step called: next =', c.next, '| sent =', c.sent); switch (c.next) { case 0: c.next = 1; return 1; case 1: c.stop(); return c.sent + 2; } }); console.log('next():', run.next()); console.log('next(10):', run.next(10)); console.log('next() again:', run.next())"
+      },
+      "actionLabel": "Rebuild manual with a log line",
+      "actionLabelZh": "重建 manual，多加一行日志",
+      "highlight": "step called",
+      "expectConsole": [
+        "step called: next = 0 | sent = undefined",
+        "next(): {value: 1, done: false}",
+        "step called: next = 1 | sent = 10",
+        "next(10): {value: 12, done: true}",
+        "next() again: {value: undefined, done: true}"
+      ]
+    },
+    {
+      "title": "Yielding undefined does not end it",
+      "titleZh": "yield 出 undefined 并不会结束",
+      "text": "`done` is a separate flag, set only by `stop()`, so a step can yield `undefined` without ending the iterator. This step function yields `undefined` first, then returns the value sent with `next(7)` and stops.",
+      "textZh": "`done` 是一个单独的标志，只有 `stop()` 会设置它，所以 step 可以 yield 出 `undefined`，迭代器也不会因此结束。这个 step 函数先 yield 出 `undefined`，再返回用 `next(7)` 传进来的值并结束。",
+      "action": {
+        "clear": true,
+        "run": "const run = forgeGenerator((c) => { switch (c.next++) { case 0: return undefined; case 1: c.stop(); return c.sent; } }); console.log('next():', run.next()); console.log('next(7):', run.next(7)); console.log('next() again:', run.next())"
+      },
+      "actionLabel": "Yield undefined, then send 7",
+      "actionLabelZh": "先 yield 出 undefined，再传入 7",
+      "expectConsole": [
+        "next(): {value: undefined, done: false}",
+        "next(7): {value: 7, done: true}",
+        "next() again: {value: undefined, done: true}"
+      ]
+    },
+    {
+      "title": "Next: what Babel makes of a generator",
+      "titleZh": "接下来：Babel 编译出的 generator",
+      "text": "`transformed.html`, in the same folder, runs the code Babel produced for a generator: the same idea at full size. `_context.next` is the bookmark, each `case` is a place where the function can continue, and `_context.sent` holds the value passed to `next()`. Its guide calls `next()` on it one step at a time.",
+      "textZh": "同一目录下的 `transformed.html` 运行的是 Babel 为一个 generator 生成的代码：同样的思路，完整的规模。`_context.next` 就是书签，每个 `case` 都是函数可以继续执行的位置，`_context.sent` 保存传给 `next()` 的值。它的说明面板会一步一步地调用 `next()`。"
+    }
+  ]
+}

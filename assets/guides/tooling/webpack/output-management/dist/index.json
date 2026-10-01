@@ -1,0 +1,49 @@
+{
+  "steps": [
+    {
+      "title": "Two entries, two script tags",
+      "titleZh": "两个入口，两个 script 标签",
+      "text": "The config replaces the single entry with two named ones, `app` and `print`, and `output.filename: '[name].js'` names each file after its entry. HtmlWebpackPlugin wrote a `<script>` tag for each; rename an entry and the HTML follows.",
+      "textZh": "配置把单个入口换成两个有名字的入口 `app` 和 `print`，`output.filename: '[name].js'` 让每个文件以入口名命名。HtmlWebpackPlugin 为每个入口各写了一个 `<script>` 标签；给入口改个名字，HTML 也会跟着变。",
+      "watch": [
+        {
+          "label": "Page scripts (not counting the guide)",
+          "labelZh": "页面脚本（不含说明面板）",
+          "value": "[...document.scripts].filter((s) => !s.src.endsWith('/guide.js')).map((s) => s.getAttribute('src')).join(', ')",
+          "expect": "app.js, print.js"
+        }
+      ],
+      "focus": "body > div"
+    },
+    {
+      "title": "Click the button",
+      "titleZh": "点击按钮",
+      "text": "The button's click handler is `printMe` from `src/print.js`. It prints one line in the console below.",
+      "textZh": "按钮的点击处理函数是 `src/print.js` 里的 `printMe`，它会在下面的控制台打印一行。",
+      "action": {
+        "clear": true,
+        "clickText": "Click me and check the console!"
+      },
+      "actionLabel": "Click the page's button",
+      "actionLabelZh": "点击页面上的按钮",
+      "focus": "body > div button",
+      "expectConsole": ["I get called from print.js!"]
+    },
+    {
+      "title": "print.js is empty",
+      "titleZh": "print.js 是空的",
+      "text": "That line came from `app.js`, not from `print.js`. `src/index.js` imports `printMe` itself, so its code is already in `app.js`. Nothing uses what the `print` entry exports, and production mode drops code that nothing uses, so `print.js` comes out empty. This step fetches both files.",
+      "textZh": "这一行来自 `app.js`，而不是 `print.js`。`src/index.js` 自己导入了 `printMe`，所以它的代码已经在 `app.js` 里了。`print` 入口导出的东西没有任何地方用到，而生产模式会去掉没人用的代码，所以 `print.js` 输出的是空文件。这一步会获取这两个文件。",
+      "action": {
+        "clear": true,
+        "run": "Promise.all(['app.js', 'print.js'].map((f) => fetch(f).then((r) => r.text()))).then(([app, print]) => { console.log('app.js contains the message:', app.includes('I get called from print.js!')); console.log('print.js size:', new Blob([print]).size, 'bytes'); })"
+      },
+      "actionLabel": "Fetch app.js and print.js",
+      "actionLabelZh": "获取 app.js 和 print.js",
+      "expectConsole": [
+        "app.js contains the message: true",
+        "print.js size: 0 bytes"
+      ]
+    }
+  ]
+}

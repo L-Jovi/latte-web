@@ -1,0 +1,59 @@
+{
+  "steps": [
+    {
+      "title": "Babel's version of a generator",
+      "titleZh": "Babel 版的生成器",
+      "text": "transform-generator.js is what Babel produced for the `genn` generator in index.js: a `switch` on `_context.next`, where each `case` is a place the function can resume. The page ran it once and printed the values sent back in.",
+      "textZh": "transform-generator.js 是 Babel 为 index.js 里的 `genn` 生成器产出的代码：一个针对 `_context.next` 的 `switch`，每个 `case` 都是函数可以继续执行的位置。页面运行了一遍，打印出送回来的几个值。",
+      "highlight": "this is"
+    },
+    {
+      "title": "The first next()",
+      "titleZh": "第一次 next()",
+      "text": "The first `next()` runs `case 0` up to `return 'saber'`, and sets `_context.next = 2`: the bookmark for the next call.",
+      "textZh": "第一次 `next()` 从 `case 0` 运行到 `return 'saber'`，并设置 `_context.next = 2`：这就是下次调用时的书签。",
+      "action": {
+        "clear": true,
+        "run": "const run = genn(); console.log('next():', JSON.stringify(run.next()))"
+      },
+      "actionLabel": "Call next() on a fresh generator",
+      "actionLabelZh": "在一个新的生成器上调用 next()",
+      "expectConsole": ["next(): {\"value\":\"saber\",\"done\":false}"]
+    },
+    {
+      "title": "Send a value in",
+      "titleZh": "传一个值进去",
+      "text": "The second call resumes at `case 2`. The value you pass, here `'hello'`, arrives as `_context.sent` and becomes `a`.",
+      "textZh": "第二次调用从 `case 2` 继续。你传入的值（这里是 `'hello'`）作为 `_context.sent` 到达，并赋给 `a`。",
+      "action": {
+        "clear": true,
+        "run": "const run = genn(); run.next(); console.log('next(\"hello\"):', JSON.stringify(run.next('hello')))"
+      },
+      "actionLabel": "Call next('hello')",
+      "actionLabelZh": "调用 next('hello')",
+      "expectConsole": [
+        "hello this is a",
+        "next(\"hello\"): {\"value\":\"archer\",\"done\":false}"
+      ]
+    },
+    {
+      "title": "Run it to the end",
+      "titleZh": "一直运行到结束",
+      "text": "`_context.abrupt('return', …)` finishes the generator. After that, every `next()` reports `done: true`.",
+      "textZh": "`_context.abrupt('return', …)` 结束生成器。之后每次调用 `next()` 都会报告 `done: true`。",
+      "action": {
+        "clear": true,
+        "run": "const run = genn(); run.next(); run.next('a'); run.next('b'); console.log('last next():', JSON.stringify(run.next('c'))); console.log('after the end:', JSON.stringify(run.next()))"
+      },
+      "actionLabel": "Run it all the way",
+      "actionLabelZh": "一直运行到结束",
+      "expectConsole": [
+        "a this is a",
+        "b this is b",
+        "c this is c",
+        "last next(): {\"value\":\"resultValue\",\"done\":true}",
+        "after the end: {\"done\":true}"
+      ]
+    }
+  ]
+}

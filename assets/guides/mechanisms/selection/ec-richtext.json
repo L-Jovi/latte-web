@@ -1,0 +1,116 @@
+{
+  "steps": [
+    {
+      "title": "An editor that highlights #tags#",
+      "titleZh": "会高亮 #tag# 的编辑区",
+      "text": "After each input, `highlight.js` rebuilds the editor's content from text nodes and wraps every `#tag#`, one to six characters between two `#` signs, in a `<mark>`. The editor starts empty.",
+      "textZh": "每次输入之后，`highlight.js` 都用文本节点重建编辑区的内容，并把每个 `#tag#`（两个 `#` 之间有 1 到 6 个字符）包进一个 `<mark>`。编辑区一开始是空的。",
+      "watch": [
+        {
+          "label": "<mark> elements",
+          "labelZh": "<mark> 元素个数",
+          "value": "document.querySelectorAll('#text mark').length",
+          "expect": "0"
+        }
+      ],
+      "focus": "#text"
+    },
+    {
+      "title": "Type A #tag# B",
+      "titleZh": "输入 A #tag# B",
+      "text": "This button types `A #tag# B` into the empty editor one character at a time: it inserts each character at the cursor and sends the `input` event that typing sends. Once the second `#` arrives, `#tag#` is wrapped in a `<mark>`, and the cursor still ends up at the end.",
+      "textZh": "这个按钮把 `A #tag# B` 一个字符一个字符地输入空的编辑区：每次在光标处插入一个字符，再发出打字时会触发的 `input` 事件。第二个 `#` 一到，`#tag#` 就被包进了 `<mark>`，而光标最后仍然停在末尾。",
+      "action": {
+        "run": "const editor = document.querySelector('#text'); const type = (text) => { for (const letter of text) { const node = document.createTextNode(letter); getSelection().getRangeAt(0).insertNode(node); getSelection().collapse(node, 1); editor.dispatchEvent(new InputEvent('input', { bubbles: true, inputType: 'insertText', data: letter })); } }; editor.focus(); editor.textContent = ''; getSelection().collapse(editor, 0); type('A #tag# B')"
+      },
+      "actionLabel": "Type A #tag# B",
+      "actionLabelZh": "输入 A #tag# B",
+      "watch": [
+        {
+          "label": "<mark> elements",
+          "labelZh": "<mark> 元素个数",
+          "value": "document.querySelectorAll('#text mark').length",
+          "expect": "1"
+        },
+        {
+          "label": "marked text",
+          "labelZh": "被标记的文字",
+          "value": "[...document.querySelectorAll('#text mark')].map((mark) => mark.textContent).join(', ')",
+          "expect": "#tag#"
+        },
+        {
+          "label": "text before the cursor",
+          "labelZh": "光标前的文字",
+          "value": "(() => { const editor = document.querySelector('#text'); const selection = getSelection(); if (!selection.rangeCount || !editor.contains(selection.anchorNode)) return '—'; const range = document.createRange(); range.selectNodeContents(editor); range.setEnd(selection.anchorNode, selection.anchorOffset); return range.toString(); })()",
+          "expect": "A #tag# B"
+        }
+      ],
+      "focus": "#text"
+    },
+    {
+      "title": "The cursor survives each rebuild",
+      "titleZh": "每次重建后光标都在原处",
+      "text": "Replacing the nodes breaks the selection, because it pointed into nodes that no longer exist. So before rebuilding, the script counts the characters before the cursor, in UTF-16 code units like Range offsets, and afterwards finds the same count in the new text nodes. Starting from `A #tag# B`, this button puts the cursor after `A ` and types `xy`. Each letter rebuilds the editor, and `y` lands after `x` only because the cursor was restored in between.",
+      "textZh": "替换节点会破坏选区，因为它指向的节点已经不存在了。所以在重建之前，脚本先数出光标前有多少个字符（和 Range 偏移量一样按 UTF-16 码元计算），重建之后再在新的文本节点里找回同样的位置。这个按钮从 `A #tag# B` 开始，把光标放在 `A ` 后面，输入 `xy`。每个字母都会让编辑区重建一次，`y` 能落在 `x` 后面，正是因为两次输入之间光标被恢复了。",
+      "action": {
+        "run": "const editor = document.querySelector('#text'); const type = (text) => { for (const letter of text) { const node = document.createTextNode(letter); getSelection().getRangeAt(0).insertNode(node); getSelection().collapse(node, 1); editor.dispatchEvent(new InputEvent('input', { bubbles: true, inputType: 'insertText', data: letter })); } }; editor.focus(); editor.textContent = 'A #tag# B'; getSelection().collapse(editor.firstChild, 2); editor.dispatchEvent(new InputEvent('input', { bubbles: true })); type('xy')"
+      },
+      "actionLabel": "Put the cursor after A and type xy",
+      "actionLabelZh": "把光标放到 A 后面，输入 xy",
+      "watch": [
+        {
+          "label": "editor text",
+          "labelZh": "编辑区文字",
+          "value": "document.querySelector('#text').textContent",
+          "expect": "A xy#tag# B"
+        },
+        {
+          "label": "text before the cursor",
+          "labelZh": "光标前的文字",
+          "value": "(() => { const editor = document.querySelector('#text'); const selection = getSelection(); if (!selection.rangeCount || !editor.contains(selection.anchorNode)) return '—'; const range = document.createRange(); range.selectNodeContents(editor); range.setEnd(selection.anchorNode, selection.anchorOffset); return range.toString(); })()",
+          "expect": "A xy"
+        },
+        {
+          "label": "<mark> elements",
+          "labelZh": "<mark> 元素个数",
+          "value": "document.querySelectorAll('#text mark').length",
+          "expect": "1"
+        }
+      ],
+      "focus": "#text"
+    },
+    {
+      "title": "Markup stays text",
+      "titleZh": "标签只是文字",
+      "text": "The new content is built from text nodes, never from an HTML string. This button types `<img>` at the end: the five characters appear as they are, and no image element is created.",
+      "textZh": "新内容完全由文本节点构成，从不经过 HTML 字符串。这个按钮在末尾输入 `<img>`：这五个字符原样显示，不会生成图片元素。",
+      "action": {
+        "run": "const editor = document.querySelector('#text'); const type = (text) => { for (const letter of text) { const node = document.createTextNode(letter); getSelection().getRangeAt(0).insertNode(node); getSelection().collapse(node, 1); editor.dispatchEvent(new InputEvent('input', { bubbles: true, inputType: 'insertText', data: letter })); } }; editor.focus(); getSelection().collapse(editor, editor.childNodes.length); type('<img>')"
+      },
+      "actionLabel": "Type <img> at the end",
+      "actionLabelZh": "在末尾输入 <img>",
+      "watch": [
+        {
+          "label": "editor text",
+          "labelZh": "编辑区文字",
+          "value": "document.querySelector('#text').textContent",
+          "expect": "A xy#tag# B<img>"
+        },
+        {
+          "label": "<img> elements",
+          "labelZh": "<img> 元素个数",
+          "value": "document.querySelectorAll('#text img').length",
+          "expect": "0"
+        }
+      ],
+      "focus": "#text"
+    },
+    {
+      "title": "Try an input method",
+      "titleZh": "用输入法试一试",
+      "text": "While an input method is still composing text, for example when you type Chinese with pinyin, the script leaves the editor alone: `compositionstart` sets a flag, and the rebuild waits for `compositionend`. No automatic test covers this, so try it with your own input method.",
+      "textZh": "输入法还在组字时（比如用拼音输入中文），脚本不会去动编辑区：`compositionstart` 设置一个标志，重建要等到 `compositionend` 才进行。这一点没有自动化测试，请用你自己的输入法试一试。",
+      "focus": "#text"
+    }
+  ]
+}

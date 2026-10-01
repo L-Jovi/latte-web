@@ -1,0 +1,56 @@
+{
+  "steps": [
+    {
+      "title": "Every file name carries a hash",
+      "titleZh": "每个文件名都带着哈希",
+      "text": "A content hash is a short fingerprint of a file's content, written into its name. The page loads three scripts: `runtime.<hash>.js` with webpack's loader, a file named by a number, which holds Lodash, and `main.<hash>.js` with your code. Same content, same name; new content, new name.",
+      "textZh": "内容哈希（content hash）是根据文件内容算出的一小段“指纹”，写在文件名里。页面加载了三个脚本：装着 webpack 加载器的 `runtime.<hash>.js`，以一个数字命名、装着 Lodash 的文件，以及装着你的代码的 `main.<hash>.js`。内容不变，名字就不变；内容一变，名字也跟着变。",
+      "watch": [
+        {
+          "label": "Page scripts (not counting the guide)",
+          "labelZh": "页面脚本（不含说明面板）",
+          "value": "[...document.scripts].filter((s) => !s.src.endsWith('/guide.js')).map((s) => s.getAttribute('src')).join(', ')"
+        },
+        {
+          "label": "Every name ends in a 20-character hash",
+          "labelZh": "每个文件名都以 20 位哈希结尾",
+          "value": "[...document.scripts].filter((s) => !s.src.endsWith('/guide.js')).every((s) => /\\.[0-9a-f]{20}\\.js$/.test(s.getAttribute('src')))",
+          "expect": "true"
+        }
+      ]
+    },
+    {
+      "title": "Click the text",
+      "titleZh": "点击这行文字",
+      "text": "`src/index.js` gives the `<div>` a click handler that calls `print` from `src/print.js` with `Hello webpack!`.",
+      "textZh": "`src/index.js` 给这个 `<div>` 加了点击处理函数，它用 `Hello webpack!` 调用 `src/print.js` 里的 `print`。",
+      "action": {
+        "clear": true,
+        "click": "body > div"
+      },
+      "actionLabel": "Click Hello webpack",
+      "actionLabelZh": "点击 Hello webpack",
+      "expectConsole": ["Hello webpack!"]
+    },
+    {
+      "title": "Change one file, get one new name",
+      "titleZh": "改一个文件，只换一个名字",
+      "text": "Edit `src/print.js`, for example change `console.log` to `console.info`, run `npm run build -w @latte/webpack` again and reload: only the `main` file gets a new name, while Lodash and the runtime keep theirs. The names are only half of caching: the server must also let browsers keep the files, with a `Cache-Control` header. `npm run dev` sends `no-store`, so nothing is cached there. This step asks the server for the header of the `main` file.",
+      "textZh": "修改 `src/print.js`，比如把 `console.log` 改成 `console.info`，再运行一次 `npm run build -w @latte/webpack` 并刷新页面：只有 `main` 文件换了名字，Lodash 和运行时的文件名都没变。文件名只解决了缓存的一半问题：服务器还得通过 `Cache-Control` 响应头允许浏览器保留这些文件。`npm run dev` 发送的是 `no-store`，所以那里什么都不会被缓存。这一步会向服务器询问 `main` 文件的这个响应头。",
+      "watch": [
+        {
+          "label": "Names in this build",
+          "labelZh": "这次构建的文件名",
+          "value": "[...document.scripts].filter((s) => !s.src.endsWith('/guide.js')).map((s) => s.getAttribute('src')).join(', ')"
+        }
+      ],
+      "action": {
+        "clear": true,
+        "run": "const main = [...document.scripts].map((s) => s.getAttribute('src') || '').find((src) => /^main\\./.test(src)); fetch(main).then((r) => console.log('Cache-Control for ' + main + ':', r.headers.get('cache-control') || '(none)'))"
+      },
+      "actionLabel": "Ask the server about caching",
+      "actionLabelZh": "向服务器询问缓存设置",
+      "expectConsole": "Cache-Control for main."
+    }
+  ]
+}

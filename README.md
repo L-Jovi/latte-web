@@ -27,7 +27,7 @@ There are also everyday utilities (debounce, throttle, deep clone), design patte
 
 ## Try it
 
-**In your browser:** open the [live demos](https://l-jovi.github.io/latte-web/). A few examples need a local server (GraphQL and the network lab); their READMEs show how to run them.
+**In your browser:** open the [live demos](https://l-jovi.github.io/latte-web/). Most demos have a guide beside them: it walks through the page step by step and shows what the page's scripts print, in English or Chinese, so you do not need the browser console. A few examples need a local server (GraphQL and the network lab); their READMEs show how to run them.
 
 **On your computer** (Node 24 LTS):
 

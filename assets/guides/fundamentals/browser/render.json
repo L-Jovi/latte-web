@@ -1,0 +1,77 @@
+{
+  "steps": [
+    {
+      "title": "Two ways to move one box",
+      "titleZh": "用两种方式移动同一个方块",
+      "text": "Both buttons move the blue box 100 px down, and on screen the two moves look the same. They change different properties, so the browser does different work. Keep an eye on `offsetTop`, the box's position in the layout.",
+      "textZh": "两个按钮都会把蓝色方块往下移 100 px，屏幕上看起来一模一样。但它们改的是不同的属性，浏览器要做的工作也不同。留意 `offsetTop`：它是方块在布局中的位置。",
+      "watch": [
+        {
+          "label": "box.offsetTop",
+          "value": "document.querySelector('#box').offsetTop",
+          "expect": "0"
+        },
+        {
+          "label": "transform",
+          "value": "getComputedStyle(document.querySelector('#box')).transform",
+          "expect": "none"
+        }
+      ],
+      "focus": "#box"
+    },
+    {
+      "title": "Move it with top",
+      "titleZh": "用 top 移动",
+      "text": "`top` is part of layout. The box gets a new layout position, so `offsetTop` becomes 100, and the browser has to lay out the page again before it can paint.",
+      "textZh": "`top` 属于布局。方块得到新的布局位置，所以 `offsetTop` 变成 100，浏览器在绘制之前必须重新布局。",
+      "action": {
+        "click": "#layout"
+      },
+      "actionLabel": "Click Move with top",
+      "actionLabelZh": "点击 Move with top",
+      "watch": [
+        {
+          "label": "box.offsetTop",
+          "value": "document.querySelector('#box').offsetTop",
+          "expect": "100"
+        },
+        {
+          "label": "transform",
+          "value": "getComputedStyle(document.querySelector('#box')).transform",
+          "expect": "none"
+        }
+      ],
+      "focus": "#box"
+    },
+    {
+      "title": "Move it with transform",
+      "titleZh": "用 transform 移动",
+      "text": "This button first puts `top` back to 0, then moves the box with `transform`. A transform is applied after layout: the box is drawn 100 px lower, but its layout position does not change, so `offsetTop` is back to 0.",
+      "textZh": "这个按钮先把 `top` 改回 0，再用 `transform` 移动方块。transform 在布局之后才生效：方块画在 100 px 以下，但布局位置没有变，所以 `offsetTop` 又回到 0。",
+      "action": {
+        "click": "#transform"
+      },
+      "actionLabel": "Click Move with transform",
+      "actionLabelZh": "点击 Move with transform",
+      "watch": [
+        {
+          "label": "box.offsetTop",
+          "value": "document.querySelector('#box').offsetTop",
+          "expect": "0"
+        },
+        {
+          "label": "transform",
+          "value": "getComputedStyle(document.querySelector('#box')).transform",
+          "expect": "matrix(1, 0, 0, 1, 0, 100)"
+        }
+      ],
+      "focus": "#box"
+    },
+    {
+      "title": "See the difference in DevTools",
+      "titleZh": "在 DevTools 里看差别",
+      "text": "Open the **Performance** panel, start recording, click each button a few times, then stop. Clicks on **Move with top** include a **Layout** step; clicks on **Move with transform** should not. This page measures nothing itself: on a page this small, both are fast.",
+      "textZh": "打开 **Performance** 面板，开始录制，把两个按钮各点几次，再停止。点 **Move with top** 的记录里有一步 **Layout**；点 **Move with transform** 的应该没有。这个页面本身什么也不测量：页面这么小，两种方式都很快。"
+    }
+  ]
+}

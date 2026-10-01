@@ -69,6 +69,8 @@ Session.vim
 
 # Release
 dist/
+# A built page's guide mirrors the page's path, dist/ included (see CONTRIBUTING.md).
+!assets/guides/**/dist/
 
 # Verification and generated outputs
 output/

@@ -1,0 +1,52 @@
+{
+  "steps": [
+    {
+      "title": "join without an import",
+      "titleZh": "没有 import 的 join",
+      "text": "A shim adapts old code to a setup it was not written for. `src/index.js` calls `join(['Hello', 'webpack'], ' ')` but never imports or defines `join`; without webpack's `ProvidePlugin`, that line would fail with `join is not defined`. The page shows **Hello webpack**, so `join` was there when the code ran.",
+      "textZh": "shim（垫片）的作用，是让旧代码在它原本没有考虑过的环境里也能运行。`src/index.js` 调用了 `join(['Hello', 'webpack'], ' ')`，却既没有导入它，也没有定义它；如果没有 webpack 的 `ProvidePlugin`，这一行会报错 `join is not defined`。页面上显示了 **Hello webpack**，说明代码运行时 `join` 已经在了。",
+      "watch": [
+        {
+          "label": "Text of the <div>",
+          "labelZh": "<div> 里的文字",
+          "value": "document.querySelector('body > div').textContent",
+          "expect": "Hello webpack"
+        }
+      ],
+      "focus": "body > div"
+    },
+    {
+      "title": "The build supplied join, not a global",
+      "titleZh": "join 由构建补上，而不是全局变量",
+      "text": "Whenever a module uses `join` without declaring it, `ProvidePlugin` imports Lodash's `join` into that module at build time, so `join` does not exist in the page itself. Lodash is a different story: webpack supports AMD, an older module format, so Lodash's check for an AMD loader passes, and in that branch Lodash also puts itself on the global object as `_`.",
+      "textZh": "只要某个模块用到了没有声明过的 `join`，`ProvidePlugin` 就会在构建时替这个模块导入 Lodash 的 `join`，所以页面本身并没有 `join` 这个变量。Lodash 则是另一回事：webpack 支持 AMD（一种更早的模块格式），所以 Lodash 对 AMD 加载器的检测会通过，而在这个分支里，Lodash 还会以 `_` 的名字把自己放到全局对象上。",
+      "watch": [
+        {
+          "label": "typeof join in the page",
+          "labelZh": "页面里的 typeof join",
+          "value": "typeof join",
+          "expect": "undefined"
+        },
+        {
+          "label": "typeof _ in the page",
+          "labelZh": "页面里的 typeof _",
+          "value": "typeof _",
+          "expect": "function"
+        }
+      ]
+    },
+    {
+      "title": "What bundle.js holds",
+      "titleZh": "bundle.js 里有什么",
+      "text": "`bundle.js` holds all of Lodash: the `lodash` package is a single CommonJS file, which webpack cannot trim. `src/globals.js` is not in it at all, because nothing imports that file; it is the official guide's example of a file that creates globals without exporting them. This step searches `bundle.js` for `blah.txt`, a string from `src/globals.js`, and prints the size.",
+      "textZh": "`bundle.js` 里是完整的 Lodash：`lodash` 包是单个 CommonJS 文件，webpack 没法把它裁小。`src/globals.js` 则完全不在里面，因为没有任何文件导入它；它是官方指南里的例子，一个只创建全局变量却不导出它们的文件。这一步会在 `bundle.js` 里查找 `src/globals.js` 中的字符串 `blah.txt`，并打印文件大小。",
+      "action": {
+        "clear": true,
+        "run": "fetch('bundle.js').then((r) => r.text()).then((t) => { console.log('bundle.js mentions blah.txt:', t.includes('blah.txt')); console.log('bundle.js size:', (new Blob([t]).size / 1000).toFixed(1), 'KB'); })"
+      },
+      "actionLabel": "Search bundle.js",
+      "actionLabelZh": "在 bundle.js 里查找",
+      "expectConsole": ["bundle.js mentions blah.txt: false"]
+    }
+  ]
+}

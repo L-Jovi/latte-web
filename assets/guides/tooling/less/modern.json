@@ -1,0 +1,97 @@
+{
+  "steps": [
+    {
+      "title": "A card coloured by a CSS variable",
+      "titleZh": "用 CSS 变量上色的卡片",
+      "text": "The card's background is `var(--accent)`, and the page's stylesheet sets `--accent: #547a91` on `:root`: steel blue. `--accent` is a native CSS custom property. Unlike a Less variable, it stays in the CSS that the browser keeps, so it can still change after the page has loaded.",
+      "textZh": "卡片的背景是 `var(--accent)`，页面的样式表在 `:root` 上设置了 `--accent: #547a91`，也就是钢蓝色。`--accent` 是原生 CSS 的自定义属性（custom property）。和 Less 变量不同，它会留在浏览器拿到的 CSS 里，所以页面加载之后仍然可以改。",
+      "watch": [
+        {
+          "label": "--accent",
+          "value": "getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()",
+          "expect": "#547a91"
+        },
+        {
+          "label": "card background",
+          "labelZh": "卡片背景",
+          "value": "getComputedStyle(document.querySelector('.card')).backgroundColor",
+          "expect": "rgb(84, 122, 145)"
+        }
+      ],
+      "focus": ".card"
+    },
+    {
+      "title": "Change the theme while the page runs",
+      "titleZh": "在页面运行时换主题",
+      "text": "**Change theme** runs one line: `document.documentElement.style.setProperty('--accent', '#98542d')`. That inline style on `<html>` wins over the `:root` rule in the stylesheet, and every rule that reads `var(--accent)` picks up the new value at once. The card turns rust brown, with no new build.",
+      "textZh": "**Change theme** 只运行一行：`document.documentElement.style.setProperty('--accent', '#98542d')`。`<html>` 上的这条内联样式压过了样式表里的 `:root` 规则，所有读取 `var(--accent)` 的规则都立刻用上新值。卡片变成铁锈般的棕色，不需要重新构建。",
+      "action": {
+        "click": ".card + button"
+      },
+      "actionLabel": "Click Change theme",
+      "actionLabelZh": "点击 Change theme",
+      "watch": [
+        {
+          "label": "--accent",
+          "value": "getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()",
+          "expect": "#98542d"
+        },
+        {
+          "label": "card background",
+          "labelZh": "卡片背景",
+          "value": "getComputedStyle(document.querySelector('.card')).backgroundColor",
+          "expect": "rgb(152, 84, 45)"
+        }
+      ],
+      "focus": ".card"
+    },
+    {
+      "title": "The stylesheet still says steel blue",
+      "titleZh": "样式表里仍然是钢蓝色",
+      "text": "The click did not touch the `<style>` element: its `:root` rule still sets `#547a91`. The new value lives in the `style` attribute of `<html>`. Remove it, and the card falls back to the stylesheet's colour.",
+      "textZh": "刚才的点击没有改动 `<style>` 元素：它的 `:root` 规则仍然是 `#547a91`。新值写在 `<html>` 的 `style` 属性里。把它去掉，卡片就会回到样式表里的颜色。",
+      "action": {
+        "run": "document.documentElement.style.removeProperty('--accent')"
+      },
+      "actionLabel": "Remove the inline --accent",
+      "actionLabelZh": "去掉内联的 --accent",
+      "watch": [
+        {
+          "label": "--accent in the style attribute",
+          "labelZh": "style 属性里的 --accent",
+          "value": "document.documentElement.style.getPropertyValue('--accent') || '—'",
+          "expect": "—"
+        },
+        {
+          "label": "--accent in the <style> rule",
+          "labelZh": "<style> 规则里的 --accent",
+          "value": "document.querySelector('style').sheet.cssRules[0].style.getPropertyValue('--accent').trim()",
+          "expect": "#547a91"
+        },
+        {
+          "label": "card background",
+          "labelZh": "卡片背景",
+          "value": "getComputedStyle(document.querySelector('.card')).backgroundColor",
+          "expect": "rgb(84, 122, 145)"
+        }
+      ],
+      "focus": ".card"
+    },
+    {
+      "title": "Less variables are gone after the build",
+      "titleZh": "构建之后，Less 变量就不见了",
+      "text": "A Less variable exists only while the file is compiled. This button fetches `mix/mix.less` and the CSS that the build wrote from it, `dist/mix/mix.css`, and shows what `border-radius` is set to in each: `@var_radius` in the source, only the values `5px` and `20px` in the CSS. If `dist/` is missing, run `npm run build -w @latte/less` first.",
+      "textZh": "Less 变量只在编译时存在。这个按钮取来 `mix/mix.less` 和构建从它生成的 `dist/mix/mix.css`，显示两者各自把 `border-radius` 设成了什么：源文件里是 `@var_radius`，CSS 里只剩下 `5px` 和 `20px` 这两个值。如果还没有 `dist/`，先运行 `npm run build -w @latte/less`。",
+      "action": {
+        "clear": true,
+        "run": "(async () => { for (const file of ['mix/mix.less', 'dist/mix/mix.css']) { const response = await fetch(file); if (!response.ok) { console.log(file + ': not found. Run npm run build -w @latte/less, then try again.'); continue; } const text = await response.text(); console.log(file + ': border-radius: ' + [...text.matchAll(/^\\s*border-radius:\\s*([^;]+);/gm)].map((match) => match[1]).join(' and ')); } })().catch((error) => console.log('Could not load the files:', error))"
+      },
+      "actionLabel": "Compare mix.less with its CSS",
+      "actionLabelZh": "对比 mix.less 和它编译出的 CSS",
+      "expectConsole": [
+        "mix/mix.less: border-radius: @var_radius",
+        "dist/mix/mix.css: border-radius: 5px and 20px"
+      ]
+    }
+  ]
+}

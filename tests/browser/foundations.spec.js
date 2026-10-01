@@ -19,6 +19,6 @@ test('layout and transform move the same box while changing different properties
 test('a burst of clicks produces one debounced call',async({page})=>{
   const messages=[];page.on('console',message=>messages.push(message.text()));
   await page.goto('/mechanisms/utilities/debounce/index.html');
-  await page.getByRole('button').click({clickCount:3});
+  await page.getByRole('button',{name:'Test Debounce',exact:true}).click({clickCount:3});
   await expect.poll(()=>messages.filter(text=>text==='1 2').length).toBe(1);
 });

@@ -1,0 +1,81 @@
+{
+  "steps": [
+    {
+      "title": "Three functions, right to left",
+      "titleZh": "三个函数，从右往左",
+      "text": "The page shows `108`, the result of `forgeCompose((x) => x - 2, (x) => x + 10, (x) => x * 10)(10)`. The rightmost function runs first: 10 × 10 = 100, then 100 + 10 = 110, then 110 − 2 = 108, the same order as the nested call `f(g(h(x)))`.",
+      "textZh": "页面显示 `108`，它是 `forgeCompose((x) => x - 2, (x) => x + 10, (x) => x * 10)(10)` 的结果。最右边的函数最先执行：10 × 10 = 100，接着 100 + 10 = 110，最后 110 − 2 = 108，顺序和嵌套调用 `f(g(h(x)))` 一样。",
+      "watch": [
+        {
+          "label": "the page shows",
+          "labelZh": "页面显示",
+          "value": "document.querySelector('output').textContent",
+          "expect": "108"
+        }
+      ],
+      "focus": "output"
+    },
+    {
+      "title": "Watch each call",
+      "titleZh": "看清每一次调用",
+      "text": "The page's script is an ES module, so `forgeCompose` is not a global. This button loads `index.js` with `import()` and composes the same three functions, each wrapped to log the value it gets and the value it returns.",
+      "textZh": "页面的脚本是 ES 模块，所以 `forgeCompose` 不是全局变量。这个按钮用 `import()` 加载 `index.js`，把同样的三个函数组合起来；每个函数外面都包了一层，打印它收到的值和返回的值。",
+      "action": {
+        "clear": true,
+        "run": "import(new URL('index.js', document.baseURI).href).then(({ forgeCompose }) => { const traced = (name, fn) => (x) => { const result = fn(x); console.log(name + ': ' + x + ' → ' + result); return result; }; console.log('result:', forgeCompose(traced('x - 2', (x) => x - 2), traced('x + 10', (x) => x + 10), traced('x * 10', (x) => x * 10))(10)); })"
+      },
+      "actionLabel": "Trace the three calls",
+      "actionLabelZh": "跟踪这三次调用",
+      "expectConsole": [
+        "x * 10: 10 → 100",
+        "x + 10: 100 → 110",
+        "x - 2: 110 → 108",
+        "result: 108"
+      ]
+    },
+    {
+      "title": "Only the rightmost function gets every argument",
+      "titleZh": "只有最右边的函数拿到全部参数",
+      "text": "Each wrapper that `reduce` builds is `(...args) => outer(inner(...args))`. So the rightmost function receives all the arguments, and every other function receives one value: the result of the function to its right. Here `add` gets `3` and `4`, and `double` gets `7`.",
+      "textZh": "`reduce` 每一步造出的包装函数都是 `(...args) => outer(inner(...args))`。所以最右边的函数接收全部参数，其余每个函数只接收一个值，也就是它右边那个函数的结果。这里 `add` 收到 `3` 和 `4`，`double` 收到 `7`。",
+      "action": {
+        "clear": true,
+        "run": "import(new URL('index.js', document.baseURI).href).then(({ forgeCompose }) => { const add = (a, b) => { console.log('add got', a, b); return a + b; }; const double = (x) => { console.log('double got', x); return x * 2; }; console.log('result:', forgeCompose(double, add)(3, 4)); })"
+      },
+      "actionLabel": "Call forgeCompose(double, add)(3, 4)",
+      "actionLabelZh": "调用 forgeCompose(double, add)(3, 4)",
+      "highlight": "add got 3 4",
+      "expectConsole": ["add got 3 4", "double got 7", "result: 14"]
+    },
+    {
+      "title": "No function, or only one",
+      "titleZh": "一个函数都不传，或者只传一个",
+      "text": "With no functions, `forgeCompose()` returns the identity function, which gives back its argument unchanged. With one function, `reduce` has nothing to fold, so you get that same function back.",
+      "textZh": "一个函数都不传时，`forgeCompose()` 返回“恒等函数”，原样返回传入的参数。只传一个函数时，`reduce` 没有东西可合并，拿回来的就是这个函数本身。",
+      "action": {
+        "clear": true,
+        "run": "import(new URL('index.js', document.baseURI).href).then(({ forgeCompose }) => { const double = (x) => x * 2; console.log('forgeCompose()(7):', forgeCompose()(7)); console.log('forgeCompose(double) === double:', forgeCompose(double) === double); })"
+      },
+      "actionLabel": "Compose zero functions, then one",
+      "actionLabelZh": "先组合零个函数，再组合一个",
+      "expectConsole": [
+        "forgeCompose()(7): 7",
+        "forgeCompose(double) === double: true"
+      ]
+    },
+    {
+      "title": "Order matters",
+      "titleZh": "顺序很重要",
+      "text": "Put the same three functions in the opposite order and the answer changes: 10 − 2 = 8 runs first, then 8 + 10 = 18, then 18 × 10 = 180. This button writes the new result into the page.",
+      "textZh": "把同样的三个函数倒过来排，结果就变了：先算 10 − 2 = 8，再算 8 + 10 = 18，最后 18 × 10 = 180。这个按钮会把新结果写进页面。",
+      "action": {
+        "clear": true,
+        "run": "import(new URL('index.js', document.baseURI).href).then(({ forgeCompose }) => { const result = forgeCompose((x) => x * 10, (x) => x + 10, (x) => x - 2)(10); document.querySelector('output').textContent = result; console.log('opposite order:', result); })"
+      },
+      "actionLabel": "Reverse the order",
+      "actionLabelZh": "把顺序倒过来",
+      "focus": "output",
+      "expectConsole": ["opposite order: 180"]
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "steps": [
+    {
+      "title": "At most one run per 500 ms",
+      "titleZh": "每 500 毫秒最多执行一次",
+      "text": "The button's click handler is wrapped in `forgeThrottle(…, 500)`. The first click counts at once. Any other click in the next 500 ms is ignored, not saved for later.",
+      "textZh": "按钮的点击处理函数被包在 `forgeThrottle(…, 500)` 里。第一次点击立即计数；接下来 500 毫秒内的其他点击都会被忽略，而不是留到以后再执行。",
+      "watch": [
+        {
+          "label": "the page shows",
+          "labelZh": "页面显示",
+          "value": "document.querySelector('output').textContent",
+          "expect": "0"
+        }
+      ],
+      "focus": "h1 + button, output"
+    },
+    {
+      "title": "Five clicks at once",
+      "titleZh": "一口气点五次",
+      "text": "This button clicks **Click repeatedly** five times in a row, far less than 500 ms apart. Only the first click gets through, so the count goes up by one.",
+      "textZh": "这个按钮连着点五次 **Click repeatedly**，每两次之间远不到 500 毫秒。只有第一次点击能通过，所以计数只加一。",
+      "action": {
+        "run": "const button = document.querySelector('h1 + button'); for (let i = 0; i < 5; i++) button.click()"
+      },
+      "actionLabel": "Click the button five times",
+      "actionLabelZh": "连点五次按钮",
+      "watch": [
+        {
+          "label": "the page shows",
+          "labelZh": "页面显示",
+          "value": "document.querySelector('output').textContent",
+          "expect": "1"
+        }
+      ],
+      "focus": "h1 + button, output"
+    },
+    {
+      "title": "Ignored calls are not queued",
+      "titleZh": "被忽略的调用不会排队",
+      "text": "This button makes a new throttled function with the page's own `forgeThrottle` and calls it six times. Calls 1 to 5 come at once: only call 1 runs, and the ignored calls return `undefined`. Call 6 comes 600 ms later, after the interval, and runs. Calls 2 to 5 never run later.",
+      "textZh": "这个按钮用页面自己的 `forgeThrottle` 新建一个节流函数，调用六次。第 1 到第 5 次同时到来：只有第 1 次执行，被忽略的调用返回 `undefined`。第 6 次在 600 毫秒后到来，这时间隔已过，于是执行。第 2 到第 5 次之后也不会补上。",
+      "action": {
+        "clear": true,
+        "run": "const run = forgeThrottle(() => 'ran', 500); const call = (n) => console.log('call ' + n + ': ' + (run() ?? 'ignored')); for (let n = 1; n <= 5; n++) call(n); setTimeout(() => call(6), 600)"
+      },
+      "actionLabel": "Call a throttled function six times",
+      "actionLabelZh": "调用节流函数六次",
+      "highlight": ": ran",
+      "expectConsole": [
+        "call 1: ran",
+        "call 2: ignored",
+        "call 3: ignored",
+        "call 4: ignored",
+        "call 5: ignored",
+        "call 6: ran"
+      ]
+    },
+    {
+      "title": "It keeps this and the arguments",
+      "titleZh": "保留 this 和参数",
+      "text": "The call that gets through runs with the same `this` and arguments, so a throttled function can be a method. Here `player.move` is throttled: the first call moves the player to 10; the second comes at once, is ignored and returns `undefined`.",
+      "textZh": "被放行的那次调用会保留原来的 `this` 和参数，所以节流函数可以当作对象的方法。这里 `player.move` 被节流了：第一次调用把玩家移到 10；第二次紧跟着到来，被忽略，返回 `undefined`。",
+      "action": {
+        "clear": true,
+        "run": "const player = { name: 'player', move: forgeThrottle(function (x) { return this.name + ' moved to ' + x; }, 500) }; console.log(player.move(10)); console.log(player.move(20))"
+      },
+      "actionLabel": "Call player.move(10), then player.move(20)",
+      "actionLabelZh": "先调用 player.move(10)，再调用 player.move(20)",
+      "expectConsole": ["player moved to 10", "undefined"]
+    },
+    {
+      "title": "Click as fast as you can",
+      "titleZh": "尽可能快地点",
+      "text": "Click **Click repeatedly** on the page as fast as you can: the count goes up at most twice a second, however often you click. When you stop, nothing more happens: the ignored clicks are not run at the end.",
+      "textZh": "在页面上尽可能快地点 **Click repeatedly**：不管点多快，计数每秒最多加两次。你一停下，就不会再有任何变化：被忽略的点击不会在末尾补上。",
+      "focus": "h1 + button, output"
+    }
+  ]
+}

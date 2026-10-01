@@ -1,0 +1,124 @@
+{
+  "steps": [
+    {
+      "title": "A query in a box",
+      "titleZh": "输入框里的一条查询",
+      "text": "GraphQL is a query language for APIs: the client sends one request that names exactly the fields it wants, and the server answers with JSON in the same shape. `client.js` sends the text of the box as `{ \"query\": … }` in a `POST` request to port 4001, another origin, which answers with CORS headers. Start that server first with `npm run dev -w @latte/graphql-http`.",
+      "textZh": "GraphQL 是一种给 API 用的查询语言：客户端发一个请求，准确列出它想要的字段，服务端就按同样的结构返回 JSON。`client.js` 用 `POST` 请求把输入框里的文字作为 `{ \"query\": … }` 发到 4001 端口；那是另一个源，它的回答带有 CORS 响应头。请先运行 `npm run dev -w @latte/graphql-http` 启动这个服务。",
+      "watch": [
+        {
+          "label": "answer box",
+          "labelZh": "回答框",
+          "value": "document.querySelector('pre').textContent",
+          "expect": "Ready"
+        },
+        {
+          "label": "query",
+          "labelZh": "查询",
+          "value": "document.querySelector('#query').value",
+          "expect": "{ hello { foo bar } getDie(numSides: 6) { roll(numRolls: 3) } }"
+        }
+      ],
+      "focus": "#query"
+    },
+    {
+      "title": "The answer has the query's shape",
+      "titleZh": "回答和查询的结构一样",
+      "text": "Click **Run query**. The answer has the shape of the query: `hello` with `foo` and `bar`, then `getDie` with three rolls of a six-sided die. In `server.js`, `buildSchema` lists the types, and `rootValue` has one function per top-level query, a resolver, which produces the data. The console shows each answer on one line.",
+      "textZh": "点击 **Run query**。回答的结构和查询一样：`hello` 里有 `foo` 和 `bar`，然后是 `getDie`，里面是一个六面骰子掷三次的结果。在 `server.js` 里，`buildSchema` 列出各种类型，`rootValue` 为每个顶层查询提供一个函数，也就是 resolver，负责产出数据。控制台把每个回答显示成一行。",
+      "action": {
+        "clear": true,
+        "clickText": "Run query",
+        "run": "const answer = document.querySelector('pre'); answer.guideLog?.disconnect(); answer.guideLog = new MutationObserver(() => { let json; try { json = JSON.parse(answer.textContent); } catch { console.log('text: ' + answer.textContent); return; } console.log(json.errors ? 'errors: ' + json.errors.map((error) => error.message).join(' | ') : 'data: ' + JSON.stringify(json.data)); }); answer.guideLog.observe(answer, { childList: true });"
+      },
+      "actionLabel": "Click Run query",
+      "actionLabelZh": "点击 Run query",
+      "expectConsole": "data: {\"hello\":{\"foo\":\"Hello world!\",\"bar\":[\"bar\",\"baz\"]},\"getDie\":{\"roll\":[",
+      "focus": "pre"
+    },
+    {
+      "title": "Ask for exactly what you need",
+      "titleZh": "要什么就问什么",
+      "text": "This button asks for two other fields: `quoteOfTheDay`, and `rollDice` with three dice of one side each, so every roll is 1. Only those two fields come back.",
+      "textZh": "这个按钮换成另外两个字段：`quoteOfTheDay`，以及 `rollDice`，掷三个只有一个面的骰子，所以每次都是 1。回答里只有这两个字段。",
+      "action": {
+        "clear": true,
+        "fill": {
+          "target": "#query",
+          "value": "{ quoteOfTheDay rollDice(numDice: 3, numSides: 1) }"
+        },
+        "clickText": "Run query",
+        "run": "const answer = document.querySelector('pre'); answer.guideLog?.disconnect(); answer.guideLog = new MutationObserver(() => { let json; try { json = JSON.parse(answer.textContent); } catch { console.log('text: ' + answer.textContent); return; } console.log(json.errors ? 'errors: ' + json.errors.map((error) => error.message).join(' | ') : 'data: ' + JSON.stringify(json.data)); }); answer.guideLog.observe(answer, { childList: true });"
+      },
+      "actionLabel": "Run a query for two other fields",
+      "actionLabelZh": "查询另外两个字段",
+      "expectConsole": [
+        "data: {\"quoteOfTheDay\":\"Keep the mechanism visible\",\"rollDice\":[1,1,1]}"
+      ],
+      "focus": "#query"
+    },
+    {
+      "title": "Bad values come back as errors",
+      "titleZh": "不合法的值以错误返回",
+      "text": "The resolvers check their inputs: a die has 1 to 1000 sides, and you can roll 1 to 100 dice at once. Asking for 101 dice returns a GraphQL error instead of data.",
+      "textZh": "resolver 会检查输入：骰子有 1 到 1000 个面，一次可以掷 1 到 100 个。要掷 101 个骰子，返回的就是 GraphQL 错误，而不是数据。",
+      "action": {
+        "clear": true,
+        "fill": {
+          "target": "#query",
+          "value": "{ rollDice(numDice: 101) }"
+        },
+        "clickText": "Run query",
+        "run": "const answer = document.querySelector('pre'); answer.guideLog?.disconnect(); answer.guideLog = new MutationObserver(() => { let json; try { json = JSON.parse(answer.textContent); } catch { console.log('text: ' + answer.textContent); return; } console.log(json.errors ? 'errors: ' + json.errors.map((error) => error.message).join(' | ') : 'data: ' + JSON.stringify(json.data)); }); answer.guideLog.observe(answer, { childList: true });"
+      },
+      "actionLabel": "Ask for 101 dice",
+      "actionLabelZh": "要掷 101 个骰子",
+      "expectConsole": ["errors: Expected an integer from 1 to 100"],
+      "focus": "#query"
+    },
+    {
+      "title": "Unknown fields never run",
+      "titleZh": "未知字段根本不会执行",
+      "text": "Before anything runs, the server checks the query against the schema. The type `Hello` has no field `baz`, so no resolver is called, and the error suggests `bar`.",
+      "textZh": "在执行任何代码之前，服务端会先按 schema 检查查询。`Hello` 类型没有 `baz` 字段，所以不会调用任何 resolver，错误信息还会提示 `bar`。",
+      "action": {
+        "clear": true,
+        "fill": {
+          "target": "#query",
+          "value": "{ hello { baz } }"
+        },
+        "clickText": "Run query",
+        "run": "const answer = document.querySelector('pre'); answer.guideLog?.disconnect(); answer.guideLog = new MutationObserver(() => { let json; try { json = JSON.parse(answer.textContent); } catch { console.log('text: ' + answer.textContent); return; } console.log(json.errors ? 'errors: ' + json.errors.map((error) => error.message).join(' | ') : 'data: ' + JSON.stringify(json.data)); }); answer.guideLog.observe(answer, { childList: true });"
+      },
+      "actionLabel": "Ask for a field that does not exist",
+      "actionLabelZh": "查询一个不存在的字段",
+      "expectConsole": [
+        "errors: Cannot query field \"baz\" on type \"Hello\". Did you mean \"bar\"?"
+      ],
+      "focus": "#query"
+    },
+    {
+      "title": "Write your own query",
+      "titleZh": "自己写一条查询",
+      "text": "Edit the box and click **Run query**: try `{ quoteOfTheDay }` or `{ getDie(numSides: 20) { rollOnce } }`. The README also shows a mutation, an operation that changes data, with `createMessage`; restarting the server clears every message. This button puts the original query back.",
+      "textZh": "修改输入框里的内容，再点击 **Run query**：试试 `{ quoteOfTheDay }` 或 `{ getDie(numSides: 20) { rollOnce } }`。README 里还演示了 mutation（变更，也就是会修改数据的操作）`createMessage`；重启服务会清空所有留言。这个按钮把原来的查询放回去。",
+      "action": {
+        "fill": {
+          "target": "#query",
+          "value": "{ hello { foo bar } getDie(numSides: 6) { roll(numRolls: 3) } }"
+        }
+      },
+      "actionLabel": "Put the original query back",
+      "actionLabelZh": "恢复原来的查询",
+      "watch": [
+        {
+          "label": "query",
+          "labelZh": "查询",
+          "value": "document.querySelector('#query').value",
+          "expect": "{ hello { foo bar } getDie(numSides: 6) { roll(numRolls: 3) } }"
+        }
+      ],
+      "focus": "#query"
+    }
+  ]
+}

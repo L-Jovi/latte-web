@@ -1,0 +1,39 @@
+{
+  "steps": [
+    {
+      "title": "A burst becomes one call",
+      "titleZh": "一连串调用只执行一次",
+      "text": "Every call cancels the timer of the previous one and starts a new one, so the function runs only once, 500 ms after the last call. This button calls it five times in a row.",
+      "textZh": "每次调用都会取消上一次的定时器并重新计时，所以函数只在最后一次调用 500 ms 之后运行一次。这个按钮会连续调用它五次。",
+      "action": {
+        "clear": true,
+        "run": "for (let i = 0; i < 5; i++) onClick()"
+      },
+      "actionLabel": "Call onClick() five times",
+      "actionLabelZh": "连续调用 onClick() 五次",
+      "focus": "button[onclick]",
+      "expectConsole": ["1 2"]
+    },
+    {
+      "title": "Cancel a waiting call",
+      "titleZh": "取消一次等待中的调用",
+      "text": "`debounced.cancel()` drops a call that is still waiting, so `1 2` never prints.",
+      "textZh": "`debounced.cancel()` 会丢掉仍在等待的调用，所以 `1 2` 永远不会打印。",
+      "action": {
+        "clear": true,
+        "run": "onClick(); debounceFoo.cancel(); console.log('cancelled')"
+      },
+      "actionLabel": "Call, then cancel",
+      "actionLabelZh": "先调用，再取消",
+      "expectConsole": ["cancelled"],
+      "absentConsole": "1 2"
+    },
+    {
+      "title": "Try the real button",
+      "titleZh": "试试页面上的真按钮",
+      "text": "Click **Test Debounce** on the page several times quickly: nothing prints while you keep clicking, then `1 2` appears once.",
+      "textZh": "快速连点页面上的 **Test Debounce** 几次：一直点的时候什么也不打印，停下来之后 `1 2` 出现一次。",
+      "focus": "button[onclick]"
+    }
+  ]
+}

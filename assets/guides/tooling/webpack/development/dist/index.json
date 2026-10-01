@@ -1,0 +1,56 @@
+{
+  "steps": [
+    {
+      "title": "A development build",
+      "titleZh": "开发模式的构建",
+      "text": "`mode: 'development'` turns off minifying, so `bundle.js` stays readable, and `devtool: 'inline-source-map'` puts a source map inside it. A source map links each line of the bundle back to the line of your own code that produced it. The page still loads a single script.",
+      "textZh": "`mode: 'development'` 关掉了压缩，所以 `bundle.js` 保持可读；`devtool: 'inline-source-map'` 把一份 source map 放进了它里面。source map 把打包产物里的每一行，对应回你自己代码里生成它的那一行。页面加载的仍然只有一个脚本。",
+      "watch": [
+        {
+          "label": "Page scripts (not counting the guide)",
+          "labelZh": "页面脚本（不含说明面板）",
+          "value": "[...document.scripts].filter((s) => !s.src.endsWith('/guide.js')).map((s) => s.getAttribute('src')).join(', ')",
+          "expect": "bundle.js"
+        }
+      ],
+      "focus": "body > div"
+    },
+    {
+      "title": "Click the button",
+      "titleZh": "点击按钮",
+      "text": "`printMe` from `src/print.js` prints `I get called from print.js.` in the console below, then opens an alert that says `trigger from button :)`. Close the alert to go on.",
+      "textZh": "`src/print.js` 里的 `printMe` 先在下面的控制台打印 `I get called from print.js.`，再弹出提示框 `trigger from button :)`。关掉提示框再继续。",
+      "action": {
+        "clear": true,
+        "clickText": "Click me and check the console!"
+      },
+      "actionLabel": "Click the page's button",
+      "actionLabelZh": "点击页面上的按钮",
+      "focus": "body > div button",
+      "expectConsole": ["I get called from print.js."]
+    },
+    {
+      "title": "The map sits at the end of bundle.js",
+      "titleZh": "source map 就在 bundle.js 末尾",
+      "text": "The last line of `bundle.js` is a comment that holds the whole map as a `data:` URL. This step fetches the file, decodes the map and lists the files of yours that it names. The developer tools read the same comment, which is why they can show `src/index.js` and `src/print.js` although the page loaded only `bundle.js`.",
+      "textZh": "`bundle.js` 的最后一行是一条注释，以 `data:` URL 的形式装着整份 source map。这一步会获取这个文件，解码 source map，列出其中属于你的文件。开发者工具读的也是这行注释，所以页面明明只加载了 `bundle.js`，它们却能显示 `src/index.js` 和 `src/print.js`。",
+      "action": {
+        "clear": true,
+        "run": "fetch('bundle.js').then((r) => r.text()).then((t) => { const last = t.trim().split('\\n').pop(); console.log('last line starts with:', last.split(';')[0]); const map = JSON.parse(atob(last.split('base64,')[1])); console.log('your files in the map:', map.sources.filter((s) => s.startsWith('webpack:///./src/')).sort().join(', ')); console.log('bundle.js size:', (new Blob([t]).size / 1000000).toFixed(2), 'MB'); })"
+      },
+      "actionLabel": "Decode the map in bundle.js",
+      "actionLabelZh": "解码 bundle.js 里的 source map",
+      "expectConsole": [
+        "last line starts with: //# sourceMappingURL=data:application/json",
+        "your files in the map: webpack:///./src/index.js, webpack:///./src/print.js"
+      ]
+    },
+    {
+      "title": "Read your own files in DevTools",
+      "titleZh": "在 DevTools 里读你自己的文件",
+      "text": "Open the developer tools, go to **Sources** (**Debugger** in Firefox) and open the `webpack://` section: `src/print.js` is there as you wrote it. Set a breakpoint on its `console.log` line and click the page's button: the debugger stops in your file, not somewhere inside `bundle.js`.",
+      "textZh": "打开开发者工具，进入 **Sources** 面板（Firefox 里叫 **Debugger**），展开 `webpack://` 分组：`src/print.js` 就在那里，和你写的一模一样。在它的 `console.log` 那一行设一个断点，再点击页面上的按钮：调试器停在你的文件里，而不是 `bundle.js` 深处的某一行。",
+      "focus": "body > div button"
+    }
+  ]
+}

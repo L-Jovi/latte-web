@@ -1,0 +1,38 @@
+{
+  "steps": [
+    {
+      "title": "A get trap on every read",
+      "titleZh": "每次读取都会经过 get 陷阱",
+      "text": "Reading `proxy.name` runs the `get` trap first. It logs the target, the key (`name string`) and the proxy, then returns `'king ' + target[key]`: `king saber`. After `proxy.name = 'foobar'`, the `set` trap stored `archer` instead, so the next read gives `king archer`.",
+      "textZh": "读取 `proxy.name` 时，先运行 `get` 陷阱：它打印目标对象、键（`name string`）和代理本身，然后返回 `'king ' + target[key]`，也就是 `king saber`。执行 `proxy.name = 'foobar'` 之后，`set` 陷阱存进去的却是 `archer`，所以下一次读取得到 `king archer`。",
+      "highlight": "king"
+    },
+    {
+      "title": "The set trap picks the value",
+      "titleZh": "set 陷阱决定存什么",
+      "text": "Assign any other property: the trap ignores your value and stores `ea` in `weapon`. Reading it back runs the `get` trap again.",
+      "textZh": "给其他属性赋值：陷阱会忽略你给的值，把 `ea` 存进 `weapon`。读回来时又会经过一次 `get` 陷阱。",
+      "action": {
+        "clear": true,
+        "run": "proxy.weapon = 'sword'; console.log(proxy.weapon)"
+      },
+      "actionLabel": "Run proxy.weapon = 'sword'",
+      "actionLabelZh": "运行 proxy.weapon = 'sword'",
+      "expectConsole": "king ea"
+    },
+    {
+      "title": "One listener for the list",
+      "titleZh": "一个监听器管住列表",
+      "text": "The `<ul>` has one click listener. A click on an item bubbles up to it, and `event.target.textContent` says which item it was.",
+      "textZh": "`<ul>` 上只有一个点击监听器。点击某一项时事件冒泡到它，`event.target.textContent` 告诉你点的是哪一项。",
+      "action": {
+        "clear": true,
+        "click": "#ul li:nth-child(4)"
+      },
+      "actionLabel": "Click item 4",
+      "actionLabelZh": "点击第 4 项",
+      "focus": "#ul",
+      "expectConsole": ["4"]
+    }
+  ]
+}

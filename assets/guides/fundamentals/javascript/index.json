@@ -1,0 +1,50 @@
+{
+  "steps": [
+    {
+      "title": "An object built by hand",
+      "titleZh": "手工创建一个对象",
+      "text": "This page calls `forgeNew(Fn)`, the hand-written `new` from new.js. `Fn` sets `this.name = 'saber'`, so the console shows an `Fn` object with that name, between two `=== forge new ===` lines.",
+      "textZh": "这个页面调用了 `forgeNew(Fn)`，也就是 new.js 里手写的 `new`。`Fn` 会设置 `this.name = 'saber'`，所以控制台在两行 `=== forge new ===` 之间显示一个带这个名字的 `Fn` 对象。",
+      "highlight": "saber",
+      "watch": [
+        {
+          "label": "Object.getPrototypeOf(instance) === Fn.prototype",
+          "value": "Object.getPrototypeOf(instance) === Fn.prototype",
+          "expect": "true"
+        }
+      ]
+    },
+    {
+      "title": "instanceof, by hand",
+      "titleZh": "手写 instanceof",
+      "text": "`forgeInstanceof` walks the prototype chain one `Object.getPrototypeOf` at a time, looking for `Constructor.prototype`. A primitive such as `1` has no chain to walk, so the answer is `false` straight away.",
+      "textZh": "`forgeInstanceof` 沿着原型链，每次调用一次 `Object.getPrototypeOf`，寻找 `Constructor.prototype`。像 `1` 这样的原始值没有原型链可走，所以直接返回 `false`。",
+      "action": {
+        "run": "console.log('forgeInstanceof([], Array):', forgeInstanceof([], Array), '| forgeInstanceof(1, Number):', forgeInstanceof(1, Number))"
+      },
+      "actionLabel": "Run forgeInstanceof twice",
+      "actionLabelZh": "运行两次 forgeInstanceof",
+      "expectConsole": "forgeInstanceof([], Array): true | forgeInstanceof(1, Number): false"
+    },
+    {
+      "title": "A closure keeps its own copy",
+      "titleZh": "闭包记住自己的那一份",
+      "text": "closure.js has no page, so here is its idea with three timers each. With `let`, every turn of the loop gets a new `i`, and each callback remembers its own. With `var`, all callbacks share one `j`, which is already 3 when they run. To run the original, use `node fundamentals/javascript/closure.js`.",
+      "textZh": "closure.js 没有页面，这里用每组三个定时器演示它的思路。用 `let` 时，每一轮循环都会得到一个新的 `i`，每个回调记住自己的那一个；用 `var` 时，所有回调共用同一个 `j`，等它们运行时 `j` 已经是 3。想运行原来的文件，请执行 `node fundamentals/javascript/closure.js`。",
+      "action": {
+        "clear": true,
+        "run": "for (let i = 0; i < 3; i++) setTimeout(() => console.log('let i =', i), 60 * i); for (var j = 0; j < 3; j++) setTimeout(() => console.log('var j =', j), 60 * j + 30)"
+      },
+      "actionLabel": "Start the timers",
+      "actionLabelZh": "启动定时器",
+      "expectConsole": [
+        "let i = 0",
+        "var j = 3",
+        "let i = 1",
+        "var j = 3",
+        "let i = 2",
+        "var j = 3"
+      ]
+    }
+  ]
+}

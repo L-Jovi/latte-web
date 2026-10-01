@@ -1,0 +1,107 @@
+{
+  "steps": [
+    {
+      "title": "Six cards, one tilt each",
+      "titleZh": "六张卡片，各有各的倾斜",
+      "text": "Each card is a `<button>`, so it can take keyboard focus. Its `style` attribute sets two custom properties (CSS variables): `--angle`, its tilt, and `--hue`, the colour of its hill. `.photo` rotates every card by `var(--angle)`. There is no JavaScript on this page. The readouts are for the first card.",
+      "textZh": "每张卡片都是一个 `<button>`，所以能获得键盘焦点。它的 `style` 属性设置了两个自定义属性（CSS 变量）：`--angle` 是倾斜角度，`--hue` 是小山的颜色。`.photo` 把每张卡片旋转 `var(--angle)`。这个页面没有 JavaScript。读数针对第一张卡片。",
+      "watch": [
+        {
+          "label": "--angle",
+          "value": "getComputedStyle(document.querySelector('.photo')).getPropertyValue('--angle').trim()",
+          "expect": "-7deg"
+        },
+        {
+          "label": "tilt in the computed transform",
+          "labelZh": "计算后的 transform 里的倾斜",
+          "value": "(matrix => Math.round(Math.atan2(matrix.b, matrix.a) * 180 / Math.PI) + '°')(new DOMMatrix(getComputedStyle(document.querySelector('.photo')).transform))",
+          "expect": "-7°"
+        }
+      ],
+      "focus": ".wall .photo:first-child"
+    },
+    {
+      "title": "Hover and focus share one transform",
+      "titleZh": "悬停和聚焦用同一个 transform",
+      "text": "On `:hover` or `:focus-visible`, the transform becomes `rotate(0deg) scale(1.08)`: the card straightens and grows a little, `z-index: 2` lifts it above its neighbours, and `transition: transform 0.3s` animates the change. This button puts the same transform on the first card as an inline style; press it again to bring the tilt back. Rotation and scale sit in one `transform` value because a second `transform` declaration would replace the first, as it did in the original.",
+      "textZh": "在 `:hover` 或 `:focus-visible` 时，transform 变成 `rotate(0deg) scale(1.08)`：卡片摆正并稍稍放大，`z-index: 2` 让它浮到相邻卡片上面，`transition: transform 0.3s` 负责动画。这个按钮把同样的 transform 作为行内样式加到第一张卡片上；再按一次，倾斜就回来了。旋转和缩放写在同一个 `transform` 值里，因为第二条 `transform` 声明会覆盖第一条，原版就是这样。",
+      "action": {
+        "toggle": {
+          "target": ".wall .photo:first-child",
+          "property": "transform",
+          "on": "",
+          "off": "rotate(0deg) scale(1.08)"
+        }
+      },
+      "actionLabel": "Switch the hover transform on or off",
+      "actionLabelZh": "打开或关闭悬停时的 transform",
+      "watch": [
+        {
+          "label": "tilt in the computed transform",
+          "labelZh": "计算后的 transform 里的倾斜",
+          "value": "(matrix => Math.round(Math.atan2(matrix.b, matrix.a) * 180 / Math.PI) + '°')(new DOMMatrix(getComputedStyle(document.querySelector('.photo')).transform))"
+        },
+        {
+          "label": "scale in the computed transform",
+          "labelZh": "计算后的 transform 里的缩放",
+          "value": "(matrix => Math.hypot(matrix.a, matrix.b).toFixed(2))(new DOMMatrix(getComputedStyle(document.querySelector('.photo')).transform))"
+        }
+      ]
+    },
+    {
+      "title": "Two gradients make a landscape",
+      "titleZh": "两层渐变画出一幅风景",
+      "text": "Each landscape is two `linear-gradient` layers with hard edges. The front layer is a hill in `hsl(var(--hue) 30% 38%)`; the back layer is a green slope under a pale sky. This button takes the front layer away from the first card, so only the slope and the sky are left; press it again to bring the hill back.",
+      "textZh": "每幅风景都由两层边缘清晰的 `linear-gradient` 叠成。前一层是颜色为 `hsl(var(--hue) 30% 38%)` 的小山，后一层是浅色天空下的一片绿色山坡。这个按钮去掉第一张卡片的前一层，只留下山坡和天空；再按一次，小山就回来了。",
+      "action": {
+        "toggle": {
+          "target": ".wall .photo:first-child .landscape",
+          "property": "backgroundImage",
+          "on": "",
+          "off": "linear-gradient(30deg, rgb(134, 175, 150) 48%, rgb(220, 231, 236) 49%)"
+        }
+      },
+      "actionLabel": "Take the front layer away or back",
+      "actionLabelZh": "去掉或恢复前一层",
+      "watch": [
+        {
+          "label": "gradient layers on the first card",
+          "labelZh": "第一张卡片的渐变层数",
+          "value": "getComputedStyle(document.querySelector('.photo .landscape')).backgroundImage.split('gradient(').length - 1",
+          "expect": "1"
+        }
+      ]
+    },
+    {
+      "title": "As many columns as fit",
+      "titleZh": "放得下几列就放几列",
+      "text": "The wall is a grid with `repeat(auto-fit, minmax(180px, 1fr))`: as many columns as fit, each at least 180 px wide, with 2rem gaps. This button makes the wall 300 px wide, where only one column fits. Press it again, or make the window narrower, to watch the columns change.",
+      "textZh": "照片墙是一个网格：`repeat(auto-fit, minmax(180px, 1fr))`，放得下几列就放几列，每列至少 180 px 宽，列间距 2rem。这个按钮把照片墙设为 300 px 宽，这时只放得下一列。再按一次，或者把窗口调窄，看看列数怎样变化。",
+      "action": {
+        "toggle": {
+          "target": ".wall",
+          "property": "width",
+          "on": "",
+          "off": "300px"
+        }
+      },
+      "actionLabel": "Make the wall 300 px wide or full width",
+      "actionLabelZh": "把照片墙设为 300 px 宽或恢复",
+      "watch": [
+        {
+          "label": "columns",
+          "labelZh": "列数",
+          "value": "getComputedStyle(document.querySelector('.wall')).gridTemplateColumns.split(' ').length",
+          "expect": "1"
+        }
+      ]
+    },
+    {
+      "title": "Try it by hand",
+      "titleZh": "亲手试试",
+      "text": "Hover over any card, or press the Tab key to move from card to card: each one straightens, grows a little and rises above its neighbours. When your system's reduce-motion setting is on, `style.css`, the stylesheet all visual demos share, shortens the transition to almost nothing. Clicking a card does nothing.",
+      "textZh": "把鼠标移到任意一张卡片上，或者按 Tab 键在卡片之间移动：每张卡片都会摆正、稍稍放大，并浮到相邻卡片的上面。如果系统开启了“减少动态效果”，所有视觉示例共用的样式表 `style.css` 会把过渡缩短到几乎为零。点击卡片不会有任何效果。",
+      "focus": ".wall"
+    }
+  ]
+}

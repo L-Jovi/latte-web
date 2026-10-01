@@ -1,0 +1,60 @@
+{
+  "steps": [
+    {
+      "title": "Singleton: one shared instance",
+      "titleZh": "单例：共享同一个实例",
+      "text": "`Singleton.getInstance()` creates the instance on the first call and keeps it in a closure, so every later call returns the same object. That is the first console line, `true`.",
+      "textZh": "`Singleton.getInstance()` 第一次调用时创建实例并保存在闭包里，之后每次调用都返回同一个对象。这就是控制台第一行的 `true`。",
+      "watch": [
+        {
+          "label": "getInstance() === getInstance()",
+          "value": "Singleton.getInstance() === Singleton.getInstance()",
+          "expect": "true"
+        }
+      ]
+    },
+    {
+      "title": "Nothing stops new",
+      "titleZh": "new 拦不住",
+      "text": "The pattern relies on callers using `getInstance()`. `new Singleton()` still makes a second object.",
+      "textZh": "这个模式依赖调用方使用 `getInstance()`。`new Singleton()` 照样会创建第二个对象。",
+      "action": {
+        "run": "console.log('new Singleton() === getInstance():', new Singleton() === Singleton.getInstance())"
+      },
+      "actionLabel": "Compare new Singleton() with getInstance()",
+      "actionLabelZh": "比较 new Singleton() 和 getInstance()",
+      "expectConsole": "new Singleton() === getInstance(): false"
+    },
+    {
+      "title": "Adapter: the method callers expect",
+      "titleZh": "适配器：提供调用方需要的方法",
+      "text": "`Target` holds a `Plug` and offers the `getName()` its callers expect, built on the plug's own answer. Callers never touch `Plug`.",
+      "textZh": "`Target` 持有一个 `Plug`，并基于插头自己的结果，提供调用方需要的 `getName()`。调用方从不直接接触 `Plug`。",
+      "watch": [
+        {
+          "label": "target.getName()",
+          "value": "target.getName()",
+          "expect": "saber and archer"
+        }
+      ]
+    },
+    {
+      "title": "A read-only property",
+      "titleZh": "只读属性",
+      "text": "`Object.defineProperty` with `writable: false` makes `name` read-only, so `Reflect.set` reports `false`, the second console line. In strict mode, a plain assignment throws instead.",
+      "textZh": "`Object.defineProperty` 配合 `writable: false` 让 `name` 变成只读，所以 `Reflect.set` 返回 `false`，也就是控制台第二行。在严格模式下，普通赋值会直接抛错。",
+      "action": {
+        "run": "try { test.name = 'replacement' } catch (error) { console.log('strict-mode assignment threw a', error.name) } console.log('name is still', test.name)"
+      },
+      "actionLabel": "Try to overwrite test.name",
+      "actionLabelZh": "试着改写 test.name",
+      "expectConsole": "name is still yck"
+    },
+    {
+      "title": "The factories run in Node",
+      "titleZh": "工厂示例在 Node 里运行",
+      "text": "The two factory examples have no page. From the repository root, `node mechanisms/design-patterns/factory/simple-factory.js` prints `yck`.",
+      "textZh": "两个工厂示例没有页面。在仓库根目录运行 `node mechanisms/design-patterns/factory/simple-factory.js`，会打印 `yck`。"
+    }
+  ]
+}

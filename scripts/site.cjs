@@ -2,6 +2,8 @@
 // Used by scripts/catalog.mjs (static pages and templates), the webpack base config,
 // the build scripts that write HTML themselves and the browser tests.
 
+const { existsSync } = require('node:fs');
+const { join } = require('node:path');
 const catalog = require('../docs/catalog.json');
 
 const source = 'https://github.com/L-Jovi/latte-web/tree/main/';
@@ -83,11 +85,23 @@ const entryFor = (file) => {
   return entry;
 };
 
+// A page's step-by-step guide lives under assets/guides/, at the page's own path,
+// so the demo folders stay as they are. Returns the path from the repository root.
+const guideFor = (file) => {
+  const guide = `assets/guides/${file.replace(/\.html$/, '')}.json`;
+  return existsSync(join(__dirname, '..', guide)) ? guide : null;
+};
+// In a Vite template, `vite-ignore` tells Vite to leave this classic script as it is
+// instead of warning that it cannot bundle it; Vite drops the attribute when it builds.
+const guideScript = (rel, guide, vite = false) =>
+  `<script src="${rel}assets/guide.js" data-guide="${rel}${guide}"${vite ? ' vite-ignore' : ''}></script>`;
+
 // A complete page for build outputs that have no hand-written HTML of their own.
 // The bundler injects its scripts; `body` is extra markup after the heading.
 const page = (file, body = '') => {
   const entry = entryFor(file);
   const rel = rootFrom(file);
+  const guide = guideFor(file);
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -95,7 +109,7 @@ const page = (file, body = '') => {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escape(entry.title)} · Latte Web</title>
 ${stylesheet(rel)}
-</head>
+${guide ? guideScript(rel, guide) + '\n' : ''}</head>
 <body>
 ${bar(entry, rel)}
 <h1>${escape(entry.title)}</h1>
@@ -117,4 +131,6 @@ module.exports = {
   bar,
   entryFor,
   page,
+  guideFor,
+  guideScript,
 };

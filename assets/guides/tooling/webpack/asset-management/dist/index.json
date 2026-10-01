@@ -1,0 +1,90 @@
+{
+  "steps": [
+    {
+      "title": "Three imports, three kinds of result",
+      "titleZh": "三个导入，三种结果",
+      "text": "`src/index.js` imports `style.css`, `icon.svg` and `data.xml`. The text is red because the CSS is on the page, the icon appears both as the background and as an `<img>`, and the console below shows `note`, the name of the XML file's root element.",
+      "textZh": "`src/index.js` 导入了 `style.css`、`icon.svg` 和 `data.xml`。文字是红色的，因为 CSS 已经加到页面上；图标既是背景，又是一个 `<img>`；下面的控制台显示 `note`，这是 XML 文件根元素的名字。",
+      "watch": [
+        {
+          "label": "Text colour",
+          "labelZh": "文字颜色",
+          "value": "getComputedStyle(document.querySelector('.hello')).color",
+          "expect": "rgb(255, 0, 0)"
+        },
+        {
+          "label": "Images in the text",
+          "labelZh": "文字里的图片",
+          "value": "document.querySelectorAll('.hello img').length",
+          "expect": "1"
+        }
+      ],
+      "focus": ".hello",
+      "highlight": "note",
+      "expectConsole": "note"
+    },
+    {
+      "title": "CSS goes through two loaders",
+      "titleZh": "CSS 经过两个 loader",
+      "text": "A loader is a function that turns a file into JavaScript. The loaders in `use` run from right to left: `css-loader` reads `style.css` and follows its `url('./icon.svg')`, then `style-loader` adds code that puts the CSS into a `<style>` tag when the bundle runs. That tag is in `<head>` now, but `dist/index.html` has none. This step checks the file.",
+      "textZh": "loader 是把一个文件转换成 JavaScript 的函数。`use` 里的 loader 从右往左执行：`css-loader` 读取 `style.css` 并跟进其中的 `url('./icon.svg')`，接着 `style-loader` 加入一段代码，在打包产物运行时把 CSS 放进一个 `<style>` 标签。这个标签现在就在 `<head>` 里，但 `dist/index.html` 里并没有。这一步会检查这个文件。",
+      "watch": [
+        {
+          "label": "<style> tags in <head>",
+          "labelZh": "<head> 里的 <style> 标签",
+          "value": "document.head.querySelectorAll('style').length",
+          "expect": "1"
+        },
+        {
+          "label": "Its first line",
+          "labelZh": "它的第一行",
+          "value": "document.head.querySelector('style').textContent.trim().split('\\n')[0]",
+          "expect": ".hello {"
+        }
+      ],
+      "action": {
+        "clear": true,
+        "run": "fetch('index.html').then((r) => r.text()).then((t) => console.log('dist/index.html has a <style> tag:', t.includes('<style')))"
+      },
+      "actionLabel": "Fetch dist/index.html",
+      "actionLabelZh": "获取 dist/index.html",
+      "expectConsole": ["dist/index.html has a <style> tag: false"]
+    },
+    {
+      "title": "The icon is a file of its own",
+      "titleZh": "图标是一个单独的文件",
+      "text": "`type: 'asset/resource'` copies `icon.svg` into `dist/` under a name made from a hash of its content, and the import gives your code the file's URL. The `<img>` and the CSS background point to the same file, so it is written only once.",
+      "textZh": "`type: 'asset/resource'` 把 `icon.svg` 复制到 `dist/`，文件名由它内容的哈希生成；导入时你的代码拿到的是这个文件的 URL。`<img>` 和 CSS 背景指向同一个文件，所以它只输出一次。",
+      "watch": [
+        {
+          "label": "File of the <img>",
+          "labelZh": "<img> 用的文件",
+          "value": "document.querySelector('.hello img').src.split('/').pop()"
+        },
+        {
+          "label": "The background uses the same file",
+          "labelZh": "背景用的是同一个文件",
+          "value": "getComputedStyle(document.querySelector('.hello')).backgroundImage.includes(document.querySelector('.hello img').src.split('/').pop())",
+          "expect": "true"
+        }
+      ],
+      "focus": ".hello img"
+    },
+    {
+      "title": "The XML became a string in the bundle",
+      "titleZh": "XML 成了打包产物里的字符串",
+      "text": "`type: 'asset/source'` works the other way round: the XML text itself goes into `bundle.js`, and the import gives your code that string, which `DOMParser` then reads. This step searches `bundle.js` for a line of the XML and for SVG markup.",
+      "textZh": "`type: 'asset/source'` 正好相反：XML 的文本本身被放进 `bundle.js`，导入时你的代码拿到的就是这个字符串，再交给 `DOMParser` 解析。这一步会在 `bundle.js` 里查找 XML 中的一行，以及 SVG 的标记。",
+      "action": {
+        "clear": true,
+        "run": "fetch('bundle.js').then((r) => r.text()).then((t) => { console.log('bundle.js contains <to>Mary</to>:', t.includes('<to>Mary</to>')); console.log('bundle.js contains <svg:', t.includes('<svg')); })"
+      },
+      "actionLabel": "Search bundle.js",
+      "actionLabelZh": "在 bundle.js 里查找",
+      "expectConsole": [
+        "bundle.js contains <to>Mary</to>: true",
+        "bundle.js contains <svg: false"
+      ]
+    }
+  ]
+}

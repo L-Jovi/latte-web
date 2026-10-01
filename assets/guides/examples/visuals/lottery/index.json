@@ -1,0 +1,118 @@
+{
+  "steps": [
+    {
+      "title": "Four sectors and a fixed pointer",
+      "titleZh": "四个扇区和一个固定指针",
+      "text": "The wheel is one `conic-gradient` with four 90° sectors, A to D, clockwise from the top. The ▲ under the wheel is a fixed pointer. The labels are made up: this is animation maths, not a reward system.",
+      "textZh": "转盘是一个 `conic-gradient`，从顶部开始顺时针分成 A 到 D 四个 90° 的扇区。转盘下方的 ▲ 是固定的指针。标签都是虚构的：这里讲的是动画的数学，不是抽奖系统。",
+      "watch": [
+        {
+          "label": "text below",
+          "labelZh": "下方的文字",
+          "value": "document.querySelector('output').textContent",
+          "expect": "Ready"
+        }
+      ],
+      "focus": ".wheel"
+    },
+    {
+      "title": "Spin, and the button locks",
+      "titleZh": "开始旋转，按钮随即锁住",
+      "text": "A click first picks a sector with `Math.random()`, then works out the angle that puts that sector's centre over the pointer, three full turns (1080°) further on, and animates the wheel with `element.animate()`. The button stays disabled until the animation's `finished` promise resolves. This button clicks **Spin** twice: the second click hits a disabled button and cannot start another spin. The console shows the state right after both clicks; the readouts follow the spin until it ends.",
+      "textZh": "点击后先用 `Math.random()` 选定一个扇区，再算出让这个扇区的中心对准指针的角度，并在此基础上多转三整圈（1080°），然后用 `element.animate()` 播放动画。在动画的 `finished` Promise 完成之前，按钮一直处于禁用状态。这个按钮连点两次 **Spin**：第二次点到的是被禁用的按钮，无法再开始一次旋转。控制台显示两次点击之后那一刻的状态；读数会一直跟到旋转结束。",
+      "action": {
+        "run": "const spin = document.querySelector('.wheel ~ button'); spin.click(); spin.click(); console.log('after two clicks: ' + document.querySelector('.wheel').getAnimations().length + ' animation, button disabled: ' + spin.disabled);"
+      },
+      "actionLabel": "Click Spin twice",
+      "actionLabelZh": "连点两次 Spin",
+      "watch": [
+        {
+          "label": "button disabled",
+          "labelZh": "按钮已禁用",
+          "value": "document.querySelector('.wheel ~ button').disabled"
+        },
+        {
+          "label": "animations on the wheel",
+          "labelZh": "转盘上的动画数",
+          "value": "document.querySelector('.wheel').getAnimations().length"
+        }
+      ],
+      "highlight": "after two clicks",
+      "expectConsole": "after two clicks: 1 animation, button disabled: true",
+      "focus": ".wheel"
+    },
+    {
+      "title": "Jump to the end",
+      "titleZh": "直接跳到结尾",
+      "text": "`animation.finish()` moves an animation to its last frame and resolves its `finished` promise. The page is waiting for that promise, so it writes the result at once, keeps the end angle in `style.transform` and unlocks the button. The readouts check what the page promises: the sector under the pointer, worked out from the wheel's angle, is the one the text names.",
+      "textZh": "`animation.finish()` 把动画直接推到最后一帧，并让它的 `finished` Promise 完成。页面正在等这个 Promise，所以它立刻写出结果，把最终角度保存在 `style.transform` 里，并解锁按钮。读数检查页面的承诺：根据转盘角度算出的、正对指针的扇区，就是文字里说的那一个。",
+      "action": {
+        "run": "const wheel = document.querySelector('.wheel'); if (!wheel.getAnimations().length) document.querySelector('.wheel ~ button').click(); for (const animation of wheel.getAnimations()) animation.finish();"
+      },
+      "actionLabel": "Finish the spin now",
+      "actionLabelZh": "立刻结束这次旋转",
+      "watch": [
+        {
+          "label": "text below",
+          "labelZh": "下方的文字",
+          "value": "document.querySelector('output').textContent"
+        },
+        {
+          "label": "sector under the pointer",
+          "labelZh": "正对指针的扇区",
+          "value": "(matrix => 'ABCD'[Math.floor((((180 - Math.atan2(matrix.b, matrix.a) * 180 / Math.PI) % 360) + 360) % 360 / 90)])(new DOMMatrix(getComputedStyle(document.querySelector('.wheel')).transform))"
+        },
+        {
+          "label": "the text names that sector",
+          "labelZh": "文字说的正是这个扇区",
+          "value": "(matrix => document.querySelector('output').textContent === 'Selected: ' + 'ABCD'[Math.floor((((180 - Math.atan2(matrix.b, matrix.a) * 180 / Math.PI) % 360) + 360) % 360 / 90)])(new DOMMatrix(getComputedStyle(document.querySelector('.wheel')).transform))",
+          "expect": "true"
+        },
+        {
+          "label": "button disabled",
+          "labelZh": "按钮已禁用",
+          "value": "document.querySelector('.wheel ~ button').disabled",
+          "expect": "false"
+        },
+        {
+          "label": "style.transform",
+          "value": "document.querySelector('.wheel').style.transform"
+        }
+      ],
+      "focus": ".wheel"
+    },
+    {
+      "title": "Always forward",
+      "titleZh": "永远向前转",
+      "text": "Each spin starts from the current angle and adds three full turns plus whatever is left to reach the new sector, so the wheel always turns forward, never back. This button spins again and finishes at once; the console shows how far the wheel turned.",
+      "textZh": "每次旋转都从当前角度出发，加上三整圈，再加上转到新扇区还差的角度，所以转盘总是向前转，从不倒转。这个按钮再转一次并立刻结束；控制台显示转盘这次转了多少度。",
+      "action": {
+        "run": "const wheel = document.querySelector('.wheel'); const angle = () => parseFloat(wheel.style.transform.replace('rotate(', '')) || 0; const before = angle(); document.querySelector('.wheel ~ button').click(); for (const animation of wheel.getAnimations()) { animation.finish(); animation.finished.then(() => { const turned = angle() - before; console.log('turned ' + turned + '°, at least three full turns: ' + (turned >= 1080)); }); }"
+      },
+      "actionLabel": "Spin again and finish at once",
+      "actionLabelZh": "再转一次并立刻结束",
+      "watch": [
+        {
+          "label": "style.transform",
+          "value": "document.querySelector('.wheel').style.transform"
+        },
+        {
+          "label": "the text names that sector",
+          "labelZh": "文字说的正是这个扇区",
+          "value": "(matrix => document.querySelector('output').textContent === 'Selected: ' + 'ABCD'[Math.floor((((180 - Math.atan2(matrix.b, matrix.a) * 180 / Math.PI) % 360) + 360) % 360 / 90)])(new DOMMatrix(getComputedStyle(document.querySelector('.wheel')).transform))",
+          "expect": "true"
+        }
+      ],
+      "highlight": "turned",
+      "expectConsole": "at least three full turns: true",
+      "focus": ".wheel"
+    },
+    {
+      "title": "Try it by hand",
+      "titleZh": "亲手试试",
+      "text": "Click **Spin** yourself and watch the wheel slow down on the letter the text names. The result comes from `Math.random()` in the browser; a real prize draw must be decided on a server, where users cannot change it. When your system's reduce-motion setting is on, the spin finishes almost at once.",
+      "textZh": "亲手点击 **Spin**，看转盘慢慢停在文字所说的那个字母上。结果来自浏览器里的 `Math.random()`；真正的抽奖必须在服务器上决定，用户才改不了结果。如果系统开启了“减少动态效果”，旋转几乎会瞬间完成。",
+      "focus": ".wheel"
+    }
+  ]
+}
