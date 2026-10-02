@@ -13,7 +13,8 @@
     th {
       padding: 0.5rem 1rem;
       border: 1px solid var(--latte-line, #aaa);
-      min-width: 12rem;
+      /* 30vw: on a phone, both columns still fit the screen. */
+      min-width: min(12rem, 30vw);
     }
     pre {
       white-space: pre-wrap;
