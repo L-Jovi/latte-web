@@ -441,9 +441,12 @@ body {
   cursor: default;
 }
 
+/* A long label, such as `Object.getPrototypeOf(instance) === Fn.prototype`,
+ * wraps within 60 % of the width, so its value never shrinks to a letter per
+ * line. */
 .latte-guide .latte-guide-watch {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: fit-content(60%) minmax(0, 1fr);
   gap: 0.2rem 0.75rem;
   align-items: baseline;
   font-size: 0.85rem;
@@ -451,6 +454,7 @@ body {
 
 .latte-guide .latte-guide-watch dt {
   color: #6f5a4a;
+  overflow-wrap: anywhere;
 }
 
 .latte-guide .latte-guide-watch dd {
