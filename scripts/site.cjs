@@ -91,6 +91,11 @@ const pair = (en, zh, tag = 'span') =>
 // Path from a file inside the repository to the repository root, e.g. '../../'.
 const rootFrom = (file) => '../'.repeat(file.split('/').length - 1);
 
+// Without this tag a phone lays a page out 980 px wide and shrinks it to fit;
+// with it, the page is as wide as the screen and its text stays readable.
+const viewport =
+  '<meta name="viewport" content="width=device-width, initial-scale=1">';
+
 const stylesheet = (rel) =>
   `<link rel="stylesheet" href="${rel}assets/site.css">`;
 // A classic script in <head>: it sets the language before the page is drawn.
@@ -132,7 +137,7 @@ const page = (file, body = '') => {
 <html lang="en" data-title-en="${escape(entry.title)} · Latte Web" data-title-zh="${escape(entry.titleZh)} · Latte Web">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+${viewport}
 <title>${escape(entry.title)} · Latte Web</title>
 ${stylesheet(rel)}
 ${languageScript(rel)}
@@ -155,6 +160,7 @@ module.exports = {
   inline,
   inlineZh,
   rootFrom,
+  viewport,
   stylesheet,
   languageScript,
   languageSwitch,

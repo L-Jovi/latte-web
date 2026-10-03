@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-03。英文版更新后本页可能滞后。
 
 散落倾斜的卡片，鼠标悬停时摆正并放大。
 
@@ -13,7 +13,7 @@ npm run dev
 # 打开 http://127.0.0.1:4173/examples/visuals/photo-wall/?lang=zh
 ```
 
-克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。六张卡片以不同的角度摆放，每张都是用 CSS 画的一小幅风景。把鼠标移到某张卡片上，或者用 Tab 键移过去：它会摆正、稍稍放大，并浮到相邻卡片的上面。把窗口调窄，照片墙的列数就会变少。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/visuals/photo-wall/index.html?lang=zh)。
+克隆仓库后就能直接运行，不需要 `npm ci`，也不需要构建。六张卡片以不同的角度摆放，每张都是用 CSS 画的一小幅风景。把鼠标移到某张卡片上、用 Tab 键移过去，或者在触屏上点一下：它会摆正、稍稍放大，并浮到相邻卡片的上面。把窗口调窄，照片墙的列数就会变少。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/examples/visuals/photo-wall/index.html?lang=zh)。
 
 ## 原理
 

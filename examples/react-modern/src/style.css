@@ -2,8 +2,11 @@
 li {
   padding: 0.5rem;
 }
+/* A block with padding gives the link a target a thumb can hit. */
 nav a {
+  display: inline-block;
   margin-right: 1rem;
+  padding: 0.5rem 0;
 }
 /* Filter buttons: the chosen filter stays filled, the others are outlined. */
 [aria-pressed='false'] {

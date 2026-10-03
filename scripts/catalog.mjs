@@ -96,9 +96,17 @@ const upsert = (file, text, name, html, anchor, after = false) => {
   const at = after ? m.index + m[0].length : m.index;
   return text.slice(0, at) + marked(name, html) + text.slice(at);
 };
+// A page without a viewport tag of its own gets one before its title, so a
+// phone lays it out as wide as the screen instead of shrinking it.
+const phone = (file, text) => {
+  const own = text.replace(block('viewport'), '');
+  return /<meta[^>]+name=["']?viewport/i.test(own)
+    ? own
+    : upsert(file, text, 'viewport', site.viewport, /<title[\s>]/i);
+};
 const dress = (file, page, css, vite = false) => {
   const entry = site.entryFor(page);
-  let text = readFileSync(file, 'utf8');
+  let text = phone(file, readFileSync(file, 'utf8'));
   // The stylesheet goes after </title>, then the guide script, before any demo script runs.
   text = upsert(file, text, 'css', css, /<\/title\s*>/i, true);
   const guide = site.guideFor(page);
@@ -138,7 +146,7 @@ for (const page of chrome.skipAll)
     page,
     upsert(
       page,
-      readFileSync(page, 'utf8'),
+      phone(page, readFileSync(page, 'utf8')),
       'language',
       `<script>\n${readFileSync('assets/language.js', 'utf8')}</script>`,
       /<\/title\s*>/i,
@@ -268,18 +276,20 @@ section{margin-top:2.5rem}
 section h2{margin:0;font-size:1.5rem}
 .intro{margin:.25rem 0 1rem;color:var(--latte-muted)}
 .cards{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(18rem,1fr));margin:0;padding:0;list-style:none}
-.card{display:flex;flex-direction:column;padding:1rem 1.1rem;border:1px solid var(--latte-line);border-radius:.8rem;background:var(--latte-card);transition:transform .15s ease,box-shadow .15s ease}
+.card{position:relative;display:flex;flex-direction:column;padding:1rem 1.1rem;border:1px solid var(--latte-line);border-radius:.8rem;background:var(--latte-card);transition:transform .15s ease,box-shadow .15s ease}
 .card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgb(43 29 20 / 8%)}
 .card h3{margin:0;font-size:1.05rem;line-height:1.35}
-.card h3 a{color:var(--latte-fg);text-decoration:none}
+.card h3 a{padding:.4rem 0;color:var(--latte-fg);text-decoration:none}
+.card h3 a::after{content:'';position:absolute;inset:0;border-radius:.8rem}
 .card h3 a:hover{color:var(--latte-accent)}
 .card .summary{margin:.5rem 0 .9rem;font-size:.95rem}
 .card-foot{display:flex;gap:.75rem;align-items:center;margin:auto 0 0;font-size:.85rem}
+.card-foot a{position:relative;z-index:1}
 .chip{padding:.15rem .6rem;border-radius:999px;background:var(--latte-code);color:var(--latte-muted)}
 .chip.live{background:var(--latte-accent);color:var(--latte-accent-fg);text-decoration:none;font-weight:600}
-.read{margin-left:auto}
+.read{margin-left:auto;padding:.45rem 0}
 footer{margin-top:3.5rem;padding-top:1.25rem;border-top:1px solid var(--latte-line);color:var(--latte-muted);font-size:.9rem}
-@media (max-width:48rem){.hero{grid-template-columns:1fr}.cup{max-width:11rem}.hero h1{font-size:2.4rem}}
+@media (max-width:48rem){.hero{grid-template-columns:1fr;gap:1rem}.cup{order:-1;max-width:7rem}.cup text:not(.steam){display:none}.hero h1{font-size:2.4rem}.chip{padding:.35rem .8rem}}
 @media (prefers-reduced-motion:reduce){.card{transition:none}.card:hover{transform:none}}
 </style>
 </head>
