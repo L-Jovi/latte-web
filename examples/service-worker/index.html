@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" data-title-en="Offline pages with a service worker · Latte Web" data-title-zh="用 Service Worker 实现离线访问 · Latte Web">
-  <meta charset="utf-8" /><title>Offline pages with a service worker · Latte Web</title><!-- latte-site:language --><script>
+  <meta charset="utf-8" /><!-- latte-site:viewport --><meta name="viewport" content="width=device-width, initial-scale=1"><!-- /latte-site:viewport --><title>Offline pages with a service worker · Latte Web</title><!-- latte-site:language --><script>
 // The site's language switch. Every page carries its text in English and in
 // Chinese, and shows one language at a time: English, unless ?lang=zh or an
 // earlier choice asks for Chinese. Static text sits in pairs of elements
@@ -103,6 +103,41 @@
     :root:not([data-language='zh']) [data-l='zh'],
     :root[data-language='zh'] [data-l='en'] {
       display: none !important;
+    }
+
+    /* Without the shared stylesheet, these few rules give the page the site's
+     * type and colours, and buttons a thumb can hit on a phone. */
+    body {
+      max-width: 40rem;
+      margin: 0 auto;
+      padding: 1rem 1.25rem 3rem;
+      background: #fbf7f2;
+      color: #2b1d14;
+      font: 17px/1.6 system-ui, -apple-system, 'Segoe UI', 'PingFang SC',
+        'Noto Sans SC', sans-serif;
+    }
+
+    button {
+      min-height: 2.5rem;
+      margin: 0 0.5rem 0.5rem 0;
+      padding: 0.4rem 0.95rem;
+      border: 1px solid #8a4b2a;
+      border-radius: 0.5rem;
+      background: #8a4b2a;
+      color: #fffaf4;
+      font: inherit;
+    }
+
+    button[data-language-switch] {
+      float: right;
+      min-height: 2.25rem;
+      margin: 0;
+      padding: 0.2rem 0.75rem;
+      border-color: #e7dccf;
+      border-radius: 999px;
+      background: transparent;
+      color: #8a4b2a;
+      font-weight: 600;
     }
   </style>
   <button type="button" data-language-switch hidden>中文</button>

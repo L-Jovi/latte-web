@@ -117,11 +117,36 @@
   input,
   select,
   textarea {
+    max-width: 100%;
     padding: 0.35rem 0.55rem;
     border: 1px solid var(--latte-line);
     border-radius: 0.4rem;
     background: var(--latte-card);
     color: var(--latte-fg);
+  }
+
+  /* A textarea sized in columns (cols="70") is wider than a phone; with its
+   * padding and border counted in its width, it stops at the screen edge. */
+  textarea {
+    box-sizing: border-box;
+  }
+
+  /* On a touch screen, controls are big enough for a thumb: 40 px, close to
+   * the 44 px that phone makers advise, keeps rows of buttons compact. A
+   * checkbox or radio button grows from its 13 px default to 24 px. */
+  @media (width < 48rem) {
+    button,
+    select,
+    input:not([type='checkbox'], [type='radio'], [type='range']) {
+      min-height: 2.5rem;
+    }
+
+    input[type='checkbox'],
+    input[type='radio'] {
+      width: 1.5rem;
+      height: 1.5rem;
+      vertical-align: middle;
+    }
   }
 
   output {
@@ -242,12 +267,43 @@ body {
   display: none;
 }
 
+/* On a phone the bar keeps to one line: the section's name goes, since the
+ * page's heading names the page. Padding above and below an inline link
+ * enlarges what a thumb can hit without moving the line. */
+@media (width < 30rem) {
+  .latte-bar .latte-crumb {
+    display: none;
+  }
+}
+
+@media (width < 48rem) {
+  .latte-bar a {
+    padding-block: 0.6rem;
+  }
+
+  .latte-bar .latte-language {
+    min-height: 2.25rem;
+    padding: 0.2rem 0.75rem;
+  }
+}
+
 /* One language at a time: language.js sets data-language on <html>, and the
  * other language's elements disappear. Only hiding is needed, so every
  * element keeps the display its page gives it. */
 :root:not([data-language='zh']) [data-l='zh'],
 :root[data-language='zh'] [data-l='en'] {
   display: none !important;
+}
+
+/* A demo that needs its own fixed width, such as a 500 px box in a CSS lesson,
+ * sits in this frame. On a narrow screen the frame scrolls sideways instead of
+ * the page, and the demo keeps the sizes its lesson measures. The padding
+ * leaves room for the guide's dashed outline; the negative margin keeps the
+ * demo where it was. */
+.latte-wide {
+  overflow-x: auto;
+  padding: 0.5rem;
+  margin: -0.5rem;
 }
 
 /* The guide panel beside a demo (assets/guide.js). Unlayered with its own class
@@ -279,16 +335,24 @@ body {
   margin-bottom: 0.4rem;
 }
 
+/* The heading takes the free space, so the buttons after it sit on the right. */
 .latte-guide .latte-guide-top .latte-guide-head {
+  flex: 1;
   margin: 0;
 }
 
-.latte-guide button.latte-guide-lang {
+.latte-guide button.latte-guide-lang,
+.latte-guide button.latte-guide-fold {
   margin: 0;
   padding: 0.1rem 0.6rem;
   background: transparent;
   color: #8a4b2a;
   font-size: 0.8rem;
+}
+
+/* Only the sheet on a narrow screen folds (below). */
+.latte-guide button.latte-guide-fold {
+  display: none;
 }
 
 @media (min-width: 72rem) {
@@ -377,9 +441,12 @@ body {
   cursor: default;
 }
 
+/* A long label, such as `Object.getPrototypeOf(instance) === Fn.prototype`,
+ * wraps within 60 % of the width, so its value never shrinks to a letter per
+ * line. */
 .latte-guide .latte-guide-watch {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: fit-content(60%) minmax(0, 1fr);
   gap: 0.2rem 0.75rem;
   align-items: baseline;
   font-size: 0.85rem;
@@ -387,6 +454,7 @@ body {
 
 .latte-guide .latte-guide-watch dt {
   color: #6f5a4a;
+  overflow-wrap: anywhere;
 }
 
 .latte-guide .latte-guide-watch dd {
@@ -446,4 +514,101 @@ body {
 .latte-guide .latte-guide-line.match {
   border-left-color: #8a4b2a;
   background: #f3ebe1;
+}
+
+/* Below 72rem the panel loses its column. On most screens it becomes a sheet
+ * over the bottom of the window; on a short, wide screen, such as a phone on
+ * its side, it is a narrower column on the right. Either way the reader sees
+ * the demo while stepping through it, and every button suits a thumb.
+ * assets/guide.js reads --latte-guide-sheet to know which one is shown. */
+@media (width < 72rem) {
+  /* Previous and Next share the row. */
+  .latte-guide .latte-guide-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .latte-guide button.latte-guide-nav {
+    flex: 1;
+    min-height: 2.5rem;
+    margin: 0;
+  }
+
+  .latte-guide button.latte-guide-lang,
+  .latte-guide button.latte-guide-fold {
+    min-height: 2.25rem;
+    padding: 0.2rem 0.8rem;
+  }
+
+  .latte-guide .latte-guide-lines {
+    max-height: 9rem;
+  }
+}
+
+/* The sheet. An empty block after the page's content lets its end scroll
+ * above the sheet; unlike padding, it also works on a page that fixes the
+ * height of body. svh is the height with the browser's toolbars shown, so the
+ * sheet never covers more than half. The fold button shrinks it to its top
+ * row. */
+@media (width < 33rem), (width < 72rem) and (height >= 35rem) {
+  html.latte-guided body::after {
+    content: '';
+    display: block;
+    height: calc(min(50vh, 30rem) + 1rem);
+    height: calc(min(50svh, 30rem) + 1rem);
+  }
+
+  .latte-guide {
+    --latte-guide-sheet: 1;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    max-width: 40rem;
+    max-height: min(50vh, 30rem);
+    max-height: min(50svh, 30rem);
+    margin: 0 auto;
+    overflow: auto;
+    overscroll-behavior: contain;
+    border-bottom: 0;
+    border-radius: 1rem 1rem 0 0;
+    box-shadow: 0 -6px 24px rgb(43 29 20 / 14%);
+  }
+
+  .latte-guide button.latte-guide-fold {
+    display: inline-block;
+  }
+
+  .latte-guide.latte-guide-folded > :not(.latte-guide-top) {
+    display: none;
+  }
+
+  .latte-guide.latte-guide-folded .latte-guide-top {
+    margin-bottom: 0;
+  }
+}
+
+/* The column on a short, wide screen: too little height for a sheet. A page
+ * that sets body { width: 100% } still stops at the column. */
+@media (33rem <= width < 72rem) and (height < 35rem) {
+  html.latte-guided body {
+    max-width: calc(100% - min(24rem, 42vw));
+    margin: 0 min(24rem, 42vw) 0 0;
+  }
+
+  .latte-guide {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    width: min(24rem, 42vw);
+    margin: 0;
+    overflow: auto;
+    overscroll-behavior: contain;
+    border-width: 0 0 0 1px;
+    border-radius: 0;
+    box-shadow: -6px 0 24px rgb(43 29 20 / 10%);
+  }
 }

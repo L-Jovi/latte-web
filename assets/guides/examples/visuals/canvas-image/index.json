@@ -135,8 +135,8 @@
     {
       "title": "Scale, then try the lens",
       "titleZh": "缩放，再试试放大镜",
-      "text": "This button clicks **Reset** and sets **Scale** to 0.5. The picture is drawn at half size around the centre and the corners stay empty: the pixel at (20, 20) now has alpha 0, fully transparent. Try the rest by hand. Tick **Watermark** to write `latte-web` near the bottom-right corner. Tick **Magnifier** and move the pointer over the canvas: the lens shows the original, unfiltered picture at twice the current scale. You can also focus the canvas with the Tab key and move the lens with the arrow keys.",
-      "textZh": "这个按钮先点**重置**，再把**缩放**设为 0.5。图片以中心为基准缩小一半，四角空了出来：(20, 20) 处像素的 alpha 变成 0，完全透明。其余的请亲手试试：勾选**水印**，右下角附近会写上 `latte-web`；勾选**放大镜**，把指针移到画布上，镜片会以当前比例的两倍显示未经滤镜处理的原图。也可以用 Tab 键让画布获得焦点，再用方向键移动镜片。",
+      "text": "This button clicks **Reset** and sets **Scale** to 0.5. The picture is drawn at half size around the centre and the corners stay empty: the pixel at (20, 20) now has alpha 0, fully transparent. Try the rest by hand. Tick **Watermark** to write `latte-web` near the bottom-right corner. Tick **Magnifier** and move the pointer over the canvas, or drag a finger across it: the lens shows the original, unfiltered picture at twice the current scale. You can also focus the canvas with the Tab key and move the lens with the arrow keys.",
+      "textZh": "这个按钮先点**重置**，再把**缩放**设为 0.5。图片以中心为基准缩小一半，四角空了出来：(20, 20) 处像素的 alpha 变成 0，完全透明。其余的请亲手试试：勾选**水印**，右下角附近会写上 `latte-web`；勾选**放大镜**，把指针移到画布上，或者用手指在画布上拖动，镜片会以当前比例的两倍显示未经滤镜处理的原图。也可以用 Tab 键让画布获得焦点，再用方向键移动镜片。",
       "action": {
         "fill": {
           "target": "#scale",

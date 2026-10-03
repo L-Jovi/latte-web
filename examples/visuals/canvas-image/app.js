@@ -74,13 +74,20 @@ document.querySelector('#filters').onclick = (event) => {
     draw();
   }
 };
-canvas.addEventListener('pointermove', (event) => {
+function follow(event) {
   const rect = canvas.getBoundingClientRect();
   point = {
     x: ((event.clientX - rect.left) * canvas.width) / rect.width,
     y: ((event.clientY - rect.top) * canvas.height) / rect.height,
   };
   if (magnify.checked) draw();
+}
+// A finger moves the lens too: a touch places it, and while the magnifier is
+// on, a drag over the canvas moves it instead of scrolling the page.
+canvas.addEventListener('pointermove', follow);
+canvas.addEventListener('pointerdown', follow);
+magnify.addEventListener('input', () => {
+  canvas.style.touchAction = magnify.checked ? 'none' : '';
 });
 canvas.onkeydown = (event) => {
   const moves = {
