@@ -33,8 +33,6 @@
     <text class="chip-text" x="264" y="86" text-anchor="middle">WebAssembly</text>
   </g>
 
-  <text x="96" y="560" font-size="24" fill="#7a5c45">github.com/L-Jovi/latte-web · English · 简体中文</text>
-
   <!-- A latte by the recipe in the repository description: 1 part foam, 2 parts milk, 1 part espresso. -->
   <g clip-path="url(#glass)">
     <rect x="880" y="170" width="300" height="82" fill="#fffaf2" />
