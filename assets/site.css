@@ -516,13 +516,41 @@ body {
   background: #f3ebe1;
 }
 
-/* On a narrow screen the panel is a sheet over the bottom of the window, so the
- * reader sees the demo while stepping through it, and the fold button
- * (assets/guide.js) shrinks the sheet to its top row. An empty block after the
- * page's content lets its end scroll above the sheet; unlike padding, it also
- * works on a page that fixes the height of body. svh is the height with the
- * browser's toolbars shown, so the sheet never covers more than half. */
+/* Below 72rem the panel loses its column. On most screens it becomes a sheet
+ * over the bottom of the window; on a short, wide screen, such as a phone on
+ * its side, it is a narrower column on the right. Either way the reader sees
+ * the demo while stepping through it, and every button suits a thumb.
+ * assets/guide.js reads --latte-guide-sheet to know which one is shown. */
 @media (width < 72rem) {
+  /* Previous and Next share the row. */
+  .latte-guide .latte-guide-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .latte-guide button.latte-guide-nav {
+    flex: 1;
+    min-height: 2.5rem;
+    margin: 0;
+  }
+
+  .latte-guide button.latte-guide-lang,
+  .latte-guide button.latte-guide-fold {
+    min-height: 2.25rem;
+    padding: 0.2rem 0.8rem;
+  }
+
+  .latte-guide .latte-guide-lines {
+    max-height: 9rem;
+  }
+}
+
+/* The sheet. An empty block after the page's content lets its end scroll
+ * above the sheet; unlike padding, it also works on a page that fixes the
+ * height of body. svh is the height with the browser's toolbars shown, so the
+ * sheet never covers more than half. The fold button shrinks it to its top
+ * row. */
+@media (width < 33rem), (width < 72rem) and (height >= 35rem) {
   html.latte-guided body::after {
     content: '';
     display: block;
@@ -531,6 +559,7 @@ body {
   }
 
   .latte-guide {
+    --latte-guide-sheet: 1;
     position: fixed;
     right: 0;
     bottom: 0;
@@ -558,20 +587,28 @@ body {
   .latte-guide.latte-guide-folded .latte-guide-top {
     margin-bottom: 0;
   }
+}
 
-  /* Previous and Next share the row: larger targets for a thumb. */
-  .latte-guide .latte-guide-buttons {
-    display: flex;
-    gap: 0.5rem;
+/* The column on a short, wide screen: too little height for a sheet. A page
+ * that sets body { width: 100% } still stops at the column. */
+@media (33rem <= width < 72rem) and (height < 35rem) {
+  html.latte-guided body {
+    max-width: calc(100% - min(24rem, 42vw));
+    margin: 0 min(24rem, 42vw) 0 0;
   }
 
-  .latte-guide button.latte-guide-nav {
-    flex: 1;
-    min-height: 2.5rem;
+  .latte-guide {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    width: min(24rem, 42vw);
     margin: 0;
-  }
-
-  .latte-guide .latte-guide-lines {
-    max-height: 9rem;
+    overflow: auto;
+    overscroll-behavior: contain;
+    border-width: 0 0 0 1px;
+    border-radius: 0;
+    box-shadow: -6px 0 24px rgb(43 29 20 / 10%);
   }
 }

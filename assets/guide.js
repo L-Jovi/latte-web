@@ -240,9 +240,12 @@
   // elements: a demo may watch its elements with a MutationObserver (the task-order
   // page does), and the guide must not show up in what the demo observes.
   const outline = el('style');
-  // Below 72rem, the width site.css uses, the panel is a sheet over the bottom
-  // of the window, so only the space above it shows the demo.
-  const narrow = matchMedia('(width < 72rem)');
+  // On a narrow screen the panel can be a sheet over the bottom of the window;
+  // site.css decides when, and says so in --latte-guide-sheet. Only the space
+  // above a sheet shows the demo.
+  const sheet = (panel) =>
+    getComputedStyle(panel).getPropertyValue('--latte-guide-sheet').trim() ===
+    '1';
   const focusOn = (selector, scroll, panel) => {
     outline.textContent = selector
       ? `:is(${selector}):not(.latte-guide *) { outline: 3px dashed #c26a35; outline-offset: 4px; }`
@@ -252,9 +255,7 @@
       : [];
     if (!scroll || !nodes.length) return;
     // Centre everything the step marks; if it is taller than the room, show its top.
-    const room = narrow.matches
-      ? panel.getBoundingClientRect().top
-      : innerHeight;
+    const room = sheet(panel) ? panel.getBoundingClientRect().top : innerHeight;
     const rects = nodes.map((node) => node.getBoundingClientRect());
     const top = Math.min(...rects.map((r) => r.top));
     const bottom = Math.max(...rects.map((r) => r.bottom));
@@ -394,7 +395,7 @@
           setTimeout(update, 300);
           // The sheet on a narrow screen scrolls to its readouts and console,
           // where the action's results appear.
-          if (narrow.matches)
+          if (sheet(panel))
             requestAnimationFrame(() => (panel.scrollTop = panel.scrollHeight));
         };
         body.append(doIt);
