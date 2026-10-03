@@ -297,16 +297,24 @@ body {
   margin-bottom: 0.4rem;
 }
 
+/* The heading takes the free space, so the buttons after it sit on the right. */
 .latte-guide .latte-guide-top .latte-guide-head {
+  flex: 1;
   margin: 0;
 }
 
-.latte-guide button.latte-guide-lang {
+.latte-guide button.latte-guide-lang,
+.latte-guide button.latte-guide-fold {
   margin: 0;
   padding: 0.1rem 0.6rem;
   background: transparent;
   color: #8a4b2a;
   font-size: 0.8rem;
+}
+
+/* Only the sheet on a narrow screen folds (below). */
+.latte-guide button.latte-guide-fold {
+  display: none;
 }
 
 @media (min-width: 72rem) {
@@ -464,4 +472,64 @@ body {
 .latte-guide .latte-guide-line.match {
   border-left-color: #8a4b2a;
   background: #f3ebe1;
+}
+
+/* On a narrow screen the panel is a sheet over the bottom of the window, so the
+ * reader sees the demo while stepping through it, and the fold button
+ * (assets/guide.js) shrinks the sheet to its top row. An empty block after the
+ * page's content lets its end scroll above the sheet; unlike padding, it also
+ * works on a page that fixes the height of body. svh is the height with the
+ * browser's toolbars shown, so the sheet never covers more than half. */
+@media (width < 72rem) {
+  html.latte-guided body::after {
+    content: '';
+    display: block;
+    height: calc(min(50vh, 30rem) + 1rem);
+    height: calc(min(50svh, 30rem) + 1rem);
+  }
+
+  .latte-guide {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    max-width: 40rem;
+    max-height: min(50vh, 30rem);
+    max-height: min(50svh, 30rem);
+    margin: 0 auto;
+    overflow: auto;
+    overscroll-behavior: contain;
+    border-bottom: 0;
+    border-radius: 1rem 1rem 0 0;
+    box-shadow: 0 -6px 24px rgb(43 29 20 / 14%);
+  }
+
+  .latte-guide button.latte-guide-fold {
+    display: inline-block;
+  }
+
+  .latte-guide.latte-guide-folded > :not(.latte-guide-top) {
+    display: none;
+  }
+
+  .latte-guide.latte-guide-folded .latte-guide-top {
+    margin-bottom: 0;
+  }
+
+  /* Previous and Next share the row: larger targets for a thumb. */
+  .latte-guide .latte-guide-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .latte-guide button.latte-guide-nav {
+    flex: 1;
+    min-height: 2.5rem;
+    margin: 0;
+  }
+
+  .latte-guide .latte-guide-lines {
+    max-height: 9rem;
+  }
 }

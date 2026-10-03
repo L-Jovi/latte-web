@@ -19,6 +19,10 @@
       console: 'Console',
       doIt: 'Do it',
       other: '中文',
+      hide: 'Hide',
+      show: 'Show',
+      hideLabel: 'Hide the guide',
+      showLabel: 'Show the guide',
     },
     zh: {
       guide: '说明',
@@ -28,6 +32,10 @@
       console: '控制台',
       doIt: '动手试试',
       other: 'English',
+      hide: '收起',
+      show: '展开',
+      hideLabel: '收起说明',
+      showLabel: '展开说明',
     },
   };
   // The panel speaks the page's language (assets/language.js): English by default.
@@ -232,7 +240,10 @@
   // elements: a demo may watch its elements with a MutationObserver (the task-order
   // page does), and the guide must not show up in what the demo observes.
   const outline = el('style');
-  const focusOn = (selector, scroll) => {
+  // Below 72rem, the width site.css uses, the panel is a sheet over the bottom
+  // of the window, so only the space above it shows the demo.
+  const narrow = matchMedia('(width < 72rem)');
+  const focusOn = (selector, scroll, panel) => {
     outline.textContent = selector
       ? `:is(${selector}):not(.latte-guide *) { outline: 3px dashed #c26a35; outline-offset: 4px; }`
       : '';
@@ -240,15 +251,15 @@
       ? [...document.querySelectorAll(selector)].filter(inPage)
       : [];
     if (!scroll || !nodes.length) return;
-    // Centre everything the step marks; if it is taller than the window, show its top.
+    // Centre everything the step marks; if it is taller than the room, show its top.
+    const room = narrow.matches
+      ? panel.getBoundingClientRect().top
+      : innerHeight;
     const rects = nodes.map((node) => node.getBoundingClientRect());
     const top = Math.min(...rects.map((r) => r.top));
     const bottom = Math.max(...rects.map((r) => r.bottom));
     scrollBy({
-      top:
-        bottom - top < innerHeight - 96
-          ? (top + bottom - innerHeight) / 2
-          : top - 64,
+      top: bottom - top < room - 96 ? (top + bottom - room) / 2 : top - 64,
       behavior: matchMedia('(prefers-reduced-motion: reduce)').matches
         ? 'auto'
         : 'smooth',
@@ -271,7 +282,20 @@
     const switcher = el('button', 'latte-guide-lang');
     switcher.type = 'button';
     switcher.dataset.languageSwitch = '';
-    top.append(head, switcher);
+    // On a narrow screen the sheet folds down to this row, to show the whole demo.
+    const fold = el('button', 'latte-guide-fold');
+    fold.type = 'button';
+    const label = () => {
+      const t = words[lang];
+      const folded = panel.classList.contains('latte-guide-folded');
+      fold.textContent = folded ? t.show : t.hide;
+      fold.setAttribute('aria-label', folded ? t.showLabel : t.hideLabel);
+    };
+    fold.onclick = () => {
+      panel.classList.toggle('latte-guide-folded');
+      label();
+    };
+    top.append(head, switcher, fold);
     const body = el('div', 'latte-guide-step');
     body.setAttribute('aria-live', 'polite');
     const back = el('button', 'latte-guide-nav'),
@@ -316,11 +340,11 @@
       );
       back.textContent = t.back;
       next.textContent = t.next;
+      label();
       if (!steps.length) return;
       const step = steps[index];
       const action = step.action || {};
       if (moved) restore();
-      focusOn(step.focus || action.click || action.toggle?.target, moved);
       head.textContent = t.step(index + 1, steps.length);
       const title = marked('p', pick(step, 'title'));
       title.className = 'latte-guide-title';
@@ -368,6 +392,10 @@
           // the second read covers values that change without touching the DOM.
           update();
           setTimeout(update, 300);
+          // The sheet on a narrow screen scrolls to its readouts and console,
+          // where the action's results appear.
+          if (narrow.matches)
+            requestAnimationFrame(() => (panel.scrollTop = panel.scrollHeight));
         };
         body.append(doIt);
       }
@@ -381,6 +409,15 @@
         );
       back.disabled = index === 0;
       next.disabled = index === steps.length - 1;
+      // A new step starts at the top of the panel. Its part of the demo is
+      // brought into view now that the panel, a sheet on a narrow screen, has
+      // its new height.
+      if (moved) panel.scrollTop = 0;
+      focusOn(
+        step.focus || action.click || action.toggle?.target,
+        moved,
+        panel,
+      );
     };
     back.onclick = () => (index--, render(true));
     next.onclick = () => (index++, render(true));
