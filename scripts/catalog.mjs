@@ -96,9 +96,17 @@ const upsert = (file, text, name, html, anchor, after = false) => {
   const at = after ? m.index + m[0].length : m.index;
   return text.slice(0, at) + marked(name, html) + text.slice(at);
 };
+// A page without a viewport tag of its own gets one before its title, so a
+// phone lays it out as wide as the screen instead of shrinking it.
+const phone = (file, text) => {
+  const own = text.replace(block('viewport'), '');
+  return /<meta[^>]+name=["']?viewport/i.test(own)
+    ? own
+    : upsert(file, text, 'viewport', site.viewport, /<title[\s>]/i);
+};
 const dress = (file, page, css, vite = false) => {
   const entry = site.entryFor(page);
-  let text = readFileSync(file, 'utf8');
+  let text = phone(file, readFileSync(file, 'utf8'));
   // The stylesheet goes after </title>, then the guide script, before any demo script runs.
   text = upsert(file, text, 'css', css, /<\/title\s*>/i, true);
   const guide = site.guideFor(page);
@@ -138,7 +146,7 @@ for (const page of chrome.skipAll)
     page,
     upsert(
       page,
-      readFileSync(page, 'utf8'),
+      phone(page, readFileSync(page, 'utf8')),
       'language',
       `<script>\n${readFileSync('assets/language.js', 'utf8')}</script>`,
       /<\/title\s*>/i,
