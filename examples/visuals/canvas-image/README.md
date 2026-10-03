@@ -16,7 +16,7 @@ It works right after cloning; no `npm ci` or build step is needed. The canvas sh
 - Click **Grayscale**, **Threshold**, **Invert**, **Blur** or **Mosaic** to change the pixels, and **Reset** to go back. **Procedural colors** replaces the picture with colours computed from each pixel's angle around the centre.
 - Drag the **Scale** slider, or focus it and press the arrow keys: the picture grows or shrinks around its centre, and the text shows `scale 1.1`, `scale 1.2` and so on.
 - Tick **Watermark** to write `latte-web` near the bottom-right corner.
-- Tick **Magnifier** and move the pointer over the canvas. A round lens shows the original, unfiltered picture at twice the current scale. You can also focus the canvas with the Tab key and move the lens with the arrow keys.
+- Tick **Magnifier** and move the pointer over the canvas, or drag a finger across it. A round lens shows the original, unfiltered picture at twice the current scale. You can also focus the canvas with the Tab key and move the lens with the arrow keys.
 
 You can also open the [live demo](https://l-jovi.github.io/latte-web/examples/visuals/canvas-image/index.html).
 
@@ -42,7 +42,7 @@ Three details keep the results right:
 
 `procedural` builds its colours from each pixel's angle around the centre, with no picture at all.
 
-The pointer position arrives in CSS pixels, while the canvas has its own size of 480 × 300; the `pointermove` handler converts one into the other, so the lens stays under the pointer even when the page shrinks the canvas.
+The pointer position arrives in CSS pixels, while the canvas has its own size of 480 × 300; the `pointermove` handler converts one into the other, so the lens stays under the pointer even when the page shrinks the canvas. A touch places the lens through `pointerdown`. While the magnifier is on, the canvas sets `touch-action: none`, so a finger dragged across it moves the lens instead of scrolling the page.
 
 ## Then and now
 
