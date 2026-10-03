@@ -27,7 +27,7 @@ There are also everyday utilities (debounce, throttle, deep clone), design patte
 
 ## Try it
 
-**In your browser:** open the [live demos](https://l-jovi.github.io/latte-web/). Every page reads in English or in Chinese, one at a time: the button at the top right switches it. Most demos have a guide beside them: it walks through the page step by step and shows what the page's scripts print, so you do not need the browser console. On a phone, the guide is a panel at the bottom of the screen that folds away. A few examples need a local server (GraphQL and the network lab); their READMEs show how to run them.
+**In your browser:** open the [live demos](https://l-jovi.github.io/latte-web/). Every page reads in English or in Chinese, one at a time: the button at the top right switches it. Most demos have a guide beside them: it walks through the page step by step and shows what the page's scripts print, so you do not need the browser console. On a phone, the guide is a panel at the bottom of the screen that folds away; turn the phone on its side and it moves beside the page. A few examples need a local server (GraphQL and the network lab); their READMEs show how to run them.
 
 **On your computer** (Node 24 LTS):
 
