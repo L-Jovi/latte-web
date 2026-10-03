@@ -51,8 +51,9 @@ for (const file of guides(root)) {
         for (const text of [step.absentConsole].flat())
           await expect(lines.filter({ hasText: text })).toHaveCount(0);
       }
-      if (step.action)
-        expect(await page.evaluate(wrongLanguage, 'en')).toEqual([]);
+      // Every step stays in English, not only those that act: a readout can
+      // show an element's textContent, which holds both halves of a pair.
+      expect(await page.evaluate(wrongLanguage, 'en')).toEqual([]);
       if (index < steps.length - 1)
         await panel
           .getByRole('button', { name: 'Next step', exact: true })
@@ -88,8 +89,8 @@ for (const file of guides(root)) {
         await panel.locator('.latte-guide-do').click();
         // Let what the action starts (a fetch, a render, a timer) draw.
         await page.waitForTimeout(300);
-        expect(await page.evaluate(wrongLanguage, 'zh')).toEqual([]);
       }
+      expect(await page.evaluate(wrongLanguage, 'zh')).toEqual([]);
       if (index < steps.length - 1)
         await panel
           .getByRole('button', { name: '下一步', exact: true })

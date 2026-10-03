@@ -1,9 +1,20 @@
 import { test, expect } from '@playwright/test';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 
 // Every page marked as a live demo must work from the /latte-web/ sub-path.
 const catalog = JSON.parse(readFileSync('docs/catalog.json', 'utf8'));
 const live = catalog.filter((e) => e.pages?.length && e.live !== false);
+
+// The browser tests open the index and the catalog pages in both languages, so
+// the site must publish no other page (scripts/pages.mjs).
+test('publishes the index and the catalog pages, and no other page', () => {
+  const published = readdirSync('_site', { recursive: true }).filter((file) =>
+    file.endsWith('.html'),
+  );
+  expect(published.sort()).toEqual(
+    ['index.html', ...catalog.flatMap((e) => e.pages ?? [])].sort(),
+  );
+});
 
 test('the learning index links to live demos with relative URLs', async ({
   page,
