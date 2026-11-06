@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-11-06。英文版更新后本页可能滞后。
 
 同一个项目两套配置：调试用可读的输出，发布用优化后的输出。这里以生产构建为主配置，另一个 6 行的文件把它改成开发构建。
 
@@ -31,7 +31,7 @@ npm run dev
 
 ## 刻意省略
 
-- `bundle.js.map` 和页面一起发布，所以任何人都能通过它读到原始源码。[devtool 文档](https://webpack.js.org/configuration/devtool/)建议，在真实服务器上不要让普通用户访问 source map，或者改用 `hidden-source-map`：它不写那行指向 source map 的注释，source map 只留给错误报告使用。
+- `bundle.js.map` 和页面一起发布，所以任何人都能通过它读到原始源码。[devtool 文档](https://webpack.js.org/configuration/devtool/)建议，在真实服务器上限制普通用户访问 source map。`hidden-source-map` 只省略指向 source map 的注释，不会限制文件访问。如果 source map 只用于错误报告，就把它交给错误报告工具，不要部署到公开的 Web 服务器。
 - 对象展开只复制最外面一层。替换 `mode` 和 `devtool` 这样就够了，但如果要改嵌套的设置，比如 `module.rules` 里的某条规则，就得多复制几层。[webpack-merge](https://github.com/survivejs/webpack-merge) 替你做的正是这件事：它会拼接数组、合并对象。
 
 ## 验证与来源

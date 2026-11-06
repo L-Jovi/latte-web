@@ -15,7 +15,7 @@ Open the browser console: it shows `1,234,567,890`. To see why the input is a st
 
 ## How it works
 
-A `Number` stores whole numbers exactly only up to `Number.MAX_SAFE_INTEGER`, which is 9007199254740991. Beyond that, digits are lost as soon as the value becomes a `Number`. So [format-number.js](format-number.js) (7 lines) never converts its input.
+A `Number` can represent every integer exactly between minus and plus [`Number.MAX_SAFE_INTEGER`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER), which is 9007199254740991. Outside that range, some integers are rounded when converted to `Number`, and formatting cannot recover the lost digits. So [format-number.js](format-number.js) (7 lines) keeps its input as text.
 
 It first checks that the input is a decimal string: an optional `+` or `-`, digits, and optionally a point followed by more digits. Anything else throws a `TypeError`. Then it puts a comma into the whole-number part wherever the digits to its right come in complete groups of three. The regular expression `/\B(?=(\d{3})+(?!\d))/g` finds those places: `\B` stops a comma from appearing before the first digit, and the rest means "followed by one or more groups of three digits, and then no more digits". The sign and the digits after the point stay as they were, so `formatNumber('-1234567.890')` gives `'-1,234,567.890'`.
 

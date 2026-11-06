@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-11-06。英文版更新后本页可能滞后。
 
 不把数字字符串转成 `Number` 也能加千分位；再和 `Intl.NumberFormat` 对比。
 
@@ -17,7 +17,7 @@ npm run dev
 
 ## 原理
 
-`Number` 只能精确保存不超过 `Number.MAX_SAFE_INTEGER`（也就是 9007199254740991）的整数，超过之后，数值一变成 `Number` 就会丢掉一些位。所以 [format-number.js](format-number.js)（7 行）从头到尾都不转换输入。
+`Number` 能精确表示从负的到正的 [`Number.MAX_SAFE_INTEGER`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER) 之间的每一个整数；这个常量的值是 9007199254740991。超出这个范围后，有些整数在转成 `Number` 时会被舍入，之后再格式化也找不回丢失的数字。因此 [format-number.js](format-number.js)（7 行）始终以文本处理输入。
 
 它先检查输入是不是十进制字符串：可选的 `+` 或 `-`，一串数字，后面还可以跟一个小数点和更多数字。其他任何形式都会抛出 `TypeError`。然后，它在整数部分里，凡是右边的数字正好能凑成若干组三位数的地方，都插入一个逗号。找出这些位置的是正则表达式 `/\B(?=(\d{3})+(?!\d))/g`：`\B` 保证逗号不会出现在第一位数字前面，其余部分的意思是“后面跟着一组或多组三位数字，然后再没有数字”。正负号和小数点后的数字保持原样，所以 `formatNumber('-1234567.890')` 得到 `'-1,234,567.890'`。
 
