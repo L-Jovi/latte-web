@@ -35,7 +35,7 @@ Dates are first stable releases or official announcements. Checked on 2026-09-28
 
 **Now.** `Promise` became part of JavaScript in ES2015, and `async`/`await` followed in ES2017. Application code should use them.
 
-**What the old code still teaches.** Writing a promise yourself shows why callbacks always run asynchronously, why a promise settles only once, and how one promise can adopt the result of another. [Promise from scratch](../mechanisms/promise/README.md) passes the same 872 tests that libraries used to prove compliance.
+**What the old code still teaches.** Writing a promise yourself shows why its `then` callbacks run asynchronously, why a promise settles only once, and how one promise can adopt the result of another. [Promise from scratch](../mechanisms/promise/README.md) passes the same 872 tests that libraries used to prove compliance.
 
 ## Bundling: script tags → task runners → bundlers → native modules
 
@@ -87,7 +87,7 @@ Dates are first stable releases or official announcements. Checked on 2026-09-28
 
 **Now.** The router owns the URL. [React Router 7](https://remix.run/blog/react-router-v7) (2024-11-22) also loads data for each route.
 
-**What the old code still teaches.** Underneath, every client-side router listens to the History API and decides what to render. [Build your own router](../mechanisms/router/README.md) shows that in about 70 lines.
+**What the old code still teaches.** A router built on the History API tracks URL changes and decides what to render. [Build your own router](../mechanisms/router/README.md) shows that in about 70 lines.
 
 ## Testing: Enzyme → Testing Library
 
@@ -109,7 +109,7 @@ Dates are first stable releases or official announcements. Checked on 2026-09-28
 
 ## Cross-origin data: JSONP → CORS and `fetch`
 
-**Then.** Browsers blocked scripts from reading responses from other origins, but a `<script>` tag could load code from anywhere. JSONP used that loophole: the server wrapped data in a function call, and the page defined the function.
+**Then.** Browsers blocked scripts from reading responses from other origins, but a `<script>` tag could load code from anywhere. JSONP used this difference between reading a response and loading a script: the server wrapped data in a function call, and the page defined the function.
 
 **What hurt.** JSONP runs the remote response as code with the page's full permissions, supports only GET, and has poor error handling.
 

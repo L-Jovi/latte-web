@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-11-06。英文版更新后本页可能滞后。
 
 用两种方式读取同一份跨域数据，并用 `AbortController` 取消请求。JSONP 把回答当作脚本执行；`fetch` 只是读取它，而且之所以能读，是因为服务器通过 CORS 允许了。
 
@@ -31,7 +31,7 @@ npm run dev
 
 ## 过去与现在
 
-JSONP 利用了一个漏洞：浏览器不允许脚本读取其他源的响应，但 `<script>` 标签可以从任何地方加载代码，于是服务器把数据包在一个函数调用里返回。代价是信任：JSONP 把远程的回答当作代码执行，拥有页面的全部权限；它只支持 GET，出错时也很难处理。如今，[CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS) 让服务器声明谁可以读取它的响应，`fetch`（2015 年）负责读取，[`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) 可以取消不再需要的请求。早期的 `fetch` 完全无法取消；[React 架构笔记](../../docs/history/react/README.zh-Hans.md)当年选择 axios，部分原因就在这里。更完整的经过见[生态是怎样变过来的](../../docs/ecosystem.zh-Hans.md)。
+JSONP 利用了“加载脚本”和“读取响应”这两种行为的区别：浏览器不允许脚本读取其他源的响应，但 `<script>` 标签可以从任何地方加载代码，于是服务器把数据包在一个函数调用里返回。代价是信任：JSONP 把远程的回答当作代码执行，拥有页面的全部权限；它只支持 GET，出错时也很难处理。如今，[CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS) 让服务器声明谁可以读取它的响应，`fetch`（2015 年）负责读取，[`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) 可以取消不再需要的请求。早期的 `fetch` 完全无法取消；[React 架构笔记](../../docs/history/react/README.zh-Hans.md)当年选择 axios，部分原因就在这里。更完整的经过见[生态是怎样变过来的](../../docs/ecosystem.zh-Hans.md)。
 
 ## 刻意省略
 
