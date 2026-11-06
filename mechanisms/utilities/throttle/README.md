@@ -30,7 +30,7 @@ JavaScript still has no built-in throttle. Libraries such as lodash provide `thr
 
 ## Limits
 
-- Only the first call in each interval runs. The last call of a burst is dropped, so a drag that stops between two intervals would miss its final position.
+- A call is ignored if less than `wait` milliseconds have passed since the last accepted call. If that is the final call in a burst, it is not run later. A drag that ends during this waiting period can therefore miss its final position.
 - There is no `cancel` and no option for a trailing call.
 
 ## Checks and credits

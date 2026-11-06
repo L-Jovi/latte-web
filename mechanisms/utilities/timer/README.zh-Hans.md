@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-11-06。英文版更新后本页可能滞后。
 
 测量定时器回调晚了多少，并据此调整下一次的触发时间。
 
@@ -13,13 +13,13 @@ npm run dev
 # 打开 http://127.0.0.1:4173/mechanisms/utilities/timer/?lang=zh
 ```
 
-点击**开始十次计时**。页面上每 100 毫秒出现一行，一共十行，每行写着这一次晚了多少，例如 `3: 1.20 ms late`。每次运行的数字都不一样，但不会越来越大。**停止**会取消下一次触发。不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/timer/index.html?lang=zh)。
+点击**开始十次计时**。定时器计划每隔 100 毫秒输出一行，共十行，每行写着这一次晚了多少，例如 `3: 1.20 ms late`。页面能够跟上时，校正会避免一次晚到把后面所有预定时间都推迟；实际延迟仍会随浏览器的工作量变化。**停止**会取消下一次触发。不需要安装依赖，也不需要构建：克隆仓库后直接运行 `npm run dev` 即可。也可以直接打开[在线演示](https://l-jovi.github.io/latte-web/mechanisms/utilities/timer/index.html?lang=zh)。
 
 ## 原理
 
 别的代码还在运行时，定时器回调没法执行，所以它常常会晚一点。如果每一次都从当前时刻起再等整整 `wait` 毫秒去安排下一次，每次的延迟就会累加到下一次上，定时器离预定的时间越来越远，这就是“漂移”。
 
-[timer-delay-fix.js](timer-delay-fix.js)（16 行）避免了这一点。`startDriftTimer(callback, wait)` 记下开始的时间，于是第 _n_ 次本应在 `start + n × wait` 时执行。每次触发都会调用 `callback({ count, drift })`，其中 `drift` 表示这一次晚了多少毫秒。然后它按下一次的理想时间 `start + (n + 1) × wait` 设置定时器，而不是从现在起再等整整 `wait`。晚到的那一次，后面的等待就会相应缩短，所以延迟不会累加。`startDriftTimer` 返回一个 `stop()` 函数，在回调内部调用也有效。时间取自 `performance.now()`，这个时钟只会往前走。
+[timer-delay-fix.js](timer-delay-fix.js)（16 行）避免了这一点。`startDriftTimer(callback, wait)` 记下开始的时间，于是第 _n_ 次本应在 `start + n × wait` 时执行。每次触发都会调用 `callback({ count, drift })`，其中 `drift` 表示这一次晚了多少毫秒。然后它按下一次的理想时间 `start + (n + 1) × wait` 设置定时器，而不是从现在起再等整整 `wait`。一次晚到后，下一次的等待会相应缩短，继续对准原来的时间表。这能避免“从上一次回调重新计时”造成的累积漂移，却不能让忙碌的页面保证准时。`startDriftTimer` 返回一个 `stop()` 函数，在回调内部调用也有效。时间取自 `performance.now()`，这个时钟只会往前走。
 
 [timer-delay.js](timer-delay.js)（8 行）只测量、不校正：用 `setInterval` 每秒触发一次，打印十次的漂移。在仓库根目录运行 `node mechanisms/utilities/timer/timer-delay.js`；在 Node 里，漂移通常每次都会增加一点。[timer-animation-frame.js](timer-animation-frame.js)（28 行）用 `requestAnimationFrame` 在每次屏幕刷新时更新一个元素，让数字从 0 数到 100 再数回来；`setInterval` 的写法留在了注释里。
 
