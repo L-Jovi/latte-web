@@ -33,7 +33,7 @@ All paths start with the folder the app is served from. Vite's `base` option in 
 
 ## Then and now
 
-Apps used to copy the current URL into the Redux store, with libraries such as react-router-redux, so that all state lived in one place; the two copies could then disagree. Today the router owns the URL, and [React Router 7](https://remix.run/blog/react-router-v7) (2024-11-22) also loads data for each route. Both Todo apps use react-router-dom, so you can compare it with this version: the [2018-style Todo](../../examples/react-classic/README.md) and [today's Todo](../../examples/react-modern/README.md). Underneath, every client-side router does what this one does: it listens to the History API and decides what to render.
+Apps used to copy the current URL into the Redux store, with libraries such as react-router-redux, so that all state lived in one place; the two copies could then disagree. Today the router owns the URL, and [React Router 7](https://remix.run/blog/react-router-v7) (2024-11-22) also loads data for each route. Both Todo apps use react-router-dom, so you can compare it with this version: the [2018-style Todo](../../examples/react-classic/README.md) and [today's Todo](../../examples/react-modern/README.md). This example makes the History API approach visible: it tracks URL changes and chooses the matching view. The Todo apps use hash-based routing instead, with the route after `#` in the URL.
 
 ## Limits
 

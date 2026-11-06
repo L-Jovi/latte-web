@@ -29,7 +29,7 @@ The original version followed the [official guide](https://webpack.js.org/guides
 
 ## Limits
 
-- `bundle.js.map` is published next to the page, so anyone can read the original source through it. The [devtool documentation](https://webpack.js.org/configuration/devtool/) advises keeping source maps away from normal users on a real server, or using `hidden-source-map`, which leaves out the comment that points to the map, so the map serves only for error reports.
+- `bundle.js.map` is published next to the page, so anyone can read the original source through it. The [devtool documentation](https://webpack.js.org/configuration/devtool/) advises restricting access to source maps on a real server. `hidden-source-map` leaves out the comment that points to the map; it does not restrict access to the file. If the map is only for error reports, keep it with the error-reporting tools and do not deploy it to the public web server.
 - Object spread copies only the top level. That is enough to replace `mode` and `devtool`, but changing something nested, such as one rule inside `module.rules`, would take more copying. [webpack-merge](https://github.com/survivejs/webpack-merge) does that for you: it concatenates arrays and merges objects.
 
 ## Checks and credits

@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-11-06。英文版更新后本页可能滞后。
 
 基于 History API 的小路由：点击链接、前进后退，都不刷新页面。路由本身是 72 行 React 类组件。
 
@@ -35,7 +35,7 @@ npm run dev
 
 ## 过去与现在
 
-以前，应用会借助 react-router-redux 这类库，把当前 URL 复制一份放进 Redux store，好让所有状态都待在一处；可这样一来，两份数据就可能对不上。如今由路由自己掌管 URL，[React Router 7](https://remix.run/blog/react-router-v7)（2024-11-22）还会为每个路由加载数据。两个 Todo 应用都使用 react-router-dom，可以拿来和这里的版本对照：[2018 年风格的 Todo](../../examples/react-classic/README.zh-Hans.md) 和[今天风格的 Todo](../../examples/react-modern/README.zh-Hans.md)。说到底，每个客户端路由做的都是这里的事：监听 History API，再决定渲染什么。
+以前，应用会借助 react-router-redux 这类库，把当前 URL 复制一份放进 Redux store，好让所有状态都待在一处；可这样一来，两份数据就可能对不上。如今由路由自己掌管 URL，[React Router 7](https://remix.run/blog/react-router-v7)（2024-11-22）还会为每个路由加载数据。两个 Todo 应用都使用 react-router-dom，可以拿来和这里的版本对照：[2018 年风格的 Todo](../../examples/react-classic/README.zh-Hans.md) 和[今天风格的 Todo](../../examples/react-modern/README.zh-Hans.md)。这里展示的是 History API 这条实现路径：跟踪 URL 的变化，再选择对应的视图。两个 Todo 应用用的则是 hash 路由，把路由路径放在 URL 的 `#` 后面。
 
 ## 刻意省略
 
