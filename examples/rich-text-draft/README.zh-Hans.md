@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01（Asia/Singapore，UTC+08:00）。英文版更新后本页可能滞后。
 
 输入、加粗、保存为 JSON；Draft.js 已于 2023 年被 Meta 归档。[Lexical 版](../rich-text-lexical/README.zh-Hans.md)做的是同样的三步，方便两者对照。
 

@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-11-06。英文版更新后本页可能滞后。
+> 对应英文版：2026-11-06（Asia/Singapore，UTC+08:00）。英文版更新后本页可能滞后。
 
 不把数字字符串转成 `Number` 也能加千分位；再和 `Intl.NumberFormat` 对比。
 

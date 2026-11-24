@@ -1,5 +1,7 @@
 # Rust to WebAssembly in the browser
 
+> Date convention: unqualified dates and local times in this document's own records use `Asia/Singapore` (SGT, UTC+08:00). Explicit source zones and timestamp offsets take precedence; a date alone does not establish a clock time.
+
 English | [简体中文](README.zh-Hans.md)
 
 Compile a Rust function to `.wasm` and call it from a button. _WebAssembly_ (Wasm) is a compact binary format that browsers run next to JavaScript; here you follow one function all the way: Rust `add(i32, i32)` → a `.wasm` file → `WebAssembly.instantiate` → a click.

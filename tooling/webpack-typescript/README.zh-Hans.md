@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01（Asia/Singapore，UTC+08:00）。英文版更新后本页可能滞后。
 
 看懂 Babel 为什么只删类型不检查，以及 tsc 还负责什么。构建时由 Babel 把 TypeScript 和 JSX 转换成 JavaScript，类型则交给单独运行的 `tsc` 检查。
 

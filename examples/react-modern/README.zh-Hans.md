@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01（Asia/Singapore，UTC+08:00）。英文版更新后本页可能滞后。
 
 功能和 [2018 版](../react-classic/README.zh-Hans.md)完全相同，方便两边对照阅读。
 

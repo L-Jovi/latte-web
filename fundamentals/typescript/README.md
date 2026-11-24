@@ -1,5 +1,7 @@
 # TypeScript: typed actions and reducers
 
+> Date convention: unqualified dates and local times in this document's own records use `Asia/Singapore` (SGT, UTC+08:00). Explicit source zones and timestamp offsets take precedence; a date alone does not establish a clock time.
+
 English | [简体中文](README.zh-Hans.md)
 
 A discriminated union tells the compiler which action each branch of a reducer handles. Each action is an object whose `type` field holds a fixed string, so a misspelled action type does not compile.

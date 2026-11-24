@@ -1,5 +1,7 @@
 # Build your own router
 
+> Date convention: unqualified dates and local times in this document's own records use `Asia/Singapore` (SGT, UTC+08:00). Explicit source zones and timestamp offsets take precedence; a date alone does not establish a clock time.
+
 English | [简体中文](README.zh-Hans.md)
 
 A small router on the History API: links, back and forward, all without a page reload. The router itself is 72 lines of React class components.

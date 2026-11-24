@@ -12,3 +12,14 @@
 - New comments explain rationale in English. Keep examples small, without generic framework infrastructure.
 - Use a descriptive branch, Conventional Commits and a PR. Do not bypass main protection or rewrite published history.
 - Never commit databases, credentials, personal data, dependencies or build outputs. Only GitHub Pages is deployed automatically; nothing is published to npm.
+
+## Document dates and language
+
+Keep an existing document's language and declared timezone. New calendar dates
+must have an explicit `date_timezone` or a clear local scope; preserve day-only
+precision instead of inventing midnight. Precise timestamps need a UTC offset
+or `Z`. The team's UTC+08:00 region name is `Asia/Singapore`; a new document may
+use another explicit suitable zone. Conversation or host timezone changes do
+not migrate documents or existing schedules. Preserve source-specific dates,
+native schemas and sealed bytes; record legacy interpretations outside an
+immutable artifact.

@@ -1,5 +1,7 @@
 # Measuring page speed in 2019
 
+> Date convention: unqualified dates and local times in this document's own records use `Asia/Singapore` (SGT, UTC+08:00). Explicit source zones and timestamp offsets take precedence; a date alone does not establish a clock time.
+
 English | [简体中文](README.zh-Hans.md)
 
 How page speed was measured with `performance.timing`, and why those numbers are read differently now. This is a short, company-neutral summary of how it was usually done around 2019. The original 2019 report described one specific product and has been withdrawn from this repository.

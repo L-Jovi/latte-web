@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28（Asia/Singapore，UTC+08:00）。英文版更新后本页可能滞后。
 
 自己实现 new 和 instanceof：创建对象、执行构造函数、沿原型链查找。`forgeNew` 和 `forgeInstanceof` 这两个小函数，手工完成了这两个运算符替你做的事。
 
