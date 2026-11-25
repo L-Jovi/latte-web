@@ -1,5 +1,7 @@
 # How the ecosystem changed
 
+> Date convention: unqualified dates and local times in this document's own records use `Asia/Singapore` (SGT, UTC+08:00). Explicit source zones and timestamp offsets take precedence; a date alone does not establish a clock time.
+
 English | [简体中文](ecosystem.zh-Hans.md)
 
 Most examples in this repository were first written between 2018 and 2022. The tools around them have changed a lot since then. This page tells that story one topic at a time: how people worked then, what hurt, what the community built, what we use today, and what the older code still teaches.

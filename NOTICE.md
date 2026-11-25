@@ -1,5 +1,7 @@
 # Third-party notices and license boundaries
 
+> Date convention: unqualified dates and local times in this document's own records use `Asia/Singapore` (SGT, UTC+08:00). Explicit source zones and timestamp offsets take precedence; a date alone does not establish a clock time.
+
 The root [MIT license](LICENSE) covers Jovi's original code and new explanatory material. It does not replace local licenses or grant rights to third-party assets. Article references identify learning sources, not authorship.
 
 | Retained material                                                                      | Attribution and terms                                                                                                                                                                                                                       |

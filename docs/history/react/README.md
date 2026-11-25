@@ -1,5 +1,7 @@
 # React architecture notes from 2018
 
+> Date convention: unqualified dates and local times in this document's own records use `Asia/Singapore` (SGT, UTC+08:00). Explicit source zones and timestamp offsets take precedence; a date alone does not establish a clock time.
+
 English | [简体中文](README.zh-Hans.md)
 
 The original notes (in Chinese) on domain-driven structure, sagas and routing. They explain how the repository's React and Redux Todo app was organized, and they are kept for reading, not as advice for today.

@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28（Asia/Singapore，UTC+08:00）。英文版更新后本页可能滞后。
 
 Apollo Server + Prisma + SQLite，用迁移脚本和虚构数据重建。这是[链接分享站](../README.zh-Hans.md)背后的 API。
 

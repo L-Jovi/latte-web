@@ -1,5 +1,7 @@
 # One component library, three builds
 
+> Date convention: unqualified dates and local times in this document's own records use `Asia/Singapore` (SGT, UTC+08:00). Explicit source zones and timestamp offsets take precedence; a date alone does not establish a clock time.
+
 English | [简体中文](README.zh-Hans.md)
 
 Ship the same `Card` and `Button` with Vite, webpack and Babel, and load each output. Putting the three side by side shows what each build tool does to the same source files.

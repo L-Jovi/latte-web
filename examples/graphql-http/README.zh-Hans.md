@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-11-06。英文版更新后本页可能滞后。
+> 对应英文版：2026-11-06（Asia/Singapore，UTC+08:00）。英文版更新后本页可能滞后。
 
 Schema、resolver 和 JSON 响应：最小的一次完整 GraphQL 请求。服务端保留了原版里的 hello、掷骰子和留言三个练习。
 

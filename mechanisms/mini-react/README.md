@@ -1,5 +1,7 @@
 # Build your own React-style renderer
 
+> Date convention: unqualified dates and local times in this document's own records use `Asia/Singapore` (SGT, UTC+08:00). Explicit source zones and timestamp offsets take precedence; a date alone does not establish a clock time.
+
 English | [简体中文](README.zh-Hans.md)
 
 `createElement`, mount and `setState` in a few files; two counters keep their own state. The three files that make up the renderer total 106 lines.

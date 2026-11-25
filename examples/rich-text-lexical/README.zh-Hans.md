@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01（Asia/Singapore，UTC+08:00）。英文版更新后本页可能滞后。
 
 同样的输入、加粗、保存流程，换成 Draft.js 的继任者。[Draft.js 版本](../rich-text-draft/README.zh-Hans.md)走的是同样三步，可以对照着看。
 

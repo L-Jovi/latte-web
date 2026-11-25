@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28（Asia/Singapore，UTC+08:00）。英文版更新后本页可能滞后。
 
 来自早年教程的浅渲染和 DOM 测试，留作与 Testing Library 对比。它们出自阮一峰的 react-testing-demo，测试对象是一个为 React 0.14 编写的小型 Todo 应用。
 

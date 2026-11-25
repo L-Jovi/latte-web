@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28（Asia/Singapore，UTC+08:00）。英文版更新后本页可能滞后。
 
 `@{name}` 把 Less 变量的值插进字符串。在 [val2string.less](val2string.less) 里，`@name: "latte"` 加上 `content: "@{name} Web"`，编译结果是 `content: "latte Web"`。这件事只在编译文件时发生一次：Less 把变量的值复制进去，字符串里的任何内容都不会被当作 JavaScript 执行。
 

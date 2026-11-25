@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-09-28。英文版更新后本页可能滞后。
+> 对应英文版：2026-09-28（Asia/Singapore，UTC+08:00）。英文版更新后本页可能滞后。
 
 让 Less 自己选用哪个混入，这里有两种办法。[switch.less](switch.less) 按固定的第一个参数匹配：`@switch: light` 时，只有 `.mixin(light, @color)` 生效，再加上 `.mixin(@_, @color)`，因为 `@_` 能匹配任何值。[guide.less](guide.less) 用的是守卫，也就是用 `when` 写的条件：`lightness(@a) >= 50%` 让 `#ddd` 得到黑色背景，`lightness(@a) <= 50%` 让 `#555` 得到白色背景。
 

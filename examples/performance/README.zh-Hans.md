@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-> 对应英文版：2026-10-01。英文版更新后本页可能滞后。
+> 对应英文版：2026-10-01（Asia/Singapore，UTC+08:00）。英文版更新后本页可能滞后。
 
 用 Navigation Timing、PerformanceObserver 和 Core Web Vitals 测量你自己的这次访问。浏览器给出的原始记录，和由它们算出来的指标，分开展示。
 

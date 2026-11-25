@@ -1,5 +1,7 @@
 # Todo app, 2018 style: classes, Redux, Saga, Immutable
 
+> Date convention: unqualified dates and local times in this document's own records use `Asia/Singapore` (SGT, UTC+08:00). Explicit source zones and timestamp offsets take precedence; a date alone does not establish a clock time.
+
 English | [简体中文](README.zh-Hans.md)
 
 The original architecture, repaired and running on React 19. It has the same features as [today's version](../react-modern/README.md), so you can compare the two file by file.
