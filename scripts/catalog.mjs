@@ -236,7 +236,8 @@ const cup = `<svg class="cup" viewBox="0 0 320 360" role="img" aria-label="A lat
 const siblings = [
   ['espresso-algorithm', 'algorithms', '算法'],
   ['roaster-linux', 'Linux tools', 'Linux 工具'],
-  ['barista-services', 'services', '服务'],
+  // Retired on 2026-11-25: the repository was deleted, so a link would only show a 404.
+  ['barista-services', 'services, retired', '服务，已退役', false],
   // Retired on 2026-10-01: the repository is now private, so a link would only show a 404.
   ['cappuccino-ios', 'iOS apps, retired', 'iOS 应用，已退役', false],
 ];
